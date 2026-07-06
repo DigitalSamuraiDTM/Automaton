@@ -68,6 +68,10 @@ The language describes not automation actions, but rather the testing domain mod
 
 Any automaton profram interpreted relative to some compilation context. Context is a part of program and worked particaptes in AST building.
 
+#### Indepence of actions
+
+Each type of action is an independent non-terminal symbol of grammar and has its own system of production rules.
+
 ## Context-free grammatic
 Description of Automaton language based at classic theory of finite automates. The language is defined by four elements
 
@@ -94,6 +98,25 @@ S ∈ V (start symbol is one of non terminals symbols)
 * Test - block with test scenario
 * Metadata - test name, description, identifactors, categories, tags and etc of test
 * StepList - service non terminal contains sequence of steps
-* Step - named 
+* Step - named logic unit of scenario, unites of a sequence
+* Action - a minimal semantic construct of a language that describes a change in the state of the system under test or a check of the state of the system.
+* Tap -
+* Input -
+* Wait -
+* Assert
 
-#### Middle-level (V2)
+
+
+High-level structure of a Automaton program:
+
+```txt
+CompilationUnit
+    ├── Context
+    └── Test
+            ├── Metadata
+            └── StepList
+                    ├── Step
+                    ├── Step
+                    ├── Step
+                    └── ...
+```
