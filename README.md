@@ -87,6 +87,13 @@ and
 
 S ∈ V (start symbol is one of non terminals symbols)
 
-### Grammar
+### Non terminals
 
-####
+* CompilationUnit - begin of all automaton programs
+* Context - context for compilation of program. Describe screens, mocks, permissions and other
+* Test - block with test scenario
+* Metadata - test name, description, identifactors, categories, tags and etc of test
+* StepList - service non terminal contains sequence of steps
+* Step - named 
+
+#### Middle-level (V2)
