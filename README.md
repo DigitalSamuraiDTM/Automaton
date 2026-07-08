@@ -125,17 +125,23 @@ S ∈ V (start symbol is one of non terminals symbols)
 
 ### Productions
 
+
 CompilationUnit → Context Test
 
+
 Test → Metadata StepList
+
 
 StepList → Step
 StepList → Step StepList
 
+
 Step → ActionList
+
 
 ActionList → Action
 ActionList → Action ActionList
+
 
 Action → Tap
 Action → Input
@@ -143,15 +149,21 @@ Action → Wait
 Action → Delay
 Action → Assert
 
+
 Tap → ElementReference TapType
+
 
 Input → ElementReference InputData
 
+
 Wait → Condition Timeout
+
 
 Delay → Duration
 
+
 Assert → Condition
+
 
 Condition → ElementReference ElementProperty PropertyValue
 
