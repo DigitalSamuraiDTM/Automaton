@@ -21,6 +21,14 @@ tap: loginButton
 ```
 can be correctly event when the element "loginButton" is not exist
 
+#### Structure composition
+
+Every composite non terminal is a container with named section. If a section has independent meaning in the subject area or can potentially be expanded without changing the semantics of the container, it is allocated as a separate non-terminal.
+
+#### Single responsibility of semanthics
+
+Every syntax of language has single semanthic
+
 #### Concrete syntax
 
 Context-free grammar of a language defines abstract structure of program.
@@ -99,15 +107,56 @@ S ∈ V (start symbol is one of non terminals symbols)
 * Metadata - test name, description, identifactors, categories, tags and etc of test
 * StepList - service non terminal contains sequence of steps
 * Step - named logic unit of scenario, unites of a sequence
+* ActionList
 * Action - a minimal semantic construct of a language that describes a change in the state of the system under test or a check of the state of the system.
-* Tap -
-* Input -
-* Wait -
-* Assert
+* Tap - user action tap on ui element
+* Input - user action input data at ui
+* Wait - await some times for loading
+* Assert - check required condition
+* ElementReference - ui element reference, setuped in context
+* TapType - Type of tap action. Can be: Single, Long, Double
+* InputData - text, that will inputed at ui element
+* Condition - single non composable condition. Automaton specially does not support logic operand "or" for maintaining atomicity execution
+* Timeout - timeout for execution wait block
+* Delay - 
+* Duration - time for delay
+* ElementProperty
+* PropertyValue
+
+### Productions
+
+CompilationUnit → Context Test
+
+Test → Metadata StepList
+
+StepList → Step
+StepList → Step StepList
+
+Step → ActionList
+
+ActionList → Action
+ActionList → Action ActionList
+
+Action → Tap
+Action → Input
+Action → Wait
+Action → Delay
+Action → Assert
+
+Tap → ElementReference TapType
+
+Input → ElementReference InputData
+
+Wait → Condition Timeout
+
+Delay → Duration
+
+Assert → Condition
+
+Condition → ElementReference ElementProperty PropertyValue
 
 
-
-High-level structure of a Automaton program:
+### High-level structure of a Automaton program:
 
 ```txt
 CompilationUnit
