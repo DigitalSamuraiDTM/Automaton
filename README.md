@@ -139,15 +139,19 @@ S ∈ V (start symbol is one of non terminals symbols)
 
 ### Terminal symbols
 
-| Non-terminal     | Value                          |                                 Description                                 |
-|------------------|:-------------------------------|:---------------------------------------------------------------------------:|
-| ElementReference | CompilationUnit → Context Test |                  Ui element reference declared in context                   |
-| InputData        | CompilationUnit → Context Test | Symbols, that will be inputed at ui element. The element must be inputtable |
-| TapType          | CompilationUnit → Context Test |                        The element must be tappable                         |
-| Timeout          | CompilationUnit → Context Test |                                    TODO                                     |
-| Duration         | CompilationUnit → Context Test |                                    TODO                                     |
-| ElementProperty  | CompilationUnit → Context Test |                                    TODO                                     |
-| PropertyValue    | CompilationUnit → Context Test |                                    TODO                                     |
+| Non-terminal     | Value                  |                                 Description                                 |
+|------------------|:-----------------------|:---------------------------------------------------------------------------:|
+| ElementReference | TODO                   |                  Ui element reference declared in context                   |
+| InputData        | "string"               | Symbols, that will be inputed at ui element. The element must be inputtable |
+| TapType          | -                      |                        The element must be tappable                         |
+| Timeout          | time                   |                                    TODO                                     |
+| Duration         | time                   |                                    TODO                                     |
+| ElementProperty  | see element properties |                                    TODO                                     |
+| PropertyValue    | see element properties |                                    TODO                                     |
+
+### Element properties
+
+TODO
 
 ### High-level structure of a Automaton program:
 
