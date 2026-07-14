@@ -1,0 +1,40 @@
+compilationUnit:
+  context: {}   # Пока не описан
+
+  test:
+    metadata:
+      id: AUTH_001
+      name: Successful authorization
+
+    steps:
+      - actions:
+          - tap:
+              element: loginButton
+              type: single
+
+      - actions:
+          - input:
+              element: loginField
+              data: "admin"
+
+          - input:
+              element: passwordField
+              data: "password"
+
+      - actions:
+          - tap:
+              element: submitButton
+              type: single
+
+          - wait:
+              condition:
+                element: homeTitle
+                property: visible
+                value: true
+              timeout: 5s
+
+          - assert:
+              condition:
+                element: homeTitle
+                property: visible
+                value: true
