@@ -97,6 +97,45 @@ and worked particaptes in AST building.
 Each type of action is an independent non-terminal symbol of grammar and has its own system of
 production rules.
 
+## General scheme of compiler
+
+```
+           YAML
+             │
+             ▼
+      Lexical analyzer
+             │
+             ▼
+    Non-terminals flow
+             │
+             ▼
+       Syntax analyzer
+             │
+             ▼
+            AST
+             │
+             ▼
+   Semanthic analyzer
+             │
+             ▼
+      Validated AST
+             │
+             ▼
+             IR
+        ┌────┴────┐
+        ▼         ▼
+ Backend Kotlin  Backend Swift
+        │         │
+       .kt       .swift
+
+или
+
+             IR
+             │
+             ▼
+        (JIT)
+```
+
 ## Context-free grammatic
 
 Description of Automaton language based at classic theory of finite automates. The language is
