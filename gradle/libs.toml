@@ -1,0 +1,32 @@
+[versions]
+agp = "8.13.2"
+compose-plugin = "1.10.1"
+junit = "4.13.2"
+kotlin = "2.3.10"
+kotlinx-coroutines = "1.10.2"
+kotlinx-json = "1.10.0"
+ktor = "3.4.0"
+logback = "1.5.32"
+koin-bom = "4.1.1"
+postgresql = "42.7.10"
+ktorm = "4.1.1"
+kotlinx-datetime = "0.7.1"
+kotlinx-browser = "0.3.1"
+ktlint = "11.6.0"
+
+[libraries]
+plugin-agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+plugin-kotlin-android = { module = "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
+plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+plugin-ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+
+[plugins]
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
