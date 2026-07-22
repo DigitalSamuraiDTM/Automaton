@@ -4,11 +4,6 @@ plugins {
 
 
 dependencies {
-
-
-    api(project(":compiler:api"))
-    api(project(":compiler:backend:api"))
-    api(project(":compiler:frontend:api"))
     implementation(kotlin("stdlib-jdk8"))
 }
 
