@@ -1,6 +1,7 @@
 package com.digitalsamurai.automaton.frontend.api
 
 import com.digitalsamurai.automaton.api.Automaton
+import com.digitalsamurai.automaton.lexis.Token
 import kotlinx.coroutines.flow.Flow
 
 
@@ -11,5 +12,5 @@ public object AutomatonFrontends {}
 
 public interface AutomatonFrontend {
 
-    val terminals: Flow<String>
+    val terminals: Flow<Token<*>>
 }
