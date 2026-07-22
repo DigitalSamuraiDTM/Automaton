@@ -6,6 +6,8 @@ plugins {
 dependencies {
     implementation(project(":compiler:frontend:api"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+
 }
 
 
