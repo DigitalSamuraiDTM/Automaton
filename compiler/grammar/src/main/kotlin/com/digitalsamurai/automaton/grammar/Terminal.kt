@@ -1,20 +1,20 @@
-package com.digitalsamurai.automaton.lexis
+package com.digitalsamurai.automaton.grammar
 
 import kotlin.time.Duration
 
 sealed interface Terminal<T>: GrammarSymbol<T>
 
 data object ElementReference: Terminal<String> {
-    override val representation: String = "ElementReference"
+    override val representation: String = "elementReference"
 }
 
 data object InputData: Terminal<String> {
-    override val representation: String = "InputData"
+    override val representation: String = "inputData"
 }
 
 data object TapType: Terminal<TapType.Type> {
 
-    override val representation: String = "TapType"
+    override val representation: String = "tapType"
 
     enum class Type {
         SINGLE,

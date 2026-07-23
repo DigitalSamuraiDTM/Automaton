@@ -14,7 +14,7 @@ fun main(): Unit = runBlocking {
         frontend = yamlFrontend
     ){}
 
-    yamlFrontend.compile(YamlInput(File("")))
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 
 //    val result = compiler.compile(YamlInput())
 

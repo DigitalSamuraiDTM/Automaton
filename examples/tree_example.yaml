@@ -1,5 +1,5 @@
 compilationUnit:
-  context: {}   # Пока не описан
+  #context: {}   # Пока не описан
 
   test:
     metadata:
