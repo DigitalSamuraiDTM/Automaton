@@ -1,6 +1,14 @@
 package com.digitalsamurai.automaton.grammar
 
-sealed interface NonTerminal: GrammarSymbol<Unit>
+sealed interface NonTerminal: GrammarSymbol<Unit> {
+    fun asToken(sourceLocation: String): Token<Unit> {
+        return Token(
+            symbol = this::class.objectInstance!!,
+            value = Unit,
+            sourceLocation = sourceLocation,
+        )
+    }
+}
 
 data object CompilationUnit: NonTerminal {
     override val representation: String = "compilationUnit"
@@ -18,16 +26,16 @@ data object Metadata: NonTerminal {
     override val representation: String = "metadata"
 }
 
-data object StepList: NonTerminal {
-    override val representation: String = "stepList"
+data object Steps: NonTerminal {
+    override val representation: String = "steps"
 }
 
 data object Step: NonTerminal {
     override val representation: String = "step"
 }
 
-data object ActionList: NonTerminal {
-    override val representation: String = "actionList"
+data object Actions: NonTerminal {
+    override val representation: String = "actions"
 }
 
 data object Action: NonTerminal {

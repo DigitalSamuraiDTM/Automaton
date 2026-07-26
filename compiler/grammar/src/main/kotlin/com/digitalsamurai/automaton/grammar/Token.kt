@@ -6,7 +6,7 @@ data class Token<T>(
     val sourceLocation: String
 ) {
     override fun toString(): String {
-        return "$symbol:$value"
+        return "Token(symbol=$symbol, value=$value)"
     }
 }
 

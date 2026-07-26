@@ -3,10 +3,21 @@ package com.digitalsamurai.automaton.frontend.yaml
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontend
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontends
 import com.digitalsamurai.automaton.grammar.Token
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.withContext
+import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.events.AliasEvent
+import org.yaml.snakeyaml.events.CollectionStartEvent
+import org.yaml.snakeyaml.events.Event
+import org.yaml.snakeyaml.events.MappingStartEvent
+import org.yaml.snakeyaml.events.ScalarEvent
+import org.yaml.snakeyaml.parser.ParserImpl
+import org.yaml.snakeyaml.reader.StreamReader
+import org.yaml.snakeyaml.scanner.ScannerImpl
 import java.io.File
 
 
@@ -23,10 +34,12 @@ public class YamlFrontend() : AutomatonFrontend {
     override val tokensFlow: MutableSharedFlow<Sequence<Token<*>>> = MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.SUSPEND)
 
     suspend fun compile(input: YamlInput) {
-        val inputStream = input.file.inputStream()
-        val decodedFile = yaml.load<Map<String, Any>>(inputStream)
-        val tokens = lexicalAnalyzer.analyze(decodedFile)
-        tokensFlow.emit(tokens)
+        val decodedData = withContext(Dispatchers.IO) {
+            val inputStream = input.file.inputStream()
+            lexicalAnalyzer.analyze(inputStream)
+        }
+
+        tokensFlow.emit(decodedData)
     }
 }
 

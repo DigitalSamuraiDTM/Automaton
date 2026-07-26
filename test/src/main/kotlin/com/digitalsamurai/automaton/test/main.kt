@@ -4,6 +4,7 @@ import com.digitalsamurai.automaton.api.Automaton
 import com.digitalsamurai.automaton.compiler.compiler
 import com.digitalsamurai.automaton.frontend.yaml.YamlFrontend
 import com.digitalsamurai.automaton.frontend.yaml.YamlInput
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.io.File
 
@@ -16,8 +17,8 @@ fun main(): Unit = runBlocking {
 
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 
-//    val result = compiler.compile(YamlInput())
 
+    delay(100000L)
 
 
 

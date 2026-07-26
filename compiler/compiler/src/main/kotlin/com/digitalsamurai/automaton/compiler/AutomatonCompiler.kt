@@ -20,8 +20,8 @@ public class AutomatonCompiler<T: AutomatonFrontend> internal constructor(
 
     private fun listenFrontend() {
         automatonScope.launch {
-            frontend.tokensFlow.collect { terminal ->
-                println(terminal)
+            frontend.tokensFlow.collect { sequence ->
+                println("OUT: " + sequence.toList().toString())
             }
         }
     }
