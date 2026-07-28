@@ -1,12 +1,11 @@
 package com.digitalsamurai.automaton.frontend.yaml
 
 import com.digitalsamurai.automaton.frontend.api.AutomatonLexicalAnalyzer
+import com.digitalsamurai.automaton.grammar.AutomatonGrammar
 import com.digitalsamurai.automaton.grammar.GrammarSymbol
 import com.digitalsamurai.automaton.grammar.Terminal
 import com.digitalsamurai.automaton.grammar.Token
 import org.yaml.snakeyaml.LoaderOptions
-import org.yaml.snakeyaml.events.AliasEvent
-import org.yaml.snakeyaml.events.CollectionStartEvent
 import org.yaml.snakeyaml.events.ScalarEvent
 import org.yaml.snakeyaml.parser.ParserImpl
 import org.yaml.snakeyaml.reader.StreamReader
@@ -37,14 +36,14 @@ public class YamlLexicalAnalyzer: AutomatonLexicalAnalyzer<InputStream> {
                     }
 
                     // check if it is terminal
-                    val terminal = GrammarSymbol.terminals[event.value]
+                    val terminal = AutomatonGrammar.terminals[event.value]
                     if (terminal != null) {
                         // when terminal was found, at the next step we wait data for terminal
                         requiredTerminal = terminal
                         continue
                     }
 
-                    val nonTerminal = GrammarSymbol.nonTerminals[event.value]
+                    val nonTerminal = AutomatonGrammar.nonTerminals[event.value]
                     if (nonTerminal != null) {
                         val token = Token(
                             symbol = nonTerminal,

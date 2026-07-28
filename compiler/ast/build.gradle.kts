@@ -6,7 +6,7 @@ plugins {
 dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
-    implementation(project(":compiler:grammar"))
+
     api(project(":compiler:api"))
     api(project(":compiler:backend:api"))
     api(project(":compiler:frontend:api"))

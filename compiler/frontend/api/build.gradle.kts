@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(project(":compiler:api"))
-    api(project(":compiler:grammar"))
+    implementation(project(":compiler:grammar"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
 
 }

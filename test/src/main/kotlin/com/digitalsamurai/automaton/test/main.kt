@@ -17,7 +17,6 @@ fun main(): Unit = runBlocking {
 
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 
-
     delay(100000L)
 
 

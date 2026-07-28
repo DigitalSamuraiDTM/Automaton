@@ -57,6 +57,17 @@ data object Timeout: Terminal<Duration> {
     }
 }
 
+data object Duration: Terminal<Duration> {
+    override val representation: String = "duration"
+    override fun asToken(sourceLocation: String, value: Any): Token<Duration> {
+        return Token(
+            symbol = Timeout,
+            value = Duration.parse(value as String),
+            sourceLocation = sourceLocation,
+        )
+    }
+}
+
 data object ElementProperty: Terminal<String> {
     override val representation: String = "elementProperty"
     override fun asToken(sourceLocation: String, value: Any): Token<String> {

@@ -39,6 +39,7 @@ dependencyResolutionManagement {
 
 includeIfExists(":test")
 includeIfExists(":compiler:api")
+includeIfExists(":compiler:ast")
 includeIfExists(":compiler:compiler")
 includeIfExists(":compiler:grammar")
 includeIfExists(":compiler:backend:api")
