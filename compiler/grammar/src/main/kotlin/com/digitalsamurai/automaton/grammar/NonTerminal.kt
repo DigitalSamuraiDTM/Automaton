@@ -15,7 +15,7 @@ sealed interface NonTerminal: GrammarSymbol<Unit> {
 data object CompilationUnit: NonTerminal {
     override val representation: String = "compilationUnit"
     override val productions: List<Production> = listOf(
-        production(Context::class, Test::class)
+        production(Context, Test)
     )
 }
 
@@ -29,21 +29,21 @@ data object Context: NonTerminal {
 data object Test: NonTerminal {
     override val representation: String = "test"
     override val productions: List<Production> = listOf(
-        production(Metadata::class, Steps::class)
+        production(Metadata, Steps)
     )
 }
 
 data object Metadata: NonTerminal {
     override val representation: String = "metadata"
     override val productions: List<Production> = listOf(
-        production(Id::class, Name::class)
+        production(Id, Name)
     )
 }
 
 data object Steps: NonTerminal {
     override val representation: String = "steps"
     override val productions: List<Production> = listOf(
-        production(Step::class, Steps::class),
+        production(Step, Steps),
         epsilon(),
     )
 }
@@ -51,14 +51,14 @@ data object Steps: NonTerminal {
 data object Step: NonTerminal {
     override val representation: String = "step"
     override val productions: List<Production> = listOf(
-        production(Actions::class)
+        production(Actions)
     )
 }
 
 data object Actions: NonTerminal {
     override val representation: String = "actions"
     override val productions: List<Production> = listOf(
-        production(Action::class, Actions::class),
+        production(Action, Actions),
         epsilon(),
     )
 }
@@ -66,52 +66,52 @@ data object Actions: NonTerminal {
 data object Action: NonTerminal {
     override val representation: String = "action"
     override val productions: List<Production> = listOf(
-        production(Tap::class),
-        production(Input::class),
-        production(Wait::class),
-        production(Delay::class),
-        production(Assert::class),
+        production(Tap),
+        production(Input),
+        production(Wait),
+        production(Delay),
+        production(Assert),
     )
 }
 
 data object Tap: NonTerminal {
     override val representation: String = "tap"
     override val productions: List<Production> = listOf(
-        production(Element::class, TapType::class)
+        production(Element, TapType)
     )
 }
 
 data object Input: NonTerminal {
     override val representation: String = "input"
     override val productions: List<Production> = listOf(
-        production(Element::class, InputData::class),
+        production(Element, InputData),
     )
 }
 
 data object Wait: NonTerminal {
     override val representation: String = "wait"
     override val productions: List<Production> = listOf(
-        production(Condition::class, Timeout::class)
+        production(Condition, Timeout)
     )
 }
 
 data object Assert: NonTerminal {
     override val representation: String = "assert"
     override val productions: List<Production> = listOf(
-        production(Condition::class)
+        production(Condition)
     )
 }
 
 data object Condition: NonTerminal {
     override val representation: String = "condition"
     override val productions: List<Production> = listOf(
-        production(Element::class, ElementProperty::class, PropertyValue::class)
+        production(Element, ElementProperty, PropertyValue)
     )
 }
 
 data object Delay: NonTerminal {
     override val representation: String = "delay"
     override val productions: List<Production> = listOf(
-        listOf(Duration::class)
+        listOf(Duration)
     )
 }

@@ -44,6 +44,9 @@ includeIfExists(":compiler:compiler")
 includeIfExists(":compiler:grammar")
 includeIfExists(":compiler:backend:api")
 
+includeIfExists(":compiler:parser:api")
+includeIfExists(":compiler:parser:ll1")
+
 includeIfExists(":compiler:frontend:api")
 includeIfExists(":compiler:frontend:yaml")
 
