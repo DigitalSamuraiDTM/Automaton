@@ -13,6 +13,7 @@ kotlin {
 dependencies {
     implementation(project(":compiler:compiler"))
     implementation(project(":compiler:frontend:yaml"))
+    implementation(project(":compiler:parser:ll1"))
 
     implementation(kotlin("stdlib-jdk8"))
 

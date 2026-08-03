@@ -10,6 +10,7 @@ dependencies {
     api(project(":compiler:api"))
     api(project(":compiler:backend:api"))
     api(project(":compiler:frontend:api"))
+    api(project(":compiler:grammar"))
     implementation(kotlin("stdlib-jdk8"))
 }
 

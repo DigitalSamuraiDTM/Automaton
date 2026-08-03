@@ -4,7 +4,8 @@ plugins {
 
 
 dependencies {
-    implementation(project(":compiler:api"))
+    api(project(":compiler:api"))
+    api(project(":compiler:ast"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 }

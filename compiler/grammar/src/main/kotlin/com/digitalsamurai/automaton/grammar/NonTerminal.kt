@@ -1,6 +1,7 @@
 package com.digitalsamurai.automaton.grammar
 
 sealed interface NonTerminal: GrammarSymbol<Unit> {
+    val isService: Boolean
     fun asToken(sourceLocation: String): Token<Unit> {
         return Token(
             symbol = this::class.objectInstance!!,
@@ -13,6 +14,7 @@ sealed interface NonTerminal: GrammarSymbol<Unit> {
 }
 
 data object CompilationUnit: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "compilationUnit"
     override val productions: List<Production> = listOf(
         production(Context, Test)
@@ -20,6 +22,7 @@ data object CompilationUnit: NonTerminal {
 }
 
 data object Context: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "context"
     override val productions: List<Production> = listOf(
         // need to do
@@ -27,6 +30,7 @@ data object Context: NonTerminal {
 }
 
 data object Test: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "test"
     override val productions: List<Production> = listOf(
         production(Metadata, Steps)
@@ -34,6 +38,7 @@ data object Test: NonTerminal {
 }
 
 data object Metadata: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "metadata"
     override val productions: List<Production> = listOf(
         production(Id, Name)
@@ -41,6 +46,7 @@ data object Metadata: NonTerminal {
 }
 
 data object Steps: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "steps"
     override val productions: List<Production> = listOf(
         production(Step, Steps),
@@ -49,6 +55,7 @@ data object Steps: NonTerminal {
 }
 
 data object Step: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "step"
     override val productions: List<Production> = listOf(
         production(Actions)
@@ -56,6 +63,7 @@ data object Step: NonTerminal {
 }
 
 data object Actions: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "actions"
     override val productions: List<Production> = listOf(
         production(Action, Actions),
@@ -64,6 +72,7 @@ data object Actions: NonTerminal {
 }
 
 data object Action: NonTerminal {
+    override val isService: Boolean = true
     override val representation: String = "action"
     override val productions: List<Production> = listOf(
         production(Tap),
@@ -75,6 +84,7 @@ data object Action: NonTerminal {
 }
 
 data object Tap: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "tap"
     override val productions: List<Production> = listOf(
         production(Element, TapType)
@@ -82,6 +92,7 @@ data object Tap: NonTerminal {
 }
 
 data object Input: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "input"
     override val productions: List<Production> = listOf(
         production(Element, InputData),
@@ -89,6 +100,7 @@ data object Input: NonTerminal {
 }
 
 data object Wait: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "wait"
     override val productions: List<Production> = listOf(
         production(Condition, Timeout)
@@ -96,6 +108,7 @@ data object Wait: NonTerminal {
 }
 
 data object Assert: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "assert"
     override val productions: List<Production> = listOf(
         production(Condition)
@@ -103,6 +116,7 @@ data object Assert: NonTerminal {
 }
 
 data object Condition: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "condition"
     override val productions: List<Production> = listOf(
         production(Element, ElementProperty, PropertyValue)
@@ -110,6 +124,7 @@ data object Condition: NonTerminal {
 }
 
 data object Delay: NonTerminal {
+    override val isService: Boolean = false
     override val representation: String = "delay"
     override val productions: List<Production> = listOf(
         listOf(Duration)
