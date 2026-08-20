@@ -12,7 +12,7 @@ public object AutomatonFrontends {}
 
 public interface AutomatonFrontend {
 
-    val tokensFlow: Flow<Sequence<Token<*>>>
+    val tokensFlow: Flow<List<Token<*>>>
 
     val lexicalAnalyzer: AutomatonLexicalAnalyzer<*>
 }

@@ -5,31 +5,34 @@ compilationUnit:
       id: "AUTH_001"
       name: "Successful authorization"
     steps:
-      - actions:
-          - tap:
-              element: loginButton
-              tapType: single
-      - actions:
-          - input:
-              element: loginField
-              inputData: "admin"
-          - input:
-              element: passwordField
-              inputData: "password"
-      - actions:
-          - tap:
-              element: submitButton
-              tapType: single
+      - step:
+          actions:
+            - tap:
+                element: loginButton
+                tapType: single
+      - step:
+          actions:
+            - input:
+                element: loginField
+                inputData: "admin"
+            - input:
+                element: passwordField
+                inputData: "password"
+      - step:
+        - actions:
+            - tap:
+                element: submitButton
+                tapType: single
 
-          - wait:
-              condition:
-                element: homeTitle
-                elementProperty: visible
-                propertyValue: true
-              timeout: 5s
+            - wait:
+                condition:
+                  element: homeTitle
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
 
-          - assert:
-              condition:
-                element: homeTitle
-                elementProperty: visible
-                propertyValue: true
+            - assert:
+                condition:
+                  element: homeTitle
+                  elementProperty: visible
+                  propertyValue: true

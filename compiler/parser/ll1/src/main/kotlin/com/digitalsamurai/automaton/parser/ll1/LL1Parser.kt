@@ -1,10 +1,10 @@
 package com.digitalsamurai.automaton.parser.ll1
 
 import com.digitalsamurai.automaton.ast.AstNode
-import com.digitalsamurai.automaton.grammar.AutomatonGrammar
-import com.digitalsamurai.automaton.grammar.GrammarSymbol
-import com.digitalsamurai.automaton.grammar.NonTerminal
-import com.digitalsamurai.automaton.grammar.Token
+import com.digitalsamurai.automaton.ast.NonTerminalNode
+import com.digitalsamurai.automaton.ast.TerminalNode
+import com.digitalsamurai.automaton.grammar.*
+import com.digitalsamurai.automaton.grammar.Action.hasEpsilon
 import com.digitalsamurai.automaton.parser.api.AutomatonParser
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -26,9 +26,29 @@ public object LL1Parser : AutomatonParser {
         }
     }
 
-    override fun parse(tokens: Sequence<Token<*>>): AstNode {
-        TODO()
+    override fun parse(tokens: List<Token<*>>): AstNode {
+        val listIterator = tokens.listIterator()
+        val firstToken = listIterator.next()
+        val ast = recursion(
+            currentToken = firstToken,
+            lastTokens = listIterator,
+        )
+        return ast
     }
+
+    private fun recursion(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): AstNode {
+        if (currentToken.symbol is Terminal<*>) {
+            return parseTerminal(currentToken)
+        }
+        if (currentToken.symbol is NonTerminal) {
+            return parseNonTerminal(
+                currentToken = currentToken,
+                lastTokens = lastTokens,
+            )
+        }
+        error("Unexpected symbol format")
+    }
+
 
     private fun analyzeProductions() {
         val table: MutableMap<NonTerminal, Map<GrammarSymbol<*>, List<GrammarSymbol<*>>>> = mutableMapOf()
@@ -45,7 +65,7 @@ public object LL1Parser : AutomatonParser {
                 } else {
                     // production
                     val inlinedProductions = getInlinedProductions(production)
-                    inlinedProductions.forEach {  inlinedProduction ->
+                    inlinedProductions.forEach { inlinedProduction ->
                         firstSymbolTable[inlinedProduction.first()] = inlinedProduction
                     }
                 }
@@ -53,7 +73,6 @@ public object LL1Parser : AutomatonParser {
             table[symbol] = firstSymbolTable
         }
         parsingTable = table
-        // todo тут распарсить нетерминалы, вычислить first, для эпсилон продукции follow
     }
 
     // only for non terminals find their productions and inline it
@@ -89,17 +108,78 @@ public object LL1Parser : AutomatonParser {
         return outProductions
     }
 
+    private fun parseNonTerminal(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): AstNode {
+        val currentSymbol = currentToken.symbol as NonTerminal
+        val nextToken = if (lastTokens.hasNext()) {
+            lastTokens.next()
+        } else {
+            if (currentSymbol.productions.hasEpsilon()) {
+                return NonTerminalNode(currentSymbol, emptyList())
+            } else {
+                error("Unexpected finish parsing tokens list")
+            }
+        }
+
+        val production = parsingTable!![currentSymbol]?.get(nextToken.symbol)
+        // найдена продукция, строим
+        if (production != null) {
+            val childs = mutableListOf<AstNode>()
+            production.forEachIndexed { index, symbol ->
+                if (index == 0) {
+                    childs.add(recursion(currentToken = nextToken, lastTokens = lastTokens))
+                    return@forEachIndexed
+                }
+                // встретили рекурсию. Идем вниз по рекурсии
+                if (currentSymbol == symbol) {
+                    val recursed = recursion(currentToken = currentToken, lastTokens = lastTokens)
+                    childs.addAll((recursed as NonTerminalNode).children)
+                    return@forEachIndexed
+                }
+                val next = lastTokens.next()
+
+                if (symbol == next.symbol) {
+                    childs.add(recursion(currentToken = next, lastTokens = lastTokens))
+                } else {
+                    error("Unknown symbol: ${next.symbol} at production: $production")
+                }
+            }
+
+            return NonTerminalNode(
+                symbol = currentSymbol,
+                children = childs.toList()
+            )
+        } else {
+            // если продукция для следующего символа не найдена, но есть эпсилон переход, то возвращаемся по эпсилону
+            if (currentSymbol.productions.hasEpsilon()) {
+                // TODO надо возвращаться назад, не передавай нетерминал, потому что этот нетерминал окажется в AST по итогу
+                // откатываемся назад, чтобы повторно считать символ и построить продукцию по нему
+                return NonTerminalNode(
+                    symbol = currentSymbol,
+                    children = emptyList()
+                )
+            }
+            error("Production at token '${currentSymbol}' with next symbol '${nextToken.symbol}' not found")
+        }
+    }
+
+    private fun parseTerminal(currentToken: Token<*>): AstNode {
+        return TerminalNode(
+            symbol = currentToken.symbol as Terminal<Any?>,
+            value = currentToken.value
+        )
+    }
+
     override fun toString(): String {
         var output = ""
         parsingTable?.forEach { (key, values) ->
-            output+="[$key]\n"
+            output += "[$key]\n"
             var index = 0
             for (entry in values) {
                 val firstSymbol = entry.key
                 val productions = entry.value
-                output +=(if (index == values.size - 1) "  └── " else "  ├── ")
+                output += (if (index == values.size - 1) "  └── " else "  ├── ")
                 index++
-                output+=("[$firstSymbol]:[${productions.joinToString(" ")}]\n")
+                output += ("[$firstSymbol]:[${productions.joinToString(" ")}]\n")
             }
         } ?: error("Parser not initialized")
         return output

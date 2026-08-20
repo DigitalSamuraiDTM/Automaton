@@ -11,13 +11,17 @@ sealed interface NonTerminal: GrammarSymbol<Unit> {
     }
 
     val productions: List<Production>
+
+    public fun List<Production>.hasEpsilon(): Boolean {
+        return any { it.isEmpty() }
+    }
 }
 
 data object CompilationUnit: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "compilationUnit"
     override val productions: List<Production> = listOf(
-        production(Context, Test)
+        production(Test) // TODO PROVIDE CONTEXT TO PRODUCTION
     )
 }
 

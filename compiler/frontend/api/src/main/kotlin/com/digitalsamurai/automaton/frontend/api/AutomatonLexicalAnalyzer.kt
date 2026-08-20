@@ -4,5 +4,5 @@ import com.digitalsamurai.automaton.grammar.Token
 
 interface AutomatonLexicalAnalyzer<in T> {
 
-    fun analyze(input: T): Sequence<Token<*>>
+    fun analyze(input: T): List<Token<*>>
 }

@@ -12,16 +12,16 @@ import java.io.File
 fun main(): Unit = runBlocking {
 
     val yamlFrontend = YamlFrontend()
-//    val compiler = Automaton.compiler.factory(
-//        frontend = yamlFrontend
-//    ){}
-//
-//    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
-//
-//    delay(100000L)
+    val compiler = Automaton.compiler.factory(
+        frontend = yamlFrontend
+    ){}
+
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 
 
-    LL1Parser.initialize()
+    delay(1009999999L)
+
+
 
     print(LL1Parser.toString())
 

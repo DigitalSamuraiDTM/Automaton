@@ -5,6 +5,7 @@ import com.digitalsamurai.automaton.frontend.api.AutomatonFrontends
 import com.digitalsamurai.automaton.grammar.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
 import org.yaml.snakeyaml.Yaml
@@ -21,7 +22,7 @@ public class YamlFrontend() : AutomatonFrontend {
 
     override val lexicalAnalyzer: YamlLexicalAnalyzer = YamlLexicalAnalyzer()
 
-    override val tokensFlow: MutableSharedFlow<Sequence<Token<*>>> = MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.SUSPEND)
+    override val tokensFlow: MutableSharedFlow<List<Token<*>>> = MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.SUSPEND)
 
     suspend fun compile(input: YamlInput) {
         val decodedData = withContext(Dispatchers.IO) {

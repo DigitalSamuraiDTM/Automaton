@@ -2,7 +2,6 @@ package com.digitalsamurai.automaton.frontend.yaml
 
 import com.digitalsamurai.automaton.frontend.api.AutomatonLexicalAnalyzer
 import com.digitalsamurai.automaton.grammar.AutomatonGrammar
-import com.digitalsamurai.automaton.grammar.GrammarSymbol
 import com.digitalsamurai.automaton.grammar.Terminal
 import com.digitalsamurai.automaton.grammar.Token
 import org.yaml.snakeyaml.LoaderOptions
@@ -14,7 +13,7 @@ import java.io.InputStream
 
 public class YamlLexicalAnalyzer: AutomatonLexicalAnalyzer<InputStream> {
 
-    override fun analyze(input: InputStream): Sequence<Token<*>> {
+    override fun analyze(input: InputStream): List<Token<*>> {
         val parser = ParserImpl(ScannerImpl(StreamReader(input.reader()), LoaderOptions()))
 
         var requiredTerminal: Terminal<*>? = null
@@ -61,6 +60,6 @@ public class YamlLexicalAnalyzer: AutomatonLexicalAnalyzer<InputStream> {
                 }
             }
         }
-        return output.asSequence()
+        return output
     }
 }

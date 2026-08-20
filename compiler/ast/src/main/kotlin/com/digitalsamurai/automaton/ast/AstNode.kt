@@ -4,6 +4,7 @@ import com.digitalsamurai.automaton.grammar.NonTerminal
 import com.digitalsamurai.automaton.grammar.Terminal
 
 sealed interface AstNode {
+    fun toStringTree(prefix: String = ""): String
 }
 
 data class NonTerminalNode(
@@ -12,15 +13,16 @@ data class NonTerminalNode(
 ) : AstNode {
 
     // TODO надо доработать после получения дерева разбора
-    override fun toString(): String {
+    override fun toString(): String = toStringTree("")
+
+    override fun toStringTree(prefix: String): String {
         var out = ""
         out += symbol.representation + "\n"
-
         children.forEachIndexed { i, node ->
             out += if (i == children.lastIndex) {
-                "└── ${children[i]}"
+                "${prefix}└── ${children[i].toStringTree("$prefix    ")}"
             } else {
-                "├── ${children[i]}"
+                "${prefix}├── ${children[i].toStringTree("$prefix│   ")}\n"
             }
         }
         return out
@@ -30,8 +32,12 @@ data class NonTerminalNode(
 data class TerminalNode<T>(
     val symbol: Terminal<T>,
     val value: T
-) {
+) : AstNode {
     override fun toString(): String {
         return "$symbol($value)"
+    }
+
+    override fun toStringTree(prefix: String): String {
+        return toString()
     }
 }

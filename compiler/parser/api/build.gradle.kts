@@ -8,6 +8,7 @@ dependencies {
     api(project(":compiler:ast"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
 }
 
 
