@@ -27,7 +27,9 @@ public object LL1Parser : AutomatonParser {
     }
 
     override fun parse(tokens: List<Token<*>>): AstNode {
-        val listIterator = tokens.listIterator()
+        println("TOKENS: ${tokens.joinToString(", ")}")
+        println("13 tokens: ${tokens.slice(0..13).joinToString(", ")}")
+        val listIterator =  tokens.listIterator()
         val firstToken = listIterator.next()
         val ast = recursion(
             currentToken = firstToken,
@@ -37,6 +39,7 @@ public object LL1Parser : AutomatonParser {
     }
 
     private fun recursion(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): AstNode {
+        println("READ TOKEN: ${currentToken}, nextIndex: ${lastTokens.nextIndex()}")
         if (currentToken.symbol is Terminal<*>) {
             return parseTerminal(currentToken)
         }
@@ -151,8 +154,9 @@ public object LL1Parser : AutomatonParser {
         } else {
             // если продукция для следующего символа не найдена, но есть эпсилон переход, то возвращаемся по эпсилону
             if (currentSymbol.productions.hasEpsilon()) {
-                // TODO надо возвращаться назад, не передавай нетерминал, потому что этот нетерминал окажется в AST по итогу
                 // откатываемся назад, чтобы повторно считать символ и построить продукцию по нему
+                // TODO: сейчас сделано костылем, что при вхождении в рекурсию мы получаем AstNode из которого читаем childrens
+                lastTokens.previous()
                 return NonTerminalNode(
                     symbol = currentSymbol,
                     children = emptyList()
