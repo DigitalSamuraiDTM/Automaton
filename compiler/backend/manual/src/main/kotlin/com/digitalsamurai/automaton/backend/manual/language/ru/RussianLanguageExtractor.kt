@@ -1,74 +1,40 @@
 package com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.ru
 
 import com.digitalsamurai.automaton.ast.AstNode
-import com.digitalsamurai.automaton.ast.NonTerminalNode
-import com.digitalsamurai.automaton.ast.TerminalNode
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.LanguageExtractor
-import com.digitalsamurai.automaton.grammar.Action
-import com.digitalsamurai.automaton.grammar.Actions
-import com.digitalsamurai.automaton.grammar.Assert
-import com.digitalsamurai.automaton.grammar.CompilationUnit
-import com.digitalsamurai.automaton.grammar.Condition
-import com.digitalsamurai.automaton.grammar.Context
-import com.digitalsamurai.automaton.grammar.Delay
-import com.digitalsamurai.automaton.grammar.Duration
-import com.digitalsamurai.automaton.grammar.Element
-import com.digitalsamurai.automaton.grammar.ElementProperty
-import com.digitalsamurai.automaton.grammar.Id
-import com.digitalsamurai.automaton.grammar.Input
-import com.digitalsamurai.automaton.grammar.InputData
-import com.digitalsamurai.automaton.grammar.Metadata
-import com.digitalsamurai.automaton.grammar.TestName
-import com.digitalsamurai.automaton.grammar.NonTerminal
-import com.digitalsamurai.automaton.grammar.PropertyValue
-import com.digitalsamurai.automaton.grammar.Step
-import com.digitalsamurai.automaton.grammar.Steps
-import com.digitalsamurai.automaton.grammar.Tap
-import com.digitalsamurai.automaton.grammar.TapType
-import com.digitalsamurai.automaton.grammar.Terminal
-import com.digitalsamurai.automaton.grammar.Test
-import com.digitalsamurai.automaton.grammar.Timeout
-import com.digitalsamurai.automaton.grammar.Wait
+import com.digitalsamurai.automaton.grammar.*
 
 class RussianLanguageExtractor : LanguageExtractor {
-    override fun extractText(node: AstNode): String {
-        return when(node) {
-            is NonTerminalNode -> node.text()
-            is TerminalNode<*> -> node.text()
+    override fun extractText(node: AstNode<*>): String {
+        (node.symbol as? NonTerminal)?.let {
+            return it.text()
         }
+
+        return "терминал"
+//        return ""
     }
 
-    private fun NonTerminalNode.text(): String {
-        return when(this.symbol) {
+    private fun NonTerminal.text(): String {
+        return when (this) {
             Action -> "Действие"
-            Actions -> "Действия"
-            Assert -> "Проверь"
-            CompilationUnit -> "Юнит"
-            Condition -> "Условие"
+            Actions -> $$"Последовательность действий \n %1$s"
+            Assert -> $$"Ожидаемый результат: %1$s"
+            CompilationUnit -> "Юнит %1\$s"
+            Condition -> ""
             Context -> "Контекст"
             Delay -> "Задержка"
-            Input -> "Введи"
-            Metadata -> "Информация"
+            Input -> $$"Введи текст '%2$s' в  элемент %1$s \n"
+            Metadata -> "Информация о тесте\n"
             Step -> "Шаг"
             Steps -> "Шаги:"
-            Tap -> "Тапни"
+            Tap -> $$"Тапни по элементу %1$s"
             Test -> "Тест-кейс"
-            Wait -> "Подожди"
+            Wait -> $$"Подожди %2$s %1$s"
         }
     }
 
-    private fun TerminalNode<*>.text(): String {
-        return when(this.symbol) {
-            Duration -> "пук пук пук"
-            Element -> "элемент экрана '${this.value}'"
-            ElementProperty -> "пук пук пук"
-            Id -> "пук пук пук"
-            InputData -> "пук пук пук"
-            TestName -> "пук пук пук"
-            PropertyValue -> "пук пук пук"
-            TapType -> "пук пук пук"
-            Timeout -> "пук пук пук"
-        }
+    private fun Terminal<*>.text(value: Any?): String {
+        return "терминал"
     }
 
 }

@@ -12,5 +12,5 @@ public object AutomatonBackends {
 }
 
 public interface AutomatonBackend {
-    fun buildOutput(tree: AstNode): Result<BackendOutput>
+    fun buildOutput(tree: AstNode<*>): Result<BackendOutput>
 }

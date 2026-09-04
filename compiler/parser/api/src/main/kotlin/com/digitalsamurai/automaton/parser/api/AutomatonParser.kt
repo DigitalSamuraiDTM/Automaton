@@ -8,5 +8,5 @@ interface AutomatonParser {
     val isInitialized: Boolean
     fun initialize()
 
-    fun parse(tokens: List<Token<*>>): AstNode
+    fun parse(tokens: List<Token<*>>): AstNode<*>
 }

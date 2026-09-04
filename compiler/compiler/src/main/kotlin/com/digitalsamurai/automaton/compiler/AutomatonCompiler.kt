@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
@@ -28,6 +29,9 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
         automatonScope.launch {
             frontend.tokensFlow
                 .makeGrammarAnalyze()
+                .onEach {
+                    println(it.toString())
+                }
                 .makeSemanticAnalyze()
                 .buildBackendOutputs()
                 .collect { backendResult ->
@@ -40,7 +44,7 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
      * Make token sequence analyze and convert it to tree structure
      * @return [AstNode] tree or throw [AutomatonGrammarException]
      */
-    private fun Flow<List<Token<*>>>.makeGrammarAnalyze(): Flow<AstNode> {
+    private fun Flow<List<Token<*>>>.makeGrammarAnalyze(): Flow<AstNode<*>> {
         return map { list -> parser.parse(list) }
     }
 
@@ -48,12 +52,12 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
      * Make semantic analyze with logic checks
      * @return [AstNode] the same structure or throw [AutomatonSemanticException]
      */
-    private fun Flow<AstNode>.makeSemanticAnalyze(): Flow<AstNode> {
+    private fun Flow<AstNode<*>>.makeSemanticAnalyze(): Flow<AstNode<*>> {
         // TODO make sematic analyze
         return this
     }
 
-    private fun Flow<AstNode>.buildBackendOutputs(): Flow<List<Result<BackendOutput>>> {
+    private fun Flow<AstNode<*>>.buildBackendOutputs(): Flow<List<Result<BackendOutput>>> {
         return map { tree ->
             backends.map { backend -> backend.buildOutput(tree) }
         }

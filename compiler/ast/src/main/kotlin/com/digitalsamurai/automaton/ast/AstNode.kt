@@ -1,42 +1,42 @@
 package com.digitalsamurai.automaton.ast
 
-import com.digitalsamurai.automaton.grammar.NonTerminal
-import com.digitalsamurai.automaton.grammar.Terminal
+import com.digitalsamurai.automaton.grammar.GrammarSymbol
 
-sealed interface AstNode {
-    fun toStringTree(prefix: String = ""): String
-}
+data class AstNode<T>(
+    val childs: List<AstNode<*>>,
+    val value: T,
+    val symbol: GrammarSymbol<T>,
+) {
+    override fun toString(): String {
+        return if (childs.isEmpty()) {
+            "${symbol.representation}($value)"
+        } else {
+            var out = ""
+            out += symbol.representation + "\n"
+            childs.forEachIndexed {i, child ->
+                out += if (i == childs.lastIndex) {
+                    "└── ${child.toStringTree("    ")}"
+                } else {
+                    "├── ${child.toStringTree("    ")}"
+                }
+            }
+            out
+        }
 
-data class NonTerminalNode(
-    val symbol: NonTerminal,
-    val children: List<AstNode>
-) : AstNode {
-
-    override fun toString(): String = toStringTree("")
-
-    override fun toStringTree(prefix: String): String {
+    }
+    private fun toStringTree(prefix: String): String {
+        if (childs.isEmpty()) {
+            return "${symbol.representation}($value)\n"
+        }
         var out = ""
         out += symbol.representation + "\n"
-        children.forEachIndexed { i, node ->
-            out += if (i == children.lastIndex) {
-                "${prefix}└── ${children[i].toStringTree("$prefix    ")}"
+        childs.forEachIndexed { i, child ->
+            out += if (i == childs.lastIndex) {
+                "${prefix}└── ${child.toStringTree("$prefix    ")}"
             } else {
-                "${prefix}├── ${children[i].toStringTree("$prefix│   ")}\n"
+                "${prefix}├── ${child.toStringTree("$prefix│   ")}"
             }
         }
         return out
-    }
-}
-
-data class TerminalNode<T>(
-    val symbol: Terminal<T>,
-    val value: T
-) : AstNode {
-    override fun toString(): String {
-        return "$symbol($value)"
-    }
-
-    override fun toStringTree(prefix: String): String {
-        return toString()
     }
 }
