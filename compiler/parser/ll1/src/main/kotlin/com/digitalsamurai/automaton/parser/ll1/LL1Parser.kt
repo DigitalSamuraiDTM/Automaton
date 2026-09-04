@@ -27,8 +27,8 @@ public object LL1Parser : AutomatonParser {
     }
 
     override fun parse(tokens: List<Token<*>>): AstNode {
-        println("TOKENS: ${tokens.joinToString(", ")}")
-        println("13 tokens: ${tokens.slice(0..13).joinToString(", ")}")
+//        println("TOKENS: ${tokens.joinToString(", ")}")
+//        println("13 tokens: ${tokens.slice(0..13).joinToString(", ")}")
         val listIterator =  tokens.listIterator()
         val firstToken = listIterator.next()
         val ast = recursion(
@@ -39,7 +39,7 @@ public object LL1Parser : AutomatonParser {
     }
 
     private fun recursion(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): AstNode {
-        println("READ TOKEN: ${currentToken}, nextIndex: ${lastTokens.nextIndex()}")
+//        println("READ TOKEN: ${currentToken}, nextIndex: ${lastTokens.nextIndex()}")
         if (currentToken.symbol is Terminal<*>) {
             return parseTerminal(currentToken)
         }

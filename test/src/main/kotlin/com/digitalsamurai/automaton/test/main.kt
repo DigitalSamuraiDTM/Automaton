@@ -1,6 +1,8 @@
 package com.digitalsamurai.automaton.test
 
 import com.digitalsamurai.automaton.api.Automaton
+import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.ManualTestCaseBackend
+import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.Language
 import com.digitalsamurai.automaton.compiler.compiler
 import com.digitalsamurai.automaton.frontend.yaml.YamlFrontend
 import com.digitalsamurai.automaton.frontend.yaml.YamlInput
@@ -13,8 +15,10 @@ fun main(): Unit = runBlocking {
 
     val yamlFrontend = YamlFrontend()
     val compiler = Automaton.compiler.factory(
-        frontend = yamlFrontend
-    ){}
+        frontend = yamlFrontend,
+    ){
+        backends(ManualTestCaseBackend(Language.RU))
+    }
 
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 

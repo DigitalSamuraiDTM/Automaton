@@ -12,7 +12,6 @@ data class NonTerminalNode(
     val children: List<AstNode>
 ) : AstNode {
 
-    // TODO надо доработать после получения дерева разбора
     override fun toString(): String = toStringTree("")
 
     override fun toStringTree(prefix: String): String {

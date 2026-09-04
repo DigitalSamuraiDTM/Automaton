@@ -42,7 +42,9 @@ includeIfExists(":compiler:api")
 includeIfExists(":compiler:ast")
 includeIfExists(":compiler:compiler")
 includeIfExists(":compiler:grammar")
+
 includeIfExists(":compiler:backend:api")
+includeIfExists(":compiler:backend:manual")
 
 includeIfExists(":compiler:parser:api")
 includeIfExists(":compiler:parser:ll1")

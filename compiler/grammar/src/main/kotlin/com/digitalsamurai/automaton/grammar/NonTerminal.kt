@@ -45,7 +45,7 @@ data object Metadata: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "metadata"
     override val productions: List<Production> = listOf(
-        production(Id, Name)
+        production(Id, TestName)
     )
 }
 

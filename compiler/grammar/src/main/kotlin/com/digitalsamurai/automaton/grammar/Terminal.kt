@@ -101,11 +101,11 @@ data object Id: Terminal<String> {
     }
 }
 
-data object Name: Terminal<String> {
+data object TestName: Terminal<String> {
     override val representation: String = "name"
     override fun asToken(sourceLocation: String, value: Any): Token<String> {
         return Token(
-            symbol = Name,
+            symbol = TestName,
             value = value as String,
             sourceLocation = sourceLocation,
         )

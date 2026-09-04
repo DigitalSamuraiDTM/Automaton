@@ -7,6 +7,7 @@ import com.digitalsamurai.automaton.parser.api.AutomatonParser
 import com.digitalsamurai.automaton.parser.ll1.LL1Parser
 
 public class AutomatonCompilerFactory<T: AutomatonFrontend> internal constructor(
+    // TODO list of frontends
     private val frontend: T,
 ) {
 
