@@ -8,20 +8,21 @@ data class AstNode<T>(
     val symbol: GrammarSymbol<T>,
 ) {
     override fun toString(): String {
-        return if (childs.isEmpty()) {
-            "${symbol.representation}($value)"
-        } else {
-            var out = ""
-            out += symbol.representation + "\n"
-            childs.forEachIndexed {i, child ->
-                out += if (i == childs.lastIndex) {
-                    "└── ${child.toStringTree("    ")}"
-                } else {
-                    "├── ${child.toStringTree("    ")}"
-                }
-            }
-            out
-        }
+        return toStringTree("")
+//        return if (childs.isEmpty()) {
+//            "${symbol.representation}($value)"
+//        } else {
+//            var out = ""
+//            out += symbol.representation + "\n"
+//            childs.forEachIndexed {i, child ->
+//                out += if (i == childs.lastIndex) {
+//                    "└── ${child.toStringTree("    ")}"
+//                } else {
+//                    "├── ${child.toStringTree("    ")}"
+//                }
+//            }
+//            out
+//        }
 
     }
     private fun toStringTree(prefix: String): String {

@@ -16,8 +16,13 @@ fun main(): Unit = runBlocking {
     val yamlFrontend = YamlFrontend()
     val compiler = Automaton.compiler.factory(
         frontend = yamlFrontend,
-    ){
-        backends(ManualTestCaseBackend(Language.RU))
+    ) {
+        backends(
+            ManualTestCaseBackend(
+                language = Language.RU,
+                outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton"),
+            )
+        )
     }
 
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))

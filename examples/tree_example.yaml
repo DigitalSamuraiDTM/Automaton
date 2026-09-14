@@ -10,6 +10,12 @@ compilationUnit:
             - tap:
                 element: loginButton
                 tapType: single
+            - wait:
+                condition:
+                  element: loginScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 1m
       - step:
           actions:
             - input:
@@ -20,6 +26,8 @@ compilationUnit:
                 inputData: "password"
       - step:
         - actions:
+            - system:
+                action: home
             - tap:
                 element: submitButton
                 tapType: single

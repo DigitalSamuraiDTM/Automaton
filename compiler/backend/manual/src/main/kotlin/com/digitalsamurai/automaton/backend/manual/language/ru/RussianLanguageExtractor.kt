@@ -9,32 +9,44 @@ class RussianLanguageExtractor : LanguageExtractor {
         (node.symbol as? NonTerminal)?.let {
             return it.text()
         }
-
-        return "терминал"
+        (node.symbol as? Terminal<*>)?.let {
+            return it.text(node.value)
+        }
+        throw IllegalArgumentException("Unknown GrammarSymbol type: ${node.symbol}")
 //        return ""
     }
 
     private fun NonTerminal.text(): String {
         return when (this) {
-            Action -> "Действие"
-            Actions -> $$"Последовательность действий \n %1$s"
-            Assert -> $$"Ожидаемый результат: %1$s"
-            CompilationUnit -> "Юнит %1\$s"
-            Condition -> ""
+            Action -> ""
+            Actions -> "Действия"
+            Assert -> "Ожидаемый результат"
+            CompilationUnit -> "Юнит"
+            Condition -> "Условие"
             Context -> "Контекст"
             Delay -> "Задержка"
-            Input -> $$"Введи текст '%2$s' в  элемент %1$s \n"
-            Metadata -> "Информация о тесте\n"
+            Input -> "Введи текст"
+            Metadata -> "Информация о тесте"
             Step -> "Шаг"
-            Steps -> "Шаги:"
-            Tap -> $$"Тапни по элементу %1$s"
+            Steps -> "Шаги"
+            Tap -> "Тапни по"
             Test -> "Тест-кейс"
-            Wait -> $$"Подожди %2$s %1$s"
+            Wait -> "Подожди"
         }
     }
 
     private fun Terminal<*>.text(value: Any?): String {
-        return "терминал"
+        return when(this) {
+            Duration -> "Длительность '${value}'"
+            Element -> "Элемент экрана '${value}'"
+            ElementProperty -> "Свойство '${value}'"
+            Id -> "Идентификатор '${value}'"
+            InputData -> "текст '${value}'"
+            PropertyValue -> "Значение свойства '${value}'"
+            TapType -> "Тип тапа '${value}'"
+            TestName -> "Имя '${value}'"
+            Timeout -> "таймаут '${value}'"
+        }
     }
 
 }
