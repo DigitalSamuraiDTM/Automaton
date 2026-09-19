@@ -6,18 +6,6 @@ sealed interface Terminal<T>: GrammarSymbol<T> {
     fun asToken(sourceLocation: String, value: Any) : Token<T>
 }
 
-data object Element: Terminal<String> {
-    override val representation: String = "element"
-
-    override fun asToken(sourceLocation: String, value: Any): Token<String> {
-        return Token(
-            symbol = Element,
-            value = value as String,
-            sourceLocation = sourceLocation,
-        )
-    }
-}
-
 data object InputData: Terminal<String> {
     override val representation: String = "inputData"
     override fun asToken(sourceLocation: String, value: Any): Token<String> {
@@ -68,6 +56,18 @@ data object Duration: Terminal<Duration> {
     }
 }
 
+data object ElementReference: Terminal<String> {
+    override val representation: String = "element"
+
+    override fun asToken(sourceLocation: String, value: Any): Token<String> {
+        return Token(
+            symbol = ElementReference,
+            value = value as String,
+            sourceLocation = sourceLocation,
+        )
+    }
+}
+
 data object ElementProperty: Terminal<String> {
     override val representation: String = "elementProperty"
     override fun asToken(sourceLocation: String, value: Any): Token<String> {
@@ -110,4 +110,48 @@ data object TestName: Terminal<String> {
             sourceLocation = sourceLocation,
         )
     }
+}
+
+data object ThemeMode: Terminal<ThemeMode.Mode> {
+    override val representation: String = "themeMode"
+    override fun asToken(sourceLocation: String, value: Any): Token<Mode> {
+        return Token(
+            symbol = ThemeMode,
+            value = Mode.entries.first { it.representation == value },
+            sourceLocation = sourceLocation,
+        )
+    }
+    enum class Mode(val representation: String) {
+        LIGHT("light"), DARK("dark"), SYSTEM("system"),
+    }
+}
+
+data object Microphone: Terminal<Boolean> {
+    override val representation: String = "microphone"
+    override fun asToken(sourceLocation: String, value: Any): Token<Boolean> {
+        return Token(
+            symbol = Microphone,
+            value = value.toBoolean(),
+            sourceLocation = sourceLocation,
+        )
+    }
+}
+data object Camera: Terminal<Boolean> {
+    override val representation: String = "camera"
+    override fun asToken(sourceLocation: String, value: Any): Token<Boolean> {
+        return Token(
+            symbol = Camera,
+            value = value.toBoolean(),
+            sourceLocation = sourceLocation,
+        )
+    }
+}
+
+
+private fun Any.toBoolean(): Boolean = when (this) {
+    is Boolean -> this
+    is String -> if (this == "true") true else if (this == "false") false else throw ClassCastException("$this not supported")
+    is Int -> if (this == 1) true else if (this == 0) false else throw ClassCastException("$this not supported")
+    is Double -> if (this == 1.0) true else if (this == 0.0) false else throw ClassCastException("$this not supported")
+    else -> throw ClassCastException("$this not supported")
 }

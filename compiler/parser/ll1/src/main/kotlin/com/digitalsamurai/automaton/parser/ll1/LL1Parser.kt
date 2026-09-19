@@ -111,7 +111,7 @@ public object LL1Parser : AutomatonParser {
         val nextToken = if (lastTokens.hasNext()) {
             lastTokens.next()
         } else {
-            if (currentSymbol.productions.hasEpsilon()) {
+            if (currentSymbol.hasEpsilon()) {
                 return AstNode(
                     childs = emptyList(),
                     value = Unit, symbol = currentSymbol,
@@ -130,7 +130,7 @@ public object LL1Parser : AutomatonParser {
                     childs.add(recursion(currentToken = nextToken, lastTokens = lastTokens))
                     return@forEachIndexed
                 }
-                // встретили рекурсию. Идем вниз по рекурсии
+                // встретили рекурсию (сами себя). Идем вниз по рекурсии
                 if (currentSymbol == symbol) {
                     val recursed = recursion(currentToken = currentToken, lastTokens = lastTokens)
                     childs.addAll(recursed.childs)
@@ -140,8 +140,13 @@ public object LL1Parser : AutomatonParser {
 
                 if (symbol == next.symbol) {
                     childs.add(recursion(currentToken = next, lastTokens = lastTokens))
+                } else if ((symbol as? NonTerminal)?.hasEpsilon() == true) {
+                    // текущий символ в продукции имеет эпсилон и его можно свернуть в "ничего"
+                    // при этом нам надо откатиться назад, чтобы не пропустить читаемый символ
+                    lastTokens.previous()
+                    // TODO log свернулись в эпсилон
                 } else {
-                    error("Unknown symbol: ${next.symbol} at production: $production")
+                    error("Unknown symbol: ${next.symbol} at production: $production. Required: ${symbol}")
                 }
             }
 
@@ -152,7 +157,7 @@ public object LL1Parser : AutomatonParser {
             )
         } else {
             // если продукция для следующего символа не найдена, но есть эпсилон переход, то возвращаемся по эпсилону
-            if (currentSymbol.productions.hasEpsilon()) {
+            if (currentSymbol.hasEpsilon()) {
                 // откатываемся назад, чтобы повторно считать символ и построить продукцию по нему
                 // TODO: сейчас сделано костылем, что при вхождении в рекурсию мы получаем AstNode из которого читаем childrens
                 lastTokens.previous()

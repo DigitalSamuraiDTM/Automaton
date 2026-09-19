@@ -32,6 +32,10 @@ class RussianLanguageExtractor : LanguageExtractor {
             Tap -> "Тапни по"
             Test -> "Тест-кейс"
             Wait -> "Подожди"
+            Elements -> "Элементы"
+            Permission -> "Разрешение"
+            Permissions -> "Разрешения"
+            Theme -> "Тема"
         }
     }
 
@@ -46,6 +50,9 @@ class RussianLanguageExtractor : LanguageExtractor {
             TapType -> "Тип тапа '${value}'"
             TestName -> "Имя '${value}'"
             Timeout -> "таймаут '${value}'"
+            Camera -> "Камера '${value}'"
+            Microphone -> "Микрофон '${value}'"
+            ThemeMode -> "Мод '${value}'"
         }
     }
 

@@ -12,8 +12,8 @@ sealed interface NonTerminal: GrammarSymbol<Unit> {
 
     val productions: List<Production>
 
-    public fun List<Production>.hasEpsilon(): Boolean {
-        return any { it.isEmpty() }
+    public fun hasEpsilon(): Boolean {
+        return productions.any { it.isEmpty() }
     }
 }
 
@@ -21,7 +21,7 @@ data object CompilationUnit: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "compilationUnit"
     override val productions: List<Production> = listOf(
-        production(Test) // TODO PROVIDE CONTEXT TO PRODUCTION
+        production(Context,Test)
     )
 }
 
@@ -29,7 +29,43 @@ data object Context: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "context"
     override val productions: List<Production> = listOf(
-        // need to do
+        production(Elements, Theme, Permissions)
+    )
+}
+
+data object Elements: NonTerminal {
+    override val isService: Boolean = false
+    override val representation: String = "elements"
+    override val productions: List<Production> = listOf(
+        production(Element, Elements),
+        epsilon()
+    )
+}
+
+data object Theme: NonTerminal {
+    override val isService: Boolean = false
+    override val representation: String = "theme"
+    override val productions: List<Production> = listOf(
+        production(ThemeMode),
+        epsilon()
+    )
+}
+
+data object Permissions: NonTerminal {
+    override val isService: Boolean = false
+    override val representation: String = "permissions"
+    override val productions: List<Production> = listOf(
+        production(Permission, Permissions),
+        epsilon(),
+    )
+}
+
+data object Permission: NonTerminal {
+    override val isService: Boolean = true
+    override val representation: String = "permission"
+    override val productions: List<Production> = listOf(
+        production(Microphone),
+        production(Camera),
     )
 }
 

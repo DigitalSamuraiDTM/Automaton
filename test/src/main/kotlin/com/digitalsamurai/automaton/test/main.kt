@@ -24,14 +24,11 @@ fun main(): Unit = runBlocking {
             )
         )
     }
-
+//    LL1Parser.initialize()
+//    println(LL1Parser.toString())
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 
 
     delay(1009999999L)
-
-
-
-    print(LL1Parser.toString())
 
 }

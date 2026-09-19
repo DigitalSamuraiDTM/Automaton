@@ -1,5 +1,10 @@
 compilationUnit:
-  #context: {}   # Пока не описан
+  context:
+    theme:
+      themeMode: light
+    permissions:
+      - camera: true
+      - microphone: true
   test:
     metadata:
       id: "AUTH_001"
@@ -26,8 +31,6 @@ compilationUnit:
                 inputData: "password"
       - step:
         - actions:
-            - system:
-                action: home
             - tap:
                 element: submitButton
                 tapType: single

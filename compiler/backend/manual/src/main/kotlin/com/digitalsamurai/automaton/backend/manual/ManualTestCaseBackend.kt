@@ -35,8 +35,6 @@ public class ManualTestCaseBackend(
     }
     private fun AstNode<*>.toManualTestCase(prefix: String): String {
 
-        val example = "Введите текст %s1 в %s2 и введите %s3".format("1","2")
-
         val extractedText = languageExtractor.extractText(this)
         return if (this.childs.isEmpty()) {
             "${extractedText}\n"
