@@ -56,12 +56,12 @@ data object Duration: Terminal<Duration> {
     }
 }
 
-data object ElementReference: Terminal<String> {
-    override val representation: String = "element"
+data object ElementName: Terminal<String> {
+    override val representation: String = "elementName"
 
     override fun asToken(sourceLocation: String, value: Any): Token<String> {
         return Token(
-            symbol = ElementReference,
+            symbol = ElementName,
             value = value as String,
             sourceLocation = sourceLocation,
         )

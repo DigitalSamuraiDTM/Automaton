@@ -13,37 +13,37 @@ compilationUnit:
       - step:
           actions:
             - tap:
-                element: loginButton
+                elementName: loginButton
                 tapType: single
             - wait:
                 condition:
-                  element: loginScreen
+                  elementName: loginScreen
                   elementProperty: visible
                   propertyValue: true
                 timeout: 1m
       - step:
           actions:
             - input:
-                element: loginField
+                elementName: loginField
                 inputData: "admin"
             - input:
-                element: passwordField
+                elementName: passwordField
                 inputData: "password"
       - step:
         - actions:
             - tap:
-                element: submitButton
+                elementName: submitButton
                 tapType: single
 
             - wait:
                 condition:
-                  element: homeTitle
+                  elementName: homeTitle
                   elementProperty: visible
                   propertyValue: true
                 timeout: 5s
 
             - assert:
                 condition:
-                  element: homeTitle
+                  elementName: homeTitle
                   elementProperty: visible
                   propertyValue: true

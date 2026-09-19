@@ -42,6 +42,23 @@ data object Elements: NonTerminal {
     )
 }
 
+data object Element: NonTerminal {
+
+    override val isService: Boolean = false
+    override fun asToken(sourceLocation: String): Token<Unit> {
+        return Token(
+            symbol = Element,
+            value = Unit,
+            sourceLocation = sourceLocation
+        )
+    }
+
+
+    data object Name: Terminal<String> {
+
+    }
+}
+
 data object Theme: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "theme"
