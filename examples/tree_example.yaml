@@ -1,5 +1,18 @@
 compilationUnit:
   context:
+    elements:
+      - element:
+          elementName: loginButton
+      - element:
+          elementName: loginScreen
+      - element:
+          elementName: loginField
+      - element:
+          elementName: passwordField
+      - element:
+          elementName: submitButton
+      - element:
+          elementName: homeTitle
     theme:
       themeMode: light
     permissions:

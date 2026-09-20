@@ -36,6 +36,7 @@ class RussianLanguageExtractor : LanguageExtractor {
             Permission -> "Разрешение"
             Permissions -> "Разрешения"
             Theme -> "Тема"
+            Element -> "Элемент экрана"
         }
     }
 
@@ -53,6 +54,8 @@ class RussianLanguageExtractor : LanguageExtractor {
             Camera -> "Камера '${value}'"
             Microphone -> "Микрофон '${value}'"
             ThemeMode -> "Мод '${value}'"
+            Element.Name -> "Название '${value}'"
+            Element.Layout -> "Слой"
         }
     }
 

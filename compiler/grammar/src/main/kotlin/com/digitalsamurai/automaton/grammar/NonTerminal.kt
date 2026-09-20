@@ -1,5 +1,8 @@
 package com.digitalsamurai.automaton.grammar
 
+import java.net.URI
+import java.net.URL
+
 sealed interface NonTerminal: GrammarSymbol<Unit> {
     val isService: Boolean
     fun asToken(sourceLocation: String): Token<Unit> {
@@ -52,10 +55,32 @@ data object Element: NonTerminal {
             sourceLocation = sourceLocation
         )
     }
+    override val productions: List<Production> = listOf(
+        production(Name),
+    )
+    override val representation: String = "element"
 
 
     data object Name: Terminal<String> {
-
+        override val representation: String = "elementName"
+        override fun asToken(sourceLocation: String, value: Any): Token<String> {
+            return Token(
+                symbol = Name,
+                value = value as String,
+                sourceLocation = sourceLocation,
+            )
+        }
+    }
+    // TODO layout будет хранить информацию о визуальном представлении элемента (ссылка на фигму или что-то иное)
+    data object Layout: Terminal<URL> {
+        override val representation: String = "elementLayout"
+        override fun asToken(sourceLocation: String, value: Any): Token<URL> {
+            return Token(
+                symbol = Layout,
+                value = URI.create(value as String).toURL(),
+                sourceLocation = sourceLocation,
+            )
+        }
     }
 }
 
@@ -144,7 +169,7 @@ data object Tap: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "tap"
     override val productions: List<Production> = listOf(
-        production(Element, TapType)
+        production(Element.Name, TapType)
     )
 }
 
@@ -152,7 +177,7 @@ data object Input: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "input"
     override val productions: List<Production> = listOf(
-        production(Element, InputData),
+        production(Element.Name, InputData),
     )
 }
 
@@ -176,7 +201,7 @@ data object Condition: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "condition"
     override val productions: List<Production> = listOf(
-        production(Element, ElementProperty, PropertyValue)
+        production(Element.Name, ElementProperty, PropertyValue)
     )
 }
 
