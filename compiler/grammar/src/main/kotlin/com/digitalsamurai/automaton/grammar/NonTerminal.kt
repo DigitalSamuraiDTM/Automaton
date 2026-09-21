@@ -160,7 +160,6 @@ data object Action: NonTerminal {
         production(Tap),
         production(Input),
         production(Wait),
-        production(Delay),
         production(Assert),
     )
 }
