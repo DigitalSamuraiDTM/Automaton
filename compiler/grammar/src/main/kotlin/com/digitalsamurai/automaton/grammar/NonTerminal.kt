@@ -56,7 +56,7 @@ data object Element: NonTerminal {
         )
     }
     override val productions: List<Production> = listOf(
-        production(Name),
+        production(Name, Layout),
     )
     override val representation: String = "element"
 
@@ -72,12 +72,12 @@ data object Element: NonTerminal {
         }
     }
     // TODO layout будет хранить информацию о визуальном представлении элемента (ссылка на фигму или что-то иное)
-    data object Layout: Terminal<URL> {
+    data object Layout: Terminal<String> {
         override val representation: String = "elementLayout"
-        override fun asToken(sourceLocation: String, value: Any): Token<URL> {
+        override fun asToken(sourceLocation: String, value: Any): Token<String> {
             return Token(
                 symbol = Layout,
-                value = URI.create(value as String).toURL(),
+                value = value as String,
                 sourceLocation = sourceLocation,
             )
         }
@@ -203,11 +203,11 @@ data object Condition: NonTerminal {
         production(Element.Name, ElementProperty, PropertyValue)
     )
 }
-
-data object Delay: NonTerminal {
-    override val isService: Boolean = false
-    override val representation: String = "delay"
-    override val productions: List<Production> = listOf(
-        listOf(Duration)
-    )
-}
+// TODO не до конца понятно, является ли Delay в действительности действием или это явный костыль "ожидания" непонятно зачем
+//data object Delay: NonTerminal {
+//    override val isService: Boolean = false
+//    override val representation: String = "delay"
+//    override val productions: List<Production> = listOf(
+//        listOf(Duration)
+//    )
+//}

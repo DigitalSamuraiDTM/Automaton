@@ -1,7 +1,7 @@
 package com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language
 
-import com.digitalsamurai.automaton.ast.AstNode
+import com.digitalsamurai.automaton.semantic.SemanticModel
 
 interface LanguageExtractor {
-    fun extractText(node: AstNode<*>): String
+    fun extractText(node: SemanticModel): String
 }

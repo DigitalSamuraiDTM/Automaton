@@ -3,16 +3,22 @@ compilationUnit:
     elements:
       - element:
           elementName: loginButton
+          elementLayout: https://youtube.com
       - element:
           elementName: loginScreen
+          elementLayout: https://youtube.com
       - element:
           elementName: loginField
+          elementLayout: https://youtube.com
       - element:
           elementName: passwordField
+          elementLayout: https://youtube.com
       - element:
           elementName: submitButton
+          elementLayout: https://youtube.com
       - element:
           elementName: homeTitle
+          elementLayout: https://youtube.com
     theme:
       themeMode: light
     permissions:

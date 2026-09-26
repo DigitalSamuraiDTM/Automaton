@@ -1,77 +1,81 @@
 package com.digitalsamurai.automaton.semantic
 
-import com.digitalsamurai.automaton.semantic.SemanticModel.Test.Theme
 import kotlin.time.Duration
 
 /**
  * Intermediate representation based on AST semantic analyze.
  */
 data class SemanticModel(
-    val metadata: Metadata,
     val context: Context,
     val test: Test,
 ) {
 
     data class Test(
+        val metadata: Metadata,
         val steps: List<Step>,
     ) {
-        enum class Theme {
-            LIGHT, DARK, SYSTEM,
-        }
+        data class Metadata(
+            val testName: String,
+            val id: String,
+        )
 
         data class Step(
-            val actions: List<String>,
+            val actions: List<Action>,
         )
+        sealed interface Action {
+
+            val element: Element
+
+            data class Tap(
+                override val element: Element,
+                val type: Type,
+            ): Action {
+                enum class Type {
+                    SINGLE, DOUBLE, LONG
+                }
+            }
+
+            data class Wait(
+                override val element: Element,
+                val property: Element.Property,
+                val timeout: Duration,
+            ): Action
+
+            data class Input(
+                override val element: Element,
+                val text: String,
+            ): Action
+
+            data class Assert(
+                override val element: Element,
+                val property: Element.Property,
+            ): Action
+        }
     }
 
     data class Context(
         val theme: Theme?,
-        val permissions: Map<String, Boolean>,
-        val elements: Map<String, Element>
+        val permissions: List<Permission>,
+        val elements: List<Element>,
     ) {
-
+        enum class Theme {
+            LIGHT, DARK, SYSTEM,
+        }
     }
-    data class Metadata(
-        val testName: String,
+
+    data class Permission(
+        val name: String,
+        val isGranted: Boolean,
     )
 
     data class Element(
         val name: String,
+        val layout: String,
     ) {
         sealed class Property {
             data class Visible(
                 val value: Boolean,
-            )
+            ): Property()
         }
-    }
-
-    sealed interface Action {
-
-        val element: Element
-
-        data class Tap(
-            override val element: Element,
-            val type: Type,
-        ): Action {
-            enum class Type {
-                SINGLE, DOUBLE, LONG
-            }
-        }
-
-        data class Wait(
-            override val element: Element,
-            val property: Element.Property,
-            val timeout: Duration,
-        ): Action
-
-        data class Input(
-            override val element: Element,
-            val text: String,
-        ): Action
-
-        data class Assert(
-            override val element: Element,
-            val property: Element.Property,
-        ): Action
     }
 }

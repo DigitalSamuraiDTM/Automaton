@@ -1,18 +1,13 @@
 package com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.ru
 
-import com.digitalsamurai.automaton.ast.AstNode
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.LanguageExtractor
 import com.digitalsamurai.automaton.grammar.*
+import com.digitalsamurai.automaton.semantic.SemanticModel
 
 class RussianLanguageExtractor : LanguageExtractor {
-    override fun extractText(node: AstNode<*>): String {
-        (node.symbol as? NonTerminal)?.let {
-            return it.text()
-        }
-        (node.symbol as? Terminal<*>)?.let {
-            return it.text(node.value)
-        }
-        throw IllegalArgumentException("Unknown GrammarSymbol type: ${node.symbol}")
+    override fun extractText(node: SemanticModel): String {
+
+        throw IllegalArgumentException("Unknown GrammarSymbol type: ${node}")
 //        return ""
     }
 
@@ -24,7 +19,6 @@ class RussianLanguageExtractor : LanguageExtractor {
             CompilationUnit -> "Юнит"
             Condition -> "Условие"
             Context -> "Контекст"
-            Delay -> "Задержка"
             Input -> "Введи текст"
             Metadata -> "Информация о тесте"
             Step -> "Шаг"

@@ -136,7 +136,7 @@ data object Camera: Terminal<Boolean> {
 }
 
 
-private fun Any.toBoolean(): Boolean = when (this) {
+public fun Any.toBoolean(): Boolean = when (this) {
     is Boolean -> this
     is String -> if (this == "true") true else if (this == "false") false else throw ClassCastException("$this not supported")
     is Int -> if (this == 1) true else if (this == 0) false else throw ClassCastException("$this not supported")

@@ -1,7 +1,7 @@
 package com.digitalsamurai.automaton.backend.api
 
 import com.digitalsamurai.automaton.api.Automaton
-import com.digitalsamurai.automaton.ast.AstNode
+import com.digitalsamurai.automaton.semantic.SemanticModel
 
 public fun Automaton.backends(): AutomatonBackends {
     return AutomatonBackends
@@ -12,5 +12,5 @@ public object AutomatonBackends {
 }
 
 public interface AutomatonBackend {
-    fun buildOutput(tree: AstNode<*>): Result<BackendOutput>
+    fun buildOutput(tree: SemanticModel): Result<BackendOutput>
 }

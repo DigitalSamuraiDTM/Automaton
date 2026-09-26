@@ -1,13 +1,13 @@
 package com.digitalsamurai.automaton.parser.ll1
 
-import com.digitalsamurai.automaton.ast.AstNode
+import com.digitalsamurai.automaton.ast.Ast
 import com.digitalsamurai.automaton.grammar.*
-import com.digitalsamurai.automaton.grammar.Action.hasEpsilon
 import com.digitalsamurai.automaton.parser.api.AutomatonParser
 import java.util.concurrent.atomic.AtomicBoolean
 
 // TODO почитать, что это не совсем LL(1)
 public object LL1Parser : AutomatonParser {
+    private val leafParser = AstLeafParser()
 
     private val _isInitialized: AtomicBoolean = AtomicBoolean(false)
 
@@ -24,7 +24,7 @@ public object LL1Parser : AutomatonParser {
         }
     }
 
-    override fun parse(tokens: List<Token<*>>): AstNode<*> {
+    override fun parse(tokens: List<Token<*>>): Ast {
         val listIterator = tokens.listIterator()
         val firstToken = listIterator.next()
         val ast = recursion(
@@ -34,9 +34,9 @@ public object LL1Parser : AutomatonParser {
         return ast
     }
 
-    private fun recursion(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): AstNode<*> {
+    private fun recursion(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): Ast {
         if (currentToken.symbol is Terminal<*>) {
-            return parseTerminal(currentToken)
+            return parseAstLeaf(currentToken)
         }
         if (currentToken.symbol is NonTerminal) {
             return parseNonTerminal(
@@ -106,15 +106,15 @@ public object LL1Parser : AutomatonParser {
         return outProductions
     }
 
-    private fun parseNonTerminal(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): AstNode<*> {
+    private fun parseNonTerminal(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): Ast {
         val currentSymbol = currentToken.symbol as NonTerminal
         val nextToken = if (lastTokens.hasNext()) {
             lastTokens.next()
         } else {
             if (currentSymbol.hasEpsilon()) {
-                return AstNode(
+                return Ast.Node(
                     childs = emptyList(),
-                    value = Unit, symbol = currentSymbol,
+                    symbol = currentSymbol,
                 )
             } else {
                 error("Unexpected finish parsing tokens list")
@@ -124,7 +124,7 @@ public object LL1Parser : AutomatonParser {
         val production = parsingTable!![currentSymbol]?.get(nextToken.symbol)
         // найдена продукция, строим
         if (production != null) {
-            val childs = mutableListOf<AstNode<*>>()
+            val childs = mutableListOf<Ast>()
             production.forEachIndexed { index, symbol ->
                 if (index == 0) {
                     childs.add(recursion(currentToken = nextToken, lastTokens = lastTokens))
@@ -133,7 +133,7 @@ public object LL1Parser : AutomatonParser {
                 // встретили рекурсию (сами себя). Идем вниз по рекурсии
                 if (currentSymbol == symbol) {
                     val recursed = recursion(currentToken = currentToken, lastTokens = lastTokens)
-                    childs.addAll(recursed.childs)
+                    childs.addAll((recursed as Ast.Node).childs)
                     return@forEachIndexed
                 }
                 val next = lastTokens.next()
@@ -150,10 +150,9 @@ public object LL1Parser : AutomatonParser {
                 }
             }
 
-            return AstNode(
+            return Ast.Node(
                 symbol = currentSymbol,
                 childs = childs.toList(),
-                value = Unit,
             )
         } else {
             // если продукция для следующего символа не найдена, но есть эпсилон переход, то возвращаемся по эпсилону
@@ -161,23 +160,18 @@ public object LL1Parser : AutomatonParser {
                 // откатываемся назад, чтобы повторно считать символ и построить продукцию по нему
                 // TODO: сейчас сделано костылем, что при вхождении в рекурсию мы получаем AstNode из которого читаем childrens
                 lastTokens.previous()
-                return AstNode(
+                return Ast.Node(
                     symbol = currentSymbol,
                     childs = emptyList(),
-                    value = Unit,
-
                 )
             }
             error("Production at token '${currentSymbol}' with next symbol '${nextToken.symbol}' not found")
         }
     }
 
-    private fun parseTerminal(currentToken: Token<*>): AstNode<*> {
-        return AstNode(
-            symbol = currentToken.symbol as Terminal<Any?>,
-            value = currentToken.value,
-            childs = emptyList(),
-        )
+    private fun parseAstLeaf(currentToken: Token<*>): Ast {
+        // создаем листья типизированные для упрощения дальнейшего семантического анализа
+        return leafParser.parse(currentToken)
     }
 
     override fun toString(): String {
