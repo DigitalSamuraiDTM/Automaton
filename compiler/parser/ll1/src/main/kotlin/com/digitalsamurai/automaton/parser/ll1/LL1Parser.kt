@@ -2,27 +2,21 @@ package com.digitalsamurai.automaton.parser.ll1
 
 import com.digitalsamurai.automaton.ast.Ast
 import com.digitalsamurai.automaton.grammar.*
+import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.parser.api.AutomatonParser
 import java.util.concurrent.atomic.AtomicBoolean
 
 // TODO почитать, что это не совсем LL(1)
-public object LL1Parser : AutomatonParser {
+public class LL1Parser(
+    private val logger: AutomatonLogger?,
+) : AutomatonParser {
     private val leafParser = AstLeafParser()
 
-    private val _isInitialized: AtomicBoolean = AtomicBoolean(false)
-
-    override val isInitialized: Boolean
-        get() = _isInitialized.get()
+    init {
+        analyzeProductions()
+    }
 
     private var parsingTable: Map<NonTerminal, Map<GrammarSymbol<*>, List<GrammarSymbol<*>>>>? = null
-
-    override fun initialize() {
-        if (_isInitialized.compareAndSet(false, true)) {
-            analyzeProductions()
-        } else {
-            // nothing to do
-        }
-    }
 
     override fun parse(tokens: List<Token<*>>): Ast {
         val listIterator = tokens.listIterator()

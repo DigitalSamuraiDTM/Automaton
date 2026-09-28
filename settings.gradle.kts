@@ -53,3 +53,7 @@ includeIfExists(":compiler:parser:ll1")
 includeIfExists(":compiler:frontend:api")
 includeIfExists(":compiler:frontend:yaml")
 
+includeIfExists(":compiler:logger:api")
+includeIfExists(":compiler:logger:terminal")
+
+

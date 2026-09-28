@@ -5,8 +5,6 @@ import com.digitalsamurai.automaton.grammar.Token
 
 
 interface AutomatonParser {
-    val isInitialized: Boolean
-    fun initialize()
 
     fun parse(tokens: List<Token<*>>): Ast
 }

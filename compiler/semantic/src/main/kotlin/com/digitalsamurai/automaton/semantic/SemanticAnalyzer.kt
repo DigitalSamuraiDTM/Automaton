@@ -18,8 +18,9 @@ import com.digitalsamurai.automaton.grammar.Test
 import com.digitalsamurai.automaton.grammar.Theme
 import com.digitalsamurai.automaton.grammar.Wait
 import com.digitalsamurai.automaton.grammar.toBoolean
+import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 
-public class SemanticAnalyzer {
+public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
 
     suspend fun analyzeFull(astNode: Ast): SemanticModel {

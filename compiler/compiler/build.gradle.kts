@@ -14,6 +14,7 @@ dependencies {
     api(project(":compiler:backend:api"))
     api(project(":compiler:frontend:api"))
     api(project(":compiler:parser:api"))
+    api(project(":compiler:logger:api"))
 
 
     implementation(kotlin("stdlib-jdk8"))

@@ -23,9 +23,8 @@ fun main(): Unit = runBlocking {
                 outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton"),
             )
         )
+        parser(LL1Parser())
     }
-//    LL1Parser.initialize()
-//    println(LL1Parser.toString())
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
 
 

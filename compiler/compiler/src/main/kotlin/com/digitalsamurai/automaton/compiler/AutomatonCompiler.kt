@@ -5,6 +5,7 @@ import com.digitalsamurai.automaton.backend.api.AutomatonBackend
 import com.digitalsamurai.automaton.backend.api.BackendOutput
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontend
 import com.digitalsamurai.automaton.grammar.Token
+import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.parser.api.AutomatonParser
 import com.digitalsamurai.automaton.semantic.SemanticAnalyzer
 import com.digitalsamurai.automaton.semantic.SemanticModel
@@ -13,17 +14,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 
 public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
     private val backends: List<AutomatonBackend>,
     private val frontend: T,
     private val parser: AutomatonParser,
+    private val logger: AutomatonLogger?,
 ) {
     private val automatonScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
-    private val semanticAnalyzer: SemanticAnalyzer = SemanticAnalyzer()
+    private val semanticAnalyzer: SemanticAnalyzer = SemanticAnalyzer(logger)
 
     init {
         listenFrontend()
