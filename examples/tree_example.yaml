@@ -30,6 +30,7 @@ compilationUnit:
       name: "Successful authorization"
     steps:
       - step:
+          stepDescription: "Открываем экран авторизации"
           actions:
             - tap:
                 elementName: loginButton
@@ -41,6 +42,7 @@ compilationUnit:
                   propertyValue: true
                 timeout: 1m
       - step:
+          stepDescription: "Вводим учетные данные"
           actions:
             - input:
                 elementName: loginField
@@ -49,7 +51,8 @@ compilationUnit:
                 elementName: passwordField
                 inputData: "password"
       - step:
-        - actions:
+          stepDescription: "Авторизуемся и попадаем на главный экран"
+          actions:
             - tap:
                 elementName: submitButton
                 tapType: single

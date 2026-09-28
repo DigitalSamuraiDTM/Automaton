@@ -9,6 +9,7 @@ import com.digitalsamurai.automaton.grammar.Id
 import com.digitalsamurai.automaton.grammar.InputData
 import com.digitalsamurai.automaton.grammar.Microphone
 import com.digitalsamurai.automaton.grammar.PropertyValue
+import com.digitalsamurai.automaton.grammar.Step
 import com.digitalsamurai.automaton.grammar.TapType
 import com.digitalsamurai.automaton.grammar.Terminal
 import com.digitalsamurai.automaton.grammar.TestName
@@ -33,6 +34,7 @@ class AstLeafParser {
             TestName -> Ast.Leaf.AstTestName(token.value as String)
             ThemeMode -> Ast.Leaf.AstThemeMode((token.value as ThemeMode.Mode).toMode())
             Timeout -> Ast.Leaf.AstTimeout(token.value as kotlin.time.Duration)
+            Step.Description -> Ast.Leaf.AstStepDescription(token.value as String)
         }
     }
 

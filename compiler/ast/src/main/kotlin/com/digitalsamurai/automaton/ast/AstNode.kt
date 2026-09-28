@@ -5,7 +5,9 @@ import kotlin.time.Duration
 
 sealed class Ast {
 
+    // TODO перейти на полное типизированное дерево и отказаться от хранения символа грамматики внутри
     abstract val symbol: GrammarSymbol<*>
+
     protected fun toStringTree(prefix: String): String {
         when (this) {
             is Leaf<*> -> return "${symbol.representation}($value)\n"
@@ -37,6 +39,10 @@ sealed class Ast {
 
     sealed class Leaf<T> : Ast() {
         abstract val value: T
+
+        data class AstStepDescription(override val value: String): Leaf<String>() {
+            override val symbol: GrammarSymbol<*> = Step.Description
+        }
 
         data class AstInputData(override val value: String) : Leaf<String>() {
             override val symbol = InputData

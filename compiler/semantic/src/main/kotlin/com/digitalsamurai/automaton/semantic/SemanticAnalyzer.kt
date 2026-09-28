@@ -148,13 +148,16 @@ public class SemanticAnalyzer {
             }
             Step -> {
                 var actions: List<SemanticModel.Test.Action>? = null
+                var description: String? = null
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         is SemanticValue.ActionsList -> actions = result.value
+                        is SemanticValue.StepDescription -> description = result.value
                     }
                 }
                 return SemanticModel.Test.Step(
                     actions = actions!!,
+                    description = description!!,
                 )
             }
             Steps -> {
@@ -296,6 +299,7 @@ public class SemanticAnalyzer {
             is Ast.Leaf.AstInputData -> SemanticValue.InputData(value)
             is Ast.Leaf.AstPropertyValue -> SemanticValue.PropertyValue(value)
             is Ast.Leaf.AstTimeout -> SemanticValue.Timeout(value)
+            is Ast.Leaf.AstStepDescription -> SemanticValue.StepDescription(value)
         }
     }
 
@@ -314,6 +318,7 @@ public class SemanticAnalyzer {
         data class PropertyValue(val value: String) : SemanticValue // TODO мигрировать на конкретные проперти, а не абстрактные
         data class PropertyName(val value: String) : SemanticValue // TODO мигрировать на конкретные проперти, а не абстрактные
         data class InputData(val value: String) : SemanticValue
+        data class StepDescription(val value: String) : SemanticValue
         data class Condition(val element: SemanticModel.Element, val propertyName: String, val propertyValue: String) : SemanticValue
     }
 }

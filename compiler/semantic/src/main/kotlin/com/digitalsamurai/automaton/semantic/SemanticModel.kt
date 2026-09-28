@@ -20,6 +20,7 @@ data class SemanticModel(
         )
 
         data class Step(
+            val description: String,
             val actions: List<Action>,
         )
         sealed interface Action {

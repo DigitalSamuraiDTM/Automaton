@@ -9,14 +9,17 @@ class RussianLanguageExtractor : LanguageExtractor {
         val title =
             "# Тест-кейс № ${model.test.metadata.id}\n" +
                     "Название теста: '${model.test.metadata.testName}'\n" +
-                    "## Контекст\n" +
+                    "## Описание\n" +
                     "### Используемые разрешения:\n" +
                     model.context.permissions.joinToString(separator = ""){ "* " + it.extractPermissionName() + "\n" } +
-                    "## Шаги действий\n"
+                    "### Тема приложения:\n" +
+                    "* ${model.context.theme.extractTheme()}\n"
 
-        var steps = ""
+
+
+        var steps = "## Шаги действий\n"
         model.test.steps.forEachIndexed { index, step ->
-            steps += ("#### Шаг ${index}.\n" + step.actions.joinToString(separator = "") { "* "+it.extractAction()+"\n" })
+            steps += ("#### Шаг ${index}. ${step.description}\n" + step.actions.joinToString(separator = "") { "* "+it.extractAction()+"\n" })
         }
 
         return title + steps
@@ -27,7 +30,7 @@ class RussianLanguageExtractor : LanguageExtractor {
             is SemanticModel.Permission.Camera -> "Доступ к камере"
             is SemanticModel.Permission.Microphone -> "Доступ к микрофону"
         }
-        return name + ": "+ if (this.isGranted) "*ДА*" else "НЕТ"
+        return name + ": "+ if (this.isGranted) "**ДА**" else "НЕТ"
     }
 
     private fun SemanticModel.Test.Action.extractAction(): String {
@@ -56,6 +59,15 @@ class RussianLanguageExtractor : LanguageExtractor {
     private fun SemanticModel.Element.Property.extractWaitProperty(): String {
         return when(this) {
             is SemanticModel.Element.Property.Visible -> if (value) "появится" else "не исчезнет"
+        }
+    }
+
+    private fun SemanticModel.Context.Theme?.extractTheme(): String {
+        return when(this) {
+            SemanticModel.Context.Theme.LIGHT -> "**Светлая**"
+            SemanticModel.Context.Theme.DARK -> "**Темная**"
+            SemanticModel.Context.Theme.SYSTEM -> "**Системная**"
+            null -> "Не задана"
         }
     }
 

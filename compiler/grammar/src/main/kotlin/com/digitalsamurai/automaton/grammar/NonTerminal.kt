@@ -140,8 +140,19 @@ data object Step: NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "step"
     override val productions: List<Production> = listOf(
-        production(Actions)
+        production(Description, Actions)
     )
+
+    data object Description: Terminal<String> {
+        override val representation: String = "stepDescription"
+        override fun asToken(sourceLocation: String, value: Any): Token<String> {
+            return Token(
+                symbol = Description,
+                value = value as String,
+                sourceLocation = sourceLocation,
+            )
+        }
+    }
 }
 
 data object Actions: NonTerminal {
