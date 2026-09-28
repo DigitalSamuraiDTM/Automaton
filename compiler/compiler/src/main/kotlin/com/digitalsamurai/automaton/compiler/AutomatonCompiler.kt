@@ -33,9 +33,6 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
         automatonScope.launch {
             frontend.tokensFlow
                 .makeGrammarAnalyze()
-                .onEach {
-                    println(it.toString())
-                }
                 .makeSemanticAnalyze()
                 .buildBackendOutputs()
                 .collect { backendResult ->
@@ -57,7 +54,7 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
      * @return [Ast] the same structure or throw [AutomatonSemanticException]
      */
     private fun Flow<Ast>.makeSemanticAnalyze(): Flow<SemanticModel> {
-        return transform { semanticAnalyzer.analyzeFull(it).also { println(it.toString()) } }
+        return map { semanticAnalyzer.analyzeFull(it) }
     }
 
     private fun Flow<SemanticModel>.buildBackendOutputs(): Flow<List<Result<BackendOutput>>> {

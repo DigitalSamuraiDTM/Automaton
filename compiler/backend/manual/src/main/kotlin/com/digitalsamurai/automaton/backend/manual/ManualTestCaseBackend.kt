@@ -21,16 +21,11 @@ public class ManualTestCaseBackend(
     private val languageExtractor: LanguageExtractor = when(language) {
         Language.RU -> RussianLanguageExtractor()
     }
-    override fun buildOutput(tree: SemanticModel): Result<BackendOutput> {
-        val manualTestCase = buildText(tree)
-        println(manualTestCase)
+    override fun buildOutput(model: SemanticModel): Result<BackendOutput> {
+        val manualTestCase = languageExtractor.extractText(model)
         val outputFile = File(outputDirectory,"example_test.md")
         outputFile.writeText(manualTestCase)
         return Result.success(BackendOutput(metaData = outputFile.path))
     }
 
-    private fun buildText(tree: SemanticModel): String {
-        // TODO вернуться сюда после семантического анализа. Скорее всего после семантики будет использоваться другая насыщенная структура
-        return ""
-    }
 }
