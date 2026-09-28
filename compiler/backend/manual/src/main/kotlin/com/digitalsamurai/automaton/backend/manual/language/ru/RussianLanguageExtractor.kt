@@ -23,15 +23,19 @@ class RussianLanguageExtractor : LanguageExtractor {
     }
 
     private fun SemanticModel.Permission.extractPermissionName(): String {
-        return this.name + ": "+ if (this.isGranted) "ДА" else "НЕТ"
+        val name = when(this) {
+            is SemanticModel.Permission.Camera -> "Доступ к камере"
+            is SemanticModel.Permission.Microphone -> "Доступ к микрофону"
+        }
+        return name + ": "+ if (this.isGranted) "*ДА*" else "НЕТ"
     }
 
     private fun SemanticModel.Test.Action.extractAction(): String {
         return when (this) {
-            is SemanticModel.Test.Action.Assert -> "Проверь элемент '${element.name}'. ${property.extractAssertProperty()}"
-            is SemanticModel.Test.Action.Input -> "Введи текст '${this.text}' в ${element.name}"
-            is SemanticModel.Test.Action.Tap -> "${type.extractTapType()}${element.name}"
-            is SemanticModel.Test.Action.Wait -> "Подожди пока элемент '${element.name}' ${property.extractWaitProperty()}"
+            is SemanticModel.Test.Action.Assert -> "Проверь элемент ${element.testCaseText()}. ${property.extractAssertProperty()}"
+            is SemanticModel.Test.Action.Input -> "Введи текст '${text}' в ${element.testCaseText()}"
+            is SemanticModel.Test.Action.Tap -> "${type.extractTapType()}${element.testCaseText()}"
+            is SemanticModel.Test.Action.Wait -> "Подожди пока элемент ${element.testCaseText()} ${property.extractWaitProperty()}"
         }
     }
 
@@ -53,6 +57,10 @@ class RussianLanguageExtractor : LanguageExtractor {
         return when(this) {
             is SemanticModel.Element.Property.Visible -> if (value) "появится" else "не исчезнет"
         }
+    }
+
+    private fun SemanticModel.Element.testCaseText(): String {
+        return "[${name}](${layout})"
     }
 
 }

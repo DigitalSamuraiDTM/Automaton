@@ -278,8 +278,8 @@ public class SemanticAnalyzer {
             is Ast.Leaf.AstElementLayoutLeaf -> SemanticValue.ElementLayout(this.value)
             is Ast.Leaf.AstElementNameLeaf -> SemanticValue.ElementName(this.value)
             is Ast.Leaf.AstId -> SemanticValue.TestId(this.value)
-            is Ast.Leaf.AstCameraLeaf -> SemanticModel.Permission(name = "camera", isGranted = this.value)
-            is Ast.Leaf.AstMicrophoneLeaf -> SemanticModel.Permission(name = "microphone", isGranted = this.value)
+            is Ast.Leaf.AstCameraLeaf -> SemanticModel.Permission.Camera(isGranted = this.value)
+            is Ast.Leaf.AstMicrophoneLeaf -> SemanticModel.Permission.Microphone(isGranted = this.value)
             is Ast.Leaf.AstTestName -> SemanticValue.TestName(this.value)
             is Ast.Leaf.AstThemeMode -> when(this.value){
                 Ast.Leaf.AstThemeMode.Mode.LIGHT -> SemanticModel.Context.Theme.LIGHT
@@ -291,11 +291,11 @@ public class SemanticAnalyzer {
                 Ast.Leaf.AstTapType.Type.DOUBLE -> SemanticModel.Test.Action.Tap.Type.DOUBLE
                 Ast.Leaf.AstTapType.Type.LONG -> SemanticModel.Test.Action.Tap.Type.LONG
             }
-            is Ast.Leaf.AstDuration -> SemanticValue.Duration(this.value)
-            is Ast.Leaf.AstElementProperty -> SemanticValue.PropertyName(this.value)
-            is Ast.Leaf.AstInputData -> SemanticValue.InputData(this.value)
-            is Ast.Leaf.AstPropertyValue -> SemanticValue.PropertyValue(this.value)
-            is Ast.Leaf.AstTimeout -> SemanticValue.Timeout(this.value)
+            is Ast.Leaf.AstDuration -> SemanticValue.Duration(value)
+            is Ast.Leaf.AstElementProperty -> SemanticValue.PropertyName(value)
+            is Ast.Leaf.AstInputData -> SemanticValue.InputData(value)
+            is Ast.Leaf.AstPropertyValue -> SemanticValue.PropertyValue(value)
+            is Ast.Leaf.AstTimeout -> SemanticValue.Timeout(value)
         }
     }
 

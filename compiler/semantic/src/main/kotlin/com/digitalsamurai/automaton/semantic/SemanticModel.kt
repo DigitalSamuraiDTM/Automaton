@@ -63,10 +63,12 @@ data class SemanticModel(
         }
     }
 
-    data class Permission(
-        val name: String,
-        val isGranted: Boolean,
-    )
+    sealed interface Permission {
+        val isGranted: Boolean
+
+        data class Camera(override val isGranted: Boolean): Permission
+        data class Microphone(override val isGranted: Boolean): Permission
+    }
 
     data class Element(
         val name: String,
