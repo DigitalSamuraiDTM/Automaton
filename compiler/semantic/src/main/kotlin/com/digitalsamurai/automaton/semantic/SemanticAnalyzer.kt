@@ -1,6 +1,7 @@
 package com.digitalsamurai.automaton.semantic
 
 import com.digitalsamurai.automaton.ast.Ast
+import com.digitalsamurai.automaton.ast.AstData
 import com.digitalsamurai.automaton.grammar.Actions
 import com.digitalsamurai.automaton.grammar.Assert
 import com.digitalsamurai.automaton.grammar.Condition
@@ -23,7 +24,8 @@ import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
 
-    suspend fun analyzeFull(astNode: Ast): SemanticModel {
+    suspend fun analyzeFull(data: AstData): SemanticModel {
+        val astNode = data.ast
         if (astNode is Ast.Leaf<*>) {
             error("full analyze does not support leaf as root node")
         }
@@ -41,6 +43,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
              }
          }
         return SemanticModel(
+            requestId = data.requestId,
             context = context!!,
             test = test!!
         )

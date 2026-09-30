@@ -3,9 +3,11 @@ package com.digitalsamurai.automaton.compiler.factory
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
 import com.digitalsamurai.automaton.compiler.AutomatonCompiler
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontend
+import com.digitalsamurai.automaton.frontend.api.AutomatonResult
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
-import com.digitalsamurai.automaton.parser.api.AutomatonParser
 import com.digitalsamurai.automaton.parser.ll1.LL1Parser
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 
 public class AutomatonCompilerFactory<T: AutomatonFrontend> internal constructor(
     // TODO list of frontends
@@ -13,8 +15,9 @@ public class AutomatonCompilerFactory<T: AutomatonFrontend> internal constructor
 ) {
 
     private var backends: List<AutomatonBackend> = emptyList()
-    private var parser: LL1Parser? = null
+    var parser: LL1Parser? = null
     private var logger: AutomatonLogger? = null
+    private var resultFlowSettings: MutableSharedFlow<AutomatonResult>? = null
 
     public fun backends(vararg backends: AutomatonBackend) {
         this.backends = backends.toList()
@@ -23,6 +26,10 @@ public class AutomatonCompilerFactory<T: AutomatonFrontend> internal constructor
 
     public fun logger(logger: AutomatonLogger) {
         this.logger = logger
+    }
+
+    public fun resultFlow(flow: MutableSharedFlow<AutomatonResult>) {
+        this.resultFlowSettings = flow
     }
 
 
@@ -34,6 +41,7 @@ public class AutomatonCompilerFactory<T: AutomatonFrontend> internal constructor
             frontend = frontend,
             parser = ll1Parser,
             logger = logger,
+            resultFlow =  resultFlowSettings
         )
     }
 

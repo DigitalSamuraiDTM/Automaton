@@ -6,26 +6,36 @@ import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.LanguageExtractor
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.ru.RussianLanguageExtractor
 import com.digitalsamurai.automaton.semantic.SemanticModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import java.io.File
 
 public class ManualTestCaseBackend(
     private val language: Language,
     private val outputDirectory: File,
-): AutomatonBackend {
+) : AutomatonBackend {
 
     init {
         if (!outputDirectory.exists()) throw IllegalArgumentException("Output directory '${outputDirectory.path}' does not exist")
         if (!outputDirectory.isDirectory) throw IllegalArgumentException("Output directory '${outputDirectory.path}' is not a directory")
     }
 
-    private val languageExtractor: LanguageExtractor = when(language) {
+    private val languageExtractor: LanguageExtractor = when (language) {
         Language.RU -> RussianLanguageExtractor()
     }
-    override fun buildOutput(model: SemanticModel): Result<BackendOutput> {
+
+    override suspend fun buildOutput(model: SemanticModel): BackendOutput = coroutineScope {
         val manualTestCase = languageExtractor.extractText(model)
-        val outputFile = File(outputDirectory,"example_test.md")
-        outputFile.writeText(manualTestCase)
-        return Result.success(BackendOutput(metaData = outputFile.path))
+        val outputFile = File(outputDirectory, "example_test.md")
+        withContext(Dispatchers.IO) {
+            outputFile.writeText(manualTestCase)
+        }
+        return@coroutineScope BackendOutput(
+                requestId = model.requestId,
+                metaData = outputFile.path,
+            )
+
     }
 
 }

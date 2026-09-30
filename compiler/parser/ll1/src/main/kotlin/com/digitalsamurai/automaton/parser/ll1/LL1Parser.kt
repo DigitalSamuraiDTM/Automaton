@@ -1,10 +1,11 @@
 package com.digitalsamurai.automaton.parser.ll1
 
 import com.digitalsamurai.automaton.ast.Ast
+import com.digitalsamurai.automaton.ast.AstData
+import com.digitalsamurai.automaton.frontend.api.AutomatonRequest
 import com.digitalsamurai.automaton.grammar.*
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.parser.api.AutomatonParser
-import java.util.concurrent.atomic.AtomicBoolean
 
 // TODO почитать, что это не совсем LL(1)
 public class LL1Parser(
@@ -18,14 +19,17 @@ public class LL1Parser(
 
     private var parsingTable: Map<NonTerminal, Map<GrammarSymbol<*>, List<GrammarSymbol<*>>>>? = null
 
-    override fun parse(tokens: List<Token<*>>): Ast {
-        val listIterator = tokens.listIterator()
+    override fun parse(request: AutomatonRequest): AstData {
+        val listIterator = request.tokens.listIterator()
         val firstToken = listIterator.next()
         val ast = recursion(
             currentToken = firstToken,
             lastTokens = listIterator,
         )
-        return ast
+        return AstData(
+            requestId = request.requestId,
+            ast = ast
+        )
     }
 
     private fun recursion(currentToken: Token<*>, lastTokens: ListIterator<Token<*>>): Ast {

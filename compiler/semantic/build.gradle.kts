@@ -12,7 +12,7 @@ dependencies {
     api(project(":compiler:logger:api"))
 
     implementation(project(":compiler:ast"))
-    api(project(":compiler:grammar"))
+    implementation(project(":compiler:grammar"))
     implementation(kotlin("stdlib-jdk8"))
 }
 

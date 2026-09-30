@@ -6,6 +6,7 @@ import kotlin.time.Duration
  * Intermediate representation based on AST semantic analyze.
  */
 data class SemanticModel(
+    val requestId: String,
     val context: Context,
     val test: Test,
 ) {

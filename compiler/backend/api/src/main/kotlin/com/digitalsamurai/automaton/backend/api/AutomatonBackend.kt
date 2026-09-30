@@ -12,5 +12,5 @@ public object AutomatonBackends {
 }
 
 public interface AutomatonBackend {
-    fun buildOutput(model: SemanticModel): Result<BackendOutput>
+    suspend fun buildOutput(model: SemanticModel): BackendOutput
 }

@@ -7,6 +7,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
     implementation(project(":compiler:grammar"))
+    implementation(project(":compiler:semantic"))
     implementation(project(":compiler:parser:ll1"))
 
 
