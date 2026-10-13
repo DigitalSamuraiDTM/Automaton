@@ -8,7 +8,6 @@ import com.digitalsamurai.automaton.frontend.api.AutomatonResult
 import com.digitalsamurai.automaton.frontend.yaml.YamlFrontend
 import com.digitalsamurai.automaton.frontend.yaml.YamlInput
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -29,7 +28,7 @@ fun main(): Unit = runBlocking {
         resultFlow(resultFlow)
     }
     val start = System.currentTimeMillis()
-    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/examples/tree_example.yaml")))
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/tree_example.yaml")))
 
     val finishResult = resultFlow.first()
     println(finishResult)

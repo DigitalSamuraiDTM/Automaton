@@ -46,6 +46,7 @@ includeIfExists(":compiler:grammar")
 
 includeIfExists(":compiler:backend:api")
 includeIfExists(":compiler:backend:manual")
+includeIfExists(":compiler:backend:android:kaspresso")
 
 includeIfExists(":compiler:parser:api")
 includeIfExists(":compiler:parser:ll1")
@@ -55,5 +56,3 @@ includeIfExists(":compiler:frontend:yaml")
 
 includeIfExists(":compiler:logger:api")
 includeIfExists(":compiler:logger:terminal")
-
-
