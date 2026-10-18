@@ -9,6 +9,7 @@ buildscript {
     repositories {
         mavenCentral()
         gradlePluginPortal()
+        google()
     }
     dependencies {
         classpath(libs.plugin.kotlin)

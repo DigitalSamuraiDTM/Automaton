@@ -10,9 +10,8 @@ java {
 
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(25)
 }
 dependencies {
     testImplementation(libs.junit)
-    implementation(kotlin("stdlib-jdk8"))
 }

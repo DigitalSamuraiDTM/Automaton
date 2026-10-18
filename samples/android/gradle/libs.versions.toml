@@ -1,19 +1,19 @@
 [versions]
-activityCompose = "1.10.0"
-agp = "8.7.3"
-constraintlayoutCompose = "1.1.1"
-hiltAndroid = "2.56.1"
-hiltAndroidCompiler = "2.56.1"
-hiltNavigationCompose = "1.2.0"
-kotlin = "2.0.21"
+activityCompose = "1.13.0"
+agp = "9.2.1"
+constraintlayoutCompose = "1.1.2"
+hiltAndroid = "2.60.1"
+hiltAndroidCompiler = "2.60.1"
+hiltNavigationCompose = "1.4.0"
+kotlin = "2.4.21"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
-kotlinxSerializationJson = "1.9.0"
+kotlinxSerializationJson = "1.11.0"
 lifecycleViewmodelCompose = "2.8.7"
-material = "1.10.0"
+material = "1.12.1"
 constraintlayout = "2.1.4"
 navigation = "2.8.6"
 navigationCompose = "2.8.7"
@@ -27,6 +27,13 @@ otel-alpha = "1.49.0-alpha"
 ktor = "3.2.2"
 ktorm = "4.1.1"
 logback = "1.5.6"
+kaspresso = "1.6.1"
+uiTestJunit4 = "1.12.1"
+kakaocup = "3.6.5"
+kakaocup-compose = "1.0.0"
+espresso = "3.7.0"
+ksp = "2.3.10"
+material-icons = "1.7.8"
 
 [libraries]
 # OPENTELEMETRY
@@ -58,9 +65,9 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 material3 = { module = "androidx.compose.material3:material3" }
+material-icons = { module = "androidx.compose.material:material-icons-extended" , version.ref = "material-icons" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 androidx-ui-unit-android = { group = "androidx.compose.ui", name = "ui-unit-android", version.ref = "uiUnitAndroid" }
@@ -86,12 +93,28 @@ logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ktor-client-contentnegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" } # ANDROID
+# KASPRESSO
+kaspresso = { module = "com.kaspersky.android-components:kaspresso", version.ref = "kaspresso" }
+kaspresso-compose = { module = "com.kaspersky.android-components:kaspresso-compose-support", version.ref = "kaspresso" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
+# KAKAOCUP
+kakaocup = { module = "io.github.kakaocup:kakao", version.ref = "kakaocup" }
+kakaocup-compose = { module = "io.github.kakaocup:compose", version.ref = "kakaocup-compose" }
+# ESPRESSO
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
+espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
+espresso-accessibility = { module = "androidx.test.espresso:espresso-accessibility", version.ref = "espresso" }
+espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "espresso" }
+espresso-idling-concurrent = { module = "androidx.test.espresso.idling:idling-concurrent", version.ref = "espresso" }
+espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "espresso" }
 [plugins]
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+#kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
 

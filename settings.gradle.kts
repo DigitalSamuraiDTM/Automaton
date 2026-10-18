@@ -15,7 +15,6 @@ rootProject.name = "Automaton"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
-//    includeBuild("build-logic")
     apply(from = "gradle/repos-extractor.gradle.kts")
     val pluginsRepos: ((PluginManagementSpec) -> Unit) by extra
     pluginsRepos(this)

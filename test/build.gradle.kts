@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":compiler:compiler"))
     implementation(project(":compiler:frontend:yaml"))
     implementation(project(":compiler:backend:manual"))
+    implementation(project(":compiler:backend:android:kaspresso"))
     implementation(project(":compiler:parser:ll1"))
 
     implementation(kotlin("stdlib-jdk8"))
