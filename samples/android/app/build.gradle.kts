@@ -11,7 +11,7 @@ val projectVersion: String by rootProject.extra
 
 android {
     namespace = "com.digitalsamurai.automaton.sample"
-    compileSdk = 35
+    compileSdk = 37
 
     with(buildFeatures) {
         this.buildConfig = true
@@ -76,6 +76,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.fragment.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.drawerlayout)
     debugImplementation(libs.androidx.ui.tooling)
 
     // TESTING

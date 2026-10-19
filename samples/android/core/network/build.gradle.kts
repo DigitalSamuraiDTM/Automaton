@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.digitsamurai.opentelemetry.example.core.network"
-    compileSdk = 34
+    compileSdk = 37
 
     with(buildFeatures) {
         this.buildConfig = true

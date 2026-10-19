@@ -8,7 +8,7 @@ android {
 
 
     namespace = "com.digitsamurai.algos"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 26
