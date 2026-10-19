@@ -1,6 +1,12 @@
+![logo](/docs/automaton.png)
+
 # Automaton
 
-Concept of compiler for UI tests
+Concept of compiler engine for UI tests
+
+## Content
+
+* [Architecture](/docs/architecture.md)
 
 ## General of concept
 
@@ -30,9 +36,9 @@ Every composite non terminal is a container with named section. If a section has
 in the subject area or can potentially be expanded without changing the semantics of the container,
 it is allocated as a separate non-terminal.
 
-#### Single responsibility of semanthics
+#### Single responsibility of semantics
 
-Every syntax of language has single semanthic
+Every syntax of language has single semantic
 
 #### Concrete syntax
 
@@ -41,10 +47,10 @@ Context-free grammar of a language defines abstract structure of program.
 Then:
 
 * Language is not defined by YAML
-* YAML is not defined by language language
+* YAML is not defined by language
 * changing of concrete syntax does not change language while preserving many production rules
 
-#### Compilation determenism
+#### Compilation determinism
 
 With fixed compiler version, grammar and context the same program generates the same equivalent IR.
 
@@ -57,14 +63,14 @@ semantic analysis.
 #### Single source of true
 
 All project artifacts are derived from a single language program. Source text of program is a single
-place for describing logic scenaries. Executable code, documentation, allure description and other
+place for describing logic scenarios. Executable code, documentation, allure description and other
 representations does not contain independent logic and must be automatically recreated at each
 compilation.
 
 #### Unified model
 
-After successfull syntax analysis, program transform to abstract syntax tree (AST).
-After successfull semanthic analysis AST transform to intermediate representation (IR)
+After successful syntax analysis, program transform to abstract syntax tree (AST).
+After successful semantic analysis AST transform to intermediate representation (IR)
 IR can build:
 
 1) Executable Android test
@@ -89,52 +95,13 @@ abstractions, and interaction details emerge only at the code generation stage.
 
 #### Required context
 
-Any automaton profram interpreted relative to some compilation context. Context is a part of program
-and worked particaptes in AST building.
+Any automaton program interpreted relative to some compilation context. Context is a part of program
+and worked participates in AST building.
 
-#### Indepence of actions
+#### Independence of actions
 
 Each type of action is an independent non-terminal symbol of grammar and has its own system of
 production rules.
-
-## General scheme of compiler
-
-```
-           YAML
-             │
-             ▼
-      Lexical analyzer
-             │
-             ▼
-    Non-terminals flow
-             │
-             ▼
-       Syntax analyzer
-             │
-             ▼
-            AST
-             │
-             ▼
-   Semanthic analyzer
-             │
-             ▼
-      Validated AST
-             │
-             ▼
-             IR
-        ┌────┴────┐
-        ▼         ▼
- Backend Kotlin  Backend Swift
-        │         │
-       .kt       .swift
-
-или
-
-             IR
-             │
-             ▼
-        (JIT)
-```
 
 ## Context-free grammatic
 
@@ -178,15 +145,15 @@ S ∈ V (start symbol is one of non terminals symbols)
 
 ### Terminal symbols
 
-| Non-terminal     | Value                  |                                 Description                                 |
-|------------------|:-----------------------|:---------------------------------------------------------------------------:|
-| ElementReference | TODO                   |                  Ui element reference declared in context                   |
-| InputData        | "string"               | Symbols, that will be inputed at ui element. The element must be inputtable |
-| TapType          | -                      |                        The element must be tappable                         |
-| Timeout          | time                   |                                    TODO                                     |
-| Duration         | time                   |                                    TODO                                     |
-| ElementProperty  | see element properties |                                    TODO                                     |
-| PropertyValue    | see element properties |                                    TODO                                     |
+| Non-terminal     | Value                  |                                 Description                                  |
+|------------------|:-----------------------|:----------------------------------------------------------------------------:|
+| ElementReference | TODO                   |                   Ui element reference declared in context                   |
+| InputData        | "string"               | Symbols, that will be inputted at ui element. The element must be inputtable |
+| TapType          | {single, double, long} |                         The element must be tappable                         |
+| Timeout          | time                   |                                     TODO                                     |
+| Duration         | time                   |                                     TODO                                     |
+| ElementProperty  | see element properties |                                     TODO                                     |
+| PropertyValue    | see element properties |                                     TODO                                     |
 
 ### Element properties
 
