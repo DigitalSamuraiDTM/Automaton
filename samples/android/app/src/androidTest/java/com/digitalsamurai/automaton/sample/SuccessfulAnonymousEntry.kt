@@ -10,17 +10,17 @@ import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import com.digitalsamurai.automaton.sample.presentation.main.MainActivity
 import org.junit.Test
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.assertIsNotDisplayed
 
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1792360327976
+* Datetime: 1792413310226
 */
 @RunWith(AndroidJUnit4::class)
-class SuccessfulAuthorization : TestCase(
+class SuccessfulAnonymousEntry : TestCase(
     kaspressoBuilder = Kaspresso.Builder.withComposeSupport()
 ) {
     
@@ -30,23 +30,22 @@ class SuccessfulAuthorization : TestCase(
     
 
     @Test
-    fun SuccessfulAuthorization() = run {
+    fun SuccessfulAnonymousEntry() = run {
         step("Открываем экран авторизации") {
-            composeTestRule.onNodeWithTag("loginButton").performClick()
-            flakySafely(timeoutMs = 60000) {
-                composeTestRule.onNodeWithTag("loginScreen").assertIsDisplayed()
-            }
-        }
-        step("Вводим учетные данные") {
-            composeTestRule.onNodeWithTag("loginField").performTextInput("admin")
-            composeTestRule.onNodeWithTag("passwordField").performTextInput("password")
-        }
-        step("Авторизуемся и попадаем на главный экран") {
-            composeTestRule.onNodeWithTag("submitButton").performClick()
             flakySafely(timeoutMs = 5000) {
-                composeTestRule.onNodeWithTag("homeTitle").assertIsDisplayed()
+                composeTestRule.onNodeWithTag("AuthScreen").assertIsDisplayed()
             }
-            composeTestRule.onNodeWithTag("homeTitle").assertIsDisplayed()
+        }
+        step("Нажимаем на вход анонимным пользователем") {
+            composeTestRule.onNodeWithTag("AnonymButton").performClick()
+        }
+        step("Попадаем на главный экран. Проверяем наличие генераций для анонимов") {
+            flakySafely(timeoutMs = 5000) {
+                composeTestRule.onNodeWithTag("MainScreen").assertIsDisplayed()
+            }
+            composeTestRule.onNodeWithTag("LinearGeneration").assertIsDisplayed()
+            composeTestRule.onNodeWithTag("BicubicGeneration").assertIsNotDisplayed()
+            composeTestRule.onNodeWithTag("NeighborGeneration").assertIsNotDisplayed()
         }
     }
 }

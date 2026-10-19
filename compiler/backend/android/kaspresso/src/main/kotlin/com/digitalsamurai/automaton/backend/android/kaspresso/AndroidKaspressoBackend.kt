@@ -5,6 +5,7 @@ import com.digitalsamurai.automaton.backend.api.BackendOutput
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import java.io.File
 
+// TODO implement permission resolver
 class AndroidKaspressoBackend(
     private val outputDirectory: File,
     private val appPackage: String,

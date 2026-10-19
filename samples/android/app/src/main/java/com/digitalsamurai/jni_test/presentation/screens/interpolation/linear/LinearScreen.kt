@@ -119,7 +119,8 @@ object LinearScreen : BaseScreen<LinearScreenState, LinearScreenEvent, LinearScr
                         height = Dimension.wrapContent
                     },
                 onClick = actions::onGenerateButtonClicked,
-                isLoading = state.isButtonLoading
+                isLoading = state.isButtonLoading,
+                buttonName = "LinearGenerate"
             ) {
                 Text("Generate")
             }

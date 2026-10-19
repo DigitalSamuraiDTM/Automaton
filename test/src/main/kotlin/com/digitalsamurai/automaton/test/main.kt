@@ -41,7 +41,7 @@ fun main(): Unit = runBlocking {
         resultFlow(resultFlow)
     }
     val start = System.currentTimeMillis()
-    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/auth_001.yaml")))
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_anonymous_auth.yaml")))
 
     resultFlow.take(2).collect { result ->
         println(result)

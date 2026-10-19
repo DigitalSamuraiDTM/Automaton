@@ -196,4 +196,4 @@ TODO
 
 [Example of non-terminals tree with test](examples/tree_example.md)
 
-[Example of yaml specification at yaml](samples/tests/auth_001.yaml)
+[Example of yaml specification at yaml](samples/tests/test_anonymous_auth.yaml)

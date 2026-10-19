@@ -13,6 +13,7 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.digitalsamurai.automaton.sample.core.navigation.AppNavigator
@@ -63,7 +64,8 @@ object MainScreen : BaseScreen<MainScreenState, MainScreenEvent, MainScreenActio
                     FeatureItem(
                         modifier = Modifier
                             .height(110.dp)
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .testTag(feature.id),
                         state = feature,
                         onClick = { actions.onFeatureItemClicked(feature.id) }
                     )

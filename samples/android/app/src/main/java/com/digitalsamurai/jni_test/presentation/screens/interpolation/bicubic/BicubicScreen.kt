@@ -89,7 +89,8 @@ object BicubicScreen : BaseScreen<BicubicScreenState, BicubicScreenEvent, Bicubi
                         width = Dimension.fillToConstraints
                         height = Dimension.wrapContent
                     },
-                onClick = actions::onGenerateButtonClicked
+                onClick = actions::onGenerateButtonClicked,
+                buttonName = "BicubicGenerate"
             ) {
                 Text("Generate")
             }

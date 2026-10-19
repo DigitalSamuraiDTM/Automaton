@@ -32,24 +32,27 @@ class MainScreenViewModel @AssistedInject constructor(
         val features = buildList {
             add(
                 FeatureItem.State(
-                    id = LinearScreen.screenRoute,
+                    id = "LinearGeneration",
+                    navRoute = LinearScreen.screenRoute,
                     title = "Linear interpolation",
-                    icon = null
+                    icon = null,
                 )
             )
             if (authRepository.isTokenExist()) {
                 add(
                     FeatureItem.State(
-                        id = NeighborScreen.screenRoute,
+                        id = "NeighborGeneration",
+                        navRoute = NeighborScreen.screenRoute,
                         title = "Nearest neighbor interpolation",
-                        icon = null
+                        icon = null,
                     ),
                 )
                 add(
                     FeatureItem.State(
-                        id = BicubicScreen.screenRoute,
+                        id = "BicubicGeneration",
+                        navRoute = BicubicScreen.screenRoute,
                         title = "Bicubic interpolation",
-                        icon = null
+                        icon = null,
                     )
                 )
             }

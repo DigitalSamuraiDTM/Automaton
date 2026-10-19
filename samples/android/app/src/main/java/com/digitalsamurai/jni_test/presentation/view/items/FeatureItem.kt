@@ -33,6 +33,7 @@ object FeatureItem {
         val id: String,
         val title: String,
         val icon: Bitmap?,
+        val navRoute: String,
     )
 
     @Composable
@@ -78,6 +79,7 @@ private fun Preview() {
                     id = "exampleId",
                     title = "Linear interpolation",
                     icon = null,
+                    navRoute = ""
                 )
             ) {}
         }

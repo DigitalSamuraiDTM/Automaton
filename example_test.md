@@ -1,5 +1,5 @@
 # Тест-кейс № AUTH_001
-Название теста: 'Successful authorization'
+Название теста: 'Successful anonymous entry'
 ## Описание
 ### Используемые разрешения:
 * Доступ к камере: **ДА**
@@ -8,12 +8,11 @@
 * **Светлая**
 ## Шаги действий
 #### Шаг 0. Открываем экран авторизации
-* Кликни по [loginButton](https://youtube.com)
-* Подожди пока элемент [loginScreen](https://youtube.com) появится
-#### Шаг 1. Вводим учетные данные
-* Введи текст 'admin' в [loginField](https://youtube.com)
-* Введи текст 'password' в [passwordField](https://youtube.com)
-#### Шаг 2. Авторизуемся и попадаем на главный экран
-* Кликни по [submitButton](https://youtube.com)
-* Подожди пока элемент [homeTitle](https://youtube.com) появится
-* Проверь элемент [homeTitle](https://youtube.com). Он должен быть видимым
+* Подожди пока элемент [AuthScreen](https://youtube.com) появится
+#### Шаг 1. Нажимаем на вход анонимным пользователем
+* Кликни по [AnonymButton](https://youtube.com)
+#### Шаг 2. Попадаем на главный экран. Проверяем наличие генераций для анонимов
+* Подожди пока элемент [MainScreen](https://youtube.com) появится
+* Проверь элемент [LinearGeneration](https://example.com). Он должен быть видимым
+* Проверь элемент [BicubicGeneration](https://example.com). Его не должно быть видно
+* Проверь элемент [NeighborGeneration](https://example.com). Его не должно быть видно

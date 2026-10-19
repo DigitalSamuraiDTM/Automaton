@@ -1,0 +1,79 @@
+compilationUnit:
+  context:
+    elements:
+      - element:
+          elementName: LoginButton
+          elementLayout: https://youtube.com
+      - element:
+          elementName: AuthScreen
+          elementLayout: https://youtube.com
+      - element:
+          elementName: LoginField
+          elementLayout: https://youtube.com
+      - element:
+          elementName: PasswordField
+          elementLayout: https://youtube.com
+      - element:
+          elementName: AnonymButton
+          elementLayout: https://youtube.com
+      - element:
+          elementName: MainScreen
+          elementLayout: https://youtube.com
+      - element:
+          elementName: BicubicGeneration
+          elementLayout: https://example.com
+      - element:
+          elementName: LinearGeneration
+          elementLayout: https://example.com
+      - element:
+          elementName: NeighborGeneration
+          elementLayout: https://example.com
+    theme:
+      themeMode: light
+    permissions:
+      - camera: true
+      - microphone: true
+  test:
+    metadata:
+      id: "AUTH_001"
+      name: "Successful anonymous entry"
+    steps:
+      - step:
+          stepDescription: "Открываем экран авторизации"
+          actions:
+            - wait:
+                condition:
+                  elementName: AuthScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+      - step:
+          stepDescription: "Нажимаем на вход анонимным пользователем"
+          actions:
+            - tap:
+                elementName: AnonymButton
+                tapType: single
+      - step:
+          stepDescription: "Попадаем на главный экран. Проверяем наличие генераций для анонимов"
+          actions:
+            - wait:
+                condition:
+                  elementName: MainScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+            - assert:
+                condition:
+                  elementName: LinearGeneration
+                  elementProperty: visible
+                  propertyValue: true
+            - assert:
+                condition:
+                  elementName: BicubicGeneration
+                  elementProperty: visible
+                  propertyValue: false
+            - assert:
+                condition:
+                  elementName: NeighborGeneration
+                  elementProperty: visible
+                  propertyValue: false

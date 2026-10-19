@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import com.digitalsamurai.automaton.sample.core.navigation.AppNavigator
 import com.digitalsamurai.automaton.sample.core.viewmodel.ScreenViewModel
 import com.digitalsamurai.automaton.sample.core.viewmodel.UiActions
@@ -59,7 +60,7 @@ abstract class BaseScreen<STATE : UiState, EVENTS : UiEvent, ACTIONS : UiActions
             }
         }
 
-        Surface(modifier = Modifier.fillMaxSize()) {
+        Surface(modifier = Modifier.fillMaxSize().testTag(screenName)) {
             SnackbarHost(snackbarHostState, modifier = Modifier.fillMaxSize())
             Screen(state = state, actions = viewModel.getActions())
         }

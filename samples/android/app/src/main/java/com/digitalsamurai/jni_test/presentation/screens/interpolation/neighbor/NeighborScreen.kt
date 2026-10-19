@@ -111,6 +111,7 @@ object NeighborScreen :
                     },
                 isLoading = state.isButtonLoading,
                 onClick = actions::onGenerateButtonClicked,
+                buttonName = "NeighborGenerate"
             ) {
                 Text("Generate")
             }

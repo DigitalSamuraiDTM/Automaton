@@ -76,7 +76,7 @@ internal object AuthScreen : BaseScreen<AuthScreenState, AuthScreenEvent, AuthSc
                     placeholder = { Text("Login") },
                     value = state.login.text,
                     onValueChange = actions::onLoginInput,
-                    textFieldName = "Login"
+                    textFieldName = "LoginField"
                 )
                 MyTextField(
                     isError = state.password.isError,
@@ -85,7 +85,7 @@ internal object AuthScreen : BaseScreen<AuthScreenState, AuthScreenEvent, AuthSc
                     placeholder = { Text("Password") },
                     onValueChange = actions::onPasswordInput,
                     visualTransformation = PasswordVisualTransformation(),
-                    textFieldName = "Password"
+                    textFieldName = "PasswordField"
                 )
 
                 // buttons block
@@ -101,7 +101,7 @@ internal object AuthScreen : BaseScreen<AuthScreenState, AuthScreenEvent, AuthSc
                         modifier = Modifier
                             .height(60.dp)
                             .fillMaxWidth(),
-                        buttonName = "AuthButton",
+                        buttonName = "LoginButton",
                         onClick = { if (!state.login.isLoading) actions.onLoginButtonClicked() }
                     ) {
                         if (state.login.isLoading) {
