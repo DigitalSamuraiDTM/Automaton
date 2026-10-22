@@ -14,6 +14,8 @@ dependencies {
     implementation(project(":compiler:ast"))
     implementation(project(":compiler:grammar"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.json:json:20260814")
+
 }
 
 

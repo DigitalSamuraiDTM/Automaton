@@ -4,14 +4,16 @@ import com.digitalsamurai.automaton.frontend.api.AutomatonLexicalAnalyzer
 import com.digitalsamurai.automaton.grammar.AutomatonGrammar
 import com.digitalsamurai.automaton.grammar.Terminal
 import com.digitalsamurai.automaton.grammar.Token
+import org.json.JSONTokener
 import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.events.ScalarEvent
 import org.yaml.snakeyaml.parser.ParserImpl
 import org.yaml.snakeyaml.reader.StreamReader
 import org.yaml.snakeyaml.scanner.ScannerImpl
+import java.io.File
 import java.io.InputStream
 
-public class YamlLexicalAnalyzer: AutomatonLexicalAnalyzer<InputStream> {
+public class YamlLexicalAnalyzer : AutomatonLexicalAnalyzer<InputStream> {
 
     override fun analyze(input: InputStream): List<Token<*>> {
         val parser = ParserImpl(ScannerImpl(StreamReader(input.reader()), LoaderOptions()))
@@ -21,14 +23,24 @@ public class YamlLexicalAnalyzer: AutomatonLexicalAnalyzer<InputStream> {
         while (parser.peekEvent() != null) {
             val event = parser.event
 
-            when(event) {
+            when (event) {
                 is ScalarEvent -> {
                     // check required data for terminal
                     if (requiredTerminal != null) {
-                        val token = requiredTerminal.asToken(
-                            sourceLocation = "yaml",
-                            value = event.value
-                        )
+                        // at json need to parse
+                        val token = if (requiredTerminal.representation == "json") {
+                            // read file and try convert
+                            val jsonString = File(event.value).readText()
+                            requiredTerminal.asToken(
+                                sourceLocation = "yaml",
+                                value = jsonString
+                            )
+                        } else {
+                            requiredTerminal.asToken(
+                                sourceLocation = "yaml",
+                                value = event.value
+                            )
+                        }
                         output.add(token)
                         requiredTerminal = null
                         continue
@@ -55,6 +67,7 @@ public class YamlLexicalAnalyzer: AutomatonLexicalAnalyzer<InputStream> {
 
                     error("Illegal symbol: ${event.value}")
                 }
+
                 else -> {
                     // skipped
                 }

@@ -2,6 +2,7 @@ package com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual
 
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
 import com.digitalsamurai.automaton.backend.api.BackendOutput
+import com.digitalsamurai.automaton.backend.api.camelCase
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.Language
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.LanguageExtractor
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.ru.RussianLanguageExtractor
@@ -27,7 +28,7 @@ public class ManualTestCaseBackend(
 
     override suspend fun buildOutput(model: SemanticModel): BackendOutput = coroutineScope {
         val manualTestCase = languageExtractor.extractText(model)
-        val outputFile = File(outputDirectory, "example_test.md")
+        val outputFile = File(outputDirectory, "${model.test.metadata.testName.camelCase()}.md")
         withContext(Dispatchers.IO) {
             outputFile.writeText(manualTestCase)
         }
@@ -35,7 +36,6 @@ public class ManualTestCaseBackend(
                 requestId = model.requestId,
                 metaData = outputFile.path,
             )
-
     }
 
 }

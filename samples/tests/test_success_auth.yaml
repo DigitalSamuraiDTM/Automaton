@@ -1,0 +1,91 @@
+compilationUnit:
+  context:
+    elements:
+      - element:
+          elementName: LoginButton
+          elementLayout: https://example.com
+      - element:
+          elementName: AuthScreen
+          elementLayout: https://example.com
+      - element:
+          elementName: LoginField
+          elementLayout: https://example.com
+      - element:
+          elementName: PasswordField
+          elementLayout: https://example.com
+      - element:
+          elementName: LoginButton
+          elementLayout: https://example.com
+      - element:
+          elementName: MainScreen
+          elementLayout: https://example.com
+      - element:
+          elementName: BicubicGeneration
+          elementLayout: https://example.com
+      - element:
+          elementName: LinearGeneration
+          elementLayout: https://example.com
+      - element:
+          elementName: NeighborGeneration
+          elementLayout: https://example.com
+    requests:
+      - http:
+          requestName: authorization200
+          url: https://10.0.2.2:8081/auth
+          body:
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/authorization200.json"
+    theme:
+      themeMode: light
+    permissions:
+      - camera: true
+      - microphone: true
+  test:
+    metadata:
+      id: "AUTH_002"
+      name: "Successful authorization entry"
+    steps:
+      - step:
+          stepDescription: "Открываем экран авторизации"
+          actions:
+            - wait:
+                condition:
+                  elementName: AuthScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+      - step:
+          stepDescription: "Вводим пользовательские данные и жмякаем 'Войти'"
+          actions:
+            - input:
+                elementName: LoginField
+                inputData: "Username228"
+            - input:
+                elementName: PasswordField
+                inputData: "secretPassword1234"
+            - tap:
+                elementName: LoginButton
+                tapType: single
+      - step:
+          stepDescription: "Попадаем на главный экран. Проверяем наличие фич"
+          actions:
+            - wait:
+                condition:
+                  elementName: MainScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+            - assert:
+                condition:
+                  elementName: LinearGeneration
+                  elementProperty: visible
+                  propertyValue: true
+            - assert:
+                condition:
+                  elementName: BicubicGeneration
+                  elementProperty: visible
+                  propertyValue: true
+            - assert:
+                condition:
+                  elementName: NeighborGeneration
+                  elementProperty: visible
+                  propertyValue: true

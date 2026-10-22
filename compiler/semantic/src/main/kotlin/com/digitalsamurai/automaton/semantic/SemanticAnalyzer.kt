@@ -8,10 +8,12 @@ import com.digitalsamurai.automaton.grammar.Condition
 import com.digitalsamurai.automaton.grammar.Context
 import com.digitalsamurai.automaton.grammar.Element
 import com.digitalsamurai.automaton.grammar.Elements
+import com.digitalsamurai.automaton.grammar.HttpRequest
 import com.digitalsamurai.automaton.grammar.Input
 import com.digitalsamurai.automaton.grammar.Metadata
 import com.digitalsamurai.automaton.grammar.NonTerminal
 import com.digitalsamurai.automaton.grammar.Permissions
+import com.digitalsamurai.automaton.grammar.Requests
 import com.digitalsamurai.automaton.grammar.Step
 import com.digitalsamurai.automaton.grammar.Steps
 import com.digitalsamurai.automaton.grammar.Tap
@@ -20,6 +22,10 @@ import com.digitalsamurai.automaton.grammar.Theme
 import com.digitalsamurai.automaton.grammar.Wait
 import com.digitalsamurai.automaton.grammar.toBoolean
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
+import com.digitalsamurai.automaton.semantic.SemanticAnalyzer.SemanticValue.*
+import com.digitalsamurai.automaton.semantic.SemanticModel.Permission.*
+import org.json.JSONObject
+import java.net.URL
 
 public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
@@ -220,12 +226,14 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var theme: SemanticModel.Context.Theme? = null
                 var permissions: List<SemanticModel.Permission>? = null
                 var elements: List<SemanticModel.Element>? = null
+                var requests: List<SemanticModel.Request> = emptyList()
 
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
                         is SemanticModel.Context.Theme -> theme = result
                         is SemanticValue.ElementsList -> elements = result.value
                         is SemanticValue.PermissionsList -> permissions = result.value
+                        is SemanticValue.Requests -> requests = result.value
                         else -> error("unknown context node: $this")
                     }
                 }
@@ -234,6 +242,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     theme = theme,
                     permissions = permissions!!,
                     elements = elements!!,
+                    requests = requests,
                 )
             }
             Elements -> {
@@ -276,18 +285,60 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 }
                 return SemanticModel.Element(name!!, layout!!)
             }
+
+            Requests -> {
+                val requests = mutableListOf<SemanticModel.Request>()
+                this.childs.forEach { child ->
+                    when (val result = child.buildContextModel()) {
+                        is SemanticModel.Request.Http -> requests.add(result)
+                    }
+                }
+                return Requests(requests)
+            }
+            HttpRequest -> {
+                var url: URL? = null
+                var name: String? = null
+                var body: SemanticModel.Request.Http.Body? = null
+                this.childs.forEach { child ->
+                    when (val result = child.buildContextModel()) {
+                        is SemanticValue.RequestName -> name = result.value
+                        is SemanticValue.RequestUrl -> url = result.value
+                        is SemanticModel.Request.Http.Body -> body = result
+                    }
+                }
+                return SemanticModel.Request.Http(
+                    url = url!!,
+                    name = name!!,
+                    headers = mapOf(),
+                    body = body!!
+                )
+            }
+            HttpRequest.Body -> {
+                var body: SemanticModel.Request.Http.Body? = null
+                this.childs.forEach { child ->
+                    when (val result = child.buildContextModel()) {
+                        is HttpRequestPlainBody -> body = SemanticModel.Request.Http.Body.Plain(result.value)
+                        is HttpRequestJsonBody -> body = SemanticModel.Request.Http.Body.Json(result.value)
+                    }
+                }
+                return body!!
+            }
             else -> error("unknown context node: $this")
         }
     }
 
+    /**
+     * Листья со своим типом сворачиваются в свой тип, а узлы с общим типом (например [String] или [Int]) сворачиваются
+     * в семантическое значение, которое будет использовано родителем который по типу значения определит куда его проставить в модель
+     */
     private fun Ast.Leaf<*>.analyzeLeaf(): Any {
         return when (this) {
-            is Ast.Leaf.AstElementLayoutLeaf -> SemanticValue.ElementLayout(this.value)
-            is Ast.Leaf.AstElementNameLeaf -> SemanticValue.ElementName(this.value)
-            is Ast.Leaf.AstId -> SemanticValue.TestId(this.value)
-            is Ast.Leaf.AstCameraLeaf -> SemanticModel.Permission.Camera(isGranted = this.value)
-            is Ast.Leaf.AstMicrophoneLeaf -> SemanticModel.Permission.Microphone(isGranted = this.value)
-            is Ast.Leaf.AstTestName -> SemanticValue.TestName(this.value)
+            is Ast.Leaf.AstElementLayoutLeaf -> ElementLayout(this.value)
+            is Ast.Leaf.AstElementNameLeaf -> ElementName(this.value)
+            is Ast.Leaf.AstId -> TestId(this.value)
+            is Ast.Leaf.AstCameraLeaf -> Camera(isGranted = this.value)
+            is Ast.Leaf.AstMicrophoneLeaf -> Microphone(isGranted = this.value)
+            is Ast.Leaf.AstTestName -> TestName(this.value)
             is Ast.Leaf.AstThemeMode -> when(this.value){
                 Ast.Leaf.AstThemeMode.Mode.LIGHT -> SemanticModel.Context.Theme.LIGHT
                 Ast.Leaf.AstThemeMode.Mode.DARK -> SemanticModel.Context.Theme.DARK
@@ -298,16 +349,26 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 Ast.Leaf.AstTapType.Type.DOUBLE -> SemanticModel.Test.Action.Tap.Type.DOUBLE
                 Ast.Leaf.AstTapType.Type.LONG -> SemanticModel.Test.Action.Tap.Type.LONG
             }
-            is Ast.Leaf.AstDuration -> SemanticValue.Duration(value)
-            is Ast.Leaf.AstElementProperty -> SemanticValue.PropertyName(value)
-            is Ast.Leaf.AstInputData -> SemanticValue.InputData(value)
-            is Ast.Leaf.AstPropertyValue -> SemanticValue.PropertyValue(value)
-            is Ast.Leaf.AstTimeout -> SemanticValue.Timeout(value)
-            is Ast.Leaf.AstStepDescription -> SemanticValue.StepDescription(value)
+            is Ast.Leaf.AstDuration -> Duration(value)
+            is Ast.Leaf.AstElementProperty -> PropertyName(value)
+            is Ast.Leaf.AstInputData -> InputData(value)
+            is Ast.Leaf.AstPropertyValue -> PropertyValue(value)
+            is Ast.Leaf.AstTimeout -> Timeout(value)
+            is Ast.Leaf.AstStepDescription -> StepDescription(value)
+            is Ast.Leaf.AstHttpRequestJsonBody -> HttpRequestJsonBody(value)
+            is Ast.Leaf.AstHttpRequestName -> RequestName(value)
+            is Ast.Leaf.AstHttpRequestPlainBody -> HttpRequestPlainBody(value)
+            is Ast.Leaf.AstHttpRequestUrl -> RequestUrl(value)
         }
     }
 
 
+    /**
+     * Семантические значения нужны как внутренние посредники для сворачивания узлов деревьев
+     * в семантическую модель через катаморфизм. Так как в некоторых узлах сворачивания у нас нет конечного значения
+     * То нужен определенный посредник, который захватит текущее значение и передаст его родителю для дальнейшего сворачивания
+     * Посредники реализованы строгой типизацией для тоо, чтобы родитель мог через каст определить какой узел был свернут и поставить значение
+     */
     sealed interface SemanticValue {
         data class TestName(val value: String) : SemanticValue
         data class TestId(val value: String) : SemanticValue
@@ -324,5 +385,10 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class InputData(val value: String) : SemanticValue
         data class StepDescription(val value: String) : SemanticValue
         data class Condition(val element: SemanticModel.Element, val propertyName: String, val propertyValue: String) : SemanticValue
+        data class Requests(val value: List<SemanticModel.Request>): SemanticValue
+        data class RequestUrl(val value: URL): SemanticValue
+        data class RequestName(val value: String) : SemanticValue
+        data class HttpRequestPlainBody(val value: String) : SemanticValue
+        data class HttpRequestJsonBody(val value: JSONObject) : SemanticValue
     }
 }

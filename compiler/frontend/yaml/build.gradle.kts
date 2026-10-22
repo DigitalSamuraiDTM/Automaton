@@ -11,6 +11,7 @@ dependencies {
 
     // Source: https://mvnrepository.com/artifact/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:2.6")
+    implementation("org.json:json:20260814")
 
 }
 

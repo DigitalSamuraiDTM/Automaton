@@ -1,5 +1,7 @@
 package com.digitalsamurai.automaton.semantic
 
+import org.json.JSONObject
+import java.net.URL
 import kotlin.time.Duration
 
 /**
@@ -59,6 +61,7 @@ data class SemanticModel(
         val theme: Theme?,
         val permissions: List<Permission>,
         val elements: List<Element>,
+        val requests: List<Request>,
     ) {
         enum class Theme {
             LIGHT, DARK, SYSTEM,
@@ -80,6 +83,23 @@ data class SemanticModel(
             data class Visible(
                 val value: Boolean,
             ): Property()
+        }
+    }
+
+    sealed interface Request {
+        val url: URL
+        val name: String
+
+        data class Http(
+            override val url: URL,
+            override val name: String,
+            val headers: Map<String, String>,
+            val body: Body
+        ): Request {
+            sealed interface Body {
+                data class Plain(val value: String): Body
+                data class Json(val value: JSONObject): Body
+            }
         }
     }
 }

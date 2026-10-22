@@ -1,9 +1,13 @@
 package com.digitalsamurai.automaton.grammar
 
+import org.json.JSONArray
+import org.json.JSONObject
+import org.json.JSONTokener
 import java.net.URI
 import java.net.URL
+import java.net.URLStreamHandler
 
-sealed interface NonTerminal: GrammarSymbol<Unit> {
+sealed interface NonTerminal : GrammarSymbol<Unit> {
     val isService: Boolean
     fun asToken(sourceLocation: String): Token<Unit> {
         return Token(
@@ -20,23 +24,120 @@ sealed interface NonTerminal: GrammarSymbol<Unit> {
     }
 }
 
-data object CompilationUnit: NonTerminal {
+data object CompilationUnit : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "compilationUnit"
     override val productions: List<Production> = listOf(
-        production(Context,Test)
+        production(Context, Test)
     )
 }
 
-data object Context: NonTerminal {
+data object Context : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "context"
     override val productions: List<Production> = listOf(
-        production(Elements, Theme, Permissions)
+        production(Elements, Requests, Theme, Permissions)
     )
 }
 
-data object Elements: NonTerminal {
+data object Requests : NonTerminal {
+    override val isService: Boolean = false
+    override val representation: String = "requests"
+    override val productions: List<Production> = listOf(
+        production(Request, Requests),
+        epsilon(),
+    )
+}
+
+data object Request : NonTerminal {
+    override val isService: Boolean = true
+    override val representation: String = "request"
+    override val productions: List<Production> = listOf(
+        production(HttpRequest)
+        // other request types
+    )
+
+    data object Name : Terminal<String> {
+        override val representation: String = "requestName"
+
+        override fun asToken(sourceLocation: String, value: Any): Token<String> {
+            return Token(
+                symbol = Name,
+                value = value as String,
+                sourceLocation = sourceLocation,
+            )
+        }
+    }
+
+    data object Url : Terminal<URL> {
+        override val representation: String = "url"
+        override fun asToken(sourceLocation: String, value: Any): Token<URL> {
+            return Token(
+                sourceLocation = sourceLocation,
+                value = URI.create(value as String).toURL(),
+                symbol = Url
+            )
+        }
+    }
+}
+
+data object HttpRequest : NonTerminal {
+    override val isService: Boolean = false
+    override val representation: String = "http"
+    override val productions: List<Production> = listOf(
+        production(Request.Name, Request.Url, Headers, Body)
+    )
+
+    data object Headers : NonTerminal {
+        override val isService: Boolean = false
+        override val representation: String = "headers"
+        override val productions: List<Production> = listOf(epsilon())
+    }
+
+    data object Body : NonTerminal {
+        override val isService: Boolean = false
+        override val representation: String = "body"
+        override val productions: List<Production> = listOf(
+            production(Plain),
+            production(Json),
+        )
+
+        data object Json : Terminal<Json.Type> {
+            override val representation: String = "json"
+            override fun asToken(sourceLocation: String, value: Any): Token<Type> {
+                val tokener = JSONTokener(value as String)
+                val value = when(val jsonValue = tokener.nextValue()) {
+                    is JSONObject -> Type.Object(value)
+                    is JSONArray -> Type.Array(value)
+                    else -> error("Unexpected value type ${jsonValue::class}")
+                }
+                return Token(
+                    symbol = Json,
+                    value = value,
+                    sourceLocation = sourceLocation,
+                )
+            }
+            sealed interface Type {
+                class Array(private val jsonArray: String) : JSONArray(jsonArray), Type
+                class Object(private val jsonObject: String) : JSONObject(jsonObject), Type
+            }
+
+        }
+
+        data object Plain : Terminal<String> {
+            override val representation: String = "plain"
+            override fun asToken(sourceLocation: String, value: Any): Token<String> {
+                return Token(
+                    symbol = Plain,
+                    value = value as String,
+                    sourceLocation = sourceLocation,
+                )
+            }
+        }
+    }
+}
+
+data object Elements : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "elements"
     override val productions: List<Production> = listOf(
@@ -45,7 +146,7 @@ data object Elements: NonTerminal {
     )
 }
 
-data object Element: NonTerminal {
+data object Element : NonTerminal {
 
     override val isService: Boolean = false
     override fun asToken(sourceLocation: String): Token<Unit> {
@@ -55,13 +156,14 @@ data object Element: NonTerminal {
             sourceLocation = sourceLocation
         )
     }
+
     override val productions: List<Production> = listOf(
         production(Name, Layout),
     )
     override val representation: String = "element"
 
 
-    data object Name: Terminal<String> {
+    data object Name : Terminal<String> {
         override val representation: String = "elementName"
         override fun asToken(sourceLocation: String, value: Any): Token<String> {
             return Token(
@@ -71,8 +173,9 @@ data object Element: NonTerminal {
             )
         }
     }
+
     // TODO layout будет хранить информацию о визуальном представлении элемента (ссылка на фигму или что-то иное)
-    data object Layout: Terminal<String> {
+    data object Layout : Terminal<String> {
         override val representation: String = "elementLayout"
         override fun asToken(sourceLocation: String, value: Any): Token<String> {
             return Token(
@@ -84,7 +187,7 @@ data object Element: NonTerminal {
     }
 }
 
-data object Theme: NonTerminal {
+data object Theme : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "theme"
     override val productions: List<Production> = listOf(
@@ -93,7 +196,7 @@ data object Theme: NonTerminal {
     )
 }
 
-data object Permissions: NonTerminal {
+data object Permissions : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "permissions"
     override val productions: List<Production> = listOf(
@@ -102,7 +205,7 @@ data object Permissions: NonTerminal {
     )
 }
 
-data object Permission: NonTerminal {
+data object Permission : NonTerminal {
     override val isService: Boolean = true
     override val representation: String = "permission"
     override val productions: List<Production> = listOf(
@@ -111,7 +214,7 @@ data object Permission: NonTerminal {
     )
 }
 
-data object Test: NonTerminal {
+data object Test : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "test"
     override val productions: List<Production> = listOf(
@@ -119,7 +222,7 @@ data object Test: NonTerminal {
     )
 }
 
-data object Metadata: NonTerminal {
+data object Metadata : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "metadata"
     override val productions: List<Production> = listOf(
@@ -127,7 +230,7 @@ data object Metadata: NonTerminal {
     )
 }
 
-data object Steps: NonTerminal {
+data object Steps : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "steps"
     override val productions: List<Production> = listOf(
@@ -136,14 +239,14 @@ data object Steps: NonTerminal {
     )
 }
 
-data object Step: NonTerminal {
+data object Step : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "step"
     override val productions: List<Production> = listOf(
         production(Description, Actions)
     )
 
-    data object Description: Terminal<String> {
+    data object Description : Terminal<String> {
         override val representation: String = "stepDescription"
         override fun asToken(sourceLocation: String, value: Any): Token<String> {
             return Token(
@@ -155,7 +258,7 @@ data object Step: NonTerminal {
     }
 }
 
-data object Actions: NonTerminal {
+data object Actions : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "actions"
     override val productions: List<Production> = listOf(
@@ -164,7 +267,7 @@ data object Actions: NonTerminal {
     )
 }
 
-data object Action: NonTerminal {
+data object Action : NonTerminal {
     override val isService: Boolean = true
     override val representation: String = "action"
     override val productions: List<Production> = listOf(
@@ -175,7 +278,7 @@ data object Action: NonTerminal {
     )
 }
 
-data object Tap: NonTerminal {
+data object Tap : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "tap"
     override val productions: List<Production> = listOf(
@@ -183,7 +286,7 @@ data object Tap: NonTerminal {
     )
 }
 
-data object Input: NonTerminal {
+data object Input : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "input"
     override val productions: List<Production> = listOf(
@@ -191,7 +294,7 @@ data object Input: NonTerminal {
     )
 }
 
-data object Wait: NonTerminal {
+data object Wait : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "wait"
     override val productions: List<Production> = listOf(
@@ -199,7 +302,7 @@ data object Wait: NonTerminal {
     )
 }
 
-data object Assert: NonTerminal {
+data object Assert : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "assert"
     override val productions: List<Production> = listOf(
@@ -207,7 +310,7 @@ data object Assert: NonTerminal {
     )
 }
 
-data object Condition: NonTerminal {
+data object Condition : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "condition"
     override val productions: List<Production> = listOf(

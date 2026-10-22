@@ -9,10 +9,10 @@ import com.digitalsamurai.automaton.compiler.compiler
 import com.digitalsamurai.automaton.frontend.api.AutomatonResult
 import com.digitalsamurai.automaton.frontend.yaml.YamlFrontend
 import com.digitalsamurai.automaton.frontend.yaml.YamlInput
+import com.digitalsamurai.automaton.logger.api.AutomatonLogger
+import com.digitalsamurai.automaton.logger.terminal.TerminalLogger
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
 import java.io.File
@@ -26,7 +26,7 @@ fun main(): Unit = runBlocking {
         backends(
             ManualTestCaseBackend(
                 language = Language.RU,
-                outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton"),
+                outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/outputs"),
             ),
             AndroidKaspressoBackend(
                 outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/android/app/src/androidTest/java/com/digitalsamurai/automaton/sample"),
@@ -36,12 +36,14 @@ fun main(): Unit = runBlocking {
                     name = "MainActivity",
                 ),
                 composeApp = true,
-                )
+            )
         )
+        logger(TerminalLogger(enabledLevels = AutomatonLogger.LogLevel.entries.toSet()))
         resultFlow(resultFlow)
     }
     val start = System.currentTimeMillis()
-    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_anonymous_auth.yaml")))
+//    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_anonymous_auth.yaml")))
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_success_auth.yaml")))
 
     resultFlow.take(2).collect { result ->
         println(result)
