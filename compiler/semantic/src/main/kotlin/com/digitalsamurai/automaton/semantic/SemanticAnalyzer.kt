@@ -159,15 +159,18 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
             Step -> {
                 var actions: List<SemanticModel.Test.Action>? = null
                 var description: String? = null
+                var requests: List<SemanticModel.Request> = emptyList()
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         is SemanticValue.ActionsList -> actions = result.value
                         is SemanticValue.StepDescription -> description = result.value
+                        is SemanticValue.StepRequests -> requests = result.value
                     }
                 }
                 return SemanticModel.Test.Step(
                     actions = actions!!,
                     description = description!!,
+                    requests = requests
                 )
             }
             Steps -> {
@@ -215,6 +218,18 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     property = property!!,
                     timeout = timeout!!
                 )
+            }
+            Step.Requests -> {
+                val requests = mutableListOf<SemanticModel.Request>()
+                childs.forEach { child ->
+                    when (val result = child.buildTestModel(context)) {
+                        is RequestName -> {
+                            val request = context.requests.find { it.name == result.value }!!
+                            requests.add(request)
+                        }
+                    }
+                }
+                return StepRequests(requests)
             }
             else -> error("unexpected AST node ${this}")
         }
@@ -390,5 +405,6 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class RequestName(val value: String) : SemanticValue
         data class HttpRequestPlainBody(val value: String) : SemanticValue
         data class HttpRequestJsonBody(val value: JSONObject) : SemanticValue
+        data class StepRequests(val value: List<SemanticModel.Request>) : SemanticValue
     }
 }

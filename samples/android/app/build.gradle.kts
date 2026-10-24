@@ -91,5 +91,6 @@ dependencies {
     androidTestImplementation(libs.kakaocup.compose)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.espresso.contrib)
+    androidTestImplementation(libs.okhttp.webmockserver)
 
 }

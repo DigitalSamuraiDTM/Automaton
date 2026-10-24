@@ -13,7 +13,12 @@ class AndroidKaspressoBackend(
     private val appPackage: String,
     private val activity: AndroidAppActivity,
     private val composeApp: Boolean = true,
-) : AutomatonBackend {
+) : AutoGenerator(), AutomatonBackend {
+
+    private val environmentGenerator = EnvironmentGenerator(
+        appPackage = appPackage,
+        outputDir = outputDirectory,
+    )
 
     init {
         if (!outputDirectory.exists()) throw IllegalArgumentException("Output directory '${outputDirectory.path}' does not exist")
@@ -21,6 +26,13 @@ class AndroidKaspressoBackend(
     }
 
     override suspend fun buildOutput(model: SemanticModel): BackendOutput {
+
+        // check environment needed?
+        if (model.isMockWebServerNeeded()) {
+            // generate mock web server environment
+            environmentGenerator.generateEnvironment(model)
+        }
+
         val outputFile = File(outputDirectory, model.test.metadata.testName.camelCase() + ".kt")
         val imports = mutableMapOf<String, String>()
         val testClass = generateTestClass(
@@ -36,7 +48,7 @@ class AndroidKaspressoBackend(
             }
             writer.write("\n")
 
-            writer.write(generateWarnComment())
+            writer.write(autoGenerateMessage())
             writer.write(testClass)
         }
         return BackendOutput(
@@ -55,6 +67,12 @@ class AndroidKaspressoBackend(
         bodyOutput.add("\n")
         bodyOutput.add("@get:Rule")
         bodyOutput.add("val composeTestRule = createAndroidComposeRule<${activity.name}>()")
+        // add http web mock server when auto test needed
+        if (model.context.requests.isNotEmpty()) {
+            imports["automatonEnvironment"] = "${appPackage}.AutomatonEnvironment"
+            imports["mockWebServer"] = "${appPackage}.AutomatonMockWebServer"
+            bodyOutput.add("val mockWebServer = AutomatonEnvironment.mockWebServer")
+        }
         bodyOutput.add("\n")
         bodyOutput.add("@Test")
         // test fun
@@ -125,19 +143,6 @@ class AndroidKaspressoBackend(
         // End bracket
         output.appendLine("}")
 
-        return output.toString()
-    }
-
-    /**
-     *
-     */
-    private fun generateWarnComment(): String {
-        val output = StringBuilder()
-        output.appendLine("/**")
-        output.appendLine("* WARN! AUTO-GENERATED")
-        output.appendLine("* Generate with love by Automaton")
-        output.appendLine("* Datetime: ${System.currentTimeMillis()}")
-        output.appendLine("*/")
         return output.toString()
     }
 

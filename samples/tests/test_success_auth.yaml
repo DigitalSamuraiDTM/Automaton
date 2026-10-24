@@ -55,6 +55,8 @@ compilationUnit:
                 timeout: 5s
       - step:
           stepDescription: "Вводим пользовательские данные и жмякаем 'Войти'"
+          stepRequests:
+            - requestName: authorization200
           actions:
             - input:
                 elementName: LoginField

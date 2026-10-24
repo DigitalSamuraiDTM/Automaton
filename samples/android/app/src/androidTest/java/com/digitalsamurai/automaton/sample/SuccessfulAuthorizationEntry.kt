@@ -9,6 +9,8 @@ import org.junit.Rule
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import com.digitalsamurai.automaton.sample.presentation.main.MainActivity
 import org.junit.Test
+import com.digitalsamurai.automaton.sample.AutomatonEnvironment
+import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.performTextInput
@@ -17,7 +19,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1792708577942
+* Datetime: 1792874451463
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -27,6 +29,7 @@ class SuccessfulAuthorizationEntry : TestCase(
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
+    val mockWebServer = AutomatonEnvironment.mockWebServer
     
 
     @Test

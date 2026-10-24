@@ -243,7 +243,7 @@ data object Step : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "step"
     override val productions: List<Production> = listOf(
-        production(Description, Actions)
+        production(Description, Requests, Actions)
     )
 
     data object Description : Terminal<String> {
@@ -255,6 +255,14 @@ data object Step : NonTerminal {
                 sourceLocation = sourceLocation,
             )
         }
+    }
+    data object Requests : NonTerminal {
+        override val isService: Boolean = false
+        override val representation: String = "stepRequests"
+        override val productions: List<Production> = listOf(
+            production(Request.Name, Requests),
+            epsilon(),
+        )
     }
 }
 

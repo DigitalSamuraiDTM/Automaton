@@ -13,6 +13,10 @@ data class SemanticModel(
     val test: Test,
 ) {
 
+    fun isMockWebServerNeeded(): Boolean {
+        return context.requests.isNotEmpty()
+    }
+
     data class Test(
         val metadata: Metadata,
         val steps: List<Step>,
@@ -25,6 +29,7 @@ data class SemanticModel(
         data class Step(
             val description: String,
             val actions: List<Action>,
+            val requests: List<Request>,
         )
         sealed interface Action {
 
