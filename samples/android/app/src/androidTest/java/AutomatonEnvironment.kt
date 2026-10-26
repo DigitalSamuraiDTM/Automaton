@@ -4,7 +4,7 @@ import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1792968885515
+* Datetime: 1793055318646
 */
 public object AutomatonEnvironment {
 

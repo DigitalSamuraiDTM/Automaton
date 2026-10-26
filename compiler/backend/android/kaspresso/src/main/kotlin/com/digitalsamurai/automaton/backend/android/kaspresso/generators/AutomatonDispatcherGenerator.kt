@@ -1,5 +1,6 @@
-package com.digitalsamurai.automaton.backend.android.kaspresso
+package com.digitalsamurai.automaton.backend.android.kaspresso.generators
 
+import com.digitalsamurai.automaton.backend.android.kaspresso.AutoGenerator
 import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
 
@@ -32,7 +33,7 @@ class AutomatonDispatcherGenerator(): AutoGenerator() {
 
     private fun generateDispatchFunction(imports: MutableMap<String, String>): List<String> {
         val funBody = mutableListOf<String>()
-        funBody.add("val mockRules = activeRules.filter { it.method == request.method && it.path == request.url.encodedPath }")
+        funBody.add("val mockRules = activeRules.get().rules.filter { it.method == request.method && it.path == request.url.encodedPath }")
         funBody.add("check(mockRules.isEmpty()) { return MockResponse(code = 404, body = \"No active Automaton mock\") }")
         funBody.add("val mockRule = mockRules.single()")
         funBody.add("return mockRule.toMockResponse()")

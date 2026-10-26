@@ -24,6 +24,7 @@ import com.digitalsamurai.automaton.grammar.toBoolean
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.semantic.SemanticAnalyzer.SemanticValue.*
 import com.digitalsamurai.automaton.semantic.SemanticModel.Permission.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 
@@ -87,6 +88,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 SemanticModel.Test(
                     metadata = metadata!!,
                     steps = steps!!,
+                    generalRequests = emptySet(), // TODO implement in grammar
                 )
             }
             Actions -> {
@@ -333,7 +335,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
                         is HttpRequestPlainBody -> body = SemanticModel.Request.Http.Body.Plain(result.value)
-                        is HttpRequestJsonBody -> body = SemanticModel.Request.Http.Body.Json(result.value)
+                        is HttpRequestJsonBody -> body = result.value
                     }
                 }
                 return body!!
@@ -370,7 +372,12 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
             is Ast.Leaf.AstPropertyValue -> PropertyValue(value)
             is Ast.Leaf.AstTimeout -> Timeout(value)
             is Ast.Leaf.AstStepDescription -> StepDescription(value)
-            is Ast.Leaf.AstHttpRequestJsonBody -> HttpRequestJsonBody(value)
+            is Ast.Leaf.AstHttpRequestJsonBody -> {
+                HttpRequestJsonBody(when(value) {
+                    is Ast.Leaf.AstHttpRequestJsonBody.Type.Array -> SemanticModel.Request.Http.Body.JsonArray(value as JSONArray)
+                    is Ast.Leaf.AstHttpRequestJsonBody.Type.Object -> SemanticModel.Request.Http.Body.JsonObject(value as JSONObject)
+                })
+            }
             is Ast.Leaf.AstHttpRequestName -> RequestName(value)
             is Ast.Leaf.AstHttpRequestPlainBody -> HttpRequestPlainBody(value)
             is Ast.Leaf.AstHttpRequestUrl -> RequestUrl(value)
@@ -404,7 +411,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class RequestUrl(val value: URL): SemanticValue
         data class RequestName(val value: String) : SemanticValue
         data class HttpRequestPlainBody(val value: String) : SemanticValue
-        data class HttpRequestJsonBody(val value: JSONObject) : SemanticValue
+        data class HttpRequestJsonBody(val value: SemanticModel.Request.Http.Body) : SemanticValue
         data class StepRequests(val value: List<SemanticModel.Request>) : SemanticValue
     }
 }

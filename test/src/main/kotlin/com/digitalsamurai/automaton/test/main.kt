@@ -29,7 +29,7 @@ fun main(): Unit = runBlocking {
                 outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/outputs"),
             ),
             AndroidKaspressoBackend(
-                outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/android/app/src/androidTest/java/com/digitalsamurai/automaton/sample"),
+                outputDirectory = File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/android/app/src/androidTest/java"),
                 appPackage = "com.digitalsamurai.automaton.sample",
                 activity = AndroidAppActivity(
                     activityPackage = "com.digitalsamurai.automaton.sample.presentation.main",

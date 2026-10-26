@@ -1,5 +1,6 @@
 package com.digitalsamurai.automaton.semantic
 
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 import kotlin.time.Duration
@@ -20,6 +21,7 @@ data class SemanticModel(
     data class Test(
         val metadata: Metadata,
         val steps: List<Step>,
+        val generalRequests: Set<Request>,
     ) {
         data class Metadata(
             val testName: String,
@@ -103,7 +105,8 @@ data class SemanticModel(
         ): Request {
             sealed interface Body {
                 data class Plain(val value: String): Body
-                data class Json(val value: JSONObject): Body
+                data class JsonObject(val value: JSONObject): Body
+                data class JsonArray(val value: JSONArray): Body
             }
         }
     }

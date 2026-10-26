@@ -1,5 +1,6 @@
 package com.digitalsamurai.automaton.backend.android.kaspresso
 
+import com.digitalsamurai.automaton.backend.android.kaspresso.generators.EnvironmentGenerator
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
 import com.digitalsamurai.automaton.backend.api.BackendOutput
 import com.digitalsamurai.automaton.backend.api.camelCase
@@ -81,7 +82,15 @@ class AndroidKaspressoBackend(
         bodyOutput.add("\n")
         bodyOutput.add("@Test")
         // test fun
-        bodyOutput.add("fun ${model.test.metadata.testName.camelCase()}() = run {")
+        bodyOutput.add("fun ${model.test.metadata.testName.camelCase()}() = before {")
+        generateBeforeTestFunBody(imports, model).forEach { before ->
+            bodyOutput.add(tab() + before)
+        }
+        bodyOutput.add("}.after {")
+        generateAfterTestFunBody(imports, model).forEach { after ->
+            bodyOutput.add(tab() + after)
+        }
+        bodyOutput.add("}.run {")
         // test fun body
         generateTestFunBody(imports, model).forEach { step ->
             bodyOutput.add(tab() + step)
@@ -89,6 +98,27 @@ class AndroidKaspressoBackend(
         bodyOutput.add("}")
         return bodyOutput
     }
+
+    /**
+     * Setups step mocks and other environment
+     */
+    private fun generateBeforeTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
+        val output = mutableListOf<String>()
+        output.add("mockWebServer.setGeneralRules(setOf(")
+        model.test.generalRequests.forEach { request ->
+            output.add(tab()+ request.toAutomatonMockRule())
+        }
+        output.add(tab() + ")")
+        output.add(")")
+        return output
+    }
+
+    private fun generateAfterTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
+        val output = mutableListOf<String>()
+
+        return output
+    }
+
 
     private fun generateTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
         val output = mutableListOf<String>()

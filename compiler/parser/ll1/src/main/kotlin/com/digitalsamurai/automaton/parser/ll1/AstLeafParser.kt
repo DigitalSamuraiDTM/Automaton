@@ -24,10 +24,17 @@ class AstLeafParser {
             ThemeMode -> AstThemeMode((token.value as ThemeMode.Mode).toMode())
             Timeout -> AstTimeout(token.value as kotlin.time.Duration)
             Step.Description -> AstStepDescription(token.value as String)
-            HttpRequest.Body.Json -> AstHttpRequestJsonBody(token.value as JSONObject)
+            HttpRequest.Body.Json -> AstHttpRequestJsonBody((token.value as HttpRequest.Body.Json.Type).toType())
             HttpRequest.Body.Plain -> AstHttpRequestPlainBody(token.value as String)
             Request.Url -> AstHttpRequestUrl(token.value as URL)
             Request.Name -> AstHttpRequestName(token.value as String)
+        }
+    }
+
+    private fun HttpRequest.Body.Json.Type.toType(): AstHttpRequestJsonBody.Type {
+        return when (this) {
+            is HttpRequest.Body.Json.Type.Array -> AstHttpRequestJsonBody.Type.Array(this)
+            is HttpRequest.Body.Json.Type.Object -> AstHttpRequestJsonBody.Type.Object(this)
         }
     }
 

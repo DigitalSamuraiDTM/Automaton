@@ -1,6 +1,7 @@
 package com.digitalsamurai.automaton.ast
 
 import com.digitalsamurai.automaton.grammar.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 import kotlin.time.Duration
@@ -50,8 +51,13 @@ sealed class Ast {
             override val symbol: GrammarSymbol<*> = Request.Url
         }
 
-        data class AstHttpRequestJsonBody(override val value: JSONObject): Leaf<JSONObject>() {
+        data class AstHttpRequestJsonBody(override val value: AstHttpRequestJsonBody.Type): Leaf<AstHttpRequestJsonBody.Type>() {
             override val symbol: GrammarSymbol<*> = HttpRequest.Body.Json
+
+            sealed interface Type {
+                class Array(val jsonArray: JSONArray) : JSONArray(jsonArray), Type
+                class Object(val jsonObject: JSONObject) : JSONObject(jsonObject), Type
+            }
         }
 
         data class AstHttpRequestPlainBody(override val value: String): Leaf<String>() {

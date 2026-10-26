@@ -1,6 +1,6 @@
 package com.digitalsamurai.automaton.backend.api
 
-fun tab(): String = "    "
+fun tab(count: Int = 1): String = "    ".repeat(count)
 
 fun String.camelCase(): String {
     var spaced = false

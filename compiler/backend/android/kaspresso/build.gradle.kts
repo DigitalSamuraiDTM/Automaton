@@ -10,6 +10,8 @@ dependencies {
     implementation(project(":compiler:backend:api"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    // Source: https://mvnrepository.com/artifact/com.squareup/kotlinpoet
+    implementation("com.squareup:kotlinpoet:2.2.0")
 }
 
 repositories {

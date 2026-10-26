@@ -1,5 +1,6 @@
-package com.digitalsamurai.automaton.backend.android.kaspresso
+package com.digitalsamurai.automaton.backend.android.kaspresso.generators
 
+import com.digitalsamurai.automaton.backend.android.kaspresso.AutoGenerator
 import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import java.io.File

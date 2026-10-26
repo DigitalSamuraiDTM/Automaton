@@ -18,6 +18,14 @@ abstract class AutoGenerator {
         return output.toString()
     }
 
+    fun autoGenerateMessageForKotlinPoet(): String {
+        val output = StringBuilder()
+        output.appendLine("WARN! AUTO-GENERATED")
+        output.appendLine("Generate with love by Automaton")
+        output.appendLine("Datetime: ${System.currentTimeMillis()}")
+        return output.toString()
+    }
+
 
     fun MutableList<String>.enter() {
         add("")
