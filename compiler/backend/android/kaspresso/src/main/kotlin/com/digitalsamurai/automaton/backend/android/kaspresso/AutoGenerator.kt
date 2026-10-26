@@ -1,8 +1,12 @@
 package com.digitalsamurai.automaton.backend.android.kaspresso
 
+import com.digitalsamurai.automaton.semantic.SemanticModel
+import java.io.OutputStream
 import java.io.OutputStreamWriter
 
 abstract class AutoGenerator {
+
+    abstract fun generate( model: SemanticModel)
 
     fun autoGenerateMessage(): String {
         val output = StringBuilder()
@@ -16,7 +20,7 @@ abstract class AutoGenerator {
 
 
     fun MutableList<String>.enter() {
-        add("\n")
+        add("")
     }
 
     fun OutputStreamWriter.enter() {

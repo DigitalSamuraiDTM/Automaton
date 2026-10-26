@@ -6,7 +6,9 @@ import java.io.File
 
 class MockWebServerGenerator(val appPackage: String, val outputDir: File): AutoGenerator() {
 
-    fun generate(model: SemanticModel) {
+    private val automatonDispatcherGenerator = AutomatonDispatcherGenerator()
+
+    override fun generate(model: SemanticModel) {
         val imports = mutableMapOf<String, String>()
 
         val mockWebServerClass = generateMockWebServerClass(imports, model)
@@ -40,9 +42,15 @@ class MockWebServerGenerator(val appPackage: String, val outputDir: File): AutoG
     private fun mockWebServerClassBody(imports: MutableMap<String,String>, model: SemanticModel): List<String> {
         val body = mutableListOf<String>()
         imports["MockRule"] = "${appPackage}.AutomatonMockRule"
-        body.add("\n")
+        body.enter()
         body.add("@Volatile")
         body.add("private var activeRules: Set<AutomatonMockRule> = emptySet()")
+        body.add("private val dispatcher = AutomatonDispatcher()")
+        body.enter()
+
+        automatonDispatcherGenerator.generateInner(imports).forEach {
+            body.add(tab()+it)
+        }
         return body
     }
 }

@@ -6,6 +6,7 @@ import com.digitalsamurai.automaton.backend.api.camelCase
 import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import java.io.File
+import java.lang.Exception
 
 // TODO implement permission resolver
 class AndroidKaspressoBackend(
@@ -25,12 +26,11 @@ class AndroidKaspressoBackend(
         if (!outputDirectory.isDirectory) throw IllegalArgumentException("Output directory '${outputDirectory.path}' is not a directory")
     }
 
-    override suspend fun buildOutput(model: SemanticModel): BackendOutput {
-
+    override fun generate(model: SemanticModel) {
         // check environment needed?
         if (model.isMockWebServerNeeded()) {
             // generate mock web server environment
-            environmentGenerator.generateEnvironment(model)
+            environmentGenerator.generate(model)
         }
 
         val outputFile = File(outputDirectory, model.test.metadata.testName.camelCase() + ".kt")
@@ -51,10 +51,15 @@ class AndroidKaspressoBackend(
             writer.write(autoGenerateMessage())
             writer.write(testClass)
         }
-        return BackendOutput(
-            requestId = model.requestId,
-            metaData = "TODO OBAMA"
-        )
+    }
+
+    override suspend fun buildOutput(model: SemanticModel): BackendOutput {
+        try {
+            generate(model)
+            return BackendOutput(model.requestId, "TODO")
+        } catch (e: Exception) {
+            return BackendOutput(model.requestId, e.toString())
+        }
     }
 
     private fun generateClassBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {

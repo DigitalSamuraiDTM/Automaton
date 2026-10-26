@@ -13,9 +13,9 @@ class EnvironmentGenerator(
     private val mockWebServerGenerator = MockWebServerGenerator(appPackage, outputDir)
 
 
-    fun generateEnvironment(model: SemanticModel) {
+    override fun generate(model: SemanticModel) {
         generateEnvironmentHolderClass()
-        mockRuleClassGenerator.generate()
+        mockRuleClassGenerator.generate(model)
         mockWebServerGenerator.generate(model)
     }
 
