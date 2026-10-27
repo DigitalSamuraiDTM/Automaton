@@ -126,7 +126,6 @@ S ∈ V (start symbol is one of non terminals symbols)
 
 ### Non terminals
 
-Non-terminals are declared in [NonTerminal.kt](compiler/grammar/src/main/kotlin/com/digitalsamurai/automaton/grammar/NonTerminal.kt).
 Names of nested symbols are written as `Parent.Child` (for example `HttpRequest.Body`), `ε` is an empty production.
 The *Representation* column is the key used in the YAML concrete syntax.
 *Service* non-terminals have no own node in the AST: their productions are inlined into the productions of the parent
@@ -164,8 +163,6 @@ non-terminal when the parsing table is built.
 
 ### Terminal symbols
 
-Terminals are declared in [Terminal.kt](compiler/grammar/src/main/kotlin/com/digitalsamurai/automaton/grammar/Terminal.kt)
-and as nested objects of non-terminals in [NonTerminal.kt](compiler/grammar/src/main/kotlin/com/digitalsamurai/automaton/grammar/NonTerminal.kt).
 A terminal is a typed leaf of the AST: the lexical analyzer reads the key (*Representation*) and converts the following
 value to the type of the terminal. A value that cannot be converted is a lexical error.
 
@@ -185,14 +182,19 @@ value to the type of the terminal. A value that cannot be converted is a lexical
 | Step.Description      | stepDescription | string                                                   | Human-readable description of a step. Becomes the step name in autotests and manual test cases                                 |
 | InputData             | inputData       | string                                                   | Text that will be entered into a UI element. The element must be inputtable                                                    |
 | TapType               | tapType         | {single}                                                 | Kind of tap. Only `single` is supported by the grammar now, `double` and `long` are planned. The element must be tappable      |
-| Timeout               | timeout         | duration in [Kotlin Duration format](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/-companion/parse.html)| Maximum time to wait for a condition in `wait`. Examples: `5s`, `1m 30s`, `PT5S`                                                                                 |
-| Duration              | duration        | duration in [Kotlin Duration format](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/-companion/parse.html)| Fixed time interval. Reserved for the `Delay` action, not used in productions now. Examples: `5s`, `1m 30s`, `PT5S`                                              |
+| Timeout               | timeout         | duration: numbers with units `d`, `h`, `m`, `s`, `ms`, `us`, `ns` separated by spaces, or ISO-8601 duration| Maximum time to wait for a condition in `wait`. Examples: `5s`, `1m 30s`, `PT5S`                                                                                 |
+| Duration              | duration        | duration: numbers with units `d`, `h`, `m`, `s`, `ms`, `us`, `ns` separated by spaces, or ISO-8601 duration| Fixed time interval. Reserved for the `Delay` action, not used in productions now. Examples: `5s`, `1m 30s`, `PT5S`                                              |
 | ElementProperty       | elementProperty | see [element properties](#element-properties)           | Name of the checked property of a UI element in a condition                                                                    |
 | PropertyValue         | propertyValue   | see [element properties](#element-properties)           | Expected value of the checked property. The type depends on the property                                                       |
 
 ### Element properties
 
-TODO
+Properties describe the expected state of a UI element.
+The `elementProperty` terminal contains the name of the property, `propertyValue` contains its expected value.
+
+| Property | Values        | Description                                                                                                                                                                    |
+|----------|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| visible  | {true, false} | Defines whether the element should be visible on the screen. `true`: the element must be visible, `false`: the element must not be visible |
 
 ### High-level structure of a Automaton program:
 
