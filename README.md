@@ -164,15 +164,31 @@ non-terminal when the parsing table is built.
 
 ### Terminal symbols
 
-| Non-terminal     | Value                  |                                 Description                                  |
-|------------------|:-----------------------|:----------------------------------------------------------------------------:|
-| ElementReference | TODO                   |                   Ui element reference declared in context                   |
-| InputData        | "string"               | Symbols, that will be inputted at ui element. The element must be inputtable |
-| TapType          | {single, double, long} |                         The element must be tappable                         |
-| Timeout          | time                   |                                     TODO                                     |
-| Duration         | time                   |                                     TODO                                     |
-| ElementProperty  | see element properties |                                     TODO                                     |
-| PropertyValue    | see element properties |                                     TODO                                     |
+Terminals are declared in [Terminal.kt](compiler/grammar/src/main/kotlin/com/digitalsamurai/automaton/grammar/Terminal.kt)
+and as nested objects of non-terminals in [NonTerminal.kt](compiler/grammar/src/main/kotlin/com/digitalsamurai/automaton/grammar/NonTerminal.kt).
+A terminal is a typed leaf of the AST: the lexical analyzer reads the key (*Representation*) and converts the following
+value to the type of the terminal. A value that cannot be converted is a lexical error.
+
+| Terminal              | Representation  | Value                                                    | Description                                                                                                                    |
+|-----------------------|-----------------|:---------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+| Element.Name          | elementName     | string                                                   | Name of a UI element. In the context it declares the element, in actions and conditions it references an element declared in the context |
+| Element.Layout        | elementLayout   | string                                                   | Reference to the visual representation of the element (Figma link or similar). Used in generated documentation and manual test cases |
+| Request.Name          | requestName     | string                                                   | Name of a network request mock. In the context it declares the request, in `stepRequests` it references a declared request    |
+| Request.Url           | url             | URL                                                      | Url of the mocked request. The path of the url is used for matching incoming requests                                         |
+| HttpRequest.Body.Json | json            | path to a `.json` file                                   | JSON body of the mocked response. The file is read by the lexical analyzer and must contain a JSON object or array            |
+| HttpRequest.Body.Plain| plain           | string                                                   | Plain text body of the mocked response                                                                                         |
+| ThemeMode             | themeMode       | {light, dark, system}                                    | Application theme for the test run                                                                                             |
+| Camera                | camera          | {true, false}                                           | Camera permission: granted (`true`) or denied (`false`)                                                                        |
+| Microphone            | microphone      | {true, false}                                           | Microphone permission: granted (`true`) or denied (`false`)                                                                    |
+| Id                    | id              | string                                                   | Unique identifier of the test (for example `AUTH_001`). Used in test management systems and manual test cases                  |
+| TestName              | name            | string                                                   | Human-readable name of the test. Used to name generated test classes and files                                                 |
+| Step.Description      | stepDescription | string                                                   | Human-readable description of a step. Becomes the step name in autotests and manual test cases                                 |
+| InputData             | inputData       | string                                                   | Text that will be entered into a UI element. The element must be inputtable                                                    |
+| TapType               | tapType         | {single}                                                 | Kind of tap. Only `single` is supported by the grammar now, `double` and `long` are planned. The element must be tappable      |
+| Timeout               | timeout         | duration in [Kotlin Duration format](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/-companion/parse.html)| Maximum time to wait for a condition in `wait`. Examples: `5s`, `1m 30s`, `PT5S`                                                                                 |
+| Duration              | duration        | duration in [Kotlin Duration format](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/-companion/parse.html)| Fixed time interval. Reserved for the `Delay` action, not used in productions now. Examples: `5s`, `1m 30s`, `PT5S`                                              |
+| ElementProperty       | elementProperty | see [element properties](#element-properties)           | Name of the checked property of a UI element in a condition                                                                    |
+| PropertyValue         | propertyValue   | see [element properties](#element-properties)           | Expected value of the checked property. The type depends on the property                                                       |
 
 ### Element properties
 
