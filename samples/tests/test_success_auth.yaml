@@ -43,6 +43,8 @@ compilationUnit:
     metadata:
       id: "AUTH_002"
       name: "Successful authorization entry"
+    testRequests:
+      - requestName: authorization200
     steps:
       - step:
           stepDescription: "Открываем экран авторизации"
@@ -55,8 +57,6 @@ compilationUnit:
                 timeout: 5s
       - step:
           stepDescription: "Вводим пользовательские данные и жмякаем 'Войти'"
-          stepRequests:
-            - requestName: authorization200
           actions:
             - input:
                 elementName: LoginField

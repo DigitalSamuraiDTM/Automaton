@@ -56,7 +56,8 @@ sealed class Ast {
 
             sealed interface Type {
                 class Array(val jsonArray: JSONArray) : JSONArray(jsonArray), Type
-                class Object(val jsonObject: JSONObject) : JSONObject(jsonObject), Type
+                // JSONObject has no copy constructor: JSONObject(Object) is a bean constructor and loses all keys
+                class Object(val jsonObject: JSONObject) : JSONObject(jsonObject.toMap()), Type
             }
         }
 
