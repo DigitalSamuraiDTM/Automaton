@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.VisualTransformation
 
 
@@ -13,7 +14,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 fun MyTextField(
     value: String,
     modifier: Modifier = Modifier,
-    textFieldName: String = "TextField",
+    textFieldName: String,
     onValueChange: (String) -> Unit,
     isError: Boolean = false,
     enabled: Boolean = true,
@@ -26,7 +27,7 @@ fun MyTextField(
         isError = isError,
         onValueChange = onValueChange,
         modifier = modifier.onFocusChanged({ focusState ->
-        }),
+        }).testTag(textFieldName),
         placeholder = placeholder,
         visualTransformation = visualTransformation
     )
