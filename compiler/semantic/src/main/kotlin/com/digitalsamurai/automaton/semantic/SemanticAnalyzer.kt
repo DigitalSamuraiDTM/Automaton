@@ -77,18 +77,21 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
             Test -> {
                 var steps: List<SemanticModel.Test.Step>? = null
                 var metadata: SemanticModel.Test.Metadata? = null
+                var generalRequests: Set<SemanticModel.Request> = emptySet()
 
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         is SemanticValue.StepList -> steps = result.value
                         is SemanticModel.Test.Metadata -> metadata = result
+                        is SemanticValue.TestRequests -> generalRequests = result.value.toSet()
                     }
                 }
+                checkGeneralAndStepRequestsIntersection(generalRequests, steps!!)
 
                 SemanticModel.Test(
                     metadata = metadata!!,
                     steps = steps!!,
-                    generalRequests = emptySet(), // TODO implement in grammar
+                    generalRequests = generalRequests,
                 )
             }
             Actions -> {
@@ -233,7 +236,41 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 }
                 return StepRequests(requests)
             }
+            Test.Requests -> {
+                val requests = mutableListOf<SemanticModel.Request>()
+                childs.forEach { child ->
+                    when (val result = child.buildTestModel(context)) {
+                        is RequestName -> {
+                            val request = context.requests.find { it.name == result.value }
+                                ?: error("Request '${result.value}' is not declared in context")
+                            requests.add(request)
+                        }
+                    }
+                }
+                return TestRequests(requests)
+            }
             else -> error("unexpected AST node ${this}")
+        }
+    }
+
+    /**
+     * The same request can not be mocked by general (test) requests and step requests at the same time,
+     * because mock server can not choose which response must be returned
+     */
+    private fun checkGeneralAndStepRequestsIntersection(
+        generalRequests: Set<SemanticModel.Request>,
+        steps: List<SemanticModel.Test.Step>,
+    ) {
+        // TODO add method to the key when it will be supported by grammar
+        val generalPaths = generalRequests.associateBy { it.url.path }
+        steps.forEach { step ->
+            step.requests.forEach { stepRequest ->
+                val generalRequest = generalPaths[stepRequest.url.path] ?: return@forEach
+                throw AutomatonSemanticException(
+                    "Request '${stepRequest.name}' at step '${step.description}' mocks the same request " +
+                        "'${stepRequest.url.path}' as general test request '${generalRequest.name}'"
+                )
+            }
         }
     }
 
@@ -413,5 +450,6 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class HttpRequestPlainBody(val value: String) : SemanticValue
         data class HttpRequestJsonBody(val value: SemanticModel.Request.Http.Body) : SemanticValue
         data class StepRequests(val value: List<SemanticModel.Request>) : SemanticValue
+        data class TestRequests(val value: List<SemanticModel.Request>) : SemanticValue
     }
 }

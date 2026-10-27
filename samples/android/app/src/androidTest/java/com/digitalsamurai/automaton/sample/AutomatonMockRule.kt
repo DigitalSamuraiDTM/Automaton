@@ -7,7 +7,7 @@ import mockwebserver3.MockResponse
 /**
  * WARN! AUTO-GENERATED
  * Generate with love by Automaton
- * Datetime: 1793135472976
+ * Datetime: 1793138448332
  */
 public data class AutomatonMockRule(
   public val path: String,

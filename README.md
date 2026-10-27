@@ -145,7 +145,8 @@ non-terminal when the parsing table is built.
 | Theme            | theme          | False   | Theme → ThemeMode <br/> Theme → ε                                                                                                            | Application theme for the test run (light, dark, system). Optional                                                                                |
 | Permissions      | permissions    | False   | Permissions → Permission Permissions <br/> Permissions → ε                                                                                   | List of system permissions granted or denied for the test run. May be empty                                                                       |
 | Permission       | permission     | True    | Permission → Microphone <br/> Permission → Camera                                                                                            | A single system permission. Service symbol                                                                                                        |
-| Test             | test           | False   | Test → Metadata Steps                                                                                                                        | Block with the test scenario                                                                                                                      |
+| Test             | test           | False   | Test → Metadata Test.Requests Steps                                                                                                          | Block with the test scenario                                                                                                                      |
+| Test.Requests    | testRequests   | False   | Test.Requests → Request.Name Test.Requests <br/> Test.Requests → ε                                                                           | References (by name) to requests declared in the context, which are mocked during the whole test (general mocks). May be empty                   |
 | Metadata         | metadata       | False   | Metadata → Id TestName                                                                                                                       | Test metadata: identifier and name (later: description, categories, tags, etc.)                                                                   |
 | Steps            | steps          | False   | Steps → Step Steps <br/> Steps → ε                                                                                                           | Sequence of test steps                                                                                                                            |
 | Step             | step           | False   | Step → Step.Description Step.Requests Actions                                                                                                | Named logical unit of the scenario: description, network mocks active during the step and the sequence of actions                                |
@@ -170,7 +171,7 @@ value to the type of the terminal. A value that cannot be converted is a lexical
 |-----------------------|-----------------|:---------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
 | Element.Name          | elementName     | string                                                   | Name of a UI element. In the context it declares the element, in actions and conditions it references an element declared in the context |
 | Element.Layout        | elementLayout   | string                                                   | Reference to the visual representation of the element (Figma link or similar). Used in generated documentation and manual test cases |
-| Request.Name          | requestName     | string                                                   | Name of a network request mock. In the context it declares the request, in `stepRequests` it references a declared request    |
+| Request.Name          | requestName     | string                                                   | Name of a network request mock. In the context it declares the request, in `stepRequests`/`testRequests` it references a declared request |
 | Request.Url           | url             | URL                                                      | Url of the mocked request. The path of the url is used for matching incoming requests                                         |
 | HttpRequest.Body.Json | json            | path to a `.json` file                                   | JSON body of the mocked response. The file is read by the lexical analyzer and must contain a JSON object or array            |
 | HttpRequest.Body.Plain| plain           | string                                                   | Plain text body of the mocked response                                                                                         |
@@ -201,3 +202,14 @@ The `elementProperty` terminal contains the name of the property, `propertyValue
 [Example of non-terminals tree with test](examples/tree_example.md)
 
 [Example of yaml specification at yaml](samples/tests/test_anonymous_auth.yaml)
+
+## Semantic rules
+
+Rules checked by the semantic analyzer. A program that breaks any of them is not compiled.
+
+#### Uniqueness of mocked requests
+
+A network request can not be mocked by general test requests (`testRequests`) and step requests
+(`stepRequests`) at the same time. Requests are the same when they have the same method and url path.
+The mock server can not decide which response must be returned for such request, so there is no
+priority between general and step requests: the intersection is a semantic error.

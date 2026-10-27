@@ -19,7 +19,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793135473145
+* Datetime: 1793138448505
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -34,10 +34,9 @@ class SuccessfulAuthorizationEntry : TestCase(
 
     @Test
     fun SuccessfulAuthorizationEntry() = before {
-        mockWebServer.setGeneralRules(setOf(
-            )
-        )
+        // no before
     }.after {
+        mockWebServer.setStepRules(emptySet())
     }.run {
         step("Открываем экран авторизации") {
             flakySafely(timeoutMs = 5000) {

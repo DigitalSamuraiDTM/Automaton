@@ -100,23 +100,53 @@ class AndroidKaspressoBackend(
     }
 
     /**
-     * Setups step mocks and other environment
+     * Setups environment for the whole test. Every setup section returns empty list when nothing to setup,
+     * so emptiness of the block is checked by the result, not by the model
      */
     private fun generateBeforeTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
         val output = mutableListOf<String>()
-        output.add("mockWebServer.setGeneralRules(setOf(")
+        output.addAll(generateGeneralRequestsSetup(imports, model))
+        // new setup sections (theme, permissions, etc.) must be added here
+        return output.ifEmpty { listOf("// no before") }
+    }
+
+    /**
+     * Resets environment after the test. AutomatonEnvironment is singleton, so its state would leak to the next tests
+     */
+    private fun generateAfterTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
+        val output = mutableListOf<String>()
+        output.addAll(generateGeneralRequestsReset(model))
+        output.addAll(generateStepRequestsReset(model))
+        // new reset sections (theme, permissions, etc.) must be added here
+        return output.ifEmpty { listOf("// no after") }
+    }
+
+    private fun generateGeneralRequestsSetup(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
+        val output = mutableListOf<String>()
+        // general requests are subset of context requests, so mockWebServer is already declared
+        if (model.test.generalRequests.isEmpty()) return output
+
+        imports["mockRule"] = "${appPackage}.AutomatonMockRule"
+        output.add("mockWebServer.setGeneralRules(")
+        output.add(tab() + "setOf(")
         model.test.generalRequests.forEach { request ->
-            output.add(tab()+ request.toAutomatonMockRule())
+            request.toAutomatonMockRule().forEach { line ->
+                output.add(tab(2) + line)
+            }
         }
         output.add(tab() + ")")
         output.add(")")
         return output
     }
 
-    private fun generateAfterTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
-        val output = mutableListOf<String>()
+    private fun generateGeneralRequestsReset(model: SemanticModel): List<String> {
+        if (model.test.generalRequests.isEmpty()) return emptyList()
+        return listOf("mockWebServer.setGeneralRules(emptySet())")
+    }
 
-        return output
+    private fun generateStepRequestsReset(model: SemanticModel): List<String> {
+        if (model.test.steps.none { it.requests.isNotEmpty() }) return emptyList()
+        return listOf("mockWebServer.setStepRules(emptySet())")
     }
 
 

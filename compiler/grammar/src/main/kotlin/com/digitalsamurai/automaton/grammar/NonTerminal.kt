@@ -218,8 +218,20 @@ data object Test : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "test"
     override val productions: List<Production> = listOf(
-        production(Metadata, Steps)
+        production(Metadata, Requests, Steps)
     )
+
+    /**
+     * Requests applied to the whole test (general mocks)
+     */
+    data object Requests : NonTerminal {
+        override val isService: Boolean = false
+        override val representation: String = "testRequests"
+        override val productions: List<Production> = listOf(
+            production(Request.Name, Requests),
+            epsilon(),
+        )
+    }
 }
 
 data object Metadata : NonTerminal {

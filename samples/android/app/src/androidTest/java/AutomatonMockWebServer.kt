@@ -9,7 +9,7 @@ import mockwebserver3.MockResponse
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793135473145
+* Datetime: 1793138448504
 */
 public class AutomatonMockWebServer {
     
@@ -44,9 +44,8 @@ public class AutomatonMockWebServer {
     
     inner class AutomatonDispatcher(): Dispatcher() {
         override fun dispatch(request: RecordedRequest): MockResponse {
-            val mockRules = activeRules.get().rules.filter { it.method == request.method && it.path == request.url.encodedPath }
-            check(mockRules.isEmpty()) { return MockResponse(code = 404, body = "No active Automaton mock") }
-            val mockRule = mockRules.single()
+            val mockRule = activeRules.get().rules.firstOrNull { it.method == request.method && it.path == request.url.encodedPath }
+                ?: return MockResponse(code = 404, body = "No active Automaton mock")
             return mockRule.toMockResponse()
         }
     }

@@ -12,6 +12,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     // Source: https://mvnrepository.com/artifact/com.squareup/kotlinpoet
     implementation("com.squareup:kotlinpoet:2.2.0")
+    // Source: https://mvnrepository.com/artifact/org.json/json
+    implementation("org.json:json:20260814")
 }
 
 repositories {

@@ -33,9 +33,9 @@ class AutomatonDispatcherGenerator(): AutoGenerator() {
 
     private fun generateDispatchFunction(imports: MutableMap<String, String>): List<String> {
         val funBody = mutableListOf<String>()
-        funBody.add("val mockRules = activeRules.get().rules.filter { it.method == request.method && it.path == request.url.encodedPath }")
-        funBody.add("check(mockRules.isEmpty()) { return MockResponse(code = 404, body = \"No active Automaton mock\") }")
-        funBody.add("val mockRule = mockRules.single()")
+        // general and step rules never intersect, it is guaranteed by semantic analyzer
+        funBody.add("val mockRule = activeRules.get().rules.firstOrNull { it.method == request.method && it.path == request.url.encodedPath }")
+        funBody.add(tab() + "?: return MockResponse(code = 404, body = \"No active Automaton mock\")")
         funBody.add("return mockRule.toMockResponse()")
         return funBody
     }
