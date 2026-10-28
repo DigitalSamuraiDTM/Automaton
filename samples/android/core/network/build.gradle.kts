@@ -37,4 +37,6 @@ dependencies {
     implementation(libs.ktor.client.contentnegotiation)
     implementation(libs.ktor.serialization.json)
     implementation(libs.ktor.client.okhttp)
+    // ktor-client-okhttp brings okhttp 4.12, mockwebserver3 in tests requires okhttp 5
+    implementation(platform(libs.okhttp.bom))
 }

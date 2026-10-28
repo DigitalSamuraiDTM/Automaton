@@ -36,6 +36,7 @@ ksp = "2.3.10"
 material-icons = "1.7.8"
 drawerLayout = "1.2.0"
 webMockServer = "5.5.1"
+okhttp = "5.5.1"
 
 [libraries]
 # OPENTELEMETRY
@@ -113,6 +114,7 @@ espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "
 espresso-idling-concurrent = { module = "androidx.test.espresso.idling:idling-concurrent", version.ref = "espresso" }
 espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "espresso" }
 okhttp-webmockserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "webMockServer" }
+okhttp-bom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttp" }
 [plugins]
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
