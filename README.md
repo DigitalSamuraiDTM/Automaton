@@ -140,7 +140,7 @@ non-terminal when the parsing table is built.
 | Requests         | requests       | False   | Requests → Request Requests <br/> Requests → ε                                                                                               | List of network request mocks declared in the context. May be empty                                                                               |
 | Request          | request        | True    | Request → HttpRequest                                                                                                                        | Any kind of network request mock. Service symbol, extension point for other request types                                                         |
 | HttpRequest      | http           | False   | HttpRequest → Request.Name Request.Url HttpRequest.Headers HttpRequest.Body                                                                  | Mock of an HTTP request: name for referencing from steps, url, headers and response body                                                          |
-| HttpRequest.Headers | headers     | False   | HttpRequest.Headers → ε                                                                                                                      | HTTP headers of the mock. Not implemented yet, only the empty production exists                                                                   |
+| HttpRequest.Headers | headers     | False   | HttpRequest.Headers → ε                                                                                                                      | Headers of the mocked response. Not implemented yet, only the empty production exists. See [content type](#content-type-of-mocked-responses) |
 | HttpRequest.Body | body           | False   | HttpRequest.Body → HttpRequest.Body.Plain <br/> HttpRequest.Body → HttpRequest.Body.Json                                                     | Body of the mocked HTTP response: plain text or JSON (object or array)                                                                            |
 | Theme            | theme          | False   | Theme → ThemeMode <br/> Theme → ε                                                                                                            | Application theme for the test run (light, dark, system). Optional                                                                                |
 | Permissions      | permissions    | False   | Permissions → Permission Permissions <br/> Permissions → ε                                                                                   | List of system permissions granted or denied for the test run. May be empty                                                                       |
@@ -205,7 +205,8 @@ The `elementProperty` terminal contains the name of the property, `propertyValue
 
 ## Semantic rules
 
-Rules checked by the semantic analyzer. A program that breaks any of them is not compiled.
+Rules applied by the semantic analyzer. Some rules are checks: a program that breaks them is not compiled.
+Other rules resolve values that are not written in the program explicitly.
 
 #### Uniqueness of mocked requests
 
@@ -213,3 +214,21 @@ A network request can not be mocked by general test requests (`testRequests`) an
 (`stepRequests`) at the same time. Requests are the same when they have the same method and url path.
 The mock server can not decide which response must be returned for such request, so there is no
 priority between general and step requests: the intersection is a semantic error.
+
+#### Content type of mocked responses
+
+The body type of a mocked response defines its `Content-Type` header by default:
+
+| Body type | Default `Content-Type` |
+|-----------|------------------------|
+| `json`    | `application/json`     |
+| `plain`   | `text/plain`           |
+
+An explicit `Content-Type` header of the response (when headers are supported by the grammar) overrides
+the default value. Values are not checked for compatibility: a `json` body with `Content-Type: text/plain`
+is a valid program, so a test can simulate a backend that returns a wrong content type.
+
+**Warning.** A mocked response always has a `Content-Type` header. The negative scenario "backend returns a
+response without `Content-Type`" can not be described now. Clients usually depend on this header to
+deserialize the body (for example, ktor `ContentNegotiation` does not deserialize a response without it),
+so the generated mock and the real backend may behave differently in this case.

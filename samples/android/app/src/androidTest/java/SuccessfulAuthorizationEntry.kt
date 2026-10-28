@@ -11,6 +11,7 @@ import com.digitalsamurai.automaton.sample.presentation.main.MainActivity
 import org.junit.Test
 import com.digitalsamurai.automaton.sample.AutomatonEnvironment
 import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
+import com.digitalsamurai.automaton.sample.AutomatonMockRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.performTextInput
@@ -19,7 +20,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793138448505
+* Datetime: 1793229117496
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -34,9 +35,21 @@ class SuccessfulAuthorizationEntry : TestCase(
 
     @Test
     fun SuccessfulAuthorizationEntry() = before {
-        // no before
+        mockWebServer.setGeneralRules(
+            setOf(
+                AutomatonMockRule(
+                    path = "/auth",
+                    method = "POST",
+                    code = 200,
+                        headers = mapOf(
+                            "Content-Type" to "application/json",
+                        ),
+                    body = "{\"token\":\"exampleOfToken1234\"}",
+                ),
+            )
+        )
     }.after {
-        mockWebServer.setStepRules(emptySet())
+        mockWebServer.setGeneralRules(emptySet())
     }.run {
         step("Открываем экран авторизации") {
             flakySafely(timeoutMs = 5000) {

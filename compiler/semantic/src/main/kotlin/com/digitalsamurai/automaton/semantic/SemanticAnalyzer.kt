@@ -30,6 +30,8 @@ import java.net.URL
 
 public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
+    private val requestHeaderRule = SemanticRequestHeaderRule()
+
 
     suspend fun analyzeFull(data: AstData): SemanticModel {
         val astNode = data.ast
@@ -353,19 +355,25 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var url: URL? = null
                 var name: String? = null
                 var body: SemanticModel.Request.Http.Body? = null
+                var headers: Map<String, String> = emptyMap()
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
                         is SemanticValue.RequestName -> name = result.value
                         is SemanticValue.RequestUrl -> url = result.value
                         is SemanticModel.Request.Http.Body -> body = result
+                        is SemanticValue.ResponseHeaders -> headers = result.value
                     }
                 }
                 return SemanticModel.Request.Http(
                     url = url!!,
                     name = name!!,
-                    headers = mapOf(),
+                    headers = requestHeaderRule.resolve(body!!, headers),
                     body = body!!
                 )
+            }
+            HttpRequest.Headers -> {
+                // grammar has only the empty production now, explicit headers will be collected here
+                return SemanticValue.ResponseHeaders(emptyMap())
             }
             HttpRequest.Body -> {
                 var body: SemanticModel.Request.Http.Body? = null
@@ -451,5 +459,6 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class HttpRequestJsonBody(val value: SemanticModel.Request.Http.Body) : SemanticValue
         data class StepRequests(val value: List<SemanticModel.Request>) : SemanticValue
         data class TestRequests(val value: List<SemanticModel.Request>) : SemanticValue
+        data class ResponseHeaders(val value: Map<String, String>) : SemanticValue
     }
 }

@@ -97,6 +97,10 @@ data class SemanticModel(
         val url: URL
         val name: String
 
+        /**
+         * @param headers of mocked response. Always contains Content-Type: resolved by semantic rule
+         * "Content type of mocked responses"
+         */
         data class Http(
             override val url: URL,
             override val name: String,
