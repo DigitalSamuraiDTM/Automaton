@@ -11,7 +11,7 @@ import mockwebserver3.MockResponse
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793649544788
+* Datetime: 1793649711708
 */
 public class AutomatonMockWebServer {
     
@@ -21,6 +21,7 @@ public class AutomatonMockWebServer {
     private val server = MockWebServer()
     
     fun start() {
+        server.dispatcher = dispatcher
         server.start(
             inetAddress = InetAddress.getByName("127.0.0.1"),
             port = 8080,

@@ -106,6 +106,7 @@ class MockWebServerGenerator(
 
         imports["InetAddress"] = "java.net.InetAddress"
 
+        body.add("server.dispatcher = dispatcher")
         body.add("server.start(")
         body.add(tab() + "inetAddress = InetAddress.getByName(${host.toStringLiteral()}),")
         body.add(tab() + "port = ${port},")
