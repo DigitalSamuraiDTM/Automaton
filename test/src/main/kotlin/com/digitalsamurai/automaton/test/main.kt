@@ -36,7 +36,7 @@ fun main(): Unit = runBlocking {
                     name = "MainActivity",
                 ),
                 composeApp = true,
-                mockWebserverHost = "http://127.0.0.1",
+                mockWebserverHost = "127.0.0.1",
                 mockWebServerPort = 8080,
             )
         )
