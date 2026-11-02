@@ -34,9 +34,22 @@ public class NetworkHttpClient() {
         }
     }
 
+    /**
+     * Выполняет HTTP-запрос к указанному backend.
+     *
+     * @param REQUEST_DATA тип данных запроса.
+     * @param RESPONSE_DATA тип данных ответа.
+     * @param networkHttpRequest описание HTTP-запроса.
+     * @param data данные запроса.
+     * @param host хост backend.
+     * @param port порт backend.
+     * @return результат выполнения с типизированным ответом или ошибкой.
+     */
     public suspend inline fun <reified REQUEST_DATA : Any, reified RESPONSE_DATA : Any> makeNetworkRequest(
         networkHttpRequest: NetworkHttpRequest<REQUEST_DATA, RESPONSE_DATA>,
         data: REQUEST_DATA,
+        host: String,
+        port: Int,
     ): Result<RESPONSE_DATA> = withContext(Dispatchers.IO) {
         runCatching {
             val httpResponse = client.request {
@@ -46,8 +59,8 @@ public class NetworkHttpClient() {
                     headers.append("Authorization", networkHttpRequest.jwt.value)
                 }
                 url {
-                    host = networkHttpRequest.host
-                    port = networkHttpRequest.port
+                    this.host = host
+                    this.port = port
                     path(networkHttpRequest.path)
                 }
                 // у гет метода нет тела же по идее, закодируем по кайфу в параметры

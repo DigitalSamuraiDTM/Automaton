@@ -5,11 +5,11 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.digitalsamurai.automaton.sample.core.navigation.AppNavigator
 import com.digitalsamurai.automaton.sample.core.viewmodel.ScreenViewModel
+import com.digitalsamurai.automaton.sample.data.network.FrontbackNetwork
 import com.digitalsamurai.automaton.sample.data.network.requests.frontback.GetLinearConfigRequest
 import com.digitalsamurai.automaton.sample.data.repositories.BitmapRepository
 import com.digitalsamurai.automaton.sample.domain.GenerateBilinearImageUseCase
 import com.digitalsamurai.automaton.sample.presentation.view.BitmapRenderer
-import com.digitalsamurai.opentelemetry.example.core.network.NetworkHttpClient
 import com.digitsamurai.algos.BitmapGenerator
 import com.digitsamurai.utils.extensions.generateName
 import dagger.assisted.Assisted
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 class LinearScreenScreenViewModel @AssistedInject constructor(
     private val generateBilinearImageUseCase: GenerateBilinearImageUseCase,
     private val bitmapRepository: BitmapRepository,
-    private val networkHttpClient: NetworkHttpClient,
+    private val frontbackNetwork: FrontbackNetwork,
     @Assisted private val navigator: AppNavigator,
 ) : ScreenViewModel<LinearScreenState, LinearScreenEvent, LinearScreenActions>(
 ), LinearScreenActions {
@@ -62,7 +62,7 @@ class LinearScreenScreenViewModel @AssistedInject constructor(
             updateState {
                 it.copy(isButtonLoading = true)
             }
-            val configuration = networkHttpClient.makeNetworkRequest(
+            val configuration = frontbackNetwork.makeNetworkRequest(
                 networkHttpRequest = GetLinearConfigRequest(),
                 data = Unit,
             ).getOrElse { t ->

@@ -5,11 +5,11 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.digitalsamurai.automaton.sample.core.navigation.AppNavigator
 import com.digitalsamurai.automaton.sample.core.viewmodel.ScreenViewModel
+import com.digitalsamurai.automaton.sample.data.network.FrontbackNetwork
 import com.digitalsamurai.automaton.sample.data.network.repository.AuthRepository
 import com.digitalsamurai.automaton.sample.data.network.requests.frontback.GetNeighborConfigRequest
 import com.digitalsamurai.automaton.sample.data.repositories.BitmapRepository
 import com.digitalsamurai.automaton.sample.presentation.view.BitmapRenderer
-import com.digitalsamurai.opentelemetry.example.core.network.NetworkHttpClient
 import com.digitsamurai.algos.BitmapGenerator
 import com.digitsamurai.utils.extensions.generateName
 import dagger.assisted.Assisted
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 class NeighborScreenViewModel @AssistedInject constructor(
     private val bitmapGenerator: BitmapGenerator,
     private val bitmapRepository: BitmapRepository,
-    private val networkHttpClient: NetworkHttpClient,
+    private val frontbackNetwork: FrontbackNetwork,
     private val authRepository: AuthRepository,
     @Assisted private val navigator: AppNavigator,
 ) : ScreenViewModel<NeighborScreenState, NeighborScreenEvent, NeighborScreenActions>(
@@ -58,7 +58,7 @@ class NeighborScreenViewModel @AssistedInject constructor(
         viewModelScope.launch(Dispatchers.Default) {
             updateState { it.copy(isButtonLoading = true) }
             val token = authRepository.get() ?: error("No auth token")
-            val config = networkHttpClient.makeNetworkRequest(GetNeighborConfigRequest(token), Unit)
+            val config = frontbackNetwork.makeNetworkRequest(GetNeighborConfigRequest(token), Unit)
                 .getOrElse { t ->
                     updateState { it.copy(isButtonLoading = false) }
                     return@launch

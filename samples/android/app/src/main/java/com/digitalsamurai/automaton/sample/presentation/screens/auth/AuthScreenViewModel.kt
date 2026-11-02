@@ -3,10 +3,10 @@ package com.digitalsamurai.automaton.sample.presentation.screens.auth
 import androidx.lifecycle.viewModelScope
 import com.digitalsamurai.automaton.sample.core.navigation.AppNavigator
 import com.digitalsamurai.automaton.sample.core.viewmodel.ScreenViewModel
+import com.digitalsamurai.automaton.sample.data.network.AuthNetwork
 import com.digitalsamurai.automaton.sample.data.network.repository.AuthRepository
 import com.digitalsamurai.automaton.sample.data.network.requests.auth.PostAuthRequest
 import com.digitalsamurai.automaton.sample.presentation.screens.main.MainScreen
-import com.digitalsamurai.opentelemetry.example.core.network.NetworkHttpClient
 import com.digitalsamurai.opentelemetry.example.core.network.models.Jwt
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -20,7 +20,7 @@ import kotlinx.coroutines.withContext
 @HiltViewModel(assistedFactory = AuthScreenViewModel.Factory::class)
 internal class AuthScreenViewModel @AssistedInject constructor(
     @Assisted private val navigator: AppNavigator,
-    private val networkHttpClient: NetworkHttpClient,
+    private val authNetwork: AuthNetwork,
     private val authRepository: AuthRepository,
 ) : ScreenViewModel<AuthScreenState, AuthScreenEvent, AuthScreenActions>(), AuthScreenActions {
     override fun initialState(): AuthScreenState = AuthScreenState.default()
@@ -41,7 +41,7 @@ internal class AuthScreenViewModel @AssistedInject constructor(
                         isAnonymButtonEnabled = false,
                     )
                 }
-                val result = networkHttpClient.makeNetworkRequest(
+                val result = authNetwork.makeNetworkRequest(
                     networkHttpRequest = PostAuthRequest(),
                     data = PostAuthRequest.RequestData(
                         login = state.value.login.text,
