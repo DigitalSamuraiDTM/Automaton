@@ -77,32 +77,38 @@ class AndroidKaspressoBackend(
         bodyOutput.add("\n")
         bodyOutput.add("@get:Rule")
         bodyOutput.add("val composeTestRule = createAndroidComposeRule<${activity.name}>()")
+        bodyOutput.enter()
+        bodyOutput.add("companion object {")
         // add http web mock server when auto test needed
         if (model.isMockWebServerNeeded()) {
             imports["automatonEnvironment"] = "${appPackage}.AutomatonEnvironment"
             imports["mockWebServer"] = "${appPackage}.AutomatonMockWebServer"
-            bodyOutput.add("val mockWebServer = AutomatonEnvironment.mockWebServer")
+            bodyOutput.add(tab() + "val mockWebServer = AutomatonEnvironment.mockWebServer")
         }
         bodyOutput.enter()
 
         // Before class fun
         imports["BeforeClass"] = "org.junit.BeforeClass"
-        bodyOutput.add("@BeforeClass")
-        bodyOutput.add("fun beforeClass() {")
+        bodyOutput.add(tab() + "@JvmStatic")
+        bodyOutput.add(tab() + "@BeforeClass")
+        bodyOutput.add(tab() + "fun beforeClass() {")
         generateBeforeClassFunBody(model).forEach { bodyLine ->
-            bodyOutput.add(tab() + bodyLine)
+            bodyOutput.add(tab(2) + bodyLine)
         }
-        bodyOutput.add("}")
+        bodyOutput.add(tab() + "}")
         bodyOutput.enter()
 
         // after class fun
         imports["AfterClass"] = "org.junit.AfterClass"
-        bodyOutput.add("@AfterClass")
-        bodyOutput.add("fun afterClass() {")
+        bodyOutput.add(tab() + "@JvmStatic")
+        bodyOutput.add(tab() + "@AfterClass")
+        bodyOutput.add(tab() + "fun afterClass() {")
         generateAfterClassFunBody(model).forEach { bodyLine ->
-            bodyOutput.add(tab() + bodyLine)
+            bodyOutput.add(tab(2) + bodyLine)
         }
+        bodyOutput.add(tab() + "}")
         bodyOutput.add("}")
+        bodyOutput.enter()
 
         bodyOutput.add("@Test")
         // test fun

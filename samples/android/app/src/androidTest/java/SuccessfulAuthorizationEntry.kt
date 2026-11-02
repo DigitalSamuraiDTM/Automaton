@@ -22,7 +22,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793649711710
+* Datetime: 1793657471219
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -32,17 +32,23 @@ class SuccessfulAuthorizationEntry : TestCase(
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val mockWebServer = AutomatonEnvironment.mockWebServer
     
-    @BeforeClass
-    fun beforeClass() {
-        mockWebServer.start()
+    companion object {
+        val mockWebServer = AutomatonEnvironment.mockWebServer
+    
+        @JvmStatic
+        @BeforeClass
+        fun beforeClass() {
+            mockWebServer.start()
+        }
+    
+        @JvmStatic
+        @AfterClass
+        fun afterClass() {
+            mockWebServer.stop()
+        }
     }
     
-    @AfterClass
-    fun afterClass() {
-        mockWebServer.stop()
-    }
     @Test
     fun SuccessfulAuthorizationEntry() = before {
         mockWebServer.setGeneralRules(
