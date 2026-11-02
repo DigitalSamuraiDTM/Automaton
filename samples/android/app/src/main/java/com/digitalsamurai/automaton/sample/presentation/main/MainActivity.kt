@@ -105,15 +105,6 @@ class MainActivity : AppCompatActivity() {
         )
     )
 
-
-    /**
-     * A native method that is implemented by the 'jni_test' native library,
-     * which is packaged with this application.
-     */
-//    external fun stringFromJNI(): String
-//
-//    external fun obama(input: String): String
-
     override fun onStop() {
         Log.d("OBAMA", "ON STOP")
         super.onStop()
