@@ -29,6 +29,10 @@ android {
     }
 
     buildTypes {
+        create("automaton") {
+            initWith(getByName("debug"))
+            matchingFallbacks.add("debug")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -44,6 +48,12 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+    }
+}
+
+androidComponents {
+    beforeVariants(selector().withBuildType("automaton")) { variant ->
+        variant.enableAndroidTest = true
     }
 }
 

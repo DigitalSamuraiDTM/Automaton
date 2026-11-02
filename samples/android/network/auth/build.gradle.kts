@@ -13,6 +13,20 @@ android {
         minSdk = 26
     }
 
+    buildTypes {
+        create("automaton") {
+            initWith(getByName("debug"))
+            matchingFallbacks.add("debug")
+        }
+    }
+
+    sourceSets {
+        getByName("debug").java.srcDir("src/standard/java")
+        getByName("debug").kotlin.srcDir("src/standard/java")
+        getByName("release").java.srcDir("src/standard/java")
+        getByName("release").kotlin.srcDir("src/standard/java")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_25
         targetCompatibility = JavaVersion.VERSION_25
