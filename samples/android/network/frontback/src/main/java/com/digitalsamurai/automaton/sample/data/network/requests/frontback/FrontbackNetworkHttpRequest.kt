@@ -9,7 +9,7 @@ abstract class FrontbackNetworkHttpRequest<REQUEST_DATA : Any, RESPONSE_DATA : A
     NetworkHttpRequest<REQUEST_DATA, RESPONSE_DATA>()
 
 abstract class FrontbackAuthorizedNetworkHttpRequest<REQUEST_DATA : Any, RESPONSE_DATA : Any>(
-    override val jwt: Jwt
+    token: String,
 ) : AuthorizedNetworkHttpRequest<REQUEST_DATA, RESPONSE_DATA>(
-    jwt = jwt
+    jwt = Jwt(token)
 )

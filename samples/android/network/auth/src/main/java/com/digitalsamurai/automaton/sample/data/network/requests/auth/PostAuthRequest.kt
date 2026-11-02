@@ -1,6 +1,5 @@
 package com.digitalsamurai.automaton.sample.data.network.requests.auth
 
-import com.digitalsamurai.opentelemetry.example.core.network.models.Jwt
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.reflect.KType

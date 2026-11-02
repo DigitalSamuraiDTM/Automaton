@@ -1,14 +1,13 @@
 package com.digitalsamurai.automaton.sample.data.network.requests.frontback
 
-import com.digitalsamurai.opentelemetry.example.core.network.models.Jwt
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 class GetNeighborConfigRequest(
-    override val jwt: Jwt
-) : FrontbackAuthorizedNetworkHttpRequest<Unit, GetNeighborConfigRequest.ResponseDto>(jwt) {
+    token: String,
+) : FrontbackAuthorizedNetworkHttpRequest<Unit, GetNeighborConfigRequest.ResponseDto>(token) {
 
     override val path: String = "/api/v1/diagram/neighbor/configuration"
     override val method: Method = Method.GET

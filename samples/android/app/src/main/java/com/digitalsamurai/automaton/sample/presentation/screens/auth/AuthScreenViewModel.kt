@@ -7,7 +7,6 @@ import com.digitalsamurai.automaton.sample.data.network.AuthNetwork
 import com.digitalsamurai.automaton.sample.data.network.repository.AuthRepository
 import com.digitalsamurai.automaton.sample.data.network.requests.auth.PostAuthRequest
 import com.digitalsamurai.automaton.sample.presentation.screens.main.MainScreen
-import com.digitalsamurai.opentelemetry.example.core.network.models.Jwt
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -57,7 +56,7 @@ internal class AuthScreenViewModel @AssistedInject constructor(
                     }
                     return@launch
                 }
-                authRepository.set(Jwt(result.token))
+                authRepository.set(result.token)
                 withContext(Dispatchers.Main) {
                     navigator.newRoot(MainScreen)
                 }

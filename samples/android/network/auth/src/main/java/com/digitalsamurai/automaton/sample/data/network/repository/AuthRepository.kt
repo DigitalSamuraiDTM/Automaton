@@ -1,9 +1,7 @@
 package com.digitalsamurai.automaton.sample.data.network.repository
 
 import android.content.Context
-import com.digitalsamurai.opentelemetry.example.core.network.models.Jwt
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -17,17 +15,27 @@ class AuthRepository @Inject constructor(
     private val preferences = applicationContext.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
     @Volatile
-    private var cache: Jwt? = null
+    private var cache: String? = null
 
-    suspend fun set(jwt: Jwt) {
-        preferences.edit().putString(PREFERENCE_KEY, jwt.value).also {
+    /**
+     * Сохраняет авторизационный токен.
+     *
+     * @param jwt значение токена.
+     */
+    suspend fun set(jwt: String) {
+        preferences.edit().putString(PREFERENCE_KEY, jwt).also {
             cache = jwt
         }.apply()
     }
 
-    suspend fun get(): Jwt?  {
+    /**
+     * Возвращает сохранённый авторизационный токен.
+     *
+     * @return токен или `null`, если авторизация ещё не выполнялась.
+     */
+    suspend fun get(): String? {
         return cache ?: preferences.getString(PREFERENCE_KEY, null)?.let {
-            cache = Jwt(it)
+            cache = it
             cache
         }
     }
