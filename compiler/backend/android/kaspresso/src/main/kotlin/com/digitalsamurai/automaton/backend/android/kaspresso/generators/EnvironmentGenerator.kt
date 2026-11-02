@@ -8,10 +8,17 @@ import java.io.File
 class EnvironmentGenerator(
     val appPackage: String,
     val outputDir: File,
-): AutoGenerator() {
+    val mockServerHost: String,
+    val mockServerPort: Int,
+) : AutoGenerator() {
 
     private val mockRuleClassGenerator = MockRuleClassGenerator(appPackage, outputDir)
-    private val mockWebServerGenerator = MockWebServerGenerator(appPackage, outputDir)
+    private val mockWebServerGenerator = MockWebServerGenerator(
+        appPackage = appPackage,
+        outputDir = outputDir,
+        host = mockServerHost,
+        port = mockServerPort,
+    )
 
     private val mockWebServerClassName = ClassName(appPackage, "AutomatonMockWebServer")
 

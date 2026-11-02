@@ -11,6 +11,8 @@ import com.digitalsamurai.automaton.sample.presentation.main.MainActivity
 import org.junit.Test
 import com.digitalsamurai.automaton.sample.AutomatonEnvironment
 import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
+import org.junit.BeforeClass
+import org.junit.AfterClass
 import com.digitalsamurai.automaton.sample.AutomatonMockRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
@@ -20,7 +22,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793229117496
+* Datetime: 1793575155485
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -32,7 +34,15 @@ class SuccessfulAuthorizationEntry : TestCase(
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     val mockWebServer = AutomatonEnvironment.mockWebServer
     
-
+    @BeforeClass
+    fun beforeClass() {
+        mockWebServer.start()
+    }
+    
+    @AfterClass
+    fun afterClass() {
+        mockWebServer.stop()
+    }
     @Test
     fun SuccessfulAuthorizationEntry() = before {
         mockWebServer.setGeneralRules(

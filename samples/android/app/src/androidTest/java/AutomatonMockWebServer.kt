@@ -2,6 +2,8 @@ package com.digitalsamurai.automaton.sample
 
 import com.digitalsamurai.automaton.sample.AutomatonMockRule
 import java.util.concurrent.atomic.AtomicReference
+import mockwebserver3.MockWebServer
+import java.net.InetAddress
 import mockwebserver3.Dispatcher
 import mockwebserver3.RecordedRequest
 import mockwebserver3.MockResponse
@@ -9,13 +11,25 @@ import mockwebserver3.MockResponse
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793229117494
+* Datetime: 1793575155483
 */
 public class AutomatonMockWebServer {
     
     @Volatile
     private var activeRules: AtomicReference<ActiveServerMocks> = AtomicReference(ActiveServerMocks(emptySet(), emptySet()))
     private val dispatcher = AutomatonDispatcher()
+    private val server = MockWebServer()
+    
+    fun start() {
+        server.start(
+            inetAddress = InetAddress.getByName("http://127.0.0.1"),
+            port = 8080,
+        )
+    }
+    
+    fun stop() {
+        server.close()
+    }
     
     fun setStepRules(newRules: Set<AutomatonMockRule>) {
         activeRules.updateAndGet { rules ->
@@ -27,7 +41,7 @@ public class AutomatonMockWebServer {
     }
     
     fun setGeneralRules(newRules: Set<AutomatonMockRule>) {
-        activeRules.updateAndGet { rules ->
+            activeRules.updateAndGet { rules ->
             ActiveServerMocks(
                 general = newRules,
                 step = rules.step,

@@ -8,13 +8,13 @@ internal fun SemanticModel.Request.toAutomatonMockRule(): List<String> {
         is SemanticModel.Request.Http -> {
             buildList {
                 add("AutomatonMockRule(")
-                add(tab() + "path = ${url.path.toKotlinStringLiteral()},")
+                add(tab() + "path = ${url.path.toStringLiteral()},")
                 add(tab() + "method = \"POST\",") // TODO get from semantic model
                 add(tab() + "code = 200,") // TODO get from semantic model
                 generateHeaders(headers).forEach { headersLine ->
                     add(tab() + headersLine)
                 }
-                add(tab() + "body = ${body.bodyString().toKotlinStringLiteral()},")
+                add(tab() + "body = ${body.bodyString().toStringLiteral()},")
                 add("),")
             }
         }
@@ -29,7 +29,7 @@ private fun generateHeaders(headers: Map<String, String>): List<String> {
     return buildList {
         add(tab() + "headers = mapOf(")
         headers.forEach { (name, value) ->
-            add(tab(2) + "${name.toKotlinStringLiteral()} to ${value.toKotlinStringLiteral()},")
+            add(tab(2) + "${name.toStringLiteral()} to ${value.toStringLiteral()},")
         }
         add(tab() + "),")
     }
@@ -46,7 +46,7 @@ private fun SemanticModel.Request.Http.Body.bodyString(): String {
 /**
  * Escapes string to valid kotlin string literal (with quotes)
  */
-private fun String.toKotlinStringLiteral(): String {
+public fun String.toStringLiteral(): String {
     val escaped = this
         .replace("\\", "\\\\")
         .replace("\"", "\\\"")

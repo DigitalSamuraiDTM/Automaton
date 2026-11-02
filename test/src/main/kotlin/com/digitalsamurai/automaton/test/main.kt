@@ -36,6 +36,8 @@ fun main(): Unit = runBlocking {
                     name = "MainActivity",
                 ),
                 composeApp = true,
+                mockWebserverHost = "http://127.0.0.1",
+                mockWebServerPort = 8080,
             )
         )
         logger(TerminalLogger(enabledLevels = AutomatonLogger.LogLevel.entries.toSet()))

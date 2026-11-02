@@ -15,11 +15,15 @@ class AndroidKaspressoBackend(
     private val appPackage: String,
     private val activity: AndroidAppActivity,
     private val composeApp: Boolean = true,
+    mockWebserverHost: String,
+    mockWebServerPort: Int,
 ) : AutoGenerator(), AutomatonBackend {
 
     private val environmentGenerator = EnvironmentGenerator(
         appPackage = appPackage,
         outputDir = outputDirectory,
+        mockServerHost = mockWebserverHost,
+        mockServerPort = mockWebServerPort,
     )
 
     init {
@@ -74,12 +78,32 @@ class AndroidKaspressoBackend(
         bodyOutput.add("@get:Rule")
         bodyOutput.add("val composeTestRule = createAndroidComposeRule<${activity.name}>()")
         // add http web mock server when auto test needed
-        if (model.context.requests.isNotEmpty()) {
+        if (model.isMockWebServerNeeded()) {
             imports["automatonEnvironment"] = "${appPackage}.AutomatonEnvironment"
             imports["mockWebServer"] = "${appPackage}.AutomatonMockWebServer"
             bodyOutput.add("val mockWebServer = AutomatonEnvironment.mockWebServer")
         }
-        bodyOutput.add("\n")
+        bodyOutput.enter()
+
+        // Before class fun
+        imports["BeforeClass"] = "org.junit.BeforeClass"
+        bodyOutput.add("@BeforeClass")
+        bodyOutput.add("fun beforeClass() {")
+        generateBeforeClassFunBody(model).forEach { bodyLine ->
+            bodyOutput.add(tab() + bodyLine)
+        }
+        bodyOutput.add("}")
+        bodyOutput.enter()
+
+        // after class fun
+        imports["AfterClass"] = "org.junit.AfterClass"
+        bodyOutput.add("@AfterClass")
+        bodyOutput.add("fun afterClass() {")
+        generateAfterClassFunBody(model).forEach { bodyLine ->
+            bodyOutput.add(tab() + bodyLine)
+        }
+        bodyOutput.add("}")
+
         bodyOutput.add("@Test")
         // test fun
         bodyOutput.add("fun ${model.test.metadata.testName.camelCase()}() = before {")
@@ -97,6 +121,28 @@ class AndroidKaspressoBackend(
         }
         bodyOutput.add("}")
         return bodyOutput
+    }
+
+
+    /**
+     * generate class environment
+     */
+    private fun generateBeforeClassFunBody(semanticModel: SemanticModel): List<String> {
+        val output = mutableListOf<String>()
+        if (semanticModel.isMockWebServerNeeded()) {
+            output.add("mockWebServer.start()")
+        }
+
+        return output.ifEmpty { listOf("// no operations") }
+    }
+
+    private fun generateAfterClassFunBody(semanticModel: SemanticModel): List<String> {
+        val output = mutableListOf<String>()
+        if (semanticModel.isMockWebServerNeeded()) {
+            output.add("mockWebServer.stop()")
+        }
+
+        return output.ifEmpty { listOf("// no operations") }
     }
 
     /**
