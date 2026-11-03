@@ -13,6 +13,7 @@ import com.digitalsamurai.automaton.sample.AutomatonEnvironment
 import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
 import org.junit.BeforeClass
 import org.junit.AfterClass
+import android.Manifest
 import com.digitalsamurai.automaton.sample.AutomatonMockRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
@@ -22,7 +23,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793717946491
+* Datetime: 1793723105730
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -51,6 +52,18 @@ class SuccessfulAuthorizationEntry : TestCase(
     
     @Test
     fun SuccessfulAuthorizationEntry() = before {
+        AutomatonEnvironment.permissionManager.applyPermission(
+            device = device,
+            adbServer = adbServer,
+            permission = Manifest.permission.CAMERA,
+            isGranted = true,
+        )
+        AutomatonEnvironment.permissionManager.applyPermission(
+            device = device,
+            adbServer = adbServer,
+            permission = Manifest.permission.RECORD_AUDIO,
+            isGranted = true,
+        )
         mockWebServer.setGeneralRules(
             setOf(
                 AutomatonMockRule(

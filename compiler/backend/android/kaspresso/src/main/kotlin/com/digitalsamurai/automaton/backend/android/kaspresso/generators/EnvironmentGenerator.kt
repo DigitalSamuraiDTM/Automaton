@@ -19,18 +19,25 @@ class EnvironmentGenerator(
         host = mockServerHost,
         port = mockServerPort,
     )
+    private val permissionManagerGenerator = AutomatonPermissionManagerGenerator(appPackage, outputDir)
 
     private val mockWebServerClassName = ClassName(appPackage, "AutomatonMockWebServer")
+    private val permissionManagerClassName = ClassName(appPackage, "AutomatonPermissionManager")
 
     private val mockWebServerProperty = PropertySpec.builder("mockWebServer", mockWebServerClassName)
         .addModifiers(KModifier.PUBLIC)
         .initializer("%T()", mockWebServerClassName)
+        .build()
+    private val permissionManagerProperty = PropertySpec.builder("permissionManager", permissionManagerClassName)
+        .addModifiers(KModifier.PUBLIC)
+        .initializer("%T()", permissionManagerClassName)
         .build()
 
     override fun generate(model: SemanticModel) {
         generateEnvironmentHolderClass()
         mockRuleClassGenerator.generate(model)
         mockWebServerGenerator.generate(model)
+        permissionManagerGenerator.generate(model)
     }
 
     private fun generateEnvironmentHolderClass() {
@@ -38,6 +45,7 @@ class EnvironmentGenerator(
             .addModifiers(KModifier.PUBLIC)
             .addKdoc(autoGenerateMessageForKotlinPoet())
             .addProperty(mockWebServerProperty)
+            .addProperty(permissionManagerProperty)
             .build()
 
         FileSpec.builder(appPackage, "AutomatonEnvironment")

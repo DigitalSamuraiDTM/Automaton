@@ -8,7 +8,6 @@ import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import java.io.File
 
-// TODO implement permission resolver
 class AndroidKaspressoBackend(
     private val outputDirectory: File,
     private val appPackage: String,
@@ -31,9 +30,7 @@ class AndroidKaspressoBackend(
     }
 
     override fun generate(model: SemanticModel) {
-        // check environment needed?
-        if (model.isMockWebServerNeeded()) {
-            // generate mock web server environment
+        if (model.isMockWebServerNeeded() || model.isPermissionSetupNeeded()) {
             environmentGenerator.generate(model)
         }
 
@@ -153,8 +150,9 @@ class AndroidKaspressoBackend(
      */
     private fun generateBeforeTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
         val output = mutableListOf<String>()
+        output.addAll(generatePermissionsSetup(imports, model))
         output.addAll(generateGeneralRequestsSetup(imports, model))
-        // new setup sections (theme, permissions, etc.) must be added here
+        // new setup sections (theme, etc.) must be added here
         return output.ifEmpty { listOf("// no before") }
     }
 
@@ -165,8 +163,37 @@ class AndroidKaspressoBackend(
         val output = mutableListOf<String>()
         output.addAll(generateGeneralRequestsReset(model))
         output.addAll(generateStepRequestsReset(model))
-        // new reset sections (theme, permissions, etc.) must be added here
+        // new reset sections (theme, etc.) must be added here
         return output.ifEmpty { listOf("// no after") }
+    }
+
+    /**
+     * Генерирует применение разрешений в before-секции конкретного теста.
+     *
+     * @param imports коллекция импортов генерируемого теста.
+     * @param model семантическая модель с разрешениями теста.
+     * @return строки обращений к менеджеру разрешений Automaton.
+     */
+    private fun generatePermissionsSetup(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
+        val permissions = model.context.permissions
+        if (permissions.isEmpty()) return emptyList()
+
+        imports["manifest"] = "android.Manifest"
+        imports["automatonEnvironment"] = "${appPackage}.AutomatonEnvironment"
+
+        val output = mutableListOf<String>()
+        permissions.forEach { permission ->
+            val androidPermission = when (permission) {
+                is SemanticModel.Permission.Camera -> "Manifest.permission.CAMERA"
+                is SemanticModel.Permission.Microphone -> "Manifest.permission.RECORD_AUDIO"
+            }
+            output.add("AutomatonEnvironment.permissionManager.applyPermission(")
+            output.add(tab() + "testContext = this,")
+            output.add(tab() + "permission = $androidPermission,")
+            output.add(tab() + "isGranted = ${permission.isGranted},")
+            output.add(")")
+        }
+        return output
     }
 
     private fun generateGeneralRequestsSetup(imports: MutableMap<String, String>, model: SemanticModel): List<String> {

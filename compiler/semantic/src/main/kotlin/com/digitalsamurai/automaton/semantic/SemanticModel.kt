@@ -18,6 +18,10 @@ data class SemanticModel(
         return context.requests.isNotEmpty()
     }
 
+    fun isPermissionSetupNeeded(): Boolean {
+        return context.permissions.isNotEmpty()
+    }
+
     data class Test(
         val metadata: Metadata,
         val steps: List<Step>,
