@@ -3,6 +3,10 @@ package com.digitalsamurai.automaton.backend.android.kaspresso
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import java.io.OutputStream
 import java.io.OutputStreamWriter
+import java.text.DateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 abstract class AutoGenerator {
 
@@ -13,7 +17,7 @@ abstract class AutoGenerator {
         output.appendLine("/**")
         output.appendLine("* WARN! AUTO-GENERATED")
         output.appendLine("* Generate with love by Automaton")
-        output.appendLine("* Datetime: ${System.currentTimeMillis()}")
+        output.appendLine("* Datetime: ${DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss").format(LocalDateTime.now())}")
         output.appendLine("*/")
         return output.toString()
     }
@@ -22,7 +26,7 @@ abstract class AutoGenerator {
         val output = StringBuilder()
         output.appendLine("WARN! AUTO-GENERATED")
         output.appendLine("Generate with love by Automaton")
-        output.appendLine("Datetime: ${System.currentTimeMillis()}")
+        output.appendLine("Datetime: ${DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss").format(LocalDateTime.now())}")
         return output.toString()
     }
 

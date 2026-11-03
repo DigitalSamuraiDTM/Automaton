@@ -3,7 +3,7 @@ package com.digitalsamurai.automaton.sample
 /**
  * WARN! AUTO-GENERATED
  * Generate with love by Automaton
- * Datetime: 1793742286001
+ * Datetime: 04.11.2026 02:38:16
  */
 public object AutomatonEnvironment {
   public val mockWebServer: AutomatonMockWebServer = AutomatonMockWebServer()

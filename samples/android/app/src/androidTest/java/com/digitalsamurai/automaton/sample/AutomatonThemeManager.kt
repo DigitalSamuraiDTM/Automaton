@@ -6,7 +6,7 @@ import kotlin.Int
 /**
  * WARN! AUTO-GENERATED
  * Generate with love by Automaton
- * Datetime: 1793742286019
+ * Datetime: 04.11.2026 02:38:16
  */
 public class AutomatonThemeManager {
   private var originalNightMode: Int? = null
