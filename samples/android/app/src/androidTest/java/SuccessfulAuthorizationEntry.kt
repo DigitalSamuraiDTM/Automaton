@@ -14,6 +14,7 @@ import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
 import org.junit.BeforeClass
 import org.junit.AfterClass
 import android.Manifest
+import com.digitalsamurai.automaton.sample.AutomatonTheme
 import com.digitalsamurai.automaton.sample.AutomatonMockRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
@@ -23,7 +24,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793723105730
+* Datetime: 1793742286023
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -53,16 +54,17 @@ class SuccessfulAuthorizationEntry : TestCase(
     @Test
     fun SuccessfulAuthorizationEntry() = before {
         AutomatonEnvironment.permissionManager.applyPermission(
-            device = device,
-            adbServer = adbServer,
+            testContext = this,
             permission = Manifest.permission.CAMERA,
             isGranted = true,
         )
         AutomatonEnvironment.permissionManager.applyPermission(
-            device = device,
-            adbServer = adbServer,
+            testContext = this,
             permission = Manifest.permission.RECORD_AUDIO,
             isGranted = true,
+        )
+        AutomatonEnvironment.themeManager.applyTheme(
+            theme = AutomatonTheme.LIGHT,
         )
         mockWebServer.setGeneralRules(
             setOf(
@@ -79,6 +81,7 @@ class SuccessfulAuthorizationEntry : TestCase(
         )
     }.after {
         mockWebServer.setGeneralRules(emptySet())
+        AutomatonEnvironment.themeManager.restoreTheme()
     }.run {
         step("Открываем экран авторизации") {
             flakySafely(timeoutMs = 5000) {

@@ -22,6 +22,10 @@ data class SemanticModel(
         return context.permissions.isNotEmpty()
     }
 
+    fun isThemeSetupNeeded(): Boolean {
+        return context.theme != null
+    }
+
     data class Test(
         val metadata: Metadata,
         val steps: List<Step>,

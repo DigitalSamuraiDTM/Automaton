@@ -30,7 +30,7 @@ class AndroidKaspressoBackend(
     }
 
     override fun generate(model: SemanticModel) {
-        if (model.isMockWebServerNeeded() || model.isPermissionSetupNeeded()) {
+        if (model.isMockWebServerNeeded() || model.isPermissionSetupNeeded() || model.isThemeSetupNeeded()) {
             environmentGenerator.generate(model)
         }
 
@@ -151,8 +151,9 @@ class AndroidKaspressoBackend(
     private fun generateBeforeTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
         val output = mutableListOf<String>()
         output.addAll(generatePermissionsSetup(imports, model))
+        output.addAll(generateThemeSetup(imports, model))
         output.addAll(generateGeneralRequestsSetup(imports, model))
-        // new setup sections (theme, etc.) must be added here
+        // new setup sections must be added here
         return output.ifEmpty { listOf("// no before") }
     }
 
@@ -163,7 +164,9 @@ class AndroidKaspressoBackend(
         val output = mutableListOf<String>()
         output.addAll(generateGeneralRequestsReset(model))
         output.addAll(generateStepRequestsReset(model))
-        // new reset sections (theme, etc.) must be added here
+        output.addAll(generateThemeReset(model))
+        // TODO: после пропуска after-секции night mode приложения может сохраниться для следующего теста в том же процессе.
+        // new reset sections must be added here
         return output.ifEmpty { listOf("// no after") }
     }
 
@@ -194,6 +197,41 @@ class AndroidKaspressoBackend(
             output.add(")")
         }
         return output
+    }
+
+    /**
+     * Генерирует сохранение исходного night mode и применение темы приложения в before-секции конкретного теста.
+     *
+     * @param imports коллекция импортов генерируемого теста.
+     * @param model семантическая модель с темой теста.
+     * @return строки обращения к менеджеру тем Automaton.
+     */
+    private fun generateThemeSetup(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
+        val theme = model.context.theme ?: return emptyList()
+        imports["automatonEnvironment"] = "${appPackage}.AutomatonEnvironment"
+        imports["automatonTheme"] = "${appPackage}.AutomatonTheme"
+
+        val automatonTheme = when (theme) {
+            SemanticModel.Context.Theme.LIGHT -> "LIGHT"
+            SemanticModel.Context.Theme.DARK -> "DARK"
+            SemanticModel.Context.Theme.SYSTEM -> "SYSTEM"
+        }
+        return listOf(
+            "AutomatonEnvironment.themeManager.applyTheme(",
+            tab() + "theme = AutomatonTheme.$automatonTheme,",
+            ")",
+        )
+    }
+
+    /**
+     * Генерирует восстановление исходного night mode приложения и очистку сохранённого значения в after-секции.
+     *
+     * @param model семантическая модель с темой теста.
+     * @return строку обращения к менеджеру тем Automaton или пустой список, если тема не задана.
+     */
+    private fun generateThemeReset(model: SemanticModel): List<String> {
+        if (model.context.theme == null) return emptyList()
+        return listOf("AutomatonEnvironment.themeManager.restoreTheme()")
     }
 
     private fun generateGeneralRequestsSetup(imports: MutableMap<String, String>, model: SemanticModel): List<String> {

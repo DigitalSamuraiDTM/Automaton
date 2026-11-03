@@ -3,53 +3,50 @@ package com.digitalsamurai.automaton.sample
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
-import com.kaspersky.kaspresso.device.Device
-import com.kaspersky.kaspresso.device.server.AdbServer
+import com.kaspersky.kaspresso.testcases.core.testcontext.BaseTestContext
 import kotlin.Boolean
 import kotlin.String
 
 /**
  * WARN! AUTO-GENERATED
  * Generate with love by Automaton
- * Datetime: 1793723105726
+ * Datetime: 1793742286016
  */
 public class AutomatonPermissionManager {
   /**
    * Применяет требуемое состояние разрешения, если оно отличается от текущего.
    *
-   * @param device устройство и контекст тестируемого приложения.
-   * @param adbServer ADB server для устройств с API 26–27.
+   * @param testContext контекст before-секции, предоставляющий device и adbServer.
    * @param permission системное имя разрешения.
    * @param isGranted требуемое состояние разрешения.
    * @return Unit после применения состояния или без действия, если состояние уже совпадает.
    */
   public fun applyPermission(
-    device: Device,
-    adbServer: AdbServer,
+    testContext: BaseTestContext,
     permission: String,
     isGranted: Boolean,
   ) {
-    if (isGranted == isPermissionGranted(device, permission)) {
+    if (isGranted == isPermissionGranted(testContext, permission)) {
       return
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
       if (isGranted) {
-        InstrumentationRegistry.getInstrumentation().uiAutomation.grantRuntimePermission(device.targetContext.packageName, permission)
+        InstrumentationRegistry.getInstrumentation().uiAutomation.grantRuntimePermission(testContext.device.targetContext.packageName, permission)
       } else {
-        InstrumentationRegistry.getInstrumentation().uiAutomation.revokeRuntimePermission(device.targetContext.packageName, permission)
+        InstrumentationRegistry.getInstrumentation().uiAutomation.revokeRuntimePermission(testContext.device.targetContext.packageName, permission)
       }
     } else {
       val operation = if (isGranted) "grant" else "revoke"
-      adbServer.performShell("pm " + operation + " " + device.targetContext.packageName + " " + permission)
+      testContext.adbServer.performShell("pm " + operation + " " + testContext.device.targetContext.packageName + " " + permission)
     }
   }
 
   /**
    * Проверяет текущее состояние разрешения приложения.
    *
-   * @param device устройство и контекст тестируемого приложения.
+   * @param testContext контекст before-секции с доступом к тестируемому приложению.
    * @param permission системное имя разрешения.
    * @return true, если разрешение уже выдано приложению.
    */
-  private fun isPermissionGranted(device: Device, permission: String): Boolean = device.targetContext.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
+  private fun isPermissionGranted(testContext: BaseTestContext, permission: String): Boolean = testContext.device.targetContext.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
 }
