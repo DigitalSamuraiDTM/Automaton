@@ -99,8 +99,12 @@ sealed class Ast {
             override val symbol = com.digitalsamurai.automaton.grammar.Duration
         }
 
-        data class AstElementProperty(override val value: String) : Leaf<String>() {
+        data class AstElementProperty(override val value: Type) : Leaf<AstElementProperty.Type>() {
             override val symbol = ElementProperty
+
+            enum class Type(val raw: String) {
+                VISIBLE("visible"),
+            }
         }
 
         data class AstPropertyValue(override val value: String) : Leaf<String>() {

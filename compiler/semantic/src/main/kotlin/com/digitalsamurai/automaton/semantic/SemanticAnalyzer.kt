@@ -109,7 +109,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
             Condition -> {
                 var element: SemanticModel.Element? = null
                 var propertyValue: String? = null
-                var propertyName: String? = null
+                var propertyName: Ast.Leaf.AstElementProperty.Type? = null
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         // resolve element
@@ -120,7 +120,10 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is SemanticValue.PropertyName -> propertyName = result.value
                     }
                 }
-                return SemanticValue.Condition(element!!, propertyName!!, propertyValue!!)
+                val property = when (propertyName!!) {
+                    Ast.Leaf.AstElementProperty.Type.VISIBLE -> SemanticModel.Element.Property.Visible(propertyValue!!.toBoolean())
+                }
+                return Condition(element!!, property)
             }
             Assert -> {
                 var condition: SemanticValue.Condition? = null
@@ -132,7 +135,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 }
                 return SemanticModel.Test.Action.Assert(
                     element = condition!!.element,
-                    property = SemanticModel.Element.Property.Visible(condition.propertyValue.toBoolean())
+                    property = condition.property
                 )
             }
             Input -> {
@@ -213,7 +216,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     when (val result = child.buildTestModel(context)) {
                         is SemanticValue.Condition -> {
                             element = result.element
-                            property = SemanticModel.Element.Property.Visible(result.propertyValue.toBoolean())
+                            property = result.property
                         }
                         is SemanticValue.Timeout -> {
                             timeout = result.value
@@ -456,11 +459,11 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class ActionsList(val value: List<SemanticModel.Test.Action>) : SemanticValue
         data class Duration(val value: kotlin.time.Duration) : SemanticValue
         data class Timeout(val value: kotlin.time.Duration) : SemanticValue
-        data class PropertyValue(val value: String) : SemanticValue // TODO мигрировать на конкретные проперти, а не абстрактные
-        data class PropertyName(val value: String) : SemanticValue // TODO мигрировать на конкретные проперти, а не абстрактные
+        data class PropertyValue(val value: String) : SemanticValue
+        data class PropertyName(val value: Ast.Leaf.AstElementProperty.Type) : SemanticValue
         data class InputData(val value: String) : SemanticValue
         data class StepDescription(val value: String) : SemanticValue
-        data class Condition(val element: SemanticModel.Element, val propertyName: String, val propertyValue: String) : SemanticValue
+        data class Condition(val element: SemanticModel.Element, val property: SemanticModel.Element.Property) : SemanticValue
         data class Requests(val value: List<SemanticModel.Request>): SemanticValue
         data class RequestUrl(val value: URL): SemanticValue
         data class RequestName(val value: String) : SemanticValue

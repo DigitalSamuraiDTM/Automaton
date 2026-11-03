@@ -14,7 +14,9 @@ class AstLeafParser {
             Duration -> AstDuration(token.value as kotlin.time.Duration)
             Element.Layout -> AstElementLayoutLeaf(token.value as String)
             Element.Name -> AstElementNameLeaf(token.value as String)
-            ElementProperty -> AstElementProperty(token.value as String)
+            ElementProperty -> AstElementProperty(
+                AstElementProperty.Type.entries.first { it.raw == token.value as String }
+            )
             Id -> AstId(token.value as String)
             InputData -> AstInputData(token.value as String)
             Microphone -> AstMicrophoneLeaf(token.value as Boolean)
