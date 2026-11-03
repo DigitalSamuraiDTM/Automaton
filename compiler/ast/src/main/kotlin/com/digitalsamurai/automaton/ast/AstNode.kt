@@ -51,6 +51,14 @@ sealed class Ast {
             override val symbol: GrammarSymbol<*> = Request.Url
         }
 
+        data class AstHttpRequestType(override val value: Type) : Leaf<AstHttpRequestType.Type>() {
+            override val symbol: GrammarSymbol<*> = HttpRequest.RequestType
+
+            enum class Type {
+                GET, POST, PUT, DELETE
+            }
+        }
+
         data class AstHttpRequestJsonBody(override val value: AstHttpRequestJsonBody.Type): Leaf<AstHttpRequestJsonBody.Type>() {
             override val symbol: GrammarSymbol<*> = HttpRequest.Body.Json
 

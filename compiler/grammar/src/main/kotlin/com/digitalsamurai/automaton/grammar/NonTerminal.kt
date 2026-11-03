@@ -85,8 +85,34 @@ data object HttpRequest : NonTerminal {
     override val isService: Boolean = false
     override val representation: String = "http"
     override val productions: List<Production> = listOf(
-        production(Request.Name, Request.Url, Headers, Body)
+        production(Request.Name, Request.Url, RequestType, Headers, Body)
     )
+
+    data object RequestType : Terminal<RequestType.Type> {
+        override val representation: String = "requestType"
+
+        /**
+         * Преобразует YAML-представление HTTP-метода в типизированное значение.
+         *
+         * @param sourceLocation расположение исходного значения.
+         * @param value строковое представление HTTP-метода.
+         * @return токен с enum-значением HTTP-метода.
+         */
+        override fun asToken(sourceLocation: String, value: Any): Token<Type> {
+            return Token(
+                symbol = RequestType,
+                value = Type.entries.first { it.raw == value },
+                sourceLocation = sourceLocation,
+            )
+        }
+
+        enum class Type(val raw: String) {
+            GET("get"),
+            POST("post"),
+            PUT("put"),
+            DELETE("delete"),
+        }
+    }
 
     data object Headers : NonTerminal {
         override val isService: Boolean = false

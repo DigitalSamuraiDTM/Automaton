@@ -9,7 +9,7 @@ internal fun SemanticModel.Request.toAutomatonMockRule(): List<String> {
             buildList {
                 add("AutomatonMockRule(")
                 add(tab() + "path = ${url.path.toStringLiteral()},")
-                add(tab() + "method = \"POST\",") // TODO get from semantic model
+                add(tab() + "method = ${requestType.name.toStringLiteral()},")
                 add(tab() + "code = 200,") // TODO get from semantic model
                 generateHeaders(headers).forEach { headersLine ->
                     add(tab() + headersLine)

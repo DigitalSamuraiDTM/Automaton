@@ -26,6 +26,12 @@ class AstLeafParser {
             Step.Description -> AstStepDescription(token.value as String)
             HttpRequest.Body.Json -> AstHttpRequestJsonBody((token.value as HttpRequest.Body.Json.Type).toType())
             HttpRequest.Body.Plain -> AstHttpRequestPlainBody(token.value as String)
+            HttpRequest.RequestType -> AstHttpRequestType(when (token.value as HttpRequest.RequestType.Type) {
+                HttpRequest.RequestType.Type.GET -> AstHttpRequestType.Type.GET
+                HttpRequest.RequestType.Type.POST -> AstHttpRequestType.Type.POST
+                HttpRequest.RequestType.Type.PUT -> AstHttpRequestType.Type.PUT
+                HttpRequest.RequestType.Type.DELETE -> AstHttpRequestType.Type.DELETE
+            })
             Request.Url -> AstHttpRequestUrl(token.value as URL)
             Request.Name -> AstHttpRequestName(token.value as String)
         }

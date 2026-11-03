@@ -354,12 +354,14 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
             HttpRequest -> {
                 var url: URL? = null
                 var name: String? = null
+                var requestType: SemanticModel.Request.Http.RequestType? = null
                 var body: SemanticModel.Request.Http.Body? = null
                 var headers: Map<String, String> = emptyMap()
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
                         is SemanticValue.RequestName -> name = result.value
                         is SemanticValue.RequestUrl -> url = result.value
+                        is SemanticValue.HttpRequestType -> requestType = result.value
                         is SemanticModel.Request.Http.Body -> body = result
                         is SemanticValue.ResponseHeaders -> headers = result.value
                     }
@@ -367,6 +369,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 return SemanticModel.Request.Http(
                     url = url!!,
                     name = name!!,
+                    requestType = requestType!!,
                     headers = requestHeaderRule.resolve(body!!, headers),
                     body = body!!
                 )
@@ -424,6 +427,12 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 })
             }
             is Ast.Leaf.AstHttpRequestName -> RequestName(value)
+            is Ast.Leaf.AstHttpRequestType -> HttpRequestType(when (value) {
+                Ast.Leaf.AstHttpRequestType.Type.GET -> SemanticModel.Request.Http.RequestType.GET
+                Ast.Leaf.AstHttpRequestType.Type.POST -> SemanticModel.Request.Http.RequestType.POST
+                Ast.Leaf.AstHttpRequestType.Type.PUT -> SemanticModel.Request.Http.RequestType.PUT
+                Ast.Leaf.AstHttpRequestType.Type.DELETE -> SemanticModel.Request.Http.RequestType.DELETE
+            })
             is Ast.Leaf.AstHttpRequestPlainBody -> HttpRequestPlainBody(value)
             is Ast.Leaf.AstHttpRequestUrl -> RequestUrl(value)
         }
@@ -455,6 +464,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         data class Requests(val value: List<SemanticModel.Request>): SemanticValue
         data class RequestUrl(val value: URL): SemanticValue
         data class RequestName(val value: String) : SemanticValue
+        data class HttpRequestType(val value: SemanticModel.Request.Http.RequestType) : SemanticValue
         data class HttpRequestPlainBody(val value: String) : SemanticValue
         data class HttpRequestJsonBody(val value: SemanticModel.Request.Http.Body) : SemanticValue
         data class StepRequests(val value: List<SemanticModel.Request>) : SemanticValue

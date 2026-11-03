@@ -32,6 +32,7 @@ compilationUnit:
       - http:
           requestName: authorization200
           url: https://10.0.2.2:8081/auth
+          requestType: post
           body:
             json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/authorization200.json"
     theme:

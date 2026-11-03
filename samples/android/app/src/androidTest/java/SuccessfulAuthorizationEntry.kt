@@ -22,7 +22,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 1793657471219
+* Datetime: 1793705437887
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(

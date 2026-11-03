@@ -104,9 +104,14 @@ data class SemanticModel(
         data class Http(
             override val url: URL,
             override val name: String,
+            val requestType: RequestType,
             val headers: Map<String, String>,
             val body: Body
         ): Request {
+            enum class RequestType {
+                GET, POST, PUT, DELETE
+            }
+
             sealed interface Body {
                 data class Plain(val value: String): Body
                 data class JsonObject(val value: JSONObject): Body
