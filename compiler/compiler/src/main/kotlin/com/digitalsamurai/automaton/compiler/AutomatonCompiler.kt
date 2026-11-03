@@ -1,5 +1,6 @@
 package com.digitalsamurai.automaton.compiler
 
+import com.digitalsamurai.automaton.api.AutomatonException
 import com.digitalsamurai.automaton.ast.Ast
 import com.digitalsamurai.automaton.ast.AstData
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
@@ -31,15 +32,26 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
     }
 
     private fun listenFrontend() {
-        automatonScope.launch() {
+        automatonScope.launch {
             frontend
                 .tokensFlow
                 .collect { request ->
-                    logger?.info("Begin process Automaton request: ${request.requestId}")
-                    val astData = request.makeGrammarAnalyze()
-                    val semanticModel = astData.makeSemanticAnalyze()
-                    val backendOutputs = semanticModel.buildBackendOutputs()
-                    backendOutputs.emitResults()
+                    try {
+                        logger?.info("Begin process Automaton request: ${request.requestId}")
+                        val astData = request.makeGrammarAnalyze()
+                        val semanticModel = astData.makeSemanticAnalyze()
+                        val backendOutputs = semanticModel.buildBackendOutputs()
+                        backendOutputs.emitResults()
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (e: AutomatonException) {
+                        logger?.error(e)
+                        emitFailure(request.requestId, e)
+                    } catch (e: Exception) {
+                        val exception = AutomatonCompilerException(e)
+                        logger?.error(exception)
+                        emitFailure(request.requestId, exception)
+                    }
                 }
 
         }
@@ -66,14 +78,55 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
         return backends.map { backend -> backend.buildOutput(this) }
     }
 
+    /**
+     * Публикует результаты всех backends.
+     *
+     * @return Unit после публикации всех результатов или при отсутствии настроенного result flow.
+     */
     private suspend fun List<BackendOutput>.emitResults() {
-        resultFlow?.let { resultFlow ->
-            this.forEach { result ->
-                resultFlow.emit(AutomatonResult.Success(
+        forEach { result ->
+            emitResult(
+                AutomatonResult.Success(
                     requestId = result.requestId,
-                    backendMetadata = result.metaData
-                ))
-            }
+                    backendMetadata = result.metaData,
+                )
+            )
         }
+    }
+
+    /**
+     * Публикует ошибку обработки Automaton-запроса.
+     *
+     * @param requestId идентификатор запроса.
+     * @param exception ошибка компиляции или выполнения backend.
+     * @return Unit после публикации ошибки или при отсутствии настроенного result flow.
+     */
+    private suspend fun emitFailure(requestId: String, exception: AutomatonException) {
+        emitResult(
+            AutomatonResult.Failure(
+                requestId = requestId,
+                exception = exception,
+            )
+        )
+    }
+
+    /**
+     * Публикует результат и логирует его отправку.
+     *
+     * @param result результат обработки Automaton-запроса.
+     * @return Unit после публикации результата или при отсутствии настроенного result flow.
+     */
+    private suspend fun emitResult(result: AutomatonResult) {
+        val resultDescription = when (result) {
+            is AutomatonResult.Failure -> "failure: ${result.exception.message}"
+            is AutomatonResult.Success -> "success: ${result.backendMetadata}"
+        }
+        val flow = resultFlow
+        if (flow == null) {
+            logger?.warning("Result was not emitted because result flow is not configured. Request: ${result.requestId}; result: $resultDescription")
+            return
+        }
+        flow.emit(result)
+        logger?.info("Emitted result for Automaton request ${result.requestId}: $resultDescription")
     }
 }

@@ -7,7 +7,6 @@ import com.digitalsamurai.automaton.backend.api.camelCase
 import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import java.io.File
-import java.lang.Exception
 
 // TODO implement permission resolver
 class AndroidKaspressoBackend(
@@ -59,12 +58,9 @@ class AndroidKaspressoBackend(
     }
 
     override suspend fun buildOutput(model: SemanticModel): BackendOutput {
-        try {
-            generate(model)
-            return BackendOutput(model.requestId, "TODO")
-        } catch (e: Exception) {
-            return BackendOutput(model.requestId, e.toString())
-        }
+        generate(model)
+        val outputFile = File(outputDirectory, model.test.metadata.testName.camelCase() + ".kt")
+        return BackendOutput(model.requestId, outputFile.path)
     }
 
     private fun generateClassBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
