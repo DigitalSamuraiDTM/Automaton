@@ -20,10 +20,11 @@ import com.digitalsamurai.automaton.grammar.Tap
 import com.digitalsamurai.automaton.grammar.Test
 import com.digitalsamurai.automaton.grammar.Theme
 import com.digitalsamurai.automaton.grammar.Wait
-import com.digitalsamurai.automaton.grammar.toBoolean
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.semantic.SemanticAnalyzer.SemanticValue.*
 import com.digitalsamurai.automaton.semantic.SemanticModel.Permission.*
+import com.digitalsamurai.automaton.semantic.rules.SemanticRequestHeaderRule
+import com.digitalsamurai.automaton.semantic.rules.SemanticRequestIntersectionRule
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
@@ -31,30 +32,36 @@ import java.net.URL
 public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
     private val requestHeaderRule = SemanticRequestHeaderRule()
+    private val requestIntersectionRule = SemanticRequestIntersectionRule()
 
 
     suspend fun analyzeFull(data: AstData): SemanticModel {
         val astNode = data.ast
-        if (astNode is Ast.Leaf<*>) {
-            error("full analyze does not support leaf as root node")
+        if (astNode !is Ast.Node) {
+            throw AutomatonSemanticException("Full analyze requires a root node, but got a leaf")
         }
         var context: SemanticModel.Context? = null
         var test: SemanticModel.Test? = null
-         (astNode as Ast.Node).childs.forEach { child ->
-             // TODO сейчас работает потому что контекст стоит выше теста
-             when (child.symbol) {
-                 is Context -> {
-                     context = child.buildContextModel() as SemanticModel.Context
-                 }
-                 is Test -> {
-                    test = child.buildTestModel(context!!) as SemanticModel.Test
-                 }
-             }
-         }
+        astNode.childs.forEach { child ->
+            // TODO сейчас работает потому что контекст стоит выше теста
+            when (child.symbol) {
+                is Context -> {
+                    val result = child.buildContextModel()
+                    context = result as? SemanticModel.Context
+                        ?: throw AutomatonSemanticException("Context node produced unexpected value: $result")
+                }
+                is Test -> {
+                    val currentContext = requireSemanticValue(context, "Context before test analysis")
+                    val result = child.buildTestModel(currentContext)
+                    test = result as? SemanticModel.Test
+                        ?: throw AutomatonSemanticException("Test node produced unexpected value: $result")
+                }
+            }
+        }
         return SemanticModel(
             requestId = data.requestId,
-            context = context!!,
-            test = test!!
+            context = requireSemanticValue(context, "Compilation unit context"),
+            test = requireSemanticValue(test, "Compilation unit test")
         )
     }
 
@@ -75,7 +82,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
     }
     
     private fun Ast.Node.buildTestNodeModel(context: SemanticModel.Context): Any  {
-        return when (this.symbol as NonTerminal) {
+        return when (requireNonTerminal()) {
             Test -> {
                 var steps: List<SemanticModel.Test.Step>? = null
                 var metadata: SemanticModel.Test.Metadata? = null
@@ -88,11 +95,12 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is SemanticValue.TestRequests -> generalRequests = result.value.toSet()
                     }
                 }
-                checkGeneralAndStepRequestsIntersection(generalRequests, steps!!)
+                val requiredSteps = requireSemanticValue(steps, "Test steps")
+                requestIntersectionRule.resolve(generalRequests, requiredSteps)
 
                 SemanticModel.Test(
-                    metadata = metadata!!,
-                    steps = steps!!,
+                    metadata = requireSemanticValue(metadata, "Test metadata"),
+                    steps = requiredSteps,
                     generalRequests = generalRequests,
                 )
             }
@@ -113,29 +121,33 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         // resolve element
-                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }!!
+                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }
+                            ?: throw AutomatonSemanticException("Element '${result.value}' is not declared in context")
 
                         is SemanticValue.PropertyValue -> propertyValue = result.value
 
                         is SemanticValue.PropertyName -> propertyName = result.value
                     }
                 }
-                val property = when (propertyName!!) {
-                    Ast.Leaf.AstElementProperty.Type.VISIBLE -> SemanticModel.Element.Property.Visible(propertyValue!!.toBoolean())
+                val property = when (requireSemanticValue(propertyName, "Condition property name")) {
+                    Ast.Leaf.AstElementProperty.Type.VISIBLE -> SemanticModel.Element.Property.Visible(
+                        parseBooleanPropertyValue("visible", requireSemanticValue(propertyValue, "Visible property value"))
+                    )
                 }
-                return Condition(element!!, property)
+                return Condition(requireSemanticValue(element, "Condition element"), property)
             }
             Assert -> {
                 var condition: SemanticValue.Condition? = null
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         is SemanticValue.Condition -> condition = result
-                        else -> error("Should not happen")
+                        else -> throw AutomatonSemanticException("Assert contains unexpected value: $result")
                     }
                 }
+                val requiredCondition = requireSemanticValue(condition, "Assert condition")
                 return SemanticModel.Test.Action.Assert(
-                    element = condition!!.element,
-                    property = condition.property
+                    element = requiredCondition.element,
+                    property = requiredCondition.property
                 )
             }
             Input -> {
@@ -145,11 +157,15 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }!!
+                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }
+                            ?: throw AutomatonSemanticException("Element '${result.value}' is not declared in context")
                         is SemanticValue.InputData -> inputData = result.value
                     }
                 }
-                return SemanticModel.Test.Action.Input(element!!, inputData!!)
+                return SemanticModel.Test.Action.Input(
+                    requireSemanticValue(element, "Input element"),
+                    requireSemanticValue(inputData, "Input data")
+                )
             }
             Metadata -> {
                 var testName: String? = null
@@ -162,8 +178,8 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     }
                 }
                 return SemanticModel.Test.Metadata(
-                    testName = testName!!,
-                    id = id!!,
+                    testName = requireSemanticValue(testName, "Test name"),
+                    id = requireSemanticValue(id, "Test id"),
                 )
             }
             Step -> {
@@ -178,8 +194,8 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     }
                 }
                 return SemanticModel.Test.Step(
-                    actions = actions!!,
-                    description = description!!,
+                    actions = requireSemanticValue(actions, "Step actions"),
+                    description = requireSemanticValue(description, "Step description"),
                     requests = requests
                 )
             }
@@ -198,14 +214,15 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var type: SemanticModel.Test.Action.Tap.Type? = null
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }!!
+                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }
+                            ?: throw AutomatonSemanticException("Element '${result.value}' is not declared in context")
                         is SemanticModel.Test.Action.Tap.Type -> type = result
                     }
                 }
 
                 return SemanticModel.Test.Action.Tap(
-                    element = element!!,
-                    type = type!!,
+                    element = requireSemanticValue(element, "Tap element"),
+                    type = requireSemanticValue(type, "Tap type"),
                 )
             }
             Wait -> {
@@ -224,9 +241,9 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     }
                 }
                 return SemanticModel.Test.Action.Wait(
-                    element = element!!,
-                    property = property!!,
-                    timeout = timeout!!
+                    element = requireSemanticValue(element, "Wait element"),
+                    property = requireSemanticValue(property, "Wait property"),
+                    timeout = requireSemanticValue(timeout, "Wait timeout")
                 )
             }
             Step.Requests -> {
@@ -234,7 +251,8 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         is RequestName -> {
-                            val request = context.requests.find { it.name == result.value }!!
+                            val request = context.requests.find { it.name == result.value }
+                                ?: throw AutomatonSemanticException("Request '${result.value}' is not declared in context")
                             requests.add(request)
                         }
                     }
@@ -247,43 +265,22 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                     when (val result = child.buildTestModel(context)) {
                         is RequestName -> {
                             val request = context.requests.find { it.name == result.value }
-                                ?: error("Request '${result.value}' is not declared in context")
+                                ?: throw AutomatonSemanticException("Request '${result.value}' is not declared in context")
                             requests.add(request)
                         }
                     }
                 }
                 return TestRequests(requests)
             }
-            else -> error("unexpected AST node ${this}")
-        }
-    }
-
-    /**
-     * The same request can not be mocked by general (test) requests and step requests at the same time,
-     * because mock server can not choose which response must be returned
-     */
-    private fun checkGeneralAndStepRequestsIntersection(
-        generalRequests: Set<SemanticModel.Request>,
-        steps: List<SemanticModel.Test.Step>,
-    ) {
-        // TODO add method to the key when it will be supported by grammar
-        val generalPaths = generalRequests.associateBy { it.url.path }
-        steps.forEach { step ->
-            step.requests.forEach { stepRequest ->
-                val generalRequest = generalPaths[stepRequest.url.path] ?: return@forEach
-                throw AutomatonSemanticException(
-                    "Request '${stepRequest.name}' at step '${step.description}' mocks the same request " +
-                        "'${stepRequest.url.path}' as general test request '${generalRequest.name}'"
-                )
-            }
+            else -> throw AutomatonSemanticException("Unexpected test AST node: $this")
         }
     }
 
     private fun Ast.Node.buildContextNodeModel(): Any  {
-        return when (this.symbol as NonTerminal) {
+        return when (requireNonTerminal()) {
             Context -> {
                 var theme: SemanticModel.Context.Theme? = null
-                var permissions: List<SemanticModel.Permission>? = null
+                var permissions: List<SemanticModel.Permission> = emptyList()
                 var elements: List<SemanticModel.Element>? = null
                 var requests: List<SemanticModel.Request> = emptyList()
 
@@ -293,14 +290,14 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is SemanticValue.ElementsList -> elements = result.value
                         is SemanticValue.PermissionsList -> permissions = result.value
                         is SemanticValue.Requests -> requests = result.value
-                        else -> error("unknown context node: $this")
+                        else -> throw AutomatonSemanticException("Context contains unexpected value: $result")
                     }
                 }
 
                 SemanticModel.Context(
                     theme = theme,
-                    permissions = permissions!!,
-                    elements = elements!!,
+                    permissions = permissions,
+                    elements = requireSemanticValue(elements, "Context elements"),
                     requests = requests,
                 )
             }
@@ -309,7 +306,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
                         is SemanticModel.Element -> elements.add(result)
-                        else -> error("unknown context node: $this")
+                        else -> throw AutomatonSemanticException("Elements contain unexpected value: $result")
                     }
                 }
                 return SemanticValue.ElementsList(elements)
@@ -331,7 +328,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is SemanticModel.Context.Theme -> theme = result
                     }
                 }
-                return theme!!
+                return requireSemanticValue(theme, "Context theme")
             }
             Element -> {
                 var name: String? = null
@@ -342,7 +339,10 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is SemanticValue.ElementLayout -> layout = result.value
                     }
                 }
-                return SemanticModel.Element(name!!, layout!!)
+                return SemanticModel.Element(
+                    requireSemanticValue(name, "Element name"),
+                    requireSemanticValue(layout, "Element layout")
+                )
             }
 
             Requests -> {
@@ -369,12 +369,13 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is SemanticValue.ResponseHeaders -> headers = result.value
                     }
                 }
+                val requiredBody = requireSemanticValue(body, "HTTP request body")
                 return SemanticModel.Request.Http(
-                    url = url!!,
-                    name = name!!,
-                    requestType = requestType!!,
-                    headers = requestHeaderRule.resolve(body!!, headers),
-                    body = body!!
+                    url = requireSemanticValue(url, "HTTP request URL"),
+                    name = requireSemanticValue(name, "HTTP request name"),
+                    requestType = requireSemanticValue(requestType, "HTTP request type"),
+                    headers = requestHeaderRule.resolve(requiredBody, headers),
+                    body = requiredBody
                 )
             }
             HttpRequest.Headers -> {
@@ -389,9 +390,9 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                         is HttpRequestJsonBody -> body = result.value
                     }
                 }
-                return body!!
+                return requireSemanticValue(body, "HTTP request body")
             }
-            else -> error("unknown context node: $this")
+            else -> throw AutomatonSemanticException("Unknown context AST node: $this")
         }
     }
 
@@ -441,6 +442,44 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
         }
     }
 
+    /**
+     * Проверяет, что узел AST относится к нетерминалу грамматики.
+     *
+     * @return нетерминал текущего узла.
+     * @throws AutomatonSemanticException если символ узла не является нетерминалом.
+     */
+    private fun Ast.Node.requireNonTerminal(): NonTerminal {
+        return symbol as? NonTerminal
+            ?: throw AutomatonSemanticException("AST node contains a terminal where a non-terminal is required: $symbol")
+    }
+
+    /**
+     * Возвращает обязательное значение семантического узла.
+     *
+     * @param value значение, полученное при сворачивании AST.
+     * @param description описание значения для сообщения об ошибке.
+     * @return ненулевое значение семантического узла.
+     * @throws AutomatonSemanticException если значение отсутствует.
+     */
+    private fun <T> requireSemanticValue(value: T?, description: String): T {
+        return value ?: throw AutomatonSemanticException("Missing required semantic value: $description")
+    }
+
+    /**
+     * Преобразует строковое значение Boolean-property в Boolean.
+     *
+     * @param propertyName имя property для сообщения об ошибке.
+     * @param value исходное строковое значение property.
+     * @return true или false, записанное в property value.
+     * @throws AutomatonSemanticException если значение отличается от true или false.
+     */
+    private fun parseBooleanPropertyValue(propertyName: String, value: String): Boolean {
+        return when (value) {
+            "true" -> true
+            "false" -> false
+            else -> throw AutomatonSemanticException("Property '$propertyName' expects 'true' or 'false', but got '$value'")
+        }
+    }
 
     /**
      * Семантические значения нужны как внутренние посредники для сворачивания узлов деревьев

@@ -1,4 +1,6 @@
-package com.digitalsamurai.automaton.semantic
+package com.digitalsamurai.automaton.semantic.rules
+
+import com.digitalsamurai.automaton.semantic.SemanticModel
 
 /**
  * Semantic rule "Content type of mocked responses" (README): resolves headers of the mocked response.

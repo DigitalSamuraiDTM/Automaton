@@ -16,8 +16,8 @@ data class SemanticModel(
 
     fun isMockWebServerNeeded(): Boolean {
         return context.requests.isNotEmpty() &&
-                test.generalRequests.isNotEmpty() &&
-                test.steps.flatMap { it.requests }.isNotEmpty()
+                (test.generalRequests.isNotEmpty() ||
+                test.steps.flatMap { it.requests }.isNotEmpty())
     }
 
     fun isPermissionSetupNeeded(): Boolean {

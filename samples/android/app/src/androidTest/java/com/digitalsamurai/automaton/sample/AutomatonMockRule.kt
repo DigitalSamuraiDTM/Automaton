@@ -9,7 +9,7 @@ import okhttp3.Headers.Companion.toHeaders
 /**
  * WARN! AUTO-GENERATED
  * Generate with love by Automaton
- * Datetime: 04.11.2026 03:03:53
+ * Datetime: 04.11.2026 03:19:33
  */
 public data class AutomatonMockRule(
   public val path: String,
