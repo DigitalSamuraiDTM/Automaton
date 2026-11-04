@@ -71,6 +71,10 @@ class AndroidKaspressoBackend(
         bodyOutput.add("@get:Rule")
         bodyOutput.add("val composeTestRule = createAndroidComposeRule<${activity.name}>()")
         bodyOutput.enter()
+        generateNodeFinder(imports).forEach { line ->
+            bodyOutput.add(line)
+        }
+        bodyOutput.enter()
         bodyOutput.add("companion object {")
         // add http web mock server when auto test needed
         if (model.isMockWebServerNeeded()) {
@@ -302,25 +306,51 @@ class AndroidKaspressoBackend(
         return output
     }
 
+    /**
+     * Генерирует поиск ноды в merged-дереве с fallback в unmerged-дерево.
+     *
+     * @param imports коллекция импортов генерируемого теста.
+     * @return строки объявления extension-функции поиска ноды по тестовому тегу.
+     *
+     * // TODO данная функция добавляет дополнительный прогон по семантическому дереву. Подумать можем ли и хотим ли решать эту проблему
+     */
+    private fun generateNodeFinder(imports: MutableMap<String, String>): List<String> {
+        imports["semanticsNodeInteractionsProvider"] = "androidx.compose.ui.test.SemanticsNodeInteractionsProvider"
+        imports["semanticsNodeInteraction"] = "androidx.compose.ui.test.SemanticsNodeInteraction"
+        imports["onAllNodesWithTag"] = "androidx.compose.ui.test.onAllNodesWithTag"
+        imports["onNodeWithTag"] = "androidx.compose.ui.test.onNodeWithTag"
+        return listOf(
+            "/**",
+            " * Находит ноду в merged-дереве, используя unmerged-дерево только при отсутствии merged-ноды.",
+            " *",
+            " * @param testTag тестовый тег искомой ноды.",
+            " * @return взаимодействие с нодой из подходящего semantics-дерева.",
+            " */",
+            "private fun SemanticsNodeInteractionsProvider.onAutomatonNodeWithTag(testTag: String): SemanticsNodeInteraction {",
+            tab() + "val useUnmergedTree = onAllNodesWithTag(testTag).fetchSemanticsNodes().isEmpty()",
+            tab() + "return onNodeWithTag(testTag, useUnmergedTree = useUnmergedTree)",
+            "}",
+        )
+    }
+
     private fun generateActionsAtStep(step: SemanticModel.Test.Step, imports: MutableMap<String, String>, model: SemanticModel): List<String> {
         val actions = mutableListOf<String>()
-        imports["onNodeWithTag"] = "androidx.compose.ui.test.onNodeWithTag"
         step.actions.forEach { action ->
             when(action) {
                 is SemanticModel.Test.Action.Assert -> {
-                    actions.add("composeTestRule.onNodeWithTag(\"${action.element.name}\").${action.property.assertAction(imports)}")
+                    actions.add("composeTestRule.onAutomatonNodeWithTag(\"${action.element.name}\").${action.property.assertAction(imports)}")
                 }
                 is SemanticModel.Test.Action.Input -> {
                     imports["performTextInput"] = "androidx.compose.ui.test.performTextInput"
-                    actions.add("composeTestRule.onNodeWithTag(\"${action.element.name}\").performTextInput(\"${action.text}\")")
+                    actions.add("composeTestRule.onAutomatonNodeWithTag(\"${action.element.name}\").performTextInput(\"${action.text}\")")
                 }
                 is SemanticModel.Test.Action.Tap -> {
                     imports["performClick"] = "androidx.compose.ui.test.performClick"
-                    actions.add("composeTestRule.onNodeWithTag(\"${action.element.name}\").performClick()")
+                    actions.add("composeTestRule.onAutomatonNodeWithTag(\"${action.element.name}\").performClick()")
                 }
                 is SemanticModel.Test.Action.Wait -> {
                     actions.add("flakySafely(timeoutMs = ${action.timeout.inWholeMilliseconds}) {")
-                    actions.add(tab() + "composeTestRule.onNodeWithTag(\"${action.element.name}\").${action.property.assertAction(imports)}")
+                    actions.add(tab() + "composeTestRule.onAutomatonNodeWithTag(\"${action.element.name}\").${action.property.assertAction(imports)}")
                     actions.add("}")
                 }
             }

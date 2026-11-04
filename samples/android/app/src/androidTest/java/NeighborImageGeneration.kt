@@ -9,13 +9,16 @@ import org.junit.Rule
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import com.digitalsamurai.automaton.sample.presentation.main.MainActivity
 import org.junit.Test
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 import com.digitalsamurai.automaton.sample.AutomatonEnvironment
 import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
 import org.junit.BeforeClass
 import org.junit.AfterClass
 import com.digitalsamurai.automaton.sample.AutomatonTheme
 import com.digitalsamurai.automaton.sample.AutomatonMockRule
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performClick
@@ -23,7 +26,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 04.11.2026 03:19:33
+* Datetime: 05.11.2026 12:00:01
 */
 @RunWith(AndroidJUnit4::class)
 class NeighborImageGeneration : TestCase(
@@ -33,6 +36,17 @@ class NeighborImageGeneration : TestCase(
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
+    
+    /**
+     * Находит ноду в merged-дереве, используя unmerged-дерево только при отсутствии merged-ноды.
+     *
+     * @param testTag тестовый тег искомой ноды.
+     * @return взаимодействие с нодой из подходящего semantics-дерева.
+     */
+    private fun SemanticsNodeInteractionsProvider.onAutomatonNodeWithTag(testTag: String): SemanticsNodeInteraction {
+        val useUnmergedTree = onAllNodesWithTag(testTag).fetchSemanticsNodes().isEmpty()
+        return onNodeWithTag(testTag, useUnmergedTree = useUnmergedTree)
+    }
     
     companion object {
         val mockWebServer = AutomatonEnvironment.mockWebServer
@@ -75,19 +89,19 @@ class NeighborImageGeneration : TestCase(
     }.run {
         step("Открываем экран авторизации") {
             flakySafely(timeoutMs = 5000) {
-                composeTestRule.onNodeWithTag("AuthScreen").assertIsDisplayed()
+                composeTestRule.onAutomatonNodeWithTag("AuthScreen").assertIsDisplayed()
             }
         }
         step("Вводим пользовательские данные и авторизуемся") {
-            composeTestRule.onNodeWithTag("LoginField").performTextInput("Username228")
-            composeTestRule.onNodeWithTag("PasswordField").performTextInput("secretPassword1234")
-            composeTestRule.onNodeWithTag("LoginButton").performClick()
+            composeTestRule.onAutomatonNodeWithTag("LoginField").performTextInput("Username228")
+            composeTestRule.onAutomatonNodeWithTag("PasswordField").performTextInput("secretPassword1234")
+            composeTestRule.onAutomatonNodeWithTag("LoginButton").performClick()
         }
         step("Открываем генерацию интерполяции ближайшего соседа") {
             flakySafely(timeoutMs = 5000) {
-                composeTestRule.onNodeWithTag("MainScreen").assertIsDisplayed()
+                composeTestRule.onAutomatonNodeWithTag("MainScreen").assertIsDisplayed()
             }
-            composeTestRule.onNodeWithTag("NeighborGeneration").performClick()
+            composeTestRule.onAutomatonNodeWithTag("NeighborGeneration").performClick()
         }
         step("Запускаем генерацию картинки") {
             mockWebServer.setStepRules(
@@ -104,13 +118,13 @@ class NeighborImageGeneration : TestCase(
                 )
             )
             flakySafely(timeoutMs = 5000) {
-                composeTestRule.onNodeWithTag("NeighborScreen").assertIsDisplayed()
+                composeTestRule.onAutomatonNodeWithTag("NeighborScreen").assertIsDisplayed()
             }
-            composeTestRule.onNodeWithTag("NeighborGenerate").performClick()
+            composeTestRule.onAutomatonNodeWithTag("NeighborGenerate").performClick()
         }
         step("Проверяем, что картинка сгенерировалась") {
             flakySafely(timeoutMs = 10000) {
-                composeTestRule.onNodeWithTag("GeneratedImage").assertIsDisplayed()
+                composeTestRule.onAutomatonNodeWithTag("GeneratedImage").assertIsDisplayed()
             }
         }
     }
