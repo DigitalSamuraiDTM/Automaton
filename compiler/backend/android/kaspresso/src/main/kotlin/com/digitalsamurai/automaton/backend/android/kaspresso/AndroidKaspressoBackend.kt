@@ -262,11 +262,38 @@ class AndroidKaspressoBackend(
         return listOf("mockWebServer.setStepRules(emptySet())")
     }
 
+    /**
+     * Генерирует установку собственных моков текущего шага перед выполнением его действий.
+     *
+     * @param imports коллекция импортов генерируемого теста.
+     * @param step семантическая модель шага с собственными запросами.
+     * @return строки установки step-моков или пустой список для шага без собственных запросов.
+     */
+    private fun generateStepRequestsSetup(imports: MutableMap<String, String>, step: SemanticModel.Test.Step): List<String> {
+        if (step.requests.isEmpty()) return emptyList()
+        val output = mutableListOf<String>()
+        imports["mockRule"] = "${appPackage}.AutomatonMockRule"
+        output.add("mockWebServer.setStepRules(")
+        output.add(tab() + "setOf(")
+        step.requests.forEach { request ->
+            request.toAutomatonMockRule().forEach { line ->
+                output.add(tab(2) + line)
+            }
+        }
+        output.add(tab() + ")")
+        output.add(")")
+        return output
+    }
 
     private fun generateTestFunBody(imports: MutableMap<String, String>, model: SemanticModel): List<String> {
         val output = mutableListOf<String>()
         model.test.steps.forEach { step ->
             output.add("step(\"${step.description}\") {")
+            if (model.isMockWebServerNeeded()) {
+                generateStepRequestsSetup(imports, step).forEach { setupLine ->
+                    output.add(tab() + setupLine)
+                }
+            }
             generateActionsAtStep(step, imports, model).forEach { actionLine ->
                 output.add(tab() + actionLine)
             }

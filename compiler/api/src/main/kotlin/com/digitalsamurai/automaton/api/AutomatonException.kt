@@ -2,4 +2,4 @@ package com.digitalsamurai.automaton.api
 
 
 // abstract class that used for mark all exceptions to compiler at every stage
-abstract class AutomatonException: Exception()
+abstract class AutomatonException(override val cause: Throwable? = null): Exception(cause)

@@ -1,0 +1,108 @@
+compilationUnit:
+  context:
+    elements:
+      - element:
+          elementName: AuthScreen
+          elementLayout: https://example.com
+      - element:
+          elementName: LoginField
+          elementLayout: https://example.com
+      - element:
+          elementName: PasswordField
+          elementLayout: https://example.com
+      - element:
+          elementName: LoginButton
+          elementLayout: https://example.com
+      - element:
+          elementName: MainScreen
+          elementLayout: https://example.com
+      - element:
+          elementName: NeighborGeneration
+          elementLayout: https://example.com
+      - element:
+          elementName: NeighborScreen
+          elementLayout: https://example.com
+      - element:
+          elementName: NeighborGenerate
+          elementLayout: https://example.com
+      - element:
+          elementName: GeneratedImage
+          elementLayout: https://example.com
+    requests:
+      - http:
+          requestName: authorization200
+          url: https://10.0.2.2:8081/auth
+          requestType: post
+          body:
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/authorization200.json"
+      - http:
+          requestName: neighborConfiguration200
+          url: https://10.0.2.2:8081/api/v1/diagram/neighbor/configuration
+          requestType: get
+          body:
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/neighborConfiguration200.json"
+    theme:
+      themeMode: light
+  test:
+    metadata:
+      id: "GENERATION_002"
+      name: "Neighbor image generation"
+    testRequests:
+      - requestName: authorization200
+    steps:
+      - step:
+          stepDescription: "Открываем экран авторизации"
+          actions:
+            - wait:
+                condition:
+                  elementName: AuthScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+      - step:
+          stepDescription: "Вводим пользовательские данные и авторизуемся"
+          actions:
+            - input:
+                elementName: LoginField
+                inputData: "Username228"
+            - input:
+                elementName: PasswordField
+                inputData: "secretPassword1234"
+            - tap:
+                elementName: LoginButton
+                tapType: single
+      - step:
+          stepDescription: "Открываем генерацию интерполяции ближайшего соседа"
+          actions:
+            - wait:
+                condition:
+                  elementName: MainScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+            - tap:
+                elementName: NeighborGeneration
+                tapType: single
+      - step:
+          stepDescription: "Запускаем генерацию картинки"
+          stepRequests:
+            - requestName: neighborConfiguration200
+          actions:
+            - wait:
+                condition:
+                  elementName: NeighborScreen
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 5s
+            - tap:
+                elementName: NeighborGenerate
+                tapType: single
+      - step:
+          stepDescription: "Проверяем, что картинка сгенерировалась"
+          actions:
+            - wait:
+                condition:
+                  elementName: GeneratedImage
+                  elementProperty: visible
+                  propertyValue: true
+                timeout: 10s

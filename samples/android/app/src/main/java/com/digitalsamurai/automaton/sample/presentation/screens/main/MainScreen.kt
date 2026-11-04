@@ -67,7 +67,7 @@ object MainScreen : BaseScreen<MainScreenState, MainScreenEvent, MainScreenActio
                             .fillMaxWidth()
                             .testTag(feature.id),
                         state = feature,
-                        onClick = { actions.onFeatureItemClicked(feature.id) }
+                        onClick = { actions.onFeatureItemClicked(feature.navRoute) }
                     )
                 }
             }

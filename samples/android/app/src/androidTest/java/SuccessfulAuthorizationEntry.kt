@@ -9,11 +9,10 @@ import org.junit.Rule
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import com.digitalsamurai.automaton.sample.presentation.main.MainActivity
 import org.junit.Test
-import com.digitalsamurai.automaton.sample.AutomatonEnvironment
-import com.digitalsamurai.automaton.sample.AutomatonMockWebServer
 import org.junit.BeforeClass
 import org.junit.AfterClass
 import android.Manifest
+import com.digitalsamurai.automaton.sample.AutomatonEnvironment
 import com.digitalsamurai.automaton.sample.AutomatonTheme
 import com.digitalsamurai.automaton.sample.AutomatonMockRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -24,7 +23,7 @@ import androidx.compose.ui.test.performClick
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 04.11.2026 02:38:16
+* Datetime: 04.11.2026 03:03:59
 */
 @RunWith(AndroidJUnit4::class)
 class SuccessfulAuthorizationEntry : TestCase(
@@ -36,18 +35,17 @@ class SuccessfulAuthorizationEntry : TestCase(
     val composeTestRule = createAndroidComposeRule<MainActivity>()
     
     companion object {
-        val mockWebServer = AutomatonEnvironment.mockWebServer
     
         @JvmStatic
         @BeforeClass
         fun beforeClass() {
-            mockWebServer.start()
+            // no operations
         }
     
         @JvmStatic
         @AfterClass
         fun afterClass() {
-            mockWebServer.stop()
+            // no operations
         }
     }
     

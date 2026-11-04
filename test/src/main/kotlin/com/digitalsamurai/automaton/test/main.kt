@@ -46,6 +46,8 @@ fun main(): Unit = runBlocking {
     val start = System.currentTimeMillis()
 //    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_anonymous_auth.yaml")))
     yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_success_auth.yaml")))
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_linear_image_generation.yaml")))
+    yamlFrontend.compile(YamlInput(File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/test_neighbor_image_generation.yaml")))
 
     resultFlow.take(2).collect { result ->
         println(result)

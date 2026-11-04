@@ -15,7 +15,9 @@ data class SemanticModel(
 ) {
 
     fun isMockWebServerNeeded(): Boolean {
-        return context.requests.isNotEmpty()
+        return context.requests.isNotEmpty() &&
+                test.generalRequests.isNotEmpty() &&
+                test.steps.flatMap { it.requests }.isNotEmpty()
     }
 
     fun isPermissionSetupNeeded(): Boolean {
@@ -41,6 +43,7 @@ data class SemanticModel(
             val actions: List<Action>,
             val requests: List<Request>,
         )
+
         sealed interface Action {
 
             val element: Element
@@ -48,7 +51,7 @@ data class SemanticModel(
             data class Tap(
                 override val element: Element,
                 val type: Type,
-            ): Action {
+            ) : Action {
                 enum class Type {
                     SINGLE, DOUBLE, LONG
                 }
@@ -58,17 +61,17 @@ data class SemanticModel(
                 override val element: Element,
                 val property: Element.Property,
                 val timeout: Duration,
-            ): Action
+            ) : Action
 
             data class Input(
                 override val element: Element,
                 val text: String,
-            ): Action
+            ) : Action
 
             data class Assert(
                 override val element: Element,
                 val property: Element.Property,
-            ): Action
+            ) : Action
         }
     }
 
@@ -86,8 +89,8 @@ data class SemanticModel(
     sealed interface Permission {
         val isGranted: Boolean
 
-        data class Camera(override val isGranted: Boolean): Permission
-        data class Microphone(override val isGranted: Boolean): Permission
+        data class Camera(override val isGranted: Boolean) : Permission
+        data class Microphone(override val isGranted: Boolean) : Permission
     }
 
     data class Element(
@@ -97,7 +100,7 @@ data class SemanticModel(
         sealed class Property {
             data class Visible(
                 val value: Boolean,
-            ): Property()
+            ) : Property()
         }
     }
 
@@ -115,15 +118,15 @@ data class SemanticModel(
             val requestType: RequestType,
             val headers: Map<String, String>,
             val body: Body
-        ): Request {
+        ) : Request {
             enum class RequestType {
                 GET, POST, PUT, DELETE
             }
 
             sealed interface Body {
-                data class Plain(val value: String): Body
-                data class JsonObject(val value: JSONObject): Body
-                data class JsonArray(val value: JSONArray): Body
+                data class Plain(val value: String) : Body
+                data class JsonObject(val value: JSONObject) : Body
+                data class JsonArray(val value: JSONArray) : Body
             }
         }
     }

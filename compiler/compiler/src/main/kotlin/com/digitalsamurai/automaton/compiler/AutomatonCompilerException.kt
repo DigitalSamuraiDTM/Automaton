@@ -4,6 +4,6 @@ import com.digitalsamurai.automaton.api.AutomatonException
 
 class AutomatonCompilerException(
     override val cause: Exception,
-) : AutomatonException() {
+) : AutomatonException(cause) {
     override val message: String = "Unexpected error during Automaton compilation: ${cause.javaClass.name}: ${cause.message}"
 }
