@@ -4,7 +4,9 @@ import com.digitalsamurai.automaton.api.AutomatonException
 import com.digitalsamurai.automaton.ast.Ast
 import com.digitalsamurai.automaton.ast.AstData
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
-import com.digitalsamurai.automaton.backend.api.BackendOutput
+import com.digitalsamurai.automaton.backend.api.AutomatonGenerator
+import com.digitalsamurai.automaton.backend.api.BackendResult
+import com.digitalsamurai.automaton.backend.api.GeneratorOutput
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontend
 import com.digitalsamurai.automaton.frontend.api.AutomatonRequest
 import com.digitalsamurai.automaton.frontend.api.AutomatonResult
@@ -40,7 +42,7 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
                         logger?.info("Begin process Automaton request: ${request.requestId}")
                         val astData = request.makeGrammarAnalyze()
                         val semanticModel = astData.makeSemanticAnalyze()
-                        val backendOutputs = semanticModel.buildBackendOutputs()
+                        val backendOutputs = semanticModel.makeOutput()
                         backendOutputs.emitResults()
                     } catch (e: CancellationException) {
                         throw e
@@ -74,8 +76,8 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    private suspend fun SemanticModel.buildBackendOutputs(): List<BackendOutput> {
-        return backends.map { backend -> backend.buildOutput(this) }
+    private suspend fun SemanticModel.makeOutput(): List<BackendResult> {
+        return backends.map { backend -> backend.makeOutput(this) }
     }
 
     /**
@@ -83,12 +85,12 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
      *
      * @return Unit после публикации всех результатов или при отсутствии настроенного result flow.
      */
-    private suspend fun List<BackendOutput>.emitResults() {
+    private suspend fun List<BackendResult>.emitResults() {
         forEach { result ->
             emitResult(
                 AutomatonResult.Success(
                     requestId = result.requestId,
-                    backendMetadata = result.metaData,
+                    backendMetadata = result.metadata,
                 )
             )
         }

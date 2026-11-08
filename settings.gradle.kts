@@ -44,8 +44,12 @@ includeIfExists(":compiler:compiler")
 includeIfExists(":compiler:grammar")
 
 includeIfExists(":compiler:backend:api")
-includeIfExists(":compiler:backend:manual")
-includeIfExists(":compiler:backend:android:kaspresso")
+includeIfExists(":compiler:backend:generator:api")
+includeIfExists(":compiler:backend:generator:manual")
+includeIfExists(":compiler:backend:generator:android:kaspresso")
+
+includeIfExists(":compiler:backend:integrator:api")
+includeIfExists(":compiler:backend:integrator:files")
 
 includeIfExists(":compiler:parser:api")
 includeIfExists(":compiler:parser:ll1")

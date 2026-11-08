@@ -1,13 +1,13 @@
 package com.digitalsamurai.automaton.compiler.factory
 
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
+import com.digitalsamurai.automaton.backend.api.AutomatonGenerator
 import com.digitalsamurai.automaton.compiler.AutomatonCompiler
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontend
 import com.digitalsamurai.automaton.frontend.api.AutomatonResult
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.parser.ll1.LL1Parser
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 
 public class AutomatonCompilerFactory<T: AutomatonFrontend> internal constructor(
     // TODO list of frontends

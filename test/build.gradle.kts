@@ -13,8 +13,9 @@ kotlin {
 dependencies {
     implementation(project(":compiler:compiler"))
     implementation(project(":compiler:frontend:yaml"))
-    implementation(project(":compiler:backend:manual"))
-    implementation(project(":compiler:backend:android:kaspresso"))
+    implementation(project(":compiler:backend:generator:manual"))
+    implementation(project(":compiler:backend:generator:android:kaspresso"))
+    implementation(project(":compiler:backend:integrator:files"))
     implementation(project(":compiler:parser:ll1"))
     implementation(project(":compiler:logger:terminal"))
 
