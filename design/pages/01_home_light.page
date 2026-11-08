@@ -1,0 +1,1352 @@
+pageType: content
+background:
+  type: solid
+  color: '#FFFFFF'
+elements:
+- elementId: aside
+  elementType: shape
+  bounds:
+  - 0
+  - 0
+  - 240
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+- elementId: aside-divider
+  elementType: shape
+  bounds:
+  - 239
+  - 0
+  - 1
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: brand-mark
+  elementType: image
+  bounds:
+  - 16
+  - 14
+  - 22
+  - 34
+  src: media/logo-light.png
+  fit:
+    mode: contain
+- elementId: brand
+  elementType: text
+  bounds:
+  - 48
+  - 14
+  - 150
+  - 34
+  content:
+    text: AUTOMATON
+    fontSize: 15
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: collapse
+  elementType: icon
+  bounds:
+  - 208
+  - 23
+  - 16
+  - 16
+  iconName: fas:table-columns
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: nav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 95
+  - 18
+  - 18
+  iconName: fas:table-cells-large
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: nav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 84
+  - 172
+  - 40
+  content:
+    text: Функции
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: nav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 139
+  - 18
+  - 18
+  iconName: fas:magnifying-glass
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: nav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 128
+  - 172
+  - 40
+  content:
+    text: Поиск
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: aside-section-line
+  elementType: shape
+  bounds:
+  - 16
+  - 184
+  - 208
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: subnav-current-0
+  elementType: shape
+  bounds:
+  - 8
+  - 208
+  - 224
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 15000
+- elementId: subnav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 219
+  - 18
+  - 18
+  iconName: fas:house
+  fill:
+    type: solid
+    color: '#BD0935'
+- elementId: subnav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 208
+  - 172
+  - 40
+  content:
+    text: Главная
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 263
+  - 18
+  - 18
+  iconName: fas:user-lock
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 252
+  - 172
+  - 40
+  content:
+    text: Права доступа
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-2
+  elementType: icon
+  bounds:
+  - 20
+  - 307
+  - 18
+  - 18
+  iconName: fas:clock-rotate-left
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-2
+  elementType: text
+  bounds:
+  - 52
+  - 296
+  - 172
+  - 40
+  content:
+    text: Операции
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-3
+  elementType: icon
+  bounds:
+  - 20
+  - 351
+  - 18
+  - 18
+  iconName: fas:heart-pulse
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-3
+  elementType: text
+  bounds:
+  - 52
+  - 340
+  - 172
+  - 40
+  content:
+    text: Состояние системы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-4
+  elementType: icon
+  bounds:
+  - 20
+  - 395
+  - 18
+  - 18
+  iconName: fas:book
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-4
+  elementType: text
+  bounds:
+  - 52
+  - 384
+  - 172
+  - 40
+  content:
+    text: Документация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: footer-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 911
+  - 18
+  - 18
+  iconName: fas:gear
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: footer-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 900
+  - 172
+  - 40
+  content:
+    text: Настройки
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: footer-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 955
+  - 18
+  - 18
+  iconName: fas:circle-question
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: footer-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 944
+  - 172
+  - 40
+  content:
+    text: Помощь
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: account-avatar
+  elementType: shape
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: account-initials
+  elementType: text
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: account-name
+  elementType: text
+  bounds:
+  - 56
+  - 1000
+  - 160
+  - 32
+  content:
+    text: Андрей Н.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: topbar
+  elementType: shape
+  bounds:
+  - 240
+  - 0
+  - 1680
+  - 64
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+- elementId: topbar-line
+  elementType: shape
+  bounds:
+  - 240
+  - 63
+  - 1680
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: breadcrumb-0
+  elementType: text
+  bounds:
+  - 264
+  - 0
+  - 64
+  - 64
+  content:
+    text: Automaton
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-separator-0
+  elementType: text
+  bounds:
+  - 328
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-1
+  elementType: text
+  bounds:
+  - 352
+  - 0
+  - 146
+  - 64
+  content:
+    text: Neuro Photo / Mobile
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-project-chevron
+  elementType: icon
+  bounds:
+  - 496
+  - 24
+  - 16
+  - 16
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: breadcrumb-separator-1
+  elementType: text
+  bounds:
+  - 516
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-2
+  elementType: text
+  bounds:
+  - 540
+  - 0
+  - 64
+  - 64
+  content:
+    text: Главная
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: page-title
+  elementType: text
+  bounds:
+  - 264
+  - 84
+  - 1100
+  - 32
+  content:
+    text: Neuro Photo / Mobile
+    fontSize: 24
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 28
+- elementId: page-subtitle
+  elementType: text
+  bounds:
+  - 264
+  - 120
+  - 1200
+  - 22
+  content:
+    text: Мобильное приложение генерации изображений
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: functions-heading
+  elementType: text
+  bounds:
+  - 264
+  - 176
+  - 700
+  - 28
+  content:
+    text: Функции проекта
+    fontSize: 20
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 24
+- elementId: function-card-0
+  elementType: shape
+  bounds:
+  - 264
+  - 216
+  - 530
+  - 240
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+  adjustments:
+  - 6666
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: function-icon-bg-0
+  elementType: shape
+  bounds:
+  - 284
+  - 236
+  - 40
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: function-icon-0
+  elementType: icon
+  bounds:
+  - 295
+  - 247
+  - 18
+  - 18
+  iconName: fas:list-check
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: function-arrow-0
+  elementType: icon
+  bounds:
+  - 738
+  - 248
+  - 16
+  - 16
+  iconName: fas:arrow-right
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: function-name-0
+  elementType: text
+  bounds:
+  - 284
+  - 296
+  - 470
+  - 28
+  content:
+    text: Тесты
+    fontSize: 20
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 24
+- elementId: function-desc-0
+  elementType: text
+  bounds:
+  - 284
+  - 336
+  - 470
+  - 40
+  content:
+    text: Сценарии, редактирование и компиляция UI-тестов.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: function-line-0
+  elementType: shape
+  bounds:
+  - 284
+  - 396
+  - 490
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: function-meta-0
+  elementType: text
+  bounds:
+  - 284
+  - 412
+  - 470
+  - 24
+  content:
+    text: 24 сценария
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: function-card-1
+  elementType: shape
+  bounds:
+  - 814
+  - 216
+  - 530
+  - 240
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+  adjustments:
+  - 6666
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: function-icon-bg-1
+  elementType: shape
+  bounds:
+  - 834
+  - 236
+  - 40
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: function-icon-1
+  elementType: icon
+  bounds:
+  - 845
+  - 247
+  - 18
+  - 18
+  iconName: fas:cubes
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: function-arrow-1
+  elementType: icon
+  bounds:
+  - 1288
+  - 248
+  - 16
+  - 16
+  iconName: fas:arrow-right
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: function-name-1
+  elementType: text
+  bounds:
+  - 834
+  - 296
+  - 470
+  - 28
+  content:
+    text: Контекст
+    fontSize: 20
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 24
+- elementId: function-desc-1
+  elementType: text
+  bounds:
+  - 834
+  - 336
+  - 470
+  - 40
+  content:
+    text: Элементы интерфейса, запросы, темы и разрешения.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: function-line-1
+  elementType: shape
+  bounds:
+  - 834
+  - 396
+  - 490
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: function-meta-1
+  elementType: text
+  bounds:
+  - 834
+  - 412
+  - 470
+  - 24
+  content:
+    text: 9 элементов
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: function-card-2
+  elementType: shape
+  bounds:
+  - 1364
+  - 216
+  - 530
+  - 240
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+  adjustments:
+  - 6666
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: function-icon-bg-2
+  elementType: shape
+  bounds:
+  - 1384
+  - 236
+  - 40
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: function-icon-2
+  elementType: icon
+  bounds:
+  - 1395
+  - 247
+  - 18
+  - 18
+  iconName: fas:plug
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: function-arrow-2
+  elementType: icon
+  bounds:
+  - 1838
+  - 248
+  - 16
+  - 16
+  iconName: fas:arrow-right
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: function-name-2
+  elementType: text
+  bounds:
+  - 1384
+  - 296
+  - 470
+  - 28
+  content:
+    text: Интеграции
+    fontSize: 20
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 24
+- elementId: function-desc-2
+  elementType: text
+  bounds:
+  - 1384
+  - 336
+  - 470
+  - 40
+  content:
+    text: Бэкенды генерации и публикация результатов в GitLab.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: function-line-2
+  elementType: shape
+  bounds:
+  - 1384
+  - 396
+  - 490
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: function-meta-2
+  elementType: text
+  bounds:
+  - 1384
+  - 412
+  - 470
+  - 24
+  content:
+    text: GitLab · 3 бэкенда
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-heading
+  elementType: text
+  bounds:
+  - 264
+  - 508
+  - 700
+  - 28
+  content:
+    text: Последние компиляции
+    fontSize: 20
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 24
+- elementId: recent-table-top
+  elementType: shape
+  bounds:
+  - 264
+  - 552
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: recent-head-line
+  elementType: shape
+  bounds:
+  - 264
+  - 592
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: recent-col-Тест
+  elementType: text
+  bounds:
+  - 264
+  - 553
+  - 240
+  - 40
+  content:
+    text: Тест
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-col-Статус
+  elementType: text
+  bounds:
+  - 760
+  - 553
+  - 240
+  - 40
+  content:
+    text: Статус
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-col-Артефакты
+  elementType: text
+  bounds:
+  - 1150
+  - 553
+  - 240
+  - 40
+  content:
+    text: Артефакты
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-col-Завершена
+  elementType: text
+  bounds:
+  - 1500
+  - 553
+  - 240
+  - 40
+  content:
+    text: Завершена
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-line-0
+  elementType: shape
+  bounds:
+  - 264
+  - 632
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: recent-id-0
+  elementType: text
+  bounds:
+  - 264
+  - 593
+  - 300
+  - 40
+  content:
+    text: AUTH_001
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-status-0-bg
+  elementType: shape
+  bounds:
+  - 760
+  - 601
+  - 112
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: recent-status-0-text
+  elementType: text
+  bounds:
+  - 770
+  - 601
+  - 92
+  - 24
+  content:
+    text: Успешно
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: recent-artifacts-0
+  elementType: text
+  bounds:
+  - 1150
+  - 593
+  - 100
+  - 40
+  content:
+    text: '4'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-date-0
+  elementType: text
+  bounds:
+  - 1500
+  - 593
+  - 240
+  - 40
+  content:
+    text: сегодня, 01:48
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-line-1
+  elementType: shape
+  bounds:
+  - 264
+  - 672
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: recent-id-1
+  elementType: text
+  bounds:
+  - 264
+  - 633
+  - 300
+  - 40
+  content:
+    text: GEN_014
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-status-1-bg
+  elementType: shape
+  bounds:
+  - 760
+  - 641
+  - 174
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: recent-status-1-text
+  elementType: text
+  bounds:
+  - 770
+  - 641
+  - 154
+  - 24
+  content:
+    text: Ошибка семантики
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: recent-artifacts-1
+  elementType: text
+  bounds:
+  - 1150
+  - 633
+  - 100
+  - 40
+  content:
+    text: '0'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-date-1
+  elementType: text
+  bounds:
+  - 1500
+  - 633
+  - 240
+  - 40
+  content:
+    text: сегодня, 01:32
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-line-2
+  elementType: shape
+  bounds:
+  - 264
+  - 712
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: recent-id-2
+  elementType: text
+  bounds:
+  - 264
+  - 673
+  - 300
+  - 40
+  content:
+    text: AUTH_007
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-status-2-bg
+  elementType: shape
+  bounds:
+  - 760
+  - 681
+  - 112
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: recent-status-2-text
+  elementType: text
+  bounds:
+  - 770
+  - 681
+  - 92
+  - 24
+  content:
+    text: Успешно
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: recent-artifacts-2
+  elementType: text
+  bounds:
+  - 1150
+  - 673
+  - 100
+  - 40
+  content:
+    text: '4'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: recent-date-2
+  elementType: text
+  bounds:
+  - 1500
+  - 673
+  - 240
+  - 40
+  content:
+    text: вчера, 16:05
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18

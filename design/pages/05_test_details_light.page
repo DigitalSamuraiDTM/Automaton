@@ -1,0 +1,5096 @@
+pageType: content
+background:
+  type: solid
+  color: '#FFFFFF'
+elements:
+- elementId: aside
+  elementType: shape
+  bounds:
+  - 0
+  - 0
+  - 240
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+- elementId: aside-divider
+  elementType: shape
+  bounds:
+  - 239
+  - 0
+  - 1
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: brand-mark
+  elementType: image
+  bounds:
+  - 16
+  - 14
+  - 22
+  - 34
+  src: media/logo-light.png
+  fit:
+    mode: contain
+- elementId: brand
+  elementType: text
+  bounds:
+  - 48
+  - 14
+  - 150
+  - 34
+  content:
+    text: AUTOMATON
+    fontSize: 15
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: collapse
+  elementType: icon
+  bounds:
+  - 208
+  - 23
+  - 16
+  - 16
+  iconName: fas:table-columns
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: nav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 95
+  - 18
+  - 18
+  iconName: fas:table-cells-large
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: nav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 84
+  - 172
+  - 40
+  content:
+    text: Функции
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: nav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 139
+  - 18
+  - 18
+  iconName: fas:magnifying-glass
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: nav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 128
+  - 172
+  - 40
+  content:
+    text: Поиск
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: aside-section-line
+  elementType: shape
+  bounds:
+  - 16
+  - 184
+  - 208
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: subnav-current-0
+  elementType: shape
+  bounds:
+  - 8
+  - 208
+  - 224
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 15000
+- elementId: subnav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 219
+  - 18
+  - 18
+  iconName: fas:list-check
+  fill:
+    type: solid
+    color: '#BD0935'
+- elementId: subnav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 208
+  - 172
+  - 40
+  content:
+    text: Тест-кейсы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 263
+  - 18
+  - 18
+  iconName: fas:robot
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 252
+  - 172
+  - 40
+  content:
+    text: Автотесты
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-2
+  elementType: icon
+  bounds:
+  - 20
+  - 307
+  - 18
+  - 18
+  iconName: fas:arrows-rotate
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-2
+  elementType: text
+  bounds:
+  - 52
+  - 296
+  - 172
+  - 40
+  content:
+    text: Регресс
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-3
+  elementType: icon
+  bounds:
+  - 20
+  - 351
+  - 18
+  - 18
+  iconName: fas:chart-pie
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-3
+  elementType: text
+  bounds:
+  - 52
+  - 340
+  - 172
+  - 40
+  content:
+    text: Покрытие
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: create-test-sidebar-bg
+  elementType: shape
+  bounds:
+  - 16
+  - 400
+  - 208
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: create-test-sidebar-icon
+  elementType: icon
+  bounds:
+  - 83.0
+  - 410
+  - 16
+  - 16
+  iconName: fas:plus
+  fill:
+    type: solid
+    color: '#FFFFFF'
+- elementId: create-test-sidebar-text
+  elementType: text
+  bounds:
+  - 107.0
+  - 400
+  - 50
+  - 36
+  content:
+    text: Создать
+    fontSize: 13
+    fontFamily: Inter
+    color: '#FFFFFF'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: footer-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 911
+  - 18
+  - 18
+  iconName: fas:gear
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: footer-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 900
+  - 172
+  - 40
+  content:
+    text: Настройки
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: footer-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 955
+  - 18
+  - 18
+  iconName: fas:circle-question
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: footer-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 944
+  - 172
+  - 40
+  content:
+    text: Помощь
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: account-avatar
+  elementType: shape
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: account-initials
+  elementType: text
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: account-name
+  elementType: text
+  bounds:
+  - 56
+  - 1000
+  - 160
+  - 32
+  content:
+    text: Андрей Н.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: topbar
+  elementType: shape
+  bounds:
+  - 240
+  - 0
+  - 1680
+  - 64
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+- elementId: topbar-line
+  elementType: shape
+  bounds:
+  - 240
+  - 63
+  - 1680
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: breadcrumb-0
+  elementType: text
+  bounds:
+  - 264
+  - 0
+  - 64
+  - 64
+  content:
+    text: Automaton
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-separator-0
+  elementType: text
+  bounds:
+  - 328
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-1
+  elementType: text
+  bounds:
+  - 352
+  - 0
+  - 146
+  - 64
+  content:
+    text: Neuro Photo / Mobile
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-project-chevron
+  elementType: icon
+  bounds:
+  - 496
+  - 24
+  - 16
+  - 16
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: breadcrumb-separator-1
+  elementType: text
+  bounds:
+  - 516
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-2
+  elementType: text
+  bounds:
+  - 540
+  - 0
+  - 64
+  - 64
+  content:
+    text: Автотесты
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: page-title
+  elementType: text
+  bounds:
+  - 264
+  - 84
+  - 1100
+  - 32
+  content:
+    text: Автотесты
+    fontSize: 24
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 28
+- elementId: page-subtitle
+  elementType: text
+  bounds:
+  - 264
+  - 120
+  - 1200
+  - 22
+  content:
+    text: Neuro Photo / Mobile · 24 сценария
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-search-bg
+  elementType: shape
+  bounds:
+  - 264
+  - 172
+  - 630
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: test-search-icon
+  elementType: icon
+  bounds:
+  - 276
+  - 182
+  - 16
+  - 16
+  iconName: fas:magnifying-glass
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-search-value
+  elementType: text
+  bounds:
+  - 304
+  - 172
+  - 578
+  - 36
+  content:
+    text: Поиск по имени, ID или тегу
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: status-select-bg
+  elementType: shape
+  bounds:
+  - 910
+  - 172
+  - 176
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: status-select-value
+  elementType: text
+  bounds:
+  - 922
+  - 172
+  - 130
+  - 36
+  content:
+    text: Все статусы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: status-select-chevron
+  elementType: icon
+  bounds:
+  - 1060
+  - 184
+  - 12
+  - 12
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: platform-select-bg
+  elementType: shape
+  bounds:
+  - 1102
+  - 172
+  - 190
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: platform-select-value
+  elementType: text
+  bounds:
+  - 1114
+  - 172
+  - 144
+  - 36
+  content:
+    text: Все платформы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: platform-select-chevron
+  elementType: icon
+  bounds:
+  - 1266
+  - 184
+  - 12
+  - 12
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: author-select-bg
+  elementType: shape
+  bounds:
+  - 1308
+  - 172
+  - 170
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: author-select-value
+  elementType: text
+  bounds:
+  - 1320
+  - 172
+  - 124
+  - 36
+  content:
+    text: Все авторы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: author-select-chevron
+  elementType: icon
+  bounds:
+  - 1452
+  - 184
+  - 12
+  - 12
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: table-settings-bg
+  elementType: shape
+  bounds:
+  - 1494
+  - 172
+  - 180
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 22222
+- elementId: table-settings-icon
+  elementType: icon
+  bounds:
+  - 1514.0
+  - 182
+  - 16
+  - 16
+  iconName: fas:sliders
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: table-settings-text
+  elementType: text
+  bounds:
+  - 1538.0
+  - 172
+  - 116
+  - 36
+  content:
+    text: Настроить колонки
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: reset-bg
+  elementType: shape
+  bounds:
+  - 1690
+  - 172
+  - 206
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+- elementId: reset-icon
+  elementType: icon
+  bounds:
+  - 1724.0
+  - 182
+  - 16
+  - 16
+  iconName: fas:rotate-right
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: reset-text
+  elementType: text
+  bounds:
+  - 1748.0
+  - 172
+  - 114
+  - 36
+  content:
+    text: Сбросить фильтры
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: filter-error-bg
+  elementType: shape
+  bounds:
+  - 264
+  - 224
+  - 132
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: filter-error-text
+  elementType: text
+  bounds:
+  - 274
+  - 224
+  - 98
+  - 24
+  content:
+    text: С ошибками
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: filter-error-close-addon
+  elementType: shape
+  bounds:
+  - 372
+  - 224
+  - 24
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: filter-error-close
+  elementType: icon
+  bounds:
+  - 377.0
+  - 229.0
+  - 14
+  - 14
+  iconName: fas:xmark
+  fill:
+    type: solid
+    color: '#BD0935'
+- elementId: filter-android-bg
+  elementType: shape
+  bounds:
+  - 408
+  - 224
+  - 112
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: filter-android-text
+  elementType: text
+  bounds:
+  - 418
+  - 224
+  - 78
+  - 24
+  content:
+    text: Android
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: filter-android-close-addon
+  elementType: shape
+  bounds:
+  - 496
+  - 224
+  - 24
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: filter-android-close
+  elementType: icon
+  bounds:
+  - 501.0
+  - 229.0
+  - 14
+  - 14
+  iconName: fas:xmark
+  fill:
+    type: solid
+    color: '#556575'
+- elementId: found
+  elementType: text
+  bounds:
+  - 1700
+  - 224
+  - 196
+  - 24
+  content:
+    text: 'Найдено: 7'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: table-top
+  elementType: shape
+  bounds:
+  - 264
+  - 276
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: table-head-line
+  elementType: shape
+  bounds:
+  - 264
+  - 316
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: check-all-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 290
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#FF003D'
+- elementId: check-all-minus
+  elementType: shape
+  bounds:
+  - 284
+  - 296
+  - 8
+  - 2
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: test-col-Имя
+  elementType: text
+  bounds:
+  - 320
+  - 277
+  - 216
+  - 40
+  content:
+    text: Имя
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-ID
+  elementType: text
+  bounds:
+  - 552
+  - 277
+  - 100
+  - 40
+  content:
+    text: ID
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Фича
+  elementType: text
+  bounds:
+  - 668
+  - 277
+  - 140
+  - 40
+  content:
+    text: Фича
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Команда
+  elementType: text
+  bounds:
+  - 824
+  - 277
+  - 130
+  - 40
+  content:
+    text: Команда
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Теги
+  elementType: text
+  bounds:
+  - 970
+  - 277
+  - 190
+  - 40
+  content:
+    text: Теги
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Статус
+  elementType: text
+  bounds:
+  - 1176
+  - 277
+  - 120
+  - 40
+  content:
+    text: Статус
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Платформы
+  elementType: text
+  bounds:
+  - 1312
+  - 277
+  - 104
+  - 40
+  content:
+    text: Платформы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Владелец
+  elementType: text
+  bounds:
+  - 1432
+  - 277
+  - 60
+  - 40
+  content:
+    text: Владелец
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-col-Изменено
+  elementType: text
+  bounds:
+  - 1508
+  - 277
+  - 190
+  - 40
+  content:
+    text: Изменено
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-row-line-0
+  elementType: shape
+  bounds:
+  - 264
+  - 356
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-0-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 330
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-name-0
+  elementType: text
+  bounds:
+  - 320
+  - 317
+  - 216
+  - 40
+  content:
+    text: Анонимный вход
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-0
+  elementType: text
+  bounds:
+  - 552
+  - 317
+  - 100
+  - 40
+  content:
+    text: AUTH_001
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-0
+  elementType: text
+  bounds:
+  - 668
+  - 317
+  - 140
+  - 40
+  content:
+    text: Авторизация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-0
+  elementType: text
+  bounds:
+  - 824
+  - 317
+  - 130
+  - 40
+  content:
+    text: Mobile Core
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-0-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 327
+  - 44
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-0-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 327
+  - 28
+  - 20
+  content:
+    text: auth
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-tag-0-1-bg
+  elementType: shape
+  bounds:
+  - 1022
+  - 327
+  - 52
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-0-1-text
+  elementType: text
+  bounds:
+  - 1030
+  - 327
+  - 36
+  - 20
+  content:
+    text: smoke
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-0-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 327
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-0-text
+  elementType: text
+  bounds:
+  - 1184
+  - 327
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-0-0
+  elementType: icon
+  bounds:
+  - 1345.0
+  - 329
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-0-1
+  elementType: icon
+  bounds:
+  - 1371.0
+  - 329
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-0
+  elementType: shape
+  bounds:
+  - 1448
+  - 323
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-0
+  elementType: text
+  bounds:
+  - 1448
+  - 323
+  - 28
+  - 28
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-0
+  elementType: text
+  bounds:
+  - 1508
+  - 317
+  - 190
+  - 40
+  content:
+    text: 06.11.2026 01:48
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-0-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 323
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-0-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 329
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-row-selected-1
+  elementType: shape
+  bounds:
+  - 264
+  - 357
+  - 1632
+  - 40
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+- elementId: test-row-line-1
+  elementType: shape
+  bounds:
+  - 264
+  - 396
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-1-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 370
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#FF003D'
+- elementId: test-check-1-check
+  elementType: icon
+  bounds:
+  - 284
+  - 373
+  - 8
+  - 8
+  iconName: fas:check
+  fill:
+    type: solid
+    color: '#FFFFFF'
+- elementId: test-name-1
+  elementType: text
+  bounds:
+  - 320
+  - 357
+  - 216
+  - 40
+  content:
+    text: Генерация изображения
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-1
+  elementType: text
+  bounds:
+  - 552
+  - 357
+  - 100
+  - 40
+  content:
+    text: GEN_014
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-1
+  elementType: text
+  bounds:
+  - 668
+  - 357
+  - 140
+  - 40
+  content:
+    text: Генерация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-1
+  elementType: text
+  bounds:
+  - 824
+  - 357
+  - 130
+  - 40
+  content:
+    text: AI Generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-1-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 367
+  - 87
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-1-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 367
+  - 71
+  - 20
+  content:
+    text: generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-tag-1-1-bg
+  elementType: shape
+  bounds:
+  - 1065
+  - 367
+  - 73
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-1-1-text
+  elementType: text
+  bounds:
+  - 1073
+  - 367
+  - 57
+  - 20
+  content:
+    text: critical
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-1-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 367
+  - 64
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-1-text
+  elementType: text
+  bounds:
+  - 1184
+  - 367
+  - 48
+  - 20
+  content:
+    text: Ошибка
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-1-0
+  elementType: icon
+  bounds:
+  - 1345.0
+  - 369
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-1-1
+  elementType: icon
+  bounds:
+  - 1371.0
+  - 369
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-1
+  elementType: shape
+  bounds:
+  - 1448
+  - 363
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-1
+  elementType: text
+  bounds:
+  - 1448
+  - 363
+  - 28
+  - 28
+  content:
+    text: МА
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-1
+  elementType: text
+  bounds:
+  - 1508
+  - 357
+  - 190
+  - 40
+  content:
+    text: 06.11.2026 01:32
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-1-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 363
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-1-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 369
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-row-line-2
+  elementType: shape
+  bounds:
+  - 264
+  - 436
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-2-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 410
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-name-2
+  elementType: text
+  bounds:
+  - 320
+  - 397
+  - 216
+  - 40
+  content:
+    text: Проверка paywall
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-2
+  elementType: text
+  bounds:
+  - 552
+  - 397
+  - 100
+  - 40
+  content:
+    text: PAY_008
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-2
+  elementType: text
+  bounds:
+  - 668
+  - 397
+  - 140
+  - 40
+  content:
+    text: Монетизация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-2
+  elementType: text
+  bounds:
+  - 824
+  - 397
+  - 130
+  - 40
+  content:
+    text: Revenue
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-2-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 407
+  - 73
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-2-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 407
+  - 57
+  - 20
+  content:
+    text: payments
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-2-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 407
+  - 87
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#527CCD26'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-2-text
+  elementType: text
+  bounds:
+  - 1184
+  - 407
+  - 71
+  - 20
+  content:
+    text: Интеграция
+    fontSize: 13
+    fontFamily: Inter
+    color: '#355CA8'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-2-0
+  elementType: icon
+  bounds:
+  - 1335.0
+  - 409
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-2-1
+  elementType: icon
+  bounds:
+  - 1361.0
+  - 409
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-2-2
+  elementType: icon
+  bounds:
+  - 1381.0
+  - 409
+  - 12
+  - 16
+  iconName: fas:clipboard-list
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-2
+  elementType: shape
+  bounds:
+  - 1448
+  - 403
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-2
+  elementType: text
+  bounds:
+  - 1448
+  - 403
+  - 28
+  - 28
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-2
+  elementType: text
+  bounds:
+  - 1508
+  - 397
+  - 190
+  - 40
+  content:
+    text: 05.11.2026 18:20
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-2-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 403
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-2-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 409
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-row-line-3
+  elementType: shape
+  bounds:
+  - 264
+  - 476
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-3-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 450
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-name-3
+  elementType: text
+  bounds:
+  - 320
+  - 437
+  - 216
+  - 40
+  content:
+    text: Вход по email
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-3
+  elementType: text
+  bounds:
+  - 552
+  - 437
+  - 100
+  - 40
+  content:
+    text: AUTH_007
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-3
+  elementType: text
+  bounds:
+  - 668
+  - 437
+  - 140
+  - 40
+  content:
+    text: Авторизация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-3
+  elementType: text
+  bounds:
+  - 824
+  - 437
+  - 130
+  - 40
+  content:
+    text: Mobile Core
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-3-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 447
+  - 44
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-3-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 447
+  - 28
+  - 20
+  content:
+    text: auth
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-3-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 447
+  - 73
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-3-text
+  elementType: text
+  bounds:
+  - 1184
+  - 447
+  - 57
+  - 20
+  content:
+    text: Набросок
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-3-0
+  elementType: icon
+  bounds:
+  - 1345.0
+  - 449
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-3-1
+  elementType: icon
+  bounds:
+  - 1371.0
+  - 449
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-3
+  elementType: shape
+  bounds:
+  - 1448
+  - 443
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-3
+  elementType: text
+  bounds:
+  - 1448
+  - 443
+  - 28
+  - 28
+  content:
+    text: ИЛ
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-3
+  elementType: text
+  bounds:
+  - 1508
+  - 437
+  - 190
+  - 40
+  content:
+    text: 05.11.2026 16:05
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-3-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 443
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-3-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 449
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-row-line-4
+  elementType: shape
+  bounds:
+  - 264
+  - 516
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-4-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 490
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-name-4
+  elementType: text
+  bounds:
+  - 320
+  - 477
+  - 216
+  - 40
+  content:
+    text: Сохранение в галерею
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-4
+  elementType: text
+  bounds:
+  - 552
+  - 477
+  - 100
+  - 40
+  content:
+    text: GEN_021
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-4
+  elementType: text
+  bounds:
+  - 668
+  - 477
+  - 140
+  - 40
+  content:
+    text: Генерация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-4
+  elementType: text
+  bounds:
+  - 824
+  - 477
+  - 130
+  - 40
+  content:
+    text: AI Generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-4-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 487
+  - 87
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-4-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 487
+  - 71
+  - 20
+  content:
+    text: generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-4-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 487
+  - 64
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-4-text
+  elementType: text
+  bounds:
+  - 1184
+  - 487
+  - 48
+  - 20
+  content:
+    text: Сломан
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-4-0
+  elementType: icon
+  bounds:
+  - 1345.0
+  - 489
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-4-1
+  elementType: icon
+  bounds:
+  - 1371.0
+  - 489
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-4
+  elementType: shape
+  bounds:
+  - 1448
+  - 483
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-4
+  elementType: text
+  bounds:
+  - 1448
+  - 483
+  - 28
+  - 28
+  content:
+    text: МА
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-4
+  elementType: text
+  bounds:
+  - 1508
+  - 477
+  - 190
+  - 40
+  content:
+    text: 04.11.2026 12:40
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-4-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 483
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-4-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 489
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-row-line-5
+  elementType: shape
+  bounds:
+  - 264
+  - 556
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-5-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 530
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-name-5
+  elementType: text
+  bounds:
+  - 320
+  - 517
+  - 216
+  - 40
+  content:
+    text: Ограничения анонима
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-5
+  elementType: text
+  bounds:
+  - 552
+  - 517
+  - 100
+  - 40
+  content:
+    text: AUTH_012
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-5
+  elementType: text
+  bounds:
+  - 668
+  - 517
+  - 140
+  - 40
+  content:
+    text: Авторизация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-5
+  elementType: text
+  bounds:
+  - 824
+  - 517
+  - 130
+  - 40
+  content:
+    text: Mobile Core
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-5-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 527
+  - 44
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-5-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 527
+  - 28
+  - 20
+  content:
+    text: auth
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-tag-5-1-bg
+  elementType: shape
+  bounds:
+  - 1022
+  - 527
+  - 59
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-5-1-text
+  elementType: text
+  bounds:
+  - 1030
+  - 527
+  - 43
+  - 20
+  content:
+    text: limits
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-5-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 527
+  - 87
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFBE5C4D'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-5-text
+  elementType: text
+  bounds:
+  - 1184
+  - 527
+  - 71
+  - 20
+  content:
+    text: Нестабилен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#8A5A18'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-5-0
+  elementType: icon
+  bounds:
+  - 1345.0
+  - 529
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-5-1
+  elementType: icon
+  bounds:
+  - 1371.0
+  - 529
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-5
+  elementType: shape
+  bounds:
+  - 1448
+  - 523
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-5
+  elementType: text
+  bounds:
+  - 1448
+  - 523
+  - 28
+  - 28
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-5
+  elementType: text
+  bounds:
+  - 1508
+  - 517
+  - 190
+  - 40
+  content:
+    text: 03.11.2026 09:15
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-5-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 523
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-5-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 529
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-row-line-6
+  elementType: shape
+  bounds:
+  - 264
+  - 596
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-check-6-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 570
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-name-6
+  elementType: text
+  bounds:
+  - 320
+  - 557
+  - 216
+  - 40
+  content:
+    text: Повторная генерация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-id-6
+  elementType: text
+  bounds:
+  - 552
+  - 557
+  - 100
+  - 40
+  content:
+    text: GEN_018
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-feature-6
+  elementType: text
+  bounds:
+  - 668
+  - 557
+  - 140
+  - 40
+  content:
+    text: Генерация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-team-6
+  elementType: text
+  bounds:
+  - 824
+  - 557
+  - 130
+  - 40
+  content:
+    text: AI Generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-tag-6-0-bg
+  elementType: shape
+  bounds:
+  - 970
+  - 567
+  - 87
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-tag-6-0-text
+  elementType: text
+  bounds:
+  - 978
+  - 567
+  - 71
+  - 20
+  content:
+    text: regression
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-status-6-bg
+  elementType: shape
+  bounds:
+  - 1176
+  - 567
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: test-status-6-text
+  elementType: text
+  bounds:
+  - 1184
+  - 567
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-platform-6-0
+  elementType: icon
+  bounds:
+  - 1345.0
+  - 569
+  - 18
+  - 16
+  iconName: fab:android
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-platform-6-1
+  elementType: icon
+  bounds:
+  - 1371.0
+  - 569
+  - 12
+  - 16
+  iconName: fab:apple
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-owner-6
+  elementType: shape
+  bounds:
+  - 1448
+  - 563
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: test-owner-initials-6
+  elementType: text
+  bounds:
+  - 1448
+  - 563
+  - 28
+  - 28
+  content:
+    text: ИЛ
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: test-date-6
+  elementType: text
+  bounds:
+  - 1508
+  - 557
+  - 190
+  - 40
+  content:
+    text: 01.11.2026 14:02
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-more-6-bg
+  elementType: shape
+  bounds:
+  - 1862
+  - 563
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: test-more-6-icon
+  elementType: icon
+  bounds:
+  - 1868
+  - 569
+  - 16
+  - 16
+  iconName: fas:ellipsis
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: pagination-summary
+  elementType: text
+  bounds:
+  - 264
+  - 620
+  - 600
+  - 28
+  content:
+    text: 1–7 из 7
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: table-pagination-previous
+  elementType: shape
+  bounds:
+  - 1652
+  - 620
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: table-pagination-previous-icon
+  elementType: icon
+  bounds:
+  - 1659
+  - 627
+  - 14
+  - 14
+  iconName: fas:chevron-left
+  fill:
+    type: solid
+    color: '#B3B3B3'
+- elementId: table-pagination-next
+  elementType: shape
+  bounds:
+  - 1716
+  - 620
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: table-pagination-next-icon
+  elementType: icon
+  bounds:
+  - 1723
+  - 627
+  - 14
+  - 14
+  iconName: fas:chevron-right
+  fill:
+    type: solid
+    color: '#B3B3B3'
+- elementId: table-pagination-current
+  elementType: shape
+  bounds:
+  - 1684
+  - 620
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: table-pagination-current-text
+  elementType: text
+  bounds:
+  - 1684
+  - 620
+  - 28
+  - 28
+  content:
+    text: '1'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: table-pagination-page-size
+  elementType: shape
+  bounds:
+  - 1756
+  - 620
+  - 140
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: table-pagination-page-size-text
+  elementType: text
+  bounds:
+  - 1768
+  - 620
+  - 100
+  - 28
+  content:
+    text: 7 на странице
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: table-pagination-page-size-icon
+  elementType: icon
+  bounds:
+  - 1872
+  - 628
+  - 12
+  - 12
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: test-details-panel
+  elementType: shape
+  bounds:
+  - 1280
+  - 0
+  - 640
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+  shadow:
+    blur: 24
+    color: '#00000026'
+    offset:
+    - -4
+    - 0
+- elementId: test-details-expand-bg
+  elementType: shape
+  bounds:
+  - 1768
+  - 16
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 28571
+- elementId: test-details-expand-icon
+  elementType: image
+  bounds:
+  - 1774
+  - 22
+  - 16
+  - 16
+  src: media/gravity-expand-light.svg
+  fit:
+    mode: contain
+- elementId: test-details-more-bg
+  elementType: shape
+  bounds:
+  - 1812
+  - 16
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 28571
+- elementId: test-details-more-icon
+  elementType: image
+  bounds:
+  - 1818
+  - 22
+  - 16
+  - 16
+  src: media/gravity-ellipsis-light.svg
+  fit:
+    mode: contain
+- elementId: test-details-close-bg
+  elementType: shape
+  bounds:
+  - 1856
+  - 16
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 28571
+- elementId: test-details-close-icon
+  elementType: image
+  bounds:
+  - 1862
+  - 22
+  - 16
+  - 16
+  src: media/gravity-xmark-light.svg
+  fit:
+    mode: contain
+- elementId: test-details-title
+  elementType: text
+  bounds:
+  - 1320
+  - 28
+  - 460
+  - 40
+  content:
+    text: Генерация изображения
+    fontSize: 24
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 28
+- elementId: test-details-dates
+  elementType: text
+  bounds:
+  - 1320
+  - 76
+  - 540
+  - 24
+  content:
+    text: Создан 01.11.2026 14:20 · обновлён 06.11.2026 01:32
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-details-description
+  elementType: text
+  bounds:
+  - 1320
+  - 116
+  - 520
+  - 44
+  content:
+    text: Проверяет генерацию изображения по текстовому описанию, отображение результата и сохранение в галерею.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 20
+- elementId: test-details-tabs-line
+  elementType: shape
+  bounds:
+  - 1320
+  - 215
+  - 560
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-details-tab-description
+  elementType: text
+  bounds:
+  - 1320
+  - 176
+  - 96
+  - 40
+  content:
+    text: Описание
+    fontSize: 15
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: test-details-tab-test
+  elementType: text
+  bounds:
+  - 1424
+  - 176
+  - 64
+  - 40
+  content:
+    text: Тест
+    fontSize: 15
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: test-details-tab-test-current
+  elementType: shape
+  bounds:
+  - 1424
+  - 214
+  - 64
+  - 2
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FF003D'
+  opacity: 1
+- elementId: test-code-block
+  elementType: shape
+  bounds:
+  - 1320
+  - 240
+  - 560
+  - 800
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+  adjustments:
+  - 1428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: test-code-body
+  elementType: shape
+  bounds:
+  - 1321
+  - 300
+  - 558
+  - 739
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FAFAFA'
+  opacity: 1
+  adjustments:
+  - 1254
+- elementId: test-code-body-top
+  elementType: shape
+  bounds:
+  - 1321
+  - 300
+  - 558
+  - 8
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FAFAFA'
+  opacity: 1
+- elementId: test-code-header-line
+  elementType: shape
+  bounds:
+  - 1320
+  - 299
+  - 560
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: test-view-mode-border
+  elementType: shape
+  bounds:
+  - 1336
+  - 252
+  - 144
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: test-view-mode-current
+  elementType: shape
+  bounds:
+  - 1384
+  - 252
+  - 48
+  - 36
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  border:
+    style: solid
+    width: 1
+    color: '#FF003D'
+- elementId: test-view-mode-icon-0
+  elementType: image
+  bounds:
+  - 1352
+  - 262
+  - 16
+  - 16
+  src: media/gravity-person-normal-light.svg
+  fit:
+    mode: contain
+- elementId: test-view-mode-icon-1
+  elementType: image
+  bounds:
+  - 1400
+  - 262
+  - 16
+  - 16
+  src: media/gravity-file-code-active-light.svg
+  fit:
+    mode: contain
+- elementId: test-view-mode-icon-2
+  elementType: image
+  bounds:
+  - 1448
+  - 262
+  - 16
+  - 16
+  src: media/gravity-cubes-3-normal-light.svg
+  fit:
+    mode: contain
+- elementId: test-edit-bg
+  elementType: shape
+  bounds:
+  - 1720
+  - 252
+  - 144
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 22222
+- elementId: test-edit-icon
+  elementType: image
+  bounds:
+  - 1734
+  - 262
+  - 16
+  - 16
+  src: media/gravity-pencil-light.svg
+  fit:
+    mode: contain
+- elementId: test-edit-text
+  elementType: text
+  bounds:
+  - 1758
+  - 252
+  - 92
+  - 36
+  content:
+    text: Редактировать
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: test-yaml-number-0
+  elementType: text
+  bounds:
+  - 1336
+  - 316
+  - 24
+  - 18
+  content:
+    text: '1'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-0
+  elementType: text
+  bounds:
+  - 1376
+  - 316
+  - 472
+  - 18
+  content:
+    text: 'test:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-1
+  elementType: text
+  bounds:
+  - 1336
+  - 334
+  - 24
+  - 18
+  content:
+    text: '2'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-1
+  elementType: text
+  bounds:
+  - 1376
+  - 334
+  - 472
+  - 18
+  content:
+    text: '  metadata:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-2
+  elementType: text
+  bounds:
+  - 1336
+  - 352
+  - 24
+  - 18
+  content:
+    text: '3'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-2
+  elementType: text
+  bounds:
+  - 1376
+  - 352
+  - 472
+  - 18
+  content:
+    text: '    id: "GEN_014"'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-3
+  elementType: text
+  bounds:
+  - 1336
+  - 370
+  - 24
+  - 18
+  content:
+    text: '4'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-3
+  elementType: text
+  bounds:
+  - 1376
+  - 370
+  - 472
+  - 18
+  content:
+    text: '    name: "Генерация изображения"'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-4
+  elementType: text
+  bounds:
+  - 1336
+  - 388
+  - 24
+  - 18
+  content:
+    text: '5'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-4
+  elementType: text
+  bounds:
+  - 1376
+  - 388
+  - 472
+  - 18
+  content:
+    text: '  steps:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-5
+  elementType: text
+  bounds:
+  - 1336
+  - 406
+  - 24
+  - 18
+  content:
+    text: '6'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-5
+  elementType: text
+  bounds:
+  - 1376
+  - 406
+  - 472
+  - 18
+  content:
+    text: '    - step:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-6
+  elementType: text
+  bounds:
+  - 1336
+  - 424
+  - 24
+  - 18
+  content:
+    text: '7'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-6
+  elementType: text
+  bounds:
+  - 1376
+  - 424
+  - 472
+  - 18
+  content:
+    text: '        stepDescription: "Открываем экран генерации"'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-7
+  elementType: text
+  bounds:
+  - 1336
+  - 442
+  - 24
+  - 18
+  content:
+    text: '8'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-7
+  elementType: text
+  bounds:
+  - 1376
+  - 442
+  - 472
+  - 18
+  content:
+    text: '        actions:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-8
+  elementType: text
+  bounds:
+  - 1336
+  - 460
+  - 24
+  - 18
+  content:
+    text: '9'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-8
+  elementType: text
+  bounds:
+  - 1376
+  - 460
+  - 472
+  - 18
+  content:
+    text: '          - wait:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-9
+  elementType: text
+  bounds:
+  - 1336
+  - 478
+  - 24
+  - 18
+  content:
+    text: '10'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-9
+  elementType: text
+  bounds:
+  - 1376
+  - 478
+  - 472
+  - 18
+  content:
+    text: '              condition:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-10
+  elementType: text
+  bounds:
+  - 1336
+  - 496
+  - 24
+  - 18
+  content:
+    text: '11'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-10
+  elementType: text
+  bounds:
+  - 1376
+  - 496
+  - 472
+  - 18
+  content:
+    text: '                elementName: LinearScreen'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-11
+  elementType: text
+  bounds:
+  - 1336
+  - 514
+  - 24
+  - 18
+  content:
+    text: '12'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-11
+  elementType: text
+  bounds:
+  - 1376
+  - 514
+  - 472
+  - 18
+  content:
+    text: '                elementProperty: visible'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-12
+  elementType: text
+  bounds:
+  - 1336
+  - 532
+  - 24
+  - 18
+  content:
+    text: '13'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-12
+  elementType: text
+  bounds:
+  - 1376
+  - 532
+  - 472
+  - 18
+  content:
+    text: '                propertyValue: true'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-13
+  elementType: text
+  bounds:
+  - 1336
+  - 550
+  - 24
+  - 18
+  content:
+    text: '14'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-13
+  elementType: text
+  bounds:
+  - 1376
+  - 550
+  - 472
+  - 18
+  content:
+    text: '              timeout: 5s'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-14
+  elementType: text
+  bounds:
+  - 1336
+  - 568
+  - 24
+  - 18
+  content:
+    text: '15'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-14
+  elementType: text
+  bounds:
+  - 1376
+  - 568
+  - 472
+  - 18
+  content:
+    text: '    - step:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-15
+  elementType: text
+  bounds:
+  - 1336
+  - 586
+  - 24
+  - 18
+  content:
+    text: '16'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-15
+  elementType: text
+  bounds:
+  - 1376
+  - 586
+  - 472
+  - 18
+  content:
+    text: '        stepDescription: "Запускаем генерацию"'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-16
+  elementType: text
+  bounds:
+  - 1336
+  - 604
+  - 24
+  - 18
+  content:
+    text: '17'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-16
+  elementType: text
+  bounds:
+  - 1376
+  - 604
+  - 472
+  - 18
+  content:
+    text: '        actions:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-17
+  elementType: text
+  bounds:
+  - 1336
+  - 622
+  - 24
+  - 18
+  content:
+    text: '18'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-17
+  elementType: text
+  bounds:
+  - 1376
+  - 622
+  - 472
+  - 18
+  content:
+    text: '          - tap:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-18
+  elementType: text
+  bounds:
+  - 1336
+  - 640
+  - 24
+  - 18
+  content:
+    text: '19'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-18
+  elementType: text
+  bounds:
+  - 1376
+  - 640
+  - 472
+  - 18
+  content:
+    text: '              elementName: LinearGenerate'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-19
+  elementType: text
+  bounds:
+  - 1336
+  - 658
+  - 24
+  - 18
+  content:
+    text: '20'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-19
+  elementType: text
+  bounds:
+  - 1376
+  - 658
+  - 472
+  - 18
+  content:
+    text: '              tapType: single'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-20
+  elementType: text
+  bounds:
+  - 1336
+  - 676
+  - 24
+  - 18
+  content:
+    text: '21'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-20
+  elementType: text
+  bounds:
+  - 1376
+  - 676
+  - 472
+  - 18
+  content:
+    text: '    - step:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-21
+  elementType: text
+  bounds:
+  - 1336
+  - 694
+  - 24
+  - 18
+  content:
+    text: '22'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-21
+  elementType: text
+  bounds:
+  - 1376
+  - 694
+  - 472
+  - 18
+  content:
+    text: '        stepDescription: "Проверяем результат"'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-22
+  elementType: text
+  bounds:
+  - 1336
+  - 712
+  - 24
+  - 18
+  content:
+    text: '23'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-22
+  elementType: text
+  bounds:
+  - 1376
+  - 712
+  - 472
+  - 18
+  content:
+    text: '        actions:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-23
+  elementType: text
+  bounds:
+  - 1336
+  - 730
+  - 24
+  - 18
+  content:
+    text: '24'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-23
+  elementType: text
+  bounds:
+  - 1376
+  - 730
+  - 472
+  - 18
+  content:
+    text: '          - wait:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-24
+  elementType: text
+  bounds:
+  - 1336
+  - 748
+  - 24
+  - 18
+  content:
+    text: '25'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-24
+  elementType: text
+  bounds:
+  - 1376
+  - 748
+  - 472
+  - 18
+  content:
+    text: '              condition:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-25
+  elementType: text
+  bounds:
+  - 1336
+  - 766
+  - 24
+  - 18
+  content:
+    text: '26'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-25
+  elementType: text
+  bounds:
+  - 1376
+  - 766
+  - 472
+  - 18
+  content:
+    text: '                elementName: GeneratedImage'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-26
+  elementType: text
+  bounds:
+  - 1336
+  - 784
+  - 24
+  - 18
+  content:
+    text: '27'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-26
+  elementType: text
+  bounds:
+  - 1376
+  - 784
+  - 472
+  - 18
+  content:
+    text: '                elementProperty: visible'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-27
+  elementType: text
+  bounds:
+  - 1336
+  - 802
+  - 24
+  - 18
+  content:
+    text: '28'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-27
+  elementType: text
+  bounds:
+  - 1376
+  - 802
+  - 472
+  - 18
+  content:
+    text: '                propertyValue: true'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-28
+  elementType: text
+  bounds:
+  - 1336
+  - 820
+  - 24
+  - 18
+  content:
+    text: '29'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-28
+  elementType: text
+  bounds:
+  - 1376
+  - 820
+  - 472
+  - 18
+  content:
+    text: '              timeout: 10s'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-29
+  elementType: text
+  bounds:
+  - 1336
+  - 838
+  - 24
+  - 18
+  content:
+    text: '30'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-29
+  elementType: text
+  bounds:
+  - 1376
+  - 838
+  - 472
+  - 18
+  content:
+    text: '          - tap:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-30
+  elementType: text
+  bounds:
+  - 1336
+  - 856
+  - 24
+  - 18
+  content:
+    text: '31'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-30
+  elementType: text
+  bounds:
+  - 1376
+  - 856
+  - 472
+  - 18
+  content:
+    text: '              elementName: SaveButton'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-31
+  elementType: text
+  bounds:
+  - 1336
+  - 874
+  - 24
+  - 18
+  content:
+    text: '32'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-31
+  elementType: text
+  bounds:
+  - 1376
+  - 874
+  - 472
+  - 18
+  content:
+    text: '              tapType: single'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-32
+  elementType: text
+  bounds:
+  - 1336
+  - 892
+  - 24
+  - 18
+  content:
+    text: '33'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-32
+  elementType: text
+  bounds:
+  - 1376
+  - 892
+  - 472
+  - 18
+  content:
+    text: '          - wait:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#355CA8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-33
+  elementType: text
+  bounds:
+  - 1336
+  - 910
+  - 24
+  - 18
+  content:
+    text: '34'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-33
+  elementType: text
+  bounds:
+  - 1376
+  - 910
+  - 472
+  - 18
+  content:
+    text: '              condition:'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-34
+  elementType: text
+  bounds:
+  - 1336
+  - 928
+  - 24
+  - 18
+  content:
+    text: '35'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-34
+  elementType: text
+  bounds:
+  - 1376
+  - 928
+  - 472
+  - 18
+  content:
+    text: '                elementName: GalleryImage'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-35
+  elementType: text
+  bounds:
+  - 1336
+  - 946
+  - 24
+  - 18
+  content:
+    text: '36'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-35
+  elementType: text
+  bounds:
+  - 1376
+  - 946
+  - 472
+  - 18
+  content:
+    text: '                elementProperty: visible'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-36
+  elementType: text
+  bounds:
+  - 1336
+  - 964
+  - 24
+  - 18
+  content:
+    text: '37'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-36
+  elementType: text
+  bounds:
+  - 1376
+  - 964
+  - 472
+  - 18
+  content:
+    text: '                propertyValue: true'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-number-37
+  elementType: text
+  bounds:
+  - 1336
+  - 982
+  - 24
+  - 18
+  content:
+    text: '38'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - right
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: test-yaml-line-37
+  elementType: text
+  bounds:
+  - 1376
+  - 982
+  - 472
+  - 18
+  content:
+    text: '              timeout: 5s'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18

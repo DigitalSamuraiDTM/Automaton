@@ -1,0 +1,35 @@
+version: v2
+title: Automaton SaaS · Gravity UI · Full HD
+size:
+- 1920
+- 1080
+customFonts:
+- family: Inter
+  src: https://fonts.googleapis.com/css2?family=Inter
+theme:
+  colors:
+    brand: '#FF003D'
+    text: '#262626'
+    background: '#FFFFFF'
+pages:
+- pages/01_home_light.page
+- pages/02_home_dark.page
+- pages/03_tests_light.page
+- pages/04_tests_dark.page
+- pages/05_test_details_light.page
+- pages/06_test_details_dark.page
+- pages/07_settings_light.page
+- pages/08_settings_dark.page
+- pages/09_editor_yaml_light.page
+- pages/10_editor_blocks_dark.page
+- pages/11_status_light.page
+- pages/12_status_dark.page
+- pages/13_automaton_healthy.page
+- pages/14_automaton_partial.page
+- pages/15_automaton_critical.page
+- pages/16_service_settings_light.page
+- pages/17_service_settings_dark.page
+- pages/18_test_description_light.page
+- pages/19_test_description_dark.page
+- pages/20_test_manual_light.page
+- pages/21_test_manual_dark.page

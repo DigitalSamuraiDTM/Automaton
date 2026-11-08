@@ -1,0 +1,2588 @@
+pageType: content
+background:
+  type: solid
+  color: '#221D22'
+elements:
+- elementId: aside
+  elementType: shape
+  bounds:
+  - 0
+  - 0
+  - 240
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#1D191D'
+  opacity: 1
+- elementId: aside-divider
+  elementType: shape
+  bounds:
+  - 239
+  - 0
+  - 1
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF26'
+  opacity: 1
+- elementId: brand-mark
+  elementType: image
+  bounds:
+  - 16
+  - 14
+  - 22
+  - 34
+  src: media/logo-dark.png
+  fit:
+    mode: contain
+- elementId: brand
+  elementType: text
+  bounds:
+  - 48
+  - 14
+  - 150
+  - 34
+  content:
+    text: AUTOMATON
+    fontSize: 15
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: collapse
+  elementType: icon
+  bounds:
+  - 208
+  - 23
+  - 16
+  - 16
+  iconName: fas:table-columns
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: nav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 95
+  - 18
+  - 18
+  iconName: fas:table-cells-large
+  fill:
+    type: solid
+    color: '#DEDDDE'
+- elementId: nav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 84
+  - 172
+  - 40
+  content:
+    text: Функции
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: nav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 139
+  - 18
+  - 18
+  iconName: fas:magnifying-glass
+  fill:
+    type: solid
+    color: '#DEDDDE'
+- elementId: nav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 128
+  - 172
+  - 40
+  content:
+    text: Поиск
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: aside-section-line
+  elementType: shape
+  bounds:
+  - 16
+  - 184
+  - 208
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF26'
+  opacity: 1
+- elementId: subnav-current-0
+  elementType: shape
+  bounds:
+  - 8
+  - 208
+  - 224
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#E5325D33'
+  opacity: 1
+  adjustments:
+  - 15000
+- elementId: subnav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 219
+  - 18
+  - 18
+  iconName: fas:list-check
+  fill:
+    type: solid
+    color: '#ED708E'
+- elementId: subnav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 208
+  - 172
+  - 40
+  content:
+    text: Тест-кейсы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#ED708E'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 263
+  - 18
+  - 18
+  iconName: fas:robot
+  fill:
+    type: solid
+    color: '#DEDDDE'
+- elementId: subnav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 252
+  - 172
+  - 40
+  content:
+    text: Автотесты
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-2
+  elementType: icon
+  bounds:
+  - 20
+  - 307
+  - 18
+  - 18
+  iconName: fas:arrows-rotate
+  fill:
+    type: solid
+    color: '#DEDDDE'
+- elementId: subnav-text-2
+  elementType: text
+  bounds:
+  - 52
+  - 296
+  - 172
+  - 40
+  content:
+    text: Регресс
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-3
+  elementType: icon
+  bounds:
+  - 20
+  - 351
+  - 18
+  - 18
+  iconName: fas:chart-pie
+  fill:
+    type: solid
+    color: '#DEDDDE'
+- elementId: subnav-text-3
+  elementType: text
+  bounds:
+  - 52
+  - 340
+  - 172
+  - 40
+  content:
+    text: Покрытие
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: create-test-sidebar-bg
+  elementType: shape
+  bounds:
+  - 16
+  - 400
+  - 208
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#E5325D'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: create-test-sidebar-icon
+  elementType: icon
+  bounds:
+  - 83.0
+  - 410
+  - 16
+  - 16
+  iconName: fas:plus
+  fill:
+    type: solid
+    color: '#FFFFFF'
+- elementId: create-test-sidebar-text
+  elementType: text
+  bounds:
+  - 107.0
+  - 400
+  - 50
+  - 36
+  content:
+    text: Создать
+    fontSize: 13
+    fontFamily: Inter
+    color: '#FFFFFF'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: footer-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 911
+  - 18
+  - 18
+  iconName: fas:gear
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: footer-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 900
+  - 172
+  - 40
+  content:
+    text: Настройки
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: footer-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 955
+  - 18
+  - 18
+  iconName: fas:circle-question
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: footer-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 944
+  - 172
+  - 40
+  content:
+    text: Помощь
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: account-avatar
+  elementType: shape
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF1A'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: account-initials
+  elementType: text
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: account-name
+  elementType: text
+  bounds:
+  - 56
+  - 1000
+  - 160
+  - 32
+  content:
+    text: Андрей Н.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: topbar
+  elementType: shape
+  bounds:
+  - 240
+  - 0
+  - 1680
+  - 64
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#221D22'
+  opacity: 1
+- elementId: topbar-line
+  elementType: shape
+  bounds:
+  - 240
+  - 63
+  - 1680
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF26'
+  opacity: 1
+- elementId: breadcrumb-0
+  elementType: text
+  bounds:
+  - 264
+  - 0
+  - 64
+  - 64
+  content:
+    text: Automaton
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-separator-0
+  elementType: text
+  bounds:
+  - 328
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#646264'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-1
+  elementType: text
+  bounds:
+  - 352
+  - 0
+  - 146
+  - 64
+  content:
+    text: Neuro Photo / Mobile
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-project-chevron
+  elementType: icon
+  bounds:
+  - 496
+  - 24
+  - 16
+  - 16
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: breadcrumb-separator-1
+  elementType: text
+  bounds:
+  - 516
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#646264'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-2
+  elementType: text
+  bounds:
+  - 540
+  - 0
+  - 64
+  - 64
+  content:
+    text: Автотесты
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-separator-2
+  elementType: text
+  bounds:
+  - 604
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#646264'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-3
+  elementType: text
+  bounds:
+  - 628
+  - 0
+  - 64
+  - 64
+  content:
+    text: AUTH_001
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: editor-title
+  elementType: text
+  bounds:
+  - 264
+  - 84
+  - 800
+  - 32
+  content:
+    text: Анонимный вход
+    fontSize: 24
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 28
+- elementId: synced-bg
+  elementType: shape
+  bounds:
+  - 540
+  - 88
+  - 172
+  - 24
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#4DB09B26'
+  opacity: 1
+  adjustments:
+  - 25000
+- elementId: synced-text
+  elementType: text
+  bounds:
+  - 550
+  - 88
+  - 152
+  - 24
+  content:
+    text: Синхронизировано
+    fontSize: 13
+    fontFamily: Inter
+    color: '#82C8B9'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: compile-bg
+  elementType: shape
+  bounds:
+  - 1684
+  - 84
+  - 212
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#E5325D'
+  opacity: 1
+  adjustments:
+  - 22222
+- elementId: compile-icon
+  elementType: icon
+  bounds:
+  - 1728.5
+  - 94
+  - 16
+  - 16
+  iconName: fas:play
+  fill:
+    type: solid
+    color: '#FFFFFF'
+- elementId: compile-text
+  elementType: text
+  bounds:
+  - 1752.5
+  - 84
+  - 99
+  - 36
+  content:
+    text: Скомпилировать
+    fontSize: 13
+    fontFamily: Inter
+    color: '#FFFFFF'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: editor-mode-border
+  elementType: shape
+  bounds:
+  - 264
+  - 152
+  - 280
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#E5325D'
+- elementId: editor-mode-current
+  elementType: shape
+  bounds:
+  - 404.0
+  - 152
+  - 140.0
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#E5325D33'
+  opacity: 1
+  adjustments:
+  - 22222
+- elementId: editor-mode-current-square
+  elementType: shape
+  bounds:
+  - 404.0
+  - 153
+  - 8
+  - 34
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#E5325D33'
+  opacity: 1
+- elementId: editor-mode-current-border
+  elementType: line
+  bounds:
+  - 404.0
+  - 152
+  - 1
+  - 36
+  viewBox:
+  - 1
+  - 36
+  points: 0.0,0 0.0,36
+  curve: round
+  arrow:
+  - null
+  - null
+  border:
+    style: solid
+    width: 1
+    color: '#E5325D'
+- elementId: editor-mode-icon-0
+  elementType: icon
+  bounds:
+  - 308.0
+  - 162
+  - 16
+  - 16
+  iconName: fas:file-code
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: editor-mode-text-0
+  elementType: text
+  bounds:
+  - 332.0
+  - 152
+  - 32
+  - 36
+  content:
+    text: YAML
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: editor-mode-icon-1
+  elementType: icon
+  bounds:
+  - 426.5
+  - 162
+  - 16
+  - 16
+  iconName: fas:cubes
+  fill:
+    type: solid
+    color: '#ED708E'
+- elementId: editor-mode-text-1
+  elementType: text
+  bounds:
+  - 450.5
+  - 152
+  - 75
+  - 36
+  content:
+    text: Блок-схема
+    fontSize: 13
+    fontFamily: Inter
+    color: '#ED708E'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: sync-copy
+  elementType: text
+  bounds:
+  - 576
+  - 152
+  - 740
+  - 36
+  content:
+    text: Изменения блоков обновляют исходный YAML
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: editor-card
+  elementType: shape
+  bounds:
+  - 264
+  - 208
+  - 1632
+  - 796
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 1005
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: steps-bg
+  elementType: shape
+  bounds:
+  - 264
+  - 208
+  - 232
+  - 796
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF1A'
+  opacity: 1
+- elementId: steps-line
+  elementType: shape
+  bounds:
+  - 495
+  - 208
+  - 1
+  - 796
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF26'
+  opacity: 1
+- elementId: steps-heading
+  elementType: text
+  bounds:
+  - 284
+  - 228
+  - 180
+  - 20
+  content:
+    text: ШАГИ ТЕСТА
+    fontSize: 11
+    fontFamily: Inter
+    color: '#646264'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step-num-0
+  elementType: text
+  bounds:
+  - 284
+  - 276
+  - 28
+  - 20
+  content:
+    text: '01'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#646264'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step-name-0
+  elementType: text
+  bounds:
+  - 320
+  - 272
+  - 148
+  - 40
+  content:
+    text: Открыть авторизацию
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: step-count-0
+  elementType: text
+  bounds:
+  - 320
+  - 314
+  - 140
+  - 18
+  content:
+    text: 1 действие
+    fontSize: 11
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step-current
+  elementType: shape
+  bounds:
+  - 272
+  - 356
+  - 216
+  - 76
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#E5325D33'
+  opacity: 1
+  adjustments:
+  - 7894
+- elementId: step-num-1
+  elementType: text
+  bounds:
+  - 284
+  - 364
+  - 28
+  - 20
+  content:
+    text: '02'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#ED708E'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step-name-1
+  elementType: text
+  bounds:
+  - 320
+  - 360
+  - 148
+  - 40
+  content:
+    text: Войти анонимно
+    fontSize: 13
+    fontFamily: Inter
+    color: '#ED708E'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: step-count-1
+  elementType: text
+  bounds:
+  - 320
+  - 402
+  - 140
+  - 18
+  content:
+    text: 1 действие
+    fontSize: 11
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step-num-2
+  elementType: text
+  bounds:
+  - 284
+  - 452
+  - 28
+  - 20
+  content:
+    text: '03'
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#646264'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step-name-2
+  elementType: text
+  bounds:
+  - 320
+  - 448
+  - 148
+  - 40
+  content:
+    text: Проверить главную
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: step-count-2
+  elementType: text
+  bounds:
+  - 320
+  - 490
+  - 140
+  - 18
+  content:
+    text: 4 действия
+    fontSize: 11
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: add-step-bg
+  elementType: shape
+  bounds:
+  - 284
+  - 580
+  - 192
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFFFFF1A'
+  opacity: 1
+  adjustments:
+  - 22222
+- elementId: add-step-icon
+  elementType: icon
+  bounds:
+  - 325.5
+  - 590
+  - 16
+  - 16
+  iconName: fas:plus
+  fill:
+    type: solid
+    color: '#DEDDDE'
+- elementId: add-step-text
+  elementType: text
+  bounds:
+  - 349.5
+  - 580
+  - 85
+  - 36
+  content:
+    text: Добавить шаг
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
+- elementId: canvas
+  elementType: shape
+  bounds:
+  - 496
+  - 208
+  - 1032
+  - 796
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#1B171B'
+  opacity: 1
+- elementId: grid-v-0
+  elementType: shape
+  bounds:
+  - 516
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-1
+  elementType: shape
+  bounds:
+  - 558
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-2
+  elementType: shape
+  bounds:
+  - 600
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-3
+  elementType: shape
+  bounds:
+  - 642
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-4
+  elementType: shape
+  bounds:
+  - 684
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-5
+  elementType: shape
+  bounds:
+  - 726
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-6
+  elementType: shape
+  bounds:
+  - 768
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-7
+  elementType: shape
+  bounds:
+  - 810
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-8
+  elementType: shape
+  bounds:
+  - 852
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-9
+  elementType: shape
+  bounds:
+  - 894
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-10
+  elementType: shape
+  bounds:
+  - 936
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-11
+  elementType: shape
+  bounds:
+  - 978
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-12
+  elementType: shape
+  bounds:
+  - 1020
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-13
+  elementType: shape
+  bounds:
+  - 1062
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-14
+  elementType: shape
+  bounds:
+  - 1104
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-15
+  elementType: shape
+  bounds:
+  - 1146
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-16
+  elementType: shape
+  bounds:
+  - 1188
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-17
+  elementType: shape
+  bounds:
+  - 1230
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-18
+  elementType: shape
+  bounds:
+  - 1272
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-19
+  elementType: shape
+  bounds:
+  - 1314
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-20
+  elementType: shape
+  bounds:
+  - 1356
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-21
+  elementType: shape
+  bounds:
+  - 1398
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-22
+  elementType: shape
+  bounds:
+  - 1440
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-v-23
+  elementType: shape
+  bounds:
+  - 1482
+  - 228
+  - 1
+  - 736
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-0
+  elementType: shape
+  bounds:
+  - 516
+  - 240
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-1
+  elementType: shape
+  bounds:
+  - 516
+  - 282
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-2
+  elementType: shape
+  bounds:
+  - 516
+  - 324
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-3
+  elementType: shape
+  bounds:
+  - 516
+  - 366
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-4
+  elementType: shape
+  bounds:
+  - 516
+  - 408
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-5
+  elementType: shape
+  bounds:
+  - 516
+  - 450
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-6
+  elementType: shape
+  bounds:
+  - 516
+  - 492
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-7
+  elementType: shape
+  bounds:
+  - 516
+  - 534
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-8
+  elementType: shape
+  bounds:
+  - 516
+  - 576
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-9
+  elementType: shape
+  bounds:
+  - 516
+  - 618
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-10
+  elementType: shape
+  bounds:
+  - 516
+  - 660
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-11
+  elementType: shape
+  bounds:
+  - 516
+  - 702
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-12
+  elementType: shape
+  bounds:
+  - 516
+  - 744
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-13
+  elementType: shape
+  bounds:
+  - 516
+  - 786
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-14
+  elementType: shape
+  bounds:
+  - 516
+  - 828
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-15
+  elementType: shape
+  bounds:
+  - 516
+  - 870
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: grid-h-16
+  elementType: shape
+  bounds:
+  - 516
+  - 912
+  - 992
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF12'
+  opacity: 1
+- elementId: canvas-caption
+  elementType: text
+  bounds:
+  - 524
+  - 226
+  - 360
+  - 24
+  content:
+    text: TEST · AUTH_001
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: start-card
+  elementType: shape
+  bounds:
+  - 770
+  - 280
+  - 360
+  - 64
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 12500
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: start-semantic
+  elementType: shape
+  bounds:
+  - 770
+  - 280
+  - 4
+  - 64
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#82C8B9'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: start-icon
+  elementType: icon
+  bounds:
+  - 786
+  - 296
+  - 16
+  - 16
+  iconName: fas:play
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: start-kicker
+  elementType: text
+  bounds:
+  - 814
+  - 288
+  - 300
+  - 18
+  content:
+    text: НАЧАЛО ТЕСТА
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: start-value
+  elementType: text
+  bounds:
+  - 814
+  - 308
+  - 300
+  - 32
+  content:
+    text: Successful anonymous entry
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: start-port
+  elementType: shape
+  bounds:
+  - 945.0
+  - 339
+  - 10
+  - 10
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF40'
+- elementId: step1-card
+  elementType: shape
+  bounds:
+  - 690
+  - 392
+  - 520
+  - 96
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 8333
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: step1-icon
+  elementType: icon
+  bounds:
+  - 706
+  - 408
+  - 16
+  - 16
+  iconName: fas:list-ol
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: step1-kicker
+  elementType: text
+  bounds:
+  - 734
+  - 400
+  - 460
+  - 18
+  content:
+    text: ШАГ 01
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step1-value
+  elementType: text
+  bounds:
+  - 734
+  - 420
+  - 460
+  - 64
+  content:
+    text: Открываем экран авторизации
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: step1-port
+  elementType: shape
+  bounds:
+  - 945.0
+  - 483
+  - 10
+  - 10
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF40'
+- elementId: wait-card
+  elementType: shape
+  bounds:
+  - 744
+  - 528
+  - 412
+  - 64
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 12500
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: wait-semantic
+  elementType: shape
+  bounds:
+  - 744
+  - 528
+  - 4
+  - 64
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#A9BEE8'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: wait-icon
+  elementType: icon
+  bounds:
+  - 760
+  - 544
+  - 16
+  - 16
+  iconName: fas:clock
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: wait-kicker
+  elementType: text
+  bounds:
+  - 788
+  - 536
+  - 352
+  - 18
+  content:
+    text: WAIT · 5s
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: wait-value
+  elementType: text
+  bounds:
+  - 788
+  - 556
+  - 352
+  - 32
+  content:
+    text: AuthScreen.visible = true
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: wait-port
+  elementType: shape
+  bounds:
+  - 945.0
+  - 587
+  - 10
+  - 10
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF40'
+- elementId: step2-card
+  elementType: shape
+  bounds:
+  - 690
+  - 640
+  - 520
+  - 96
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 8333
+  border:
+    style: solid
+    width: 2
+    color: '#E5325D'
+- elementId: step2-icon
+  elementType: icon
+  bounds:
+  - 706
+  - 656
+  - 16
+  - 16
+  iconName: fas:list-ol
+  fill:
+    type: solid
+    color: '#ED708E'
+- elementId: step2-kicker
+  elementType: text
+  bounds:
+  - 734
+  - 648
+  - 460
+  - 18
+  content:
+    text: ШАГ 02
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#ED708E'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: step2-value
+  elementType: text
+  bounds:
+  - 734
+  - 668
+  - 460
+  - 64
+  content:
+    text: Нажимаем на вход анонимным пользователем
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 18
+- elementId: step2-port
+  elementType: shape
+  bounds:
+  - 945.0
+  - 731
+  - 10
+  - 10
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF40'
+- elementId: tap-card
+  elementType: shape
+  bounds:
+  - 744
+  - 776
+  - 412
+  - 64
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 12500
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: tap-icon
+  elementType: icon
+  bounds:
+  - 760
+  - 792
+  - 16
+  - 16
+  iconName: fas:hand-pointer
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: tap-kicker
+  elementType: text
+  bounds:
+  - 788
+  - 784
+  - 352
+  - 18
+  content:
+    text: TAP · single
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: tap-value
+  elementType: text
+  bounds:
+  - 788
+  - 804
+  - 352
+  - 32
+  content:
+    text: AnonymButton
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: tap-port
+  elementType: shape
+  bounds:
+  - 945.0
+  - 835
+  - 10
+  - 10
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF40'
+- elementId: node-link-0
+  elementType: line
+  bounds:
+  - 950
+  - 344
+  - 1
+  - 48
+  viewBox:
+  - 1
+  - 48
+  points: 0,0 0,48
+  curve: round
+  arrow:
+  - null
+  - arrow
+  border:
+    style: solid
+    width: 2
+    color: '#FFFFFF40'
+- elementId: node-link-1
+  elementType: line
+  bounds:
+  - 950
+  - 488
+  - 1
+  - 40
+  viewBox:
+  - 1
+  - 40
+  points: 0,0 0,40
+  curve: round
+  arrow:
+  - null
+  - arrow
+  border:
+    style: solid
+    width: 2
+    color: '#FFFFFF40'
+- elementId: node-link-2
+  elementType: line
+  bounds:
+  - 950
+  - 592
+  - 1
+  - 48
+  viewBox:
+  - 1
+  - 48
+  points: 0,0 0,48
+  curve: round
+  arrow:
+  - null
+  - arrow
+  border:
+    style: solid
+    width: 2
+    color: '#E5325D'
+- elementId: node-link-3
+  elementType: line
+  bounds:
+  - 950
+  - 736
+  - 1
+  - 40
+  viewBox:
+  - 1
+  - 40
+  points: 0,0 0,40
+  curve: round
+  arrow:
+  - null
+  - arrow
+  border:
+    style: solid
+    width: 2
+    color: '#FFFFFF40'
+- elementId: zoom
+  elementType: shape
+  bounds:
+  - 1356
+  - 932
+  - 148
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: zoom-minus-bg
+  elementType: shape
+  bounds:
+  - 1362
+  - 936
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: zoom-minus-icon
+  elementType: icon
+  bounds:
+  - 1368
+  - 942
+  - 16
+  - 16
+  iconName: fas:minus
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: zoom-value
+  elementType: text
+  bounds:
+  - 1396
+  - 932
+  - 58
+  - 36
+  content:
+    text: 100%
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: zoom-plus-bg
+  elementType: shape
+  bounds:
+  - 1468
+  - 936
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: zoom-plus-icon
+  elementType: icon
+  bounds:
+  - 1474
+  - 942
+  - 16
+  - 16
+  iconName: fas:plus
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: properties
+  elementType: shape
+  bounds:
+  - 1528
+  - 208
+  - 368
+  - 796
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+- elementId: properties-line
+  elementType: shape
+  bounds:
+  - 1527
+  - 208
+  - 1
+  - 796
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF26'
+  opacity: 1
+- elementId: properties-heading
+  elementType: text
+  bounds:
+  - 1552
+  - 228
+  - 280
+  - 24
+  content:
+    text: Свойства шага
+    fontSize: 15
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: property-name-caption
+  elementType: text
+  bounds:
+  - 1552
+  - 276
+  - 320
+  - 18
+  content:
+    text: Описание
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: property-name-input-bg
+  elementType: shape
+  bounds:
+  - 1552
+  - 300
+  - 320
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: property-name-input-value
+  elementType: text
+  bounds:
+  - 1564
+  - 300
+  - 296
+  - 36
+  content:
+    text: Входим анонимно
+    fontSize: 13
+    fontFamily: Inter
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: action-heading
+  elementType: text
+  bounds:
+  - 1552
+  - 364
+  - 280
+  - 20
+  content:
+    text: ДЕЙСТВИЯ · 1
+    fontSize: 11
+    fontFamily: Inter
+    color: '#646264'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: action-card
+  elementType: shape
+  bounds:
+  - 1552
+  - 400
+  - 320
+  - 116
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D282D'
+  opacity: 1
+  adjustments:
+  - 6896
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: action-icon
+  elementType: icon
+  bounds:
+  - 1572
+  - 420
+  - 16
+  - 16
+  iconName: fas:hand-pointer
+  fill:
+    type: solid
+    color: '#ED708E'
+- elementId: action-title
+  elementType: text
+  bounds:
+  - 1600
+  - 412
+  - 220
+  - 24
+  content:
+    text: Tap
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#DEDDDE'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: action-key
+  elementType: text
+  bounds:
+  - 1572
+  - 452
+  - 260
+  - 18
+  content:
+    text: elementName
+    fontSize: 11
+    fontFamily: Menlo
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: action-value
+  elementType: text
+  bounds:
+  - 1572
+  - 476
+  - 260
+  - 20
+  content:
+    text: AnonymButton
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#A9BEE8'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: tap-type-caption
+  elementType: text
+  bounds:
+  - 1552
+  - 548
+  - 320
+  - 18
+  content:
+    text: Тип нажатия
+    fontSize: 13
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: tap-type-input-bg
+  elementType: shape
+  bounds:
+  - 1552
+  - 572
+  - 320
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#FFFFFF26'
+- elementId: tap-type-input-value
+  elementType: text
+  bounds:
+  - 1564
+  - 572
+  - 274
+  - 36
+  content:
+    text: single
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#DEDDDE'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: tap-type-input-chevron
+  elementType: icon
+  bounds:
+  - 1846
+  - 584
+  - 12
+  - 12
+  iconName: fas:chevron-down
+  fill:
+    type: solid
+    color: '#918E91'
+- elementId: semantic-alert-bg
+  elementType: shape
+  bounds:
+  - 1552
+  - 652
+  - 320
+  - 96
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#4DB09B26'
+  opacity: 1
+  adjustments:
+  - 8333
+- elementId: semantic-alert-icon
+  elementType: icon
+  bounds:
+  - 1572
+  - 670
+  - 16
+  - 16
+  iconName: fas:circle-check
+  fill:
+    type: solid
+    color: '#82C8B9'
+- elementId: semantic-alert-title
+  elementType: text
+  bounds:
+  - 1600
+  - 662
+  - 252
+  - 24
+  content:
+    text: Семантика проверена
+    fontSize: 13
+    fontFamily: Inter
+    color: '#82C8B9'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: semantic-alert-copy
+  elementType: text
+  bounds:
+  - 1572
+  - 694
+  - 280
+  - 40
+  content:
+    text: AnonymButton объявлен в Context и поддерживает tap.
+    fontSize: 11
+    fontFamily: Inter
+    color: '#918E91'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: true
+    lineHeightPx: 16
+- elementId: delete-step-bg
+  elementType: shape
+  bounds:
+  - 1552
+  - 916
+  - 320
+  - 36
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 22222
+  border:
+    style: solid
+    width: 1
+    color: '#BE2E51CC'
+- elementId: delete-step-icon
+  elementType: icon
+  bounds:
+  - 1661.0
+  - 926
+  - 16
+  - 16
+  iconName: fas:trash
+  fill:
+    type: solid
+    color: '#E8476D'
+- elementId: delete-step-text
+  elementType: text
+  bounds:
+  - 1685.0
+  - 916
+  - 78
+  - 36
+  content:
+    text: Удалить шаг
+    fontSize: 13
+    fontFamily: Inter
+    color: '#E8476D'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 36
