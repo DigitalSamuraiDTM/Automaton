@@ -4,7 +4,6 @@ import com.digitalsamurai.automaton.backend.android.kaspresso.ClassGenerator
 import com.digitalsamurai.automaton.backend.api.GeneratorOutput
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import com.squareup.kotlinpoet.*
-import java.io.File
 
 class AutomatonPermissionManagerGenerator(
     private val appPackage: String,

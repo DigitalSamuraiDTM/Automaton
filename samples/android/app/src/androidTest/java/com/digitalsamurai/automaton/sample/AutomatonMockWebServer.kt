@@ -21,7 +21,6 @@ import mockwebserver3.MockResponse
 /**
 * WARN! AUTO-GENERATED
 * Generate with love by Automaton
-* Datetime: 08.11.2026 11:30:17
 */
 
 public class AutomatonMockWebServer {

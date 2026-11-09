@@ -90,9 +90,9 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.StepList -> steps = result.value
+                        is StepList -> steps = result.value
                         is SemanticModel.Test.Metadata -> metadata = result
-                        is SemanticValue.TestRequests -> generalRequests = result.value.toSet()
+                        is TestRequests -> generalRequests = result.value.toSet()
                     }
                 }
                 val requiredSteps = requireSemanticValue(steps, "Test steps")
@@ -121,12 +121,12 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
                         // resolve element
-                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }
+                        is ElementName -> element = context.elements.find { it.name == result.value }
                             ?: throw AutomatonSemanticException("Element '${result.value}' is not declared in context")
 
-                        is SemanticValue.PropertyValue -> propertyValue = result.value
+                        is PropertyValue -> propertyValue = result.value
 
-                        is SemanticValue.PropertyName -> propertyName = result.value
+                        is PropertyName -> propertyName = result.value
                     }
                 }
                 val property = when (requireSemanticValue(propertyName, "Condition property name")) {
@@ -157,9 +157,9 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }
+                        is ElementName -> element = context.elements.find { it.name == result.value }
                             ?: throw AutomatonSemanticException("Element '${result.value}' is not declared in context")
-                        is SemanticValue.InputData -> inputData = result.value
+                        is InputData -> inputData = result.value
                     }
                 }
                 return SemanticModel.Test.Action.Input(
@@ -173,8 +173,8 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
 
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.TestName -> testName = result.value
-                        is SemanticValue.TestId -> id = result.value
+                        is TestName -> testName = result.value
+                        is TestId -> id = result.value
                     }
                 }
                 return SemanticModel.Test.Metadata(
@@ -188,9 +188,9 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var requests: List<SemanticModel.Request> = emptyList()
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.ActionsList -> actions = result.value
-                        is SemanticValue.StepDescription -> description = result.value
-                        is SemanticValue.StepRequests -> requests = result.value
+                        is ActionsList -> actions = result.value
+                        is StepDescription -> description = result.value
+                        is StepRequests -> requests = result.value
                     }
                 }
                 return SemanticModel.Test.Step(
@@ -214,7 +214,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var type: SemanticModel.Test.Action.Tap.Type? = null
                 childs.forEach { child ->
                     when (val result = child.buildTestModel(context)) {
-                        is SemanticValue.ElementName -> element = context.elements.find { it.name == result.value }
+                        is ElementName -> element = context.elements.find { it.name == result.value }
                             ?: throw AutomatonSemanticException("Element '${result.value}' is not declared in context")
                         is SemanticModel.Test.Action.Tap.Type -> type = result
                     }
@@ -235,7 +235,7 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                             element = result.element
                             property = result.property
                         }
-                        is SemanticValue.Timeout -> {
+                        is Timeout -> {
                             timeout = result.value
                         }
                     }
@@ -287,8 +287,8 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
                         is SemanticModel.Context.Theme -> theme = result
-                        is SemanticValue.ElementsList -> elements = result.value
-                        is SemanticValue.PermissionsList -> permissions = result.value
+                        is ElementsList -> elements = result.value
+                        is PermissionsList -> permissions = result.value
                         is SemanticValue.Requests -> requests = result.value
                         else -> throw AutomatonSemanticException("Context contains unexpected value: $result")
                     }
@@ -335,8 +335,8 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var layout: String? = null
                 childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
-                        is SemanticValue.ElementName -> name = result.value
-                        is SemanticValue.ElementLayout -> layout = result.value
+                        is ElementName -> name = result.value
+                        is ElementLayout -> layout = result.value
                     }
                 }
                 return SemanticModel.Element(
@@ -362,11 +362,11 @@ public class SemanticAnalyzer(private val logger: AutomatonLogger?) {
                 var headers: Map<String, String> = emptyMap()
                 this.childs.forEach { child ->
                     when (val result = child.buildContextModel()) {
-                        is SemanticValue.RequestName -> name = result.value
-                        is SemanticValue.RequestUrl -> url = result.value
-                        is SemanticValue.HttpRequestType -> requestType = result.value
+                        is RequestName -> name = result.value
+                        is RequestUrl -> url = result.value
+                        is HttpRequestType -> requestType = result.value
                         is SemanticModel.Request.Http.Body -> body = result
-                        is SemanticValue.ResponseHeaders -> headers = result.value
+                        is ResponseHeaders -> headers = result.value
                     }
                 }
                 val requiredBody = requireSemanticValue(body, "HTTP request body")

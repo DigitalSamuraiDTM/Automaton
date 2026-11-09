@@ -4,9 +4,7 @@ import com.digitalsamurai.automaton.api.AutomatonException
 import com.digitalsamurai.automaton.ast.Ast
 import com.digitalsamurai.automaton.ast.AstData
 import com.digitalsamurai.automaton.backend.api.AutomatonBackend
-import com.digitalsamurai.automaton.backend.api.AutomatonGenerator
 import com.digitalsamurai.automaton.backend.api.BackendResult
-import com.digitalsamurai.automaton.backend.api.GeneratorOutput
 import com.digitalsamurai.automaton.frontend.api.AutomatonFrontend
 import com.digitalsamurai.automaton.frontend.api.AutomatonRequest
 import com.digitalsamurai.automaton.frontend.api.AutomatonResult
@@ -77,7 +75,7 @@ public class AutomatonCompiler<T : AutomatonFrontend> internal constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private suspend fun SemanticModel.makeOutput(): List<BackendResult> {
-        return backends.map { backend -> backend.makeOutput(this) }
+        return backends.map { backend -> backend.makeOutput(this, logger) }
     }
 
     /**

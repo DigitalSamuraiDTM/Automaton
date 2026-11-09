@@ -6,7 +6,6 @@ import com.digitalsamurai.automaton.backend.api.GeneratorOutput
 import com.digitalsamurai.automaton.backend.api.camelCase
 import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
-import java.io.File
 import kotlin.collections.emptyList
 
 class AndroidKaspressoGenerator(

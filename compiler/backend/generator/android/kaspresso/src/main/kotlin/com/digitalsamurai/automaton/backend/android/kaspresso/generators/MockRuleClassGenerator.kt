@@ -5,7 +5,6 @@ import com.digitalsamurai.automaton.backend.api.GeneratorOutput
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import java.io.File
 
 /**
  * Generates AutomatonMockRule: a single mocked response of the mock web server

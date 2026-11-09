@@ -59,3 +59,5 @@ includeIfExists(":compiler:frontend:yaml")
 
 includeIfExists(":compiler:logger:api")
 includeIfExists(":compiler:logger:terminal")
+
+includeIfExists(":compiler:utils")
