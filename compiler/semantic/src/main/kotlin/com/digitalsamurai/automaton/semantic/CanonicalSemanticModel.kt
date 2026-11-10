@@ -2,6 +2,7 @@ package com.digitalsamurai.automaton.semantic
 
 import com.digitalsamurai.automaton.semantic.SemanticModel.Context
 import com.digitalsamurai.automaton.semantic.SemanticModel.Test
+import com.digitalsamurai.automaton.utils.Fingerprinted
 
 /**
  * Canonical semantic model for fingerprint SHA-256 calculation with rules:
@@ -17,7 +18,7 @@ public data class CanonicalSemanticModel private constructor(
     val context: Context,
     val test: Test,
     val canonicalSchemaVersion: String,
-) {
+): Fingerprinted {
 
     companion object {
 
@@ -36,11 +37,12 @@ public data class CanonicalSemanticModel private constructor(
             val canonicalRequests = semanticModel.context.requests
                 .intersect(testRequests)
                 .sortedBy { it.name }
+            val canonicalPermissions = semanticModel.context.permissions.sortedBy { it::class.java.canonicalName }
 
             return CanonicalSemanticModel(
                 context = Context(
                     theme = semanticModel.context.theme,
-                    permissions = semanticModel.context.permissions,
+                    permissions = canonicalPermissions,
                     elements = canonicalElements,
                     requests = canonicalRequests,
                 ),
@@ -49,4 +51,15 @@ public data class CanonicalSemanticModel private constructor(
             )
         }
     }
+
+    override fun toByteArray(): ByteArray {
+        return this.canonicalSchemaVersion.toByteArray() +
+                this.test.toString().toByteArray() +
+                this.context.toString().toByteArray() +
+                this.canonicalSchemaVersion.toByteArray()
+    }
+}
+
+public fun SemanticModel.canonical(): CanonicalSemanticModel {
+    return CanonicalSemanticModel.fromSemanticModel(this)
 }

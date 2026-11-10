@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(project(":compiler:semantic"))
     implementation(kotlin("stdlib-jdk8"))
+    api(project(":compiler:utils"))
 }
 
 

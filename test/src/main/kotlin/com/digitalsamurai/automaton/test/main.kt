@@ -25,6 +25,7 @@ fun main(): Unit = runBlocking {
     val compiler = Automaton.compiler.factory(
         frontend = yamlFrontend,
     ) {
+        // TODO если взять за факт то, что
         backends(
             AutomatonBackendBase(
                 generator = ManualTestCaseGenerator(Language.RU),

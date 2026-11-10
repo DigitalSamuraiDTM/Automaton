@@ -12,9 +12,21 @@ class AndroidKaspressoGenerator(
     private val appPackage: String,
     private val activity: AndroidAppActivity,
     private val composeApp: Boolean = true,
-    mockWebserverHost: String,
-    mockWebServerPort: Int,
+    private val mockWebserverHost: String,
+    private val mockWebServerPort: Int,
 ) : ClassGenerator(), AutomatonGenerator {
+
+    override fun toByteArray(): ByteArray {
+        return this::class.java.canonicalName.toByteArray() +
+                appPackage.toByteArray() +
+                activity.toString().toByteArray() +
+                composeApp.toString().toByteArray() +
+                mockWebserverHost.toByteArray() +
+                mockWebServerPort.toByte() +
+                version.toByteArray()
+    }
+
+    override val version: String = "1.0.0"
 
     private val environmentGenerator = EnvironmentGenerator(
         appPackage = appPackage,

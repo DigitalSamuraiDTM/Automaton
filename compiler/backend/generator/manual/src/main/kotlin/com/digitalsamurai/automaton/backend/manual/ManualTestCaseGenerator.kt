@@ -17,6 +17,8 @@ public class ManualTestCaseGenerator(
         Language.RU -> RussianLanguageExtractor()
     }
 
+    override val version: String = "1.0.0"
+
     override suspend fun generate(model: SemanticModel): GeneratorOutput = coroutineScope {
         val manualTestCase = languageExtractor.extractText(model)
         return@coroutineScope GeneratorOutput(
@@ -29,6 +31,12 @@ public class ManualTestCaseGenerator(
                 )
             ),
         )
+    }
+
+    override fun toByteArray(): ByteArray {
+        return this::class.java.canonicalName.toByteArray() +
+                language.toString().toByteArray() +
+                version.toByteArray()
     }
 
 }
