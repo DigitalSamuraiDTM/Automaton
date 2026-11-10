@@ -6,16 +6,16 @@ plugins {
 dependencies {
 
     implementation(libs.kotlinx.coroutines.core)
-    implementation(project(":compiler:grammar"))
-    implementation(project(":compiler:semantic"))
-    implementation(project(":compiler:parser:ll1"))
+    implementation(projects.compiler.grammar)
+    implementation(projects.compiler.semantic)
+    implementation(projects.compiler.parser.ll1)
 
 
-    api(project(":api"))
-    api(project(":compiler:backend:api"))
-    api(project(":compiler:frontend:api"))
-    api(project(":compiler:parser:api"))
-    api(project(":compiler:logger:api"))
+    api(projects.api)
+    api(projects.compiler.backend.api)
+    api(projects.compiler.frontend.api)
+    api(projects.compiler.parser.api)
+    api(projects.compiler.logger.api)
 
 
     implementation(libs.kotlin.stdlib)

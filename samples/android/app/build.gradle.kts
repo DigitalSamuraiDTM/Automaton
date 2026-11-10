@@ -59,11 +59,11 @@ androidComponents {
 
 dependencies {
 
-    implementation(project(":math"))
-    implementation(project(":algos"))
-    implementation(project(":utils"))
-    implementation(project(":network:auth"))
-    implementation(project(":network:frontback"))
+    implementation(projects.math)
+    implementation(projects.algos)
+    implementation(projects.utils)
+    implementation(projects.network.auth)
+    implementation(projects.network.frontback)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

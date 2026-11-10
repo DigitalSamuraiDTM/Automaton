@@ -4,9 +4,9 @@ plugins {
 
 
 dependencies {
-    implementation(project(":compiler:semantic"))
+    implementation(projects.compiler.semantic)
     implementation(libs.kotlin.stdlib)
-    api(project(":compiler:utils"))
+    api(projects.compiler.utils)
 }
 
 

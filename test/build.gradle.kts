@@ -11,13 +11,13 @@ kotlin {
 }
 
 dependencies {
-    implementation(project(":compiler:compiler"))
-    implementation(project(":compiler:frontend:yaml"))
-    implementation(project(":compiler:backend:generator:manual"))
-    implementation(project(":compiler:backend:generator:android:kaspresso"))
-    implementation(project(":compiler:backend:integrator:files"))
-    implementation(project(":compiler:parser:ll1"))
-    implementation(project(":compiler:logger:terminal"))
+    implementation(projects.compiler.compiler)
+    implementation(projects.compiler.frontend.yaml)
+    implementation(projects.compiler.backend.generator.manual)
+    implementation(projects.compiler.backend.generator.android.kaspresso)
+    implementation(projects.compiler.backend.integrator.files)
+    implementation(projects.compiler.parser.ll1)
+    implementation(projects.compiler.logger.terminal)
 
     implementation(libs.kotlin.stdlib)
 

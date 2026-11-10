@@ -4,10 +4,10 @@ plugins {
 
 
 dependencies {
-    implementation(project(":compiler:frontend:api"))
+    implementation(projects.compiler.frontend.api)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
-    implementation(project(":compiler:grammar"))
+    implementation(projects.compiler.grammar)
 
     // Source: https://mvnrepository.com/artifact/org.yaml/snakeyaml
     implementation(libs.snakeyaml)

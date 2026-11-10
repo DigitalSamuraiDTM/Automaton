@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
     implementation(libs.kotlin.stdlib)
-    implementation(project(":api"))
-    implementation(project(":compiler:grammar"))
+    implementation(projects.api)
+    implementation(projects.compiler.grammar)
     implementation(libs.kotlinx.coroutines.core)
 
 }

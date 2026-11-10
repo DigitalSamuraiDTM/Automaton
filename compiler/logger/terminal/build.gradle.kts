@@ -4,7 +4,7 @@ plugins {
 
 
 dependencies {
-    api(project(":compiler:logger:api"))
+    api(projects.compiler.logger.api)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
 }

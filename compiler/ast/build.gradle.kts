@@ -7,9 +7,9 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.core)
 
-    api(project(":api"))
-    api(project(":compiler:frontend:api"))
-    implementation(project(":compiler:grammar"))
+    api(projects.api)
+    api(projects.compiler.frontend.api)
+    implementation(projects.compiler.grammar)
     implementation(libs.kotlin.stdlib)
     implementation(libs.json)
 }

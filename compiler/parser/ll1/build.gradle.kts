@@ -4,8 +4,8 @@ plugins {
 
 
 dependencies {
-    api(project(":compiler:parser:api"))
-    implementation(project(":compiler:grammar"))
+    api(projects.compiler.parser.api)
+    implementation(projects.compiler.grammar)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.json)

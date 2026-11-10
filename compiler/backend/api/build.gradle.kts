@@ -7,12 +7,12 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.core)
 
-    api(project(":api"))
-    api(project(":compiler:backend:generator:api"))
-    api(project(":compiler:backend:integrator:api"))
-    api(project(":compiler:semantic"))
-    api(project(":compiler:logger:api"))
-    implementation(project(":compiler:utils"))
+    api(projects.api)
+    api(projects.compiler.backend.generator.api)
+    api(projects.compiler.backend.integrator.api)
+    api(projects.compiler.semantic)
+    api(projects.compiler.logger.api)
+    implementation(projects.compiler.utils)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.json)

@@ -6,8 +6,8 @@ plugins {
 dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
-    implementation(project(":compiler:semantic"))
-    implementation(project(":compiler:backend:generator:api"))
+    implementation(projects.compiler.semantic)
+    implementation(projects.compiler.backend.generator.api)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     // Source: https://mvnrepository.com/artifact/com.squareup/kotlinpoet

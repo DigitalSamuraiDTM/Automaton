@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    api(project(":core:network"))
+    api(projects.core.network)
     implementation(libs.hilt.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

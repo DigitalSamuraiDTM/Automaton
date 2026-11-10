@@ -26,6 +26,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "sample"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":math")
 include(":algos")
