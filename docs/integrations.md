@@ -1,11 +1,11 @@
-# Integrations design (Concept)
+# Integrations design (Fixed ideas)
 
-```                                          
-┌────────────────────┐           ┌────────────────────┐            ┌────────────────────┐                          
-│                    │           │                    │            │                    │                         
-│    Entry point     │  ──────▶  │    Core logic      │  ──────▶   │      Provider      │                                  
-│                    │           │                    │            │                    │                             
-└────────────────────┘           └────────────────────┘            └────────────────────┘                          
+```
+┌────────────────────┐           ┌────────────────────┐            ┌────────────────────┐
+│                    │           │                    │            │                    │
+│    Entry point     │  ──────▶  │    Core logic      │  ──────▶   │      Provider      │
+│                    │           │                    │            │                    │
+└────────────────────┘           └────────────────────┘            └────────────────────┘
 ```
 
 ### Entry points
@@ -24,77 +24,18 @@ Library scripts used for CI integration or custom services with automaton logic
 
 Instrumentation library with API for low level integrations over code
 
-
-
 ### Core logic
-
 
 ## Design with all automaton infrastructure (SaaS)
 
-```               
-                                                                                                                                                
-                                        Automaton environment                                                           Internal project environment                                      
- ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  ┐                                                                                                                                                                                    
-                                                                                                                                                                                                            
- │                                    ┌────────────────────┐            ┌────────────────────┐       │  │                                                        │                                                           
-                                      │     Automaton      │            │     Automaton      │                         Webhook                                                                                      
- │             ┌───────────────────▶  │     Autotest       │  ──────▶   │   autotest result  │  ◀────│──│───────────────────────────────────────┐                │                                                       
-               │                      │     Operations     │            │     collector      │                                                  │                                              
- │             │                      └────────────────────┘            └────────────────────┘       │  │                                       │                │                                                                    
-               │                                                                  ▼                                                             │                                                                          
- │   ┌────────────────────┐                                             ┌────────────────────┐       │   │                                      │                │                                                           
-     │                    │                                             │                    │                                                  │                                                                     
- │   │    Web point       │                                             │      Autotest      │       │   │           ┌────────────────────┐     │                │                            
-     │                    │                                             │      Storage       │                       │  ios autotesting   │     │                                                                                                                                                               
- │   └────────────────────┘                                             └────────────────────┘       │   │   ┌────▶  │   platform with    │  ───┤                │                                                                                                                             
-               │                                                                  ▲                          │       │ Automaton provider │     │                                                                                                                                      
- │             │                      ┌────────────────────┐            ┌────────────────────┐       │   │   │       └────────────────────┘     │                │                                                                                                                              
-               │                      │                    │            │     Automaton      │               │                                  │                                                                                                                                                                 
- │             └───────────────────▶  │      Compiler      │  ──────▶   │      linked        │  ─────│──│────┤                                  │                │                                                                                                                                                                                           
-                                      │                    │            │      provider      │               │       ┌────────────────────┐     │                                                                                                                                                                                        
- │                                    └────────────────────┘            └────────────────────┘       │   │   │       │Android autotesting │     │                │                                                                                                                                                                          
-                                                                                                             ├────▶  │   platform with    │ ────┤                                                                                                                                                                                              
- └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘   │   │       │ Automaton provider │     │                │                                                                                                                                                                                               
-                                                                                                             │       └────────────────────┘     │                                                                                                        
-                                                                                                         │   │                                  │                │                             
-                                                                                                             │                                  │                                                             
-                                                                                                         │   │       ┌────────────────────┐     │                │                                                                   
-                                                                                                             │       │Android autotesting │     │                                                                                   
-                                                                                                         │   └────▶  │   platform with    │ ────┘                │                                                                            
-                                                                                                                     │ Automaton provider │                                                                                        
-                                                                                                         │           └────────────────────┘                      │                                                                                                    
-                                                                                                                                                                                                                        
-                                                                                                         └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘                  
-```
+The diagrams fix logical data flows. Kafka topics carry asynchronous commands and context updates; Common APIs provide synchronous access to task, test, and context information.
 
+* [ASCII scheme](schemes/saas_ascii.md)
+* [Mermaid scheme](schemes/saas_mermaid.md)
 
 ## Design with custom project integration
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ```
 
