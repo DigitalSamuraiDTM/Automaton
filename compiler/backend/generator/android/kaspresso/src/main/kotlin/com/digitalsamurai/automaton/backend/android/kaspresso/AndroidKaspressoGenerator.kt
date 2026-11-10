@@ -6,6 +6,7 @@ import com.digitalsamurai.automaton.backend.api.GeneratorOutput
 import com.digitalsamurai.automaton.backend.api.camelCase
 import com.digitalsamurai.automaton.backend.api.tab
 import com.digitalsamurai.automaton.semantic.SemanticModel
+import java.nio.ByteBuffer
 import kotlin.collections.emptyList
 
 class AndroidKaspressoGenerator(
@@ -17,13 +18,15 @@ class AndroidKaspressoGenerator(
 ) : ClassGenerator(), AutomatonGenerator {
 
     override fun toByteArray(): ByteArray {
-        return this::class.java.canonicalName.toByteArray() +
-                appPackage.toByteArray() +
-                activity.toString().toByteArray() +
-                composeApp.toString().toByteArray() +
-                mockWebserverHost.toByteArray() +
-                mockWebServerPort.toByte() +
-                version.toByteArray()
+        return encodeFingerprintFields(
+            this::class.java.canonicalName.toByteArray(),
+            appPackage.toByteArray(),
+            activity.toString().toByteArray(),
+            composeApp.toString().toByteArray(),
+            mockWebserverHost.toByteArray(),
+            ByteBuffer.allocate(Int.SIZE_BYTES).putInt(mockWebServerPort).array(),
+            version.toByteArray(),
+        )
     }
 
     override val version: String = "1.0.0"

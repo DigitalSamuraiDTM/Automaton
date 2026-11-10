@@ -34,9 +34,11 @@ public class ManualTestCaseGenerator(
     }
 
     override fun toByteArray(): ByteArray {
-        return this::class.java.canonicalName.toByteArray() +
-                language.toString().toByteArray() +
-                version.toByteArray()
+        return encodeFingerprintFields(
+            this::class.java.canonicalName.toByteArray(),
+            language.toString().toByteArray(),
+            version.toByteArray(),
+        )
     }
 
 }

@@ -1,14 +1,18 @@
 package com.digitalsamurai.automaton.utils
 
+import java.nio.ByteBuffer
 import java.security.MessageDigest
-import kotlin.reflect.full.memberProperties
 
 private object Fingerprinter {
-    // TODO not thread safety?
-    var digest: MessageDigest = MessageDigest.getInstance("SHA-256")
 
+    /**
+     * Computes a SHA-256 hash using a digest instance local to this invocation.
+     *
+     * @param originalData source bytes.
+     * @return hexadecimal SHA-256 hash.
+     */
     fun sha256(originalData: ByteArray): String {
-        return digest.digest(originalData).toHexString()
+        return MessageDigest.getInstance("SHA-256").digest(originalData).toHexString()
     }
 }
 
@@ -20,6 +24,21 @@ public interface Fingerprinted {
      * For generation fingerprint from class it
      */
     fun toByteArray(): ByteArray
+
+    /**
+     * Encodes fingerprint fields with a four-byte length prefix before each field.
+     *
+     * @param fields fingerprint fields in a stable order.
+     * @return byte representation with unambiguous field boundaries.
+     */
+    fun encodeFingerprintFields(vararg fields: ByteArray): ByteArray {
+        val buffer = ByteBuffer.allocate(fields.sumOf { Int.SIZE_BYTES + it.size })
+        fields.forEach { field ->
+            buffer.putInt(field.size)
+            buffer.put(field)
+        }
+        return buffer.array()
+    }
 }
 fun Fingerprinted.fingerprint(): String {
     return Fingerprinter.sha256(originalData = toByteArray())
