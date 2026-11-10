@@ -4,12 +4,12 @@ General concept is a compiler style with several flow of input data analyze
 
 #### Scheme
 
-## General scheme of compiler
+## General scheme of creator
 
 ```
 
                             Frontend                               
-      ┌─────────────────────────────────────────────────────┐  Frontend is a first element of compiler. It provide input data based on different
+      ┌─────────────────────────────────────────────────────┐  Frontend is a first element of creator. It provide input data based on different
       │                 Input data flow                     │  developer flow. For example it can be: YAML data or REST API with custom requests
       │                        │                            │  
       │                        ▼                            │

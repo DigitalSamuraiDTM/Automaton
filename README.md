@@ -2,7 +2,7 @@
 
 # Automaton
 
-Concept of compiler engine for UI tests
+Concept of creator engine for UI tests
 
 ## Content
 
@@ -11,7 +11,7 @@ Concept of compiler engine for UI tests
 ## General of concept
 
 * **language** - context-free grammar for describing test
-* **compiler** - parser, analyzer, semanthic generator
+* **creator** - parser, analyzer, semanthic generator
 * **context** - declaration of screens, mocks, permissions, using in test
 * **Intermediate representation (IR)** - represantion of test for generating at platform
 
@@ -52,11 +52,11 @@ Then:
 
 #### Compilation determinism
 
-With fixed compiler version, grammar and context the same program generates the same equivalent IR.
+With fixed creator version, grammar and context the same program generates the same equivalent IR.
 
 #### Compilation checks
 
-Any error that can be detected before test execution must be detected by the compiler.d
+Any error that can be detected before test execution must be detected by the creator.d
 Test execution should not be used to detect errors that can be identified through syntactic or
 semantic analysis.
 

@@ -6,7 +6,7 @@ import com.digitalsamurai.automaton.backend.android.kaspresso.AndroidKaspressoGe
 import com.digitalsamurai.automaton.backend.api.AutomatonBackendBase
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.ManualTestCaseGenerator
 import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.language.Language
-import com.digitalsamurai.automaton.compiler.compiler
+import com.digitalsamurai.automaton.creator.creator
 import com.digitalsamurai.automaton.frontend.api.AutomatonResult
 import com.digitalsamurai.automaton.frontend.yaml.YamlFrontend
 import com.digitalsamurai.automaton.frontend.yaml.YamlInput
@@ -22,7 +22,7 @@ import java.io.File
 fun main(): Unit = runBlocking {
     val yamlFrontend = YamlFrontend()
     val resultFlow = MutableSharedFlow<AutomatonResult>(extraBufferCapacity = 10, onBufferOverflow = BufferOverflow.DROP_OLDEST)
-    val compiler = Automaton.compiler.factory(
+    val creator = Automaton.creator.factory(
         frontend = yamlFrontend,
     ) {
         // TODO если взять за факт то, что

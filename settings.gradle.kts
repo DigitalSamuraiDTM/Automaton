@@ -38,26 +38,29 @@ dependencyResolutionManagement {
 
 includeIfExists(":test")
 includeIfExists(":api")
-includeIfExists(":compiler:ast")
-includeIfExists(":compiler:semantic")
-includeIfExists(":compiler:compiler")
-includeIfExists(":compiler:grammar")
+includeIfExists(":creator:ast")
+includeIfExists(":creator:semantic")
+includeIfExists(":creator:api")
+includeIfExists(":creator:grammar")
 
-includeIfExists(":compiler:backend:api")
-includeIfExists(":compiler:backend:generator:api")
-includeIfExists(":compiler:backend:generator:manual")
-includeIfExists(":compiler:backend:generator:android:kaspresso")
+includeIfExists(":creator:backend:api")
+includeIfExists(":creator:backend:generator:api")
+includeIfExists(":creator:backend:generator:manual")
+includeIfExists(":creator:backend:generator:android:kaspresso")
 
-includeIfExists(":compiler:backend:integrator:api")
-includeIfExists(":compiler:backend:integrator:files")
+includeIfExists(":creator:backend:integrator:api")
+includeIfExists(":creator:backend:integrator:files")
 
-includeIfExists(":compiler:parser:api")
-includeIfExists(":compiler:parser:ll1")
+includeIfExists(":creator:parser:api")
+includeIfExists(":creator:parser:ll1")
 
-includeIfExists(":compiler:frontend:api")
-includeIfExists(":compiler:frontend:yaml")
+includeIfExists(":creator:frontend:api")
+includeIfExists(":creator:frontend:yaml")
 
-includeIfExists(":compiler:logger:api")
-includeIfExists(":compiler:logger:terminal")
+includeIfExists(":creator:logger:api")
+includeIfExists(":creator:logger:terminal")
 
-includeIfExists(":compiler:utils")
+includeIfExists(":creator:utils")
+
+includeIfExists(":grabber:api")
+includeIfExists(":grabber:frontend:api")
