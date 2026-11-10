@@ -1,21 +1,21 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
+    alias(libs.plugins.kotlinJvm)
 }
 
 
 dependencies {
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation(libs.kotlinx.coroutines.core)
 
-    api(project(":compiler:api"))
+    api(project(":api"))
     api(project(":compiler:frontend:api"))
     api(project(":compiler:logger:api"))
 
     implementation(project(":compiler:ast"))
     implementation(project(":compiler:grammar"))
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.json:json:20260814")
-    implementation(kotlin("reflect"))
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.json)
+    implementation(libs.kotlin.reflect)
 
 }
 

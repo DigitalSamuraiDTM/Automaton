@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 val projectVersion: String by rootProject.extra
 group = "com.digitalsamurai.math"

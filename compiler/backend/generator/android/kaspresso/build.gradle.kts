@@ -1,19 +1,19 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
+    alias(libs.plugins.kotlinJvm)
 }
 
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation(libs.kotlinx.coroutines.core)
 
     implementation(project(":compiler:semantic"))
     implementation(project(":compiler:backend:generator:api"))
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
     // Source: https://mvnrepository.com/artifact/com.squareup/kotlinpoet
-    implementation("com.squareup:kotlinpoet:2.2.0")
+    implementation(libs.kotlinpoet)
     // Source: https://mvnrepository.com/artifact/org.json/json
-    implementation("org.json:json:20260814")
+    implementation(libs.json)
 }
 
 repositories {

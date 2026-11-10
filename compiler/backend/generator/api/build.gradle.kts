@@ -1,11 +1,11 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
+    alias(libs.plugins.kotlinJvm)
 }
 
 
 dependencies {
     implementation(project(":compiler:semantic"))
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(libs.kotlin.stdlib)
     api(project(":compiler:utils"))
 }
 

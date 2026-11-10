@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
+    alias(libs.plugins.kotlinJvm)
 }
 
 
@@ -19,8 +19,8 @@ dependencies {
     implementation(project(":compiler:parser:ll1"))
     implementation(project(":compiler:logger:terminal"))
 
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(libs.kotlin.stdlib)
 
     // Source: https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation(libs.kotlinx.coroutines.core)
 }

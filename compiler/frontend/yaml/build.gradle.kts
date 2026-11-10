@@ -1,17 +1,17 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
+    alias(libs.plugins.kotlinJvm)
 }
 
 
 dependencies {
     implementation(project(":compiler:frontend:api"))
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(project(":compiler:grammar"))
 
     // Source: https://mvnrepository.com/artifact/org.yaml/snakeyaml
-    implementation("org.yaml:snakeyaml:2.6")
-    implementation("org.json:json:20260814")
+    implementation(libs.snakeyaml)
+    implementation(libs.json)
 
 }
 

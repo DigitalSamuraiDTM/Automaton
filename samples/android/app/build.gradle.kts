@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
-    id("com.google.dagger.hilt.android")
-    id("kotlinx-serialization")
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.kotlin.serialization)
 
 }
 
@@ -74,7 +74,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     // implement compose (compost)
-    val composeBom = platform("androidx.compose:compose-bom:2026.09.00")
+    val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
 
     implementation(libs.kotlinx.serialization.json)

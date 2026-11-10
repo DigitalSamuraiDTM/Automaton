@@ -1,14 +1,14 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
+    alias(libs.plugins.kotlinJvm)
 }
 
 
 dependencies {
-    implementation(project(":compiler:api"))
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation(project(":api"))
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
     // Source: https://mvnrepository.com/artifact/org.json/json
-    implementation("org.json:json:20260814")
+    implementation(libs.json)
 }
 
 

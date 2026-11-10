@@ -5,7 +5,7 @@ import kotlin.reflect.full.memberProperties
 
 private object Fingerprinter {
     // TODO not thread safety?
-    var digest: MessageDigest = MessageDigest.getInstance("SHA-1")
+    var digest: MessageDigest = MessageDigest.getInstance("SHA-256")
 
     fun sha256(originalData: ByteArray): String {
         return digest.digest(originalData).toHexString()

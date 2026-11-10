@@ -37,6 +37,8 @@ material-icons = "1.7.8"
 drawerLayout = "1.2.0"
 webMockServer = "5.5.1"
 okhttp = "5.5.1"
+composeBom = "2026.09.00"
+kotlinSerialization = "2.2.0"
 
 [libraries]
 # OPENTELEMETRY
@@ -115,11 +117,15 @@ espresso-idling-concurrent = { module = "androidx.test.espresso.idling:idling-co
 espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "espresso" }
 okhttp-webmockserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "webMockServer" }
 okhttp-bom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttp" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+
 [plugins]
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 #kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
