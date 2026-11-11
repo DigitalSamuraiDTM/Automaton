@@ -64,3 +64,4 @@ includeIfExists(":creator:utils")
 
 includeIfExists(":grabber:api")
 includeIfExists(":grabber:frontend:api")
+includeIfExists(":grabber:frontend:openapi-file")
