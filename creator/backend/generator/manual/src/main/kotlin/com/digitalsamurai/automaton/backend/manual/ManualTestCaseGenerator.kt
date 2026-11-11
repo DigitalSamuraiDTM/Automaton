@@ -9,6 +9,7 @@ import com.digitalsamurai.automaton.com.digitalsamurai.automaton.backend.manual.
 import com.digitalsamurai.automaton.semantic.SemanticModel
 import kotlinx.coroutines.coroutineScope
 
+// TODO доработать моки сетевых запросов
 public class ManualTestCaseGenerator(
     private val language: Language,
 ) : AutomatonGenerator {

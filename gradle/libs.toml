@@ -17,6 +17,7 @@ ktlint = "11.6.0"
 json = "20260814"
 snakeyaml = "2.6"
 kotlinpoet = "2.2.0"
+swagger-parser = "2.1.48"
 
 [libraries]
 plugin-agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -31,6 +32,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 json = { module = "org.json:json", version.ref = "json" }
 snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
 kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet" }
+swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version.ref = "swagger-parser" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 

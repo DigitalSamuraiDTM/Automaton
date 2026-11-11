@@ -2,12 +2,12 @@ package com.digitalsamurai.automaton.grabber.frontend.openapi.file
 
 import com.digitalsamurai.automaton.grabber.frontend.api.AutomatonGrabberRequest
 import com.digitalsamurai.automaton.grabber.frontend.api.GrabberFrontend
+import io.swagger.parser.OpenAPIParser
+import io.swagger.v3.oas.models.OpenAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
-import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.util.UUID
 
@@ -19,36 +19,35 @@ public class OpenApiFileFrontend : GrabberFrontend {
     )
 
     /**
-     * Reads an OpenAPI JSON or YAML file and sends its JSON representation to the grabber.
+     * Reads an OpenAPI JSON or YAML file and sends a placeholder request to the grabber.
      *
      * @param input file containing the OpenAPI specification.
-     * @return parsed JSON representation of the specification.
+     * @return OpenAPI model parsed by Swagger Parser.
      */
-    public suspend fun grab(input: OpenApiFileInput): JSONObject {
-        val data = withContext(Dispatchers.IO) {
-            readJson(input.file)
+    public suspend fun grab(input: OpenApiFileInput): OpenAPI {
+        val openApi = withContext(Dispatchers.IO) {
+            parse(input.file)
         }
         val request = AutomatonGrabberRequest(
             requestId = UUID.randomUUID().toString(),
-            data = data,
         )
         requestsFlow.emit(request)
-        return data
+        return openApi
     }
 
     /**
-     * Converts a JSON or YAML document with an object root into a JSON object.
+     * Parses an OpenAPI document into the Swagger Parser model.
      *
      * @param file source document.
-     * @return parsed JSON object.
+     * @return parsed OpenAPI model.
      */
-    private fun readJson(file: File): JSONObject {
-        file.inputStream().use { inputStream ->
-            val document = Yaml().load<Any?>(inputStream)
-            require(document is Map<*, *>) {
-                "OpenAPI document root must be an object: ${file.absolutePath}"
-            }
-            return JSONObject(document)
+    private fun parse(file: File): OpenAPI {
+        val result = OpenAPIParser().readLocation(file.absolutePath, null, null)
+        result.messages.forEach { message ->
+            System.err.println("OpenAPI parser: $message")
+        }
+        return checkNotNull(result.openAPI) {
+            "Unable to parse OpenAPI document: ${file.absolutePath}"
         }
     }
 }

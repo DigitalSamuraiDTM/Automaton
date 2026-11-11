@@ -1,7 +1,11 @@
 plugins {
     alias(libs.plugins.kotlinJvm)
+    id("application")
 }
 
+application {
+    mainClass.set("com.digitalsamurai.automaton.test.MainKt")
+}
 
 repositories {
     mavenCentral()
@@ -18,6 +22,8 @@ dependencies {
     implementation(projects.creator.backend.integrator.files)
     implementation(projects.creator.parser.ll1)
     implementation(projects.creator.logger.terminal)
+    implementation(projects.grabber.api)
+    implementation(projects.grabber.frontend.openapiFile)
 
     implementation(libs.kotlin.stdlib)
 

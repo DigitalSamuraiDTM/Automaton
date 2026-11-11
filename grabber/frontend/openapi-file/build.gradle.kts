@@ -6,8 +6,7 @@ dependencies {
     implementation(projects.grabber.frontend.api)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.snakeyaml)
-    implementation(libs.json)
+    api(libs.swagger.parser)
 }
 
 repositories {

@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Frontback API
+  description: Image generation configuration endpoints used by the Automaton sample application.
+  version: 1.0.0
+servers:
+  - url: http://10.0.2.2:8080
+paths:
+  /api/v1/diagram/bilinear/configuration:
+    get:
+      operationId: getLinearConfiguration
+      summary: Returns the bilinear interpolation image configuration.
+      responses:
+        '200':
+          description: Bilinear interpolation image configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinearConfigurationResponse'
+              example:
+                width: 32
+                height: 32
+                resolution: 4
+  /api/v1/diagram/neighbor/configuration:
+    get:
+      operationId: getNeighborConfiguration
+      summary: Returns the nearest-neighbor interpolation image configuration.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Nearest-neighbor interpolation image configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeighborConfigurationResponse'
+              example:
+                width: 32
+                height: 32
+                points: 8
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    LinearConfigurationResponse:
+      type: object
+      required:
+        - width
+        - height
+        - resolution
+      properties:
+        width:
+          type: integer
+          format: int32
+          example: 32
+        height:
+          type: integer
+          format: int32
+          example: 32
+        resolution:
+          type: integer
+          format: int32
+          example: 4
+    NeighborConfigurationResponse:
+      type: object
+      required:
+        - width
+        - height
+        - points
+      properties:
+        width:
+          type: integer
+          format: int32
+          example: 32
+        height:
+          type: integer
+          format: int32
+          example: 32
+        points:
+          type: integer
+          format: int32
+          example: 8

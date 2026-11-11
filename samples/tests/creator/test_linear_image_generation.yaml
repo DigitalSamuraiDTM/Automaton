@@ -2,9 +2,6 @@ compilationUnit:
   context:
     elements:
       - element:
-          elementName: LoginButton
-          elementLayout: https://example.com
-      - element:
           elementName: AuthScreen
           elementLayout: https://example.com
       - element:
@@ -20,13 +17,16 @@ compilationUnit:
           elementName: MainScreen
           elementLayout: https://example.com
       - element:
-          elementName: BicubicGeneration
-          elementLayout: https://example.com
-      - element:
           elementName: LinearGeneration
           elementLayout: https://example.com
       - element:
-          elementName: NeighborGeneration
+          elementName: LinearScreen
+          elementLayout: https://example.com
+      - element:
+          elementName: LinearGenerate
+          elementLayout: https://example.com
+      - element:
+          elementName: GeneratedImage
           elementLayout: https://example.com
     requests:
       - http:
@@ -34,16 +34,19 @@ compilationUnit:
           url: https://10.0.2.2:8081/auth
           requestType: post
           body:
-            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/authorization200.json"
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/creator/authorization200.json"
+      - http:
+          requestName: linearConfiguration200
+          url: https://10.0.2.2:8081/api/v1/diagram/bilinear/configuration
+          requestType: get
+          body:
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/creator/linearConfiguration200.json"
     theme:
       themeMode: light
-    permissions:
-      - camera: true
-      - microphone: true
   test:
     metadata:
-      id: "AUTH_002"
-      name: "Successful authorization entry"
+      id: "GENERATION_001"
+      name: "Linear image generation"
     testRequests:
       - requestName: authorization200
     steps:
@@ -57,7 +60,7 @@ compilationUnit:
                   propertyValue: true
                 timeout: 5s
       - step:
-          stepDescription: "Вводим пользовательские данные и жмякаем 'Войти'"
+          stepDescription: "Вводим пользовательские данные и авторизуемся"
           actions:
             - input:
                 elementName: LoginField
@@ -69,7 +72,7 @@ compilationUnit:
                 elementName: LoginButton
                 tapType: single
       - step:
-          stepDescription: "Попадаем на главный экран. Проверяем наличие фич"
+          stepDescription: "Открываем генерацию линейной интерполяции"
           actions:
             - wait:
                 condition:
@@ -77,18 +80,29 @@ compilationUnit:
                   elementProperty: visible
                   propertyValue: true
                 timeout: 5s
-            - assert:
+            - tap:
+                elementName: LinearGeneration
+                tapType: single
+      - step:
+          stepDescription: "Запускаем генерацию картинки"
+          stepRequests:
+            - requestName: linearConfiguration200
+          actions:
+            - wait:
                 condition:
-                  elementName: LinearGeneration
+                  elementName: LinearScreen
                   elementProperty: visible
                   propertyValue: true
-            - assert:
+                timeout: 5s
+            - tap:
+                elementName: LinearGenerate
+                tapType: single
+      - step:
+          stepDescription: "Проверяем, что картинка сгенерировалась"
+          actions:
+            - wait:
                 condition:
-                  elementName: BicubicGeneration
+                  elementName: GeneratedImage
                   elementProperty: visible
                   propertyValue: true
-            - assert:
-                condition:
-                  elementName: NeighborGeneration
-                  elementProperty: visible
-                  propertyValue: true
+                timeout: 10s

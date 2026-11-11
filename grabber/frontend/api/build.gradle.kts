@@ -5,7 +5,6 @@ plugins {
 dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
-    api(libs.json)
 }
 
 repositories {

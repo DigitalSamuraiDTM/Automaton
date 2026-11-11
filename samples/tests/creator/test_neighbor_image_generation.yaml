@@ -17,13 +17,13 @@ compilationUnit:
           elementName: MainScreen
           elementLayout: https://example.com
       - element:
-          elementName: LinearGeneration
+          elementName: NeighborGeneration
           elementLayout: https://example.com
       - element:
-          elementName: LinearScreen
+          elementName: NeighborScreen
           elementLayout: https://example.com
       - element:
-          elementName: LinearGenerate
+          elementName: NeighborGenerate
           elementLayout: https://example.com
       - element:
           elementName: GeneratedImage
@@ -34,19 +34,19 @@ compilationUnit:
           url: https://10.0.2.2:8081/auth
           requestType: post
           body:
-            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/authorization200.json"
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/creator/authorization200.json"
       - http:
-          requestName: linearConfiguration200
-          url: https://10.0.2.2:8081/api/v1/diagram/bilinear/configuration
+          requestName: neighborConfiguration200
+          url: https://10.0.2.2:8081/api/v1/diagram/neighbor/configuration
           requestType: get
           body:
-            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/linearConfiguration200.json"
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/creator/neighborConfiguration200.json"
     theme:
       themeMode: light
   test:
     metadata:
-      id: "GENERATION_001"
-      name: "Linear image generation"
+      id: "GENERATION_002"
+      name: "Neighbor image generation"
     testRequests:
       - requestName: authorization200
     steps:
@@ -72,7 +72,7 @@ compilationUnit:
                 elementName: LoginButton
                 tapType: single
       - step:
-          stepDescription: "Открываем генерацию линейной интерполяции"
+          stepDescription: "Открываем генерацию интерполяции ближайшего соседа"
           actions:
             - wait:
                 condition:
@@ -81,21 +81,21 @@ compilationUnit:
                   propertyValue: true
                 timeout: 5s
             - tap:
-                elementName: LinearGeneration
+                elementName: NeighborGeneration
                 tapType: single
       - step:
           stepDescription: "Запускаем генерацию картинки"
           stepRequests:
-            - requestName: linearConfiguration200
+            - requestName: neighborConfiguration200
           actions:
             - wait:
                 condition:
-                  elementName: LinearScreen
+                  elementName: NeighborScreen
                   elementProperty: visible
                   propertyValue: true
                 timeout: 5s
             - tap:
-                elementName: LinearGenerate
+                elementName: NeighborGenerate
                 tapType: single
       - step:
           stepDescription: "Проверяем, что картинка сгенерировалась"

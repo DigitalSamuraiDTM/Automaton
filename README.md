@@ -202,7 +202,7 @@ The `elementProperty` terminal contains the name of the property, `propertyValue
 
 [Example of non-terminals tree with test](examples/tree_example.md)
 
-[Example of yaml specification at yaml](samples/tests/test_anonymous_auth.yaml)
+[Example of yaml specification at yaml](samples/tests/creator/test_anonymous_auth.yaml)
 
 ## Semantic rules
 

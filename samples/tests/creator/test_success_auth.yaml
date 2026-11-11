@@ -2,6 +2,9 @@ compilationUnit:
   context:
     elements:
       - element:
+          elementName: LoginButton
+          elementLayout: https://example.com
+      - element:
           elementName: AuthScreen
           elementLayout: https://example.com
       - element:
@@ -17,16 +20,13 @@ compilationUnit:
           elementName: MainScreen
           elementLayout: https://example.com
       - element:
+          elementName: BicubicGeneration
+          elementLayout: https://example.com
+      - element:
+          elementName: LinearGeneration
+          elementLayout: https://example.com
+      - element:
           elementName: NeighborGeneration
-          elementLayout: https://example.com
-      - element:
-          elementName: NeighborScreen
-          elementLayout: https://example.com
-      - element:
-          elementName: NeighborGenerate
-          elementLayout: https://example.com
-      - element:
-          elementName: GeneratedImage
           elementLayout: https://example.com
     requests:
       - http:
@@ -34,19 +34,16 @@ compilationUnit:
           url: https://10.0.2.2:8081/auth
           requestType: post
           body:
-            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/authorization200.json"
-      - http:
-          requestName: neighborConfiguration200
-          url: https://10.0.2.2:8081/api/v1/diagram/neighbor/configuration
-          requestType: get
-          body:
-            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/neighborConfiguration200.json"
+            json: "/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/creator/authorization200.json"
     theme:
       themeMode: light
+    permissions:
+      - camera: true
+      - microphone: true
   test:
     metadata:
-      id: "GENERATION_002"
-      name: "Neighbor image generation"
+      id: "AUTH_002"
+      name: "Successful authorization entry"
     testRequests:
       - requestName: authorization200
     steps:
@@ -60,7 +57,7 @@ compilationUnit:
                   propertyValue: true
                 timeout: 5s
       - step:
-          stepDescription: "Вводим пользовательские данные и авторизуемся"
+          stepDescription: "Вводим пользовательские данные и жмякаем 'Войти'"
           actions:
             - input:
                 elementName: LoginField
@@ -72,7 +69,7 @@ compilationUnit:
                 elementName: LoginButton
                 tapType: single
       - step:
-          stepDescription: "Открываем генерацию интерполяции ближайшего соседа"
+          stepDescription: "Попадаем на главный экран. Проверяем наличие фич"
           actions:
             - wait:
                 condition:
@@ -80,29 +77,18 @@ compilationUnit:
                   elementProperty: visible
                   propertyValue: true
                 timeout: 5s
-            - tap:
-                elementName: NeighborGeneration
-                tapType: single
-      - step:
-          stepDescription: "Запускаем генерацию картинки"
-          stepRequests:
-            - requestName: neighborConfiguration200
-          actions:
-            - wait:
+            - assert:
                 condition:
-                  elementName: NeighborScreen
+                  elementName: LinearGeneration
                   elementProperty: visible
                   propertyValue: true
-                timeout: 5s
-            - tap:
-                elementName: NeighborGenerate
-                tapType: single
-      - step:
-          stepDescription: "Проверяем, что картинка сгенерировалась"
-          actions:
-            - wait:
+            - assert:
                 condition:
-                  elementName: GeneratedImage
+                  elementName: BicubicGeneration
                   elementProperty: visible
                   propertyValue: true
-                timeout: 10s
+            - assert:
+                condition:
+                  elementName: NeighborGeneration
+                  elementProperty: visible
+                  propertyValue: true
