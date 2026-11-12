@@ -1,38 +1,38 @@
 package com.digitalsamurai.automaton.grabber.frontend.openapi.file
 
-import com.digitalsamurai.automaton.grabber.frontend.api.AutomatonGrabberRequest
-import com.digitalsamurai.automaton.grabber.frontend.api.GrabberFrontend
+import com.digitalsamurai.automaton.grabber.AutomatonGrabber
+import com.digitalsamurai.automaton.grabber.representation.AutomatonGrabberParsedApi
+import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorageMeta
 import io.swagger.parser.OpenAPIParser
 import io.swagger.v3.oas.models.OpenAPI
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.withContext
 import java.io.File
-import java.util.UUID
 
-public class OpenApiFileFrontend : GrabberFrontend {
-
-    override val requestsFlow: MutableSharedFlow<AutomatonGrabberRequest> = MutableSharedFlow(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.SUSPEND,
-    )
+public class OpenApiFileFrontend<M : AutomatonGrabberStorageMeta>(
+    private val grabber: AutomatonGrabber<M>,
+) {
 
     /**
-     * Reads an OpenAPI JSON or YAML file and sends a placeholder request to the grabber.
+     * Reads an OpenAPI JSON or YAML file.
      *
      * @param input file containing the OpenAPI specification.
      * @return OpenAPI model parsed by Swagger Parser.
      */
-    public suspend fun grab(input: OpenApiFileInput): OpenAPI {
-        val openApi = withContext(Dispatchers.IO) {
-            parse(input.file)
-        }
-        val request = AutomatonGrabberRequest(
-            requestId = UUID.randomUUID().toString(),
-        )
-        requestsFlow.emit(request)
-        return openApi
+    public fun grab(input: OpenApiFileInput): OpenAPI {
+        return parse(input.file)
+    }
+
+    /**
+     * Runs grabber synchronization through the frontend API.
+     *
+     * @param request parsed API specification.
+     * @param meta metadata required by the storage.
+     * @return Unit after the grabber handles the request.
+     */
+    public fun sync(
+        request: AutomatonGrabberParsedApi,
+        meta: M,
+    ) {
+        grabber.sync(request = request, meta = meta)
     }
 
     /**

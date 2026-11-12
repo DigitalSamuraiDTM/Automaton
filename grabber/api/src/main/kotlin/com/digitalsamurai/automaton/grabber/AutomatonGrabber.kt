@@ -1,33 +1,24 @@
 package com.digitalsamurai.automaton.grabber
 
-import com.digitalsamurai.automaton.grabber.frontend.api.GrabberFrontend
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalForInheritanceCoroutinesApi
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import com.digitalsamurai.automaton.grabber.representation.AutomatonGrabberParsedApi
+import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorage
+import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorageMeta
 
-@OptIn(ExperimentalForInheritanceCoroutinesApi::class)
-public class AutomatonGrabber<T : GrabberFrontend> internal constructor(
-    private val frontend: T,
+public class AutomatonGrabber<M : AutomatonGrabberStorageMeta> internal constructor(
+    private val storage: AutomatonGrabberStorage<M>,
 ) {
 
-    private val automatonScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
-
-    init {
-        listenFrontend()
-    }
-
     /**
-     * Starts printing requests received from the frontend.
+     * Synchronizes a parsed API through the configured storage.
      *
-     * @return Unit after launching frontend flow collection.
+     * @param request parsed API specification.
+     * @param meta metadata required by the storage.
+     * @return Unit after the storage handles the request.
      */
-    private fun listenFrontend() {
-        automatonScope.launch {
-            frontend.requestsFlow.collect { request ->
-                println(request)
-            }
-        }
+    public fun sync(
+        request: AutomatonGrabberParsedApi,
+        meta: M,
+    ) {
+        storage.sync(request = request, meta = meta)
     }
 }

@@ -4,9 +4,9 @@ plugins {
 
 dependencies {
     api(projects.api)
-    api(projects.grabber.frontend.api)
+    api(projects.grabber.representation)
+    api(projects.grabber.storage.api)
     implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlinx.coroutines.core)
 }
 
 repositories {

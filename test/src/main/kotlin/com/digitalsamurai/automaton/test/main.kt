@@ -13,6 +13,9 @@ import com.digitalsamurai.automaton.frontend.yaml.YamlInput
 import com.digitalsamurai.automaton.grabber.frontend.openapi.file.OpenApiFileFrontend
 import com.digitalsamurai.automaton.grabber.frontend.openapi.file.OpenApiFileInput
 import com.digitalsamurai.automaton.grabber.grabber
+import com.digitalsamurai.automaton.grabber.representation.AutomatonGrabberParsedApi
+import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorage
+import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorageMeta
 import com.digitalsamurai.automaton.integrator.files.FileIntegrator
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.logger.terminal.TerminalLogger
@@ -80,17 +83,47 @@ private suspend fun checkCreator() {
 }
 
 /**
- * Builds the grabber and prints the parsed frontback OpenAPI specification.
+ * Builds the grabber, parses the frontback specification and checks synchronous storage delegation.
  *
- * @return Unit after the specification is parsed and printed.
+ * @return Unit after the specification is parsed, printed and synchronized.
  */
-private suspend fun checkGrabber() {
-    val frontend = OpenApiFileFrontend()
-    Automaton.grabber.factory(frontend) {}
+private fun checkGrabber() {
+    val grabber = Automaton.grabber.factory(PrintingGrabberStorage())
+    val frontend = OpenApiFileFrontend(grabber)
     val openApi = frontend.grab(
         OpenApiFileInput(
             File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/grabber/frontback-openapi.yaml")
         )
     )
     println(Json.pretty(openApi))
+    frontend.sync(
+        request = AutomatonGrabberParsedApi(
+            info = AutomatonGrabberParsedApi.Info(
+                name = openApi.info.title,
+                description = openApi.info.description,
+            ),
+            servers = emptyList(),
+        ),
+        meta = TestGrabberStorageMeta,
+    )
+}
+
+private data object TestGrabberStorageMeta : AutomatonGrabberStorageMeta
+
+private class PrintingGrabberStorage : AutomatonGrabberStorage<TestGrabberStorageMeta> {
+
+    /**
+     * Prints the synchronization request received from the grabber.
+     *
+     * @param request parsed API specification.
+     * @param meta test storage metadata.
+     * @return Unit after the request is printed.
+     */
+    override fun sync(
+        request: AutomatonGrabberParsedApi,
+        meta: TestGrabberStorageMeta,
+    ) {
+        println("GRABBER SYNC META: $meta")
+        println("GRABBER SYNC REQUEST: $request")
+    }
 }

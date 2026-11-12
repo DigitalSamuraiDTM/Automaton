@@ -3,9 +3,8 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.grabber.frontend.api)
+    api(projects.grabber.api)
     implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlinx.coroutines.core)
     api(libs.swagger.parser)
 }
 

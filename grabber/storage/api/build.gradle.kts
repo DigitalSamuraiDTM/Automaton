@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
+    api(projects.grabber.representation)
     implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlinx.coroutines.core)
 }
 
 repositories {
