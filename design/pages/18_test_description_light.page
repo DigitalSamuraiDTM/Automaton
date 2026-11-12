@@ -496,16 +496,15 @@ elements:
     wrap: false
     lineHeightPx: 18
 - elementId: breadcrumb-project-chevron
-  elementType: icon
+  elementType: image
   bounds:
-  - 496
-  - 24
+  - 496.0
+  - 24.0
   - 16
   - 16
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: breadcrumb-separator-1
   elementType: text
   bounds:
@@ -662,16 +661,15 @@ elements:
     wrap: false
     lineHeightPx: 16
 - elementId: status-select-chevron
-  elementType: icon
+  elementType: image
   bounds:
-  - 1060
-  - 184
-  - 12
-  - 12
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  - 1058.0
+  - 182.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: platform-select-bg
   elementType: shape
   bounds:
@@ -709,16 +707,15 @@ elements:
     wrap: false
     lineHeightPx: 16
 - elementId: platform-select-chevron
-  elementType: icon
+  elementType: image
   bounds:
-  - 1266
-  - 184
-  - 12
-  - 12
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  - 1264.0
+  - 182.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: author-select-bg
   elementType: shape
   bounds:
@@ -756,16 +753,15 @@ elements:
     wrap: false
     lineHeightPx: 16
 - elementId: author-select-chevron
-  elementType: icon
+  elementType: image
   bounds:
-  - 1452
-  - 184
-  - 12
-  - 12
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  - 1450.0
+  - 182.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: table-settings-bg
   elementType: shape
   bounds:
@@ -3238,16 +3234,15 @@ elements:
     width: 1
     color: '#0000001A'
 - elementId: table-pagination-previous-icon
-  elementType: icon
+  elementType: image
   bounds:
-  - 1659
-  - 627
-  - 14
-  - 14
-  iconName: fas:chevron-left
-  fill:
-    type: solid
-    color: '#B3B3B3'
+  - 1658.0
+  - 626.0
+  - 16
+  - 16
+  src: media/gravity-chevron-left-hint-light.svg
+  fit:
+    mode: contain
 - elementId: table-pagination-next
   elementType: shape
   bounds:
@@ -3267,16 +3262,15 @@ elements:
     width: 1
     color: '#0000001A'
 - elementId: table-pagination-next-icon
-  elementType: icon
+  elementType: image
   bounds:
-  - 1723
-  - 627
-  - 14
-  - 14
-  iconName: fas:chevron-right
-  fill:
-    type: solid
-    color: '#B3B3B3'
+  - 1722.0
+  - 626.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-hint-light.svg
+  fit:
+    mode: contain
 - elementId: table-pagination-current
   elementType: shape
   bounds:
@@ -3346,16 +3340,15 @@ elements:
     wrap: false
     lineHeightPx: 16
 - elementId: table-pagination-page-size-icon
-  elementType: icon
+  elementType: image
   bounds:
-  - 1872
-  - 628
-  - 12
-  - 12
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  - 1870.0
+  - 626.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: test-details-panel
   elementType: shape
   bounds:

@@ -395,16 +395,15 @@ elements:
     wrap: false
     lineHeightPx: 18
 - elementId: breadcrumb-project-chevron
-  elementType: icon
+  elementType: image
   bounds:
-  - 496
-  - 24
+  - 496.0
+  - 24.0
   - 16
   - 16
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: breadcrumb-separator-1
   elementType: text
   bounds:
@@ -1637,16 +1636,15 @@ elements:
     wrap: false
     lineHeightPx: 16
 - elementId: compiler-select-chevron
-  elementType: icon
+  elementType: image
   bounds:
-  - 622
-  - 808
-  - 12
-  - 12
-  iconName: fas:chevron-down
-  fill:
-    type: solid
-    color: '#808080'
+  - 620.0
+  - 806.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
 - elementId: warnings
   elementType: text
   bounds:

@@ -32,6 +32,12 @@ DARK = {
     "code": "#1B171B", "grid": "#FFFFFF12", "shell": "#BDBBBD", "shellDark": "#433F43", "robotFace": "#211D21",
 }
 
+# Модуль контекста использует зелёную идентичность Automaton Grabber.
+GRABBER_LIGHT = {**LIGHT, "selection": "#32BA7626", "brand": "#2D8B5D",
+                 "brandHover": "#26784F", "brandHeavy": "#2D8B5D"}
+GRABBER_DARK = {**DARK, "selection": "#4DB09B33", "brand": "#4DB09B",
+                "brandHover": "#66BCA9", "brandHeavy": "#82C8B9"}
+
 
 def solid(color: str) -> dict[str, str]:
     """Создаёт заливку. @param color HEX-цвет. @return Объект заливки PPTD."""
@@ -71,7 +77,15 @@ def txt(eid: str, x: float, y: float, w: float, h: float, value: str, p: dict[st
 
 
 def ico(eid: str, x: float, y: float, size: float, name: str, color: str) -> dict[str, Any]:
-    """Создаёт интерфейсную иконку. @param eid ID. @param x,y,size Геометрия. @param name Имя. @param color Цвет. @return Элемент icon."""
+    """Создаёт интерфейсную иконку. @param eid ID. @param x,y,size Геометрия. @param name Имя. @param color Цвет. @return Элемент icon или SVG image для стрелки Gravity 16 px."""
+    arrows = {"fas:chevron-down", "fas:chevron-right", "fas:chevron-left", "fas:arrow-right"}
+    if name in arrows:
+        tones = {"#808080": ("secondary", "light"), "#B3B3B3": ("hint", "light"),
+                 "#918E91": ("secondary", "dark"), "#646264": ("hint", "dark")}
+        tone, theme = tones[color]
+        offset = (size - 16) / 2
+        return image(eid, x + offset, y + offset, 16, 16,
+                     f"media/gravity-{name.removeprefix('fas:')}-{tone}-{theme}.svg")
     return {"elementId": eid, "elementType": "icon", "bounds": [x, y, size, size], "iconName": name, "fill": solid(color)}
 
 
@@ -287,7 +301,8 @@ def shell(p: dict[str, str], active: str, leaf: str | None = None) -> dict[str, 
     e: list[dict[str, Any]] = []
     e.append(box("aside", 0, 0, 240, H, p["aside"]))
     e.append(box("aside-divider", 239, 0, 1, H, p["line"]))
-    e.append(image("brand-mark", 16, 14, 22, 34, f"media/logo-{p['theme']}.png"))
+    robot = "grabber-" if active == "Контекст" else ""
+    e.append(image("brand-mark", 16, 14, 22, 34, f"media/logo-{robot}{p['theme']}.png"))
     e.append(txt("brand", 48, 14, 150, 34, "AUTOMATON", p, 15, bold=True))
     e.append(ico("collapse", 208, 23, 16, "fas:table-columns", p["secondary"]))
     top_nav = [("Функции", "fas:table-cells-large"), ("Поиск", "fas:magnifying-glass")]
@@ -299,6 +314,8 @@ def shell(p: dict[str, str], active: str, leaf: str | None = None) -> dict[str, 
     if active == "Автотесты":
         secondary_nav = [("Тест-кейсы", "fas:list-check"), ("Автотесты", "fas:robot"),
                          ("Регресс", "fas:arrows-rotate"), ("Покрытие", "fas:chart-pie")]
+    elif active == "Контекст":
+        secondary_nav = [("Сетевые запросы", "fas:server"), ("Элементы", "fas:cubes")]
     elif active == "Настройки проекта":
         secondary_nav = [("Интеграции", "fas:plug"), ("Настройки проекта", "fas:gear")]
     else:
@@ -307,7 +324,12 @@ def shell(p: dict[str, str], active: str, leaf: str | None = None) -> dict[str, 
                          ("Документация", "fas:book")]
     for i, (name, icon_name) in enumerate(secondary_nav):
         y = 208 + i * 44
-        current = name == "Тест-кейсы" if active == "Автотесты" else name == active
+        if active == "Автотесты":
+            current = name == "Тест-кейсы"
+        elif active == "Контекст":
+            current = name == leaf
+        else:
+            current = name == active
         if current:
             e.append(box(f"subnav-current-{i}", 8, y, 224, 40, p["selection"], 6))
         color = p["brandHeavy"] if current else p["text"]
@@ -983,6 +1005,93 @@ def status(p: dict[str, str], state: str = "partial") -> dict[str, Any]:
     return page
 
 
+def context_network(p: dict[str, str], expanded: bool = False) -> dict[str, Any]:
+    """Создаёт древовидный список сетевого контекста Grabber. @param p Зелёная палитра модуля. @param expanded Раскрыть сервис, запрос и моки. @return Страница с колонкой фичи у путей запросов."""
+    page = shell(p, "Контекст", "Сетевые запросы")
+    e = page["elements"]
+    heading(page, "Сетевые запросы", "Сервисы, запросы и моки, которые Grabber поставляет в контекст тестов.", p)
+    services = [
+        ("example.com", "Активен", "success", "", "AI Generation", "МА", "11.11.2026 23:48"),
+        ("api.neuro.photo", "Активен", "success", "", "AI Generation", "МА", "11.11.2026 22:16"),
+        ("auth.example.com", "Активен", "success", "", "Mobile Core", "ИЛ", "11.11.2026 19:04"),
+        ("payments.example.com", "Ошибка", "danger", "", "Revenue", "АН", "11.11.2026 17:32"),
+        ("cdn.example.com", "Активен", "success", "", "Mobile Core", "API", "10.11.2026 14:20"),
+        ("events.example.com", "Активен", "success", "", "Mobile Core", "АН", "10.11.2026 12:08"),
+        ("storage.example.com", "Активен", "success", "", "AI Generation", "МА", "09.11.2026 18:45"),
+        ("metrics.example.com", "Активен", "success", "", "Revenue", "АН", "09.11.2026 11:30"),
+    ]
+    if expanded:
+        rows = [
+            ("service", *services[0], True, False),
+            ("request", "api/v1/auth", "POST", "normal", "Авторизация", "", "", "", True, False),
+            ("mock", "Успешная авторизация", "200", "success", "", "", "", "", False, True),
+            ("mock", "Редирект после авторизации", "300", "warning", "", "", "", "", False, False),
+            ("mock", "Ошибка в данных авторизации", "400", "danger", "", "", "", "", False, False),
+            ("request", "api/v1/generation", "POST", "normal", "Генерация", "", "", "", False, False),
+            ("request", "api/v1/gallery", "GET", "info", "Галерея", "", "", "", False, False),
+        ]
+        rows.extend(("service", *service, False, False) for service in services[1:])
+    else:
+        rows = [("service", *service, False, False) for service in services]
+
+    # Общая сетка таблицы сохраняет иерархию: отступы выражают вложенность, а фича заполнена только у запроса.
+    columns = [("Сервис", 340, 520), ("Фича", 876, 160), ("Статус", 1052, 128),
+               ("Владелец", 1196, 156), ("Создатель", 1368, 96), ("Дата последнего изменения", 1480, 320)]
+    e.append(box("network-table-top", 264, 184, 1632, 1, p["line"]))
+    checkbox(e, "network-header-check", 281, 197, False, p)
+    for name, x, w in columns:
+        e.append(txt(f"network-col-{name}", x, 184, w, 40, name, p, 13, p["text"], bold=True))
+    e.append(box("network-table-head-line", 264, 223, 1632, 1, p["line"]))
+
+    for i, (kind, name, badge, badge_theme, feature, service_owner, creator, date, is_open, selected) in enumerate(rows):
+        y = 224 + i * 40
+        level = {"service": 0, "request": 1, "mock": 2}[kind]
+        if selected:
+            e.append(box(f"network-row-selected-{i}", 264, y, 1632, 40, p["selection"]))
+        e.append(box(f"network-row-line-{i}", 264, y + 39, 1632, 1, p["line"]))
+        checkbox(e, f"network-check-{i}", 281, y + 13, selected, p)
+        if kind != "mock":
+            e.append(ico(f"network-chevron-{i}", 312 + level * 24, y + 12, 16,
+                         "fas:chevron-down" if is_open else "fas:chevron-right", p["secondary"]))
+        text_x = 340 + level * 24
+        e.append(txt(f"network-name-{i}", text_x, y, 844 - text_x, 40, name, p, 13,
+                     p["text"], bold=kind == "service", mono=kind == "request"))
+        if feature:
+            e.append(txt(f"network-feature-{i}", 876, y, 160, 40, feature, p, 13, p["secondary"]))
+        badge_w = max(48, round(len(badge) * 7.1 + 16))
+        label(e, f"network-badge-{i}", 1052, y + 10, badge_w, badge, p, badge_theme, size="xs")
+        if service_owner:
+            e.append(txt(f"network-service-owner-{i}", 1196, y, 156, 40, service_owner, p, 13, p["secondary"]))
+        if creator == "API":
+            e.append(image(f"network-api-{i}", 1372, y + 10, 20, 20,
+                           f"media/gravity-abbr-api-normal-{p['theme']}.svg"))
+            e.append(image(f"network-api-help-{i}", 1398, y + 12, 16, 16,
+                           f"media/gravity-circle-question-normal-{p['theme']}.svg"))
+        elif creator:
+            e.append(box(f"network-creator-{i}", 1368, y + 6, 28, 28, p["misc"], 14, p["lineStrong"]))
+            e.append(txt(f"network-creator-initials-{i}", 1368, y + 6, 28, 28, creator, p, 11,
+                         p["text"], align="center", line=16))
+        if date:
+            e.append(txt(f"network-date-{i}", 1480, y, 300, 40, date, p, 13, p["secondary"]))
+    footer_y = 224 + len(rows) * 40 + 24
+    e.append(txt("network-pagination-summary", 264, footer_y, 600, 28,
+                 f"1–{len(rows)} из {len(rows)}", p, 13, p["secondary"]))
+    pagination(e, "network-pagination", 1652, footer_y, p)
+    if not expanded:
+        # Gravity Popover Info S: компактная ширина по тексту, 13 px и внутренние отступы 16 px.
+        popover = box("network-api-popover", 1102, 432, 320, 124, p["float"], 8, p["lineStrong"])
+        popover["shadow"] = {"blur": 16, "color": "#00000026" if p["theme"] == "light" else "#00000066", "offset": [0, 4]}
+        e.append(popover)
+        e.append({"elementId": "network-api-popover-tail", "elementType": "shape", "bounds": [1398, 420, 16, 12],
+                  "shapeName": "triangle", "fill": solid(p["float"])})
+        e.append(txt("network-api-popover-text-integration", 1118, 448, 288, 20,
+                     "Данным сервисом управляет интеграция.", p, 13, p["text"], align="center"))
+        e.append(txt("network-api-popover-text-readonly", 1118, 466, 288, 20,
+                     "Ручное изменение невозможно", p, 13, p["text"], align="center"))
+        button(e, "network-api-popover-action", 1118, 504, 288, "Интеграции", p)
+    return page
+
+
 def save_page(name: str, page: dict[str, Any]) -> None:
     """Сохраняет страницу. @param name Имя файла. @param page Содержимое. @return None."""
     path = ROOT / "pages" / name
@@ -991,7 +1100,7 @@ def save_page(name: str, page: dict[str, Any]) -> None:
 
 
 def main() -> None:
-    """Генерирует набор Automaton SaaS. @return None. Перезаписывает основной .kanva.pptd и 21 страницу."""
+    """Генерирует набор Automaton SaaS. @return None. Перезаписывает основной .kanva.pptd и 25 страниц."""
     pages = [("01_home_light.page", home(LIGHT)), ("02_home_dark.page", home(DARK)),
              ("03_tests_light.page", tests(LIGHT)), ("04_tests_dark.page", tests(DARK)),
              ("05_test_details_light.page", test_details(LIGHT)), ("06_test_details_dark.page", test_details(DARK)),
@@ -1006,7 +1115,11 @@ def main() -> None:
              ("18_test_description_light.page", test_description(LIGHT)),
              ("19_test_description_dark.page", test_description(DARK)),
              ("20_test_manual_light.page", test_manual(LIGHT)),
-             ("21_test_manual_dark.page", test_manual(DARK))]
+             ("21_test_manual_dark.page", test_manual(DARK)),
+             ("22_context_network_collapsed_light.page", context_network(GRABBER_LIGHT)),
+             ("23_context_network_collapsed_dark.page", context_network(GRABBER_DARK)),
+             ("24_context_network_expanded_light.page", context_network(GRABBER_LIGHT, True)),
+             ("25_context_network_expanded_dark.page", context_network(GRABBER_DARK, True))]
     for name, page in pages:
         save_page(name, page)
     deck = {"version": "v2", "title": "Automaton SaaS · Gravity UI · Full HD", "size": [W, H],

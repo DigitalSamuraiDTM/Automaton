@@ -33,3 +33,7 @@ pages:
 - pages/19_test_description_dark.page
 - pages/20_test_manual_light.page
 - pages/21_test_manual_dark.page
+- pages/22_context_network_collapsed_light.page
+- pages/23_context_network_collapsed_dark.page
+- pages/24_context_network_expanded_light.page
+- pages/25_context_network_expanded_dark.page

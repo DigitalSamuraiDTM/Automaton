@@ -1,0 +1,2683 @@
+pageType: content
+background:
+  type: solid
+  color: '#FFFFFF'
+elements:
+- elementId: aside
+  elementType: shape
+  bounds:
+  - 0
+  - 0
+  - 240
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+- elementId: aside-divider
+  elementType: shape
+  bounds:
+  - 239
+  - 0
+  - 1
+  - 1080
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: brand-mark
+  elementType: image
+  bounds:
+  - 16
+  - 14
+  - 22
+  - 34
+  src: media/logo-grabber-light.png
+  fit:
+    mode: contain
+- elementId: brand
+  elementType: text
+  bounds:
+  - 48
+  - 14
+  - 150
+  - 34
+  content:
+    text: AUTOMATON
+    fontSize: 15
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 20
+- elementId: collapse
+  elementType: icon
+  bounds:
+  - 208
+  - 23
+  - 16
+  - 16
+  iconName: fas:table-columns
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: nav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 95
+  - 18
+  - 18
+  iconName: fas:table-cells-large
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: nav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 84
+  - 172
+  - 40
+  content:
+    text: Функции
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: nav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 139
+  - 18
+  - 18
+  iconName: fas:magnifying-glass
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: nav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 128
+  - 172
+  - 40
+  content:
+    text: Поиск
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: aside-section-line
+  elementType: shape
+  bounds:
+  - 16
+  - 184
+  - 208
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: subnav-current-0
+  elementType: shape
+  bounds:
+  - 8
+  - 208
+  - 224
+  - 40
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 15000
+- elementId: subnav-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 219
+  - 18
+  - 18
+  iconName: fas:server
+  fill:
+    type: solid
+    color: '#2D8B5D'
+- elementId: subnav-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 208
+  - 172
+  - 40
+  content:
+    text: Сетевые запросы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: subnav-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 263
+  - 18
+  - 18
+  iconName: fas:cubes
+  fill:
+    type: solid
+    color: '#262626'
+- elementId: subnav-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 252
+  - 172
+  - 40
+  content:
+    text: Элементы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: footer-icon-0
+  elementType: icon
+  bounds:
+  - 20
+  - 911
+  - 18
+  - 18
+  iconName: fas:gear
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: footer-text-0
+  elementType: text
+  bounds:
+  - 52
+  - 900
+  - 172
+  - 40
+  content:
+    text: Настройки
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: footer-icon-1
+  elementType: icon
+  bounds:
+  - 20
+  - 955
+  - 18
+  - 18
+  iconName: fas:circle-question
+  fill:
+    type: solid
+    color: '#808080'
+- elementId: footer-text-1
+  elementType: text
+  bounds:
+  - 52
+  - 944
+  - 172
+  - 40
+  content:
+    text: Помощь
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: account-avatar
+  elementType: shape
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#0000000D'
+  opacity: 1
+  adjustments:
+  - 50000
+- elementId: account-initials
+  elementType: text
+  bounds:
+  - 12
+  - 1000
+  - 32
+  - 32
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: account-name
+  elementType: text
+  bounds:
+  - 56
+  - 1000
+  - 160
+  - 32
+  content:
+    text: Андрей Н.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: topbar
+  elementType: shape
+  bounds:
+  - 240
+  - 0
+  - 1680
+  - 64
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#FFFFFF'
+  opacity: 1
+- elementId: topbar-line
+  elementType: shape
+  bounds:
+  - 240
+  - 63
+  - 1680
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: breadcrumb-0
+  elementType: text
+  bounds:
+  - 264
+  - 0
+  - 64
+  - 64
+  content:
+    text: Automaton
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-separator-0
+  elementType: text
+  bounds:
+  - 328
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-1
+  elementType: text
+  bounds:
+  - 352
+  - 0
+  - 146
+  - 64
+  content:
+    text: Neuro Photo / Mobile
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-project-chevron
+  elementType: image
+  bounds:
+  - 496.0
+  - 24.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: breadcrumb-separator-1
+  elementType: text
+  bounds:
+  - 516
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-2
+  elementType: text
+  bounds:
+  - 540
+  - 0
+  - 64
+  - 64
+  content:
+    text: Контекст
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-separator-2
+  elementType: text
+  bounds:
+  - 604
+  - 0
+  - 24
+  - 64
+  content:
+    text: /
+    fontSize: 13
+    fontFamily: Inter
+    color: '#B3B3B3'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: breadcrumb-3
+  elementType: text
+  bounds:
+  - 628
+  - 0
+  - 106
+  - 64
+  content:
+    text: Сетевые запросы
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: page-title
+  elementType: text
+  bounds:
+  - 264
+  - 84
+  - 1100
+  - 32
+  content:
+    text: Сетевые запросы
+    fontSize: 24
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 28
+- elementId: page-subtitle
+  elementType: text
+  bounds:
+  - 264
+  - 120
+  - 1200
+  - 22
+  content:
+    text: Сервисы, запросы и моки, которые Grabber поставляет в контекст тестов.
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-table-top
+  elementType: shape
+  bounds:
+  - 264
+  - 184
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-header-check-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 197
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-col-Сервис
+  elementType: text
+  bounds:
+  - 340
+  - 184
+  - 520
+  - 40
+  content:
+    text: Сервис
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-col-Фича
+  elementType: text
+  bounds:
+  - 876
+  - 184
+  - 160
+  - 40
+  content:
+    text: Фича
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-col-Статус
+  elementType: text
+  bounds:
+  - 1052
+  - 184
+  - 128
+  - 40
+  content:
+    text: Статус
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-col-Владелец
+  elementType: text
+  bounds:
+  - 1196
+  - 184
+  - 156
+  - 40
+  content:
+    text: Владелец
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-col-Создатель
+  elementType: text
+  bounds:
+  - 1368
+  - 184
+  - 96
+  - 40
+  content:
+    text: Создатель
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-col-Дата последнего изменения
+  elementType: text
+  bounds:
+  - 1480
+  - 184
+  - 320
+  - 40
+  content:
+    text: Дата последнего изменения
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-table-head-line
+  elementType: shape
+  bounds:
+  - 264
+  - 223
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-row-line-0
+  elementType: shape
+  bounds:
+  - 264
+  - 263
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-0-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 237
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-0
+  elementType: image
+  bounds:
+  - 312.0
+  - 236.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-0
+  elementType: text
+  bounds:
+  - 340
+  - 224
+  - 504
+  - 40
+  content:
+    text: example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-0-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 234
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-0-text
+  elementType: text
+  bounds:
+  - 1060
+  - 234
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-0
+  elementType: text
+  bounds:
+  - 1196
+  - 224
+  - 156
+  - 40
+  content:
+    text: AI Generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-0
+  elementType: shape
+  bounds:
+  - 1368
+  - 230
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-0
+  elementType: text
+  bounds:
+  - 1368
+  - 230
+  - 28
+  - 28
+  content:
+    text: МА
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-0
+  elementType: text
+  bounds:
+  - 1480
+  - 224
+  - 300
+  - 40
+  content:
+    text: 11.11.2026 23:48
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-1
+  elementType: shape
+  bounds:
+  - 264
+  - 303
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-1-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 277
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-1
+  elementType: image
+  bounds:
+  - 336.0
+  - 276.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-1
+  elementType: text
+  bounds:
+  - 364
+  - 264
+  - 480
+  - 40
+  content:
+    text: api/v1/auth
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-feature-1
+  elementType: text
+  bounds:
+  - 876
+  - 264
+  - 160
+  - 40
+  content:
+    text: Авторизация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-1-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 274
+  - 48
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-1-text
+  elementType: text
+  bounds:
+  - 1060
+  - 274
+  - 32
+  - 20
+  content:
+    text: POST
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-row-selected-2
+  elementType: shape
+  bounds:
+  - 264
+  - 304
+  - 1632
+  - 40
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+- elementId: network-row-line-2
+  elementType: shape
+  bounds:
+  - 264
+  - 343
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-2-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 317
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#2D8B5D'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#2D8B5D'
+- elementId: network-check-2-check
+  elementType: icon
+  bounds:
+  - 284
+  - 320
+  - 8
+  - 8
+  iconName: fas:check
+  fill:
+    type: solid
+    color: '#FFFFFF'
+- elementId: network-name-2
+  elementType: text
+  bounds:
+  - 388
+  - 304
+  - 456
+  - 40
+  content:
+    text: Успешная авторизация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-2-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 314
+  - 48
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-2-text
+  elementType: text
+  bounds:
+  - 1060
+  - 314
+  - 32
+  - 20
+  content:
+    text: '200'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-row-line-3
+  elementType: shape
+  bounds:
+  - 264
+  - 383
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-3-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 357
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-name-3
+  elementType: text
+  bounds:
+  - 388
+  - 344
+  - 456
+  - 40
+  content:
+    text: Редирект после авторизации
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-3-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 354
+  - 48
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FFBE5C4D'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-3-text
+  elementType: text
+  bounds:
+  - 1060
+  - 354
+  - 32
+  - 20
+  content:
+    text: '300'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#8A5A18'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-row-line-4
+  elementType: shape
+  bounds:
+  - 264
+  - 423
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-4-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 397
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-name-4
+  elementType: text
+  bounds:
+  - 388
+  - 384
+  - 456
+  - 40
+  content:
+    text: Ошибка в данных авторизации
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-4-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 394
+  - 48
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-4-text
+  elementType: text
+  bounds:
+  - 1060
+  - 394
+  - 32
+  - 20
+  content:
+    text: '400'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-row-line-5
+  elementType: shape
+  bounds:
+  - 264
+  - 463
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-5-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 437
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-5
+  elementType: image
+  bounds:
+  - 336.0
+  - 436.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-5
+  elementType: text
+  bounds:
+  - 364
+  - 424
+  - 480
+  - 40
+  content:
+    text: api/v1/generation
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-feature-5
+  elementType: text
+  bounds:
+  - 876
+  - 424
+  - 160
+  - 40
+  content:
+    text: Генерация
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-5-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 434
+  - 48
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-5-text
+  elementType: text
+  bounds:
+  - 1060
+  - 434
+  - 32
+  - 20
+  content:
+    text: POST
+    fontSize: 13
+    fontFamily: Inter
+    color: '#556575'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-row-line-6
+  elementType: shape
+  bounds:
+  - 264
+  - 503
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-6-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 477
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-6
+  elementType: image
+  bounds:
+  - 336.0
+  - 476.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-6
+  elementType: text
+  bounds:
+  - 364
+  - 464
+  - 480
+  - 40
+  content:
+    text: api/v1/gallery
+    fontSize: 13
+    fontFamily: Menlo
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-feature-6
+  elementType: text
+  bounds:
+  - 876
+  - 464
+  - 160
+  - 40
+  content:
+    text: Галерея
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-6-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 474
+  - 48
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#527CCD26'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-6-text
+  elementType: text
+  bounds:
+  - 1060
+  - 474
+  - 32
+  - 20
+  content:
+    text: GET
+    fontSize: 13
+    fontFamily: Inter
+    color: '#355CA8'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-row-line-7
+  elementType: shape
+  bounds:
+  - 264
+  - 543
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-7-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 517
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-7
+  elementType: image
+  bounds:
+  - 312.0
+  - 516.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-7
+  elementType: text
+  bounds:
+  - 340
+  - 504
+  - 504
+  - 40
+  content:
+    text: api.neuro.photo
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-7-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 514
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-7-text
+  elementType: text
+  bounds:
+  - 1060
+  - 514
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-7
+  elementType: text
+  bounds:
+  - 1196
+  - 504
+  - 156
+  - 40
+  content:
+    text: AI Generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-7
+  elementType: shape
+  bounds:
+  - 1368
+  - 510
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-7
+  elementType: text
+  bounds:
+  - 1368
+  - 510
+  - 28
+  - 28
+  content:
+    text: МА
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-7
+  elementType: text
+  bounds:
+  - 1480
+  - 504
+  - 300
+  - 40
+  content:
+    text: 11.11.2026 22:16
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-8
+  elementType: shape
+  bounds:
+  - 264
+  - 583
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-8-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 557
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-8
+  elementType: image
+  bounds:
+  - 312.0
+  - 556.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-8
+  elementType: text
+  bounds:
+  - 340
+  - 544
+  - 504
+  - 40
+  content:
+    text: auth.example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-8-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 554
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-8-text
+  elementType: text
+  bounds:
+  - 1060
+  - 554
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-8
+  elementType: text
+  bounds:
+  - 1196
+  - 544
+  - 156
+  - 40
+  content:
+    text: Mobile Core
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-8
+  elementType: shape
+  bounds:
+  - 1368
+  - 550
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-8
+  elementType: text
+  bounds:
+  - 1368
+  - 550
+  - 28
+  - 28
+  content:
+    text: ИЛ
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-8
+  elementType: text
+  bounds:
+  - 1480
+  - 544
+  - 300
+  - 40
+  content:
+    text: 11.11.2026 19:04
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-9
+  elementType: shape
+  bounds:
+  - 264
+  - 623
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-9-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 597
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-9
+  elementType: image
+  bounds:
+  - 312.0
+  - 596.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-9
+  elementType: text
+  bounds:
+  - 340
+  - 584
+  - 504
+  - 40
+  content:
+    text: payments.example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-9-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 594
+  - 59
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#FF003D26'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-9-text
+  elementType: text
+  bounds:
+  - 1060
+  - 594
+  - 43
+  - 20
+  content:
+    text: Ошибка
+    fontSize: 13
+    fontFamily: Inter
+    color: '#BD0935'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-9
+  elementType: text
+  bounds:
+  - 1196
+  - 584
+  - 156
+  - 40
+  content:
+    text: Revenue
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-9
+  elementType: shape
+  bounds:
+  - 1368
+  - 590
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-9
+  elementType: text
+  bounds:
+  - 1368
+  - 590
+  - 28
+  - 28
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-9
+  elementType: text
+  bounds:
+  - 1480
+  - 584
+  - 300
+  - 40
+  content:
+    text: 11.11.2026 17:32
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-10
+  elementType: shape
+  bounds:
+  - 264
+  - 663
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-10-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 637
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-10
+  elementType: image
+  bounds:
+  - 312.0
+  - 636.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-10
+  elementType: text
+  bounds:
+  - 340
+  - 624
+  - 504
+  - 40
+  content:
+    text: cdn.example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-10-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 634
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-10-text
+  elementType: text
+  bounds:
+  - 1060
+  - 634
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-10
+  elementType: text
+  bounds:
+  - 1196
+  - 624
+  - 156
+  - 40
+  content:
+    text: Mobile Core
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-api-10
+  elementType: image
+  bounds:
+  - 1372
+  - 634
+  - 20
+  - 20
+  src: media/gravity-abbr-api-normal-light.svg
+  fit:
+    mode: contain
+- elementId: network-api-help-10
+  elementType: image
+  bounds:
+  - 1398
+  - 636
+  - 16
+  - 16
+  src: media/gravity-circle-question-normal-light.svg
+  fit:
+    mode: contain
+- elementId: network-date-10
+  elementType: text
+  bounds:
+  - 1480
+  - 624
+  - 300
+  - 40
+  content:
+    text: 10.11.2026 14:20
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-11
+  elementType: shape
+  bounds:
+  - 264
+  - 703
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-11-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 677
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-11
+  elementType: image
+  bounds:
+  - 312.0
+  - 676.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-11
+  elementType: text
+  bounds:
+  - 340
+  - 664
+  - 504
+  - 40
+  content:
+    text: events.example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-11-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 674
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-11-text
+  elementType: text
+  bounds:
+  - 1060
+  - 674
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-11
+  elementType: text
+  bounds:
+  - 1196
+  - 664
+  - 156
+  - 40
+  content:
+    text: Mobile Core
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-11
+  elementType: shape
+  bounds:
+  - 1368
+  - 670
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-11
+  elementType: text
+  bounds:
+  - 1368
+  - 670
+  - 28
+  - 28
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-11
+  elementType: text
+  bounds:
+  - 1480
+  - 664
+  - 300
+  - 40
+  content:
+    text: 10.11.2026 12:08
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-12
+  elementType: shape
+  bounds:
+  - 264
+  - 743
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-12-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 717
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-12
+  elementType: image
+  bounds:
+  - 312.0
+  - 716.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-12
+  elementType: text
+  bounds:
+  - 340
+  - 704
+  - 504
+  - 40
+  content:
+    text: storage.example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-12-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 714
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-12-text
+  elementType: text
+  bounds:
+  - 1060
+  - 714
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-12
+  elementType: text
+  bounds:
+  - 1196
+  - 704
+  - 156
+  - 40
+  content:
+    text: AI Generation
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-12
+  elementType: shape
+  bounds:
+  - 1368
+  - 710
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-12
+  elementType: text
+  bounds:
+  - 1368
+  - 710
+  - 28
+  - 28
+  content:
+    text: МА
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-12
+  elementType: text
+  bounds:
+  - 1480
+  - 704
+  - 300
+  - 40
+  content:
+    text: 09.11.2026 18:45
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-row-line-13
+  elementType: shape
+  bounds:
+  - 264
+  - 783
+  - 1632
+  - 1
+  shapeName: rect
+  fill:
+    type: solid
+    color: '#0000001A'
+  opacity: 1
+- elementId: network-check-13-bg
+  elementType: shape
+  bounds:
+  - 281
+  - 757
+  - 14
+  - 14
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-chevron-13
+  elementType: image
+  bounds:
+  - 312.0
+  - 756.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-secondary-light.svg
+  fit:
+    mode: contain
+- elementId: network-name-13
+  elementType: text
+  bounds:
+  - 340
+  - 744
+  - 504
+  - 40
+  content:
+    text: metrics.example.com
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: true
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-badge-13-bg
+  elementType: shape
+  bounds:
+  - 1052
+  - 754
+  - 66
+  - 20
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 20000
+- elementId: network-badge-13-text
+  elementType: text
+  bounds:
+  - 1060
+  - 754
+  - 50
+  - 20
+  content:
+    text: Активен
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-service-owner-13
+  elementType: text
+  bounds:
+  - 1196
+  - 744
+  - 156
+  - 40
+  content:
+    text: Revenue
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-creator-13
+  elementType: shape
+  bounds:
+  - 1368
+  - 750
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#6B849926'
+  opacity: 1
+  adjustments:
+  - 50000
+  border:
+    style: solid
+    width: 1
+    color: '#00000026'
+- elementId: network-creator-initials-13
+  elementType: text
+  bounds:
+  - 1368
+  - 750
+  - 28
+  - 28
+  content:
+    text: АН
+    fontSize: 11
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-date-13
+  elementType: text
+  bounds:
+  - 1480
+  - 744
+  - 300
+  - 40
+  content:
+    text: 09.11.2026 11:30
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-pagination-summary
+  elementType: text
+  bounds:
+  - 264
+  - 808
+  - 600
+  - 28
+  content:
+    text: 1–14 из 14
+    fontSize: 13
+    fontFamily: Inter
+    color: '#808080'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 18
+- elementId: network-pagination-previous
+  elementType: shape
+  bounds:
+  - 1652
+  - 808
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: network-pagination-previous-icon
+  elementType: image
+  bounds:
+  - 1658.0
+  - 814.0
+  - 16
+  - 16
+  src: media/gravity-chevron-left-hint-light.svg
+  fit:
+    mode: contain
+- elementId: network-pagination-next
+  elementType: shape
+  bounds:
+  - 1716
+  - 808
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: network-pagination-next-icon
+  elementType: image
+  bounds:
+  - 1722.0
+  - 814.0
+  - 16
+  - 16
+  src: media/gravity-chevron-right-hint-light.svg
+  fit:
+    mode: contain
+- elementId: network-pagination-current
+  elementType: shape
+  bounds:
+  - 1684
+  - 808
+  - 28
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#32BA7626'
+  opacity: 1
+  adjustments:
+  - 21428
+- elementId: network-pagination-current-text
+  elementType: text
+  bounds:
+  - 1684
+  - 808
+  - 28
+  - 28
+  content:
+    text: '1'
+    fontSize: 13
+    fontFamily: Inter
+    color: '#2D8B5D'
+    bold: false
+    align:
+    - center
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-pagination-page-size
+  elementType: shape
+  bounds:
+  - 1756
+  - 808
+  - 140
+  - 28
+  shapeName: roundRect
+  fill:
+    type: solid
+    color: '#00000000'
+  opacity: 1
+  adjustments:
+  - 21428
+  border:
+    style: solid
+    width: 1
+    color: '#0000001A'
+- elementId: network-pagination-page-size-text
+  elementType: text
+  bounds:
+  - 1768
+  - 808
+  - 100
+  - 28
+  content:
+    text: 7 на странице
+    fontSize: 13
+    fontFamily: Inter
+    color: '#262626'
+    bold: false
+    align:
+    - left
+    - middle
+    wrap: false
+    lineHeightPx: 16
+- elementId: network-pagination-page-size-icon
+  elementType: image
+  bounds:
+  - 1870.0
+  - 814.0
+  - 16
+  - 16
+  src: media/gravity-chevron-down-secondary-light.svg
+  fit:
+    mode: contain
