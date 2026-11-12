@@ -12,13 +12,27 @@ public class OpenApiFileFrontend<M : AutomatonGrabberStorageMeta>(
 ) {
 
     /**
-     * Reads an OpenAPI JSON or YAML file.
+     * Reads an OpenAPI JSON or YAML file and synchronizes its test representation.
      *
      * @param input file containing the OpenAPI specification.
+     * @param meta metadata required by the storage.
      * @return OpenAPI model parsed by Swagger Parser.
      */
-    public fun grab(input: OpenApiFileInput): OpenAPI {
-        return parse(input.file)
+    public fun grab(
+        input: OpenApiFileInput,
+        meta: M,
+    ): OpenAPI {
+        val openApi = parse(input.file)
+        // TODO Заменить тестовое представление на полный конвертер OpenAPI в AutomatonGrabberParsedApi.
+        val request = AutomatonGrabberParsedApi(
+            info = AutomatonGrabberParsedApi.Info(
+                name = openApi.info.title,
+                description = openApi.info.description,
+            ),
+            servers = emptyList(),
+        )
+        sync(request = request, meta = meta)
+        return openApi
     }
 
     /**

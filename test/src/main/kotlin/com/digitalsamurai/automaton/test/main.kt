@@ -13,9 +13,8 @@ import com.digitalsamurai.automaton.frontend.yaml.YamlInput
 import com.digitalsamurai.automaton.grabber.frontend.openapi.file.OpenApiFileFrontend
 import com.digitalsamurai.automaton.grabber.frontend.openapi.file.OpenApiFileInput
 import com.digitalsamurai.automaton.grabber.grabber
-import com.digitalsamurai.automaton.grabber.representation.AutomatonGrabberParsedApi
-import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorage
-import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorageMeta
+import com.digitalsamurai.automaton.grabber.storage.saas.mongo.SaaSMongoStorageMeta
+import com.digitalsamurai.automaton.grabber.storage.saas.mongo.mongo
 import com.digitalsamurai.automaton.integrator.files.FileIntegrator
 import com.digitalsamurai.automaton.logger.api.AutomatonLogger
 import com.digitalsamurai.automaton.logger.terminal.TerminalLogger
@@ -83,47 +82,24 @@ private suspend fun checkCreator() {
 }
 
 /**
- * Builds the grabber, parses the frontback specification and checks synchronous storage delegation.
+ * Builds the grabber, parses the frontback specification and saves a MongoDB stub document.
  *
- * @return Unit after the specification is parsed, printed and synchronized.
+ * @return Unit after the specification is parsed, synchronized and printed.
  */
 private fun checkGrabber() {
-    val grabber = Automaton.grabber.factory(PrintingGrabberStorage())
+    val storageFactory = Automaton.grabber.storages.mongo {
+        connectionString = "mongodb://localhost:27017"
+        databaseName = "automaton"
+        collectionName = "grabber_sync_stubs"
+    }
+    val grabberFactory = Automaton.grabber.factory(storageFactory)
+    val grabber = grabberFactory.build()
     val frontend = OpenApiFileFrontend(grabber)
     val openApi = frontend.grab(
-        OpenApiFileInput(
+        input = OpenApiFileInput(
             File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/grabber/frontback-openapi.yaml")
-        )
+        ),
+        meta = SaaSMongoStorageMeta,
     )
     println(Json.pretty(openApi))
-    frontend.sync(
-        request = AutomatonGrabberParsedApi(
-            info = AutomatonGrabberParsedApi.Info(
-                name = openApi.info.title,
-                description = openApi.info.description,
-            ),
-            servers = emptyList(),
-        ),
-        meta = TestGrabberStorageMeta,
-    )
-}
-
-private data object TestGrabberStorageMeta : AutomatonGrabberStorageMeta
-
-private class PrintingGrabberStorage : AutomatonGrabberStorage<TestGrabberStorageMeta> {
-
-    /**
-     * Prints the synchronization request received from the grabber.
-     *
-     * @param request parsed API specification.
-     * @param meta test storage metadata.
-     * @return Unit after the request is printed.
-     */
-    override fun sync(
-        request: AutomatonGrabberParsedApi,
-        meta: TestGrabberStorageMeta,
-    ) {
-        println("GRABBER SYNC META: $meta")
-        println("GRABBER SYNC REQUEST: $request")
-    }
 }

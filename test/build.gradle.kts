@@ -24,6 +24,7 @@ dependencies {
     implementation(projects.creator.logger.terminal)
     implementation(projects.grabber.api)
     implementation(projects.grabber.frontend.openapiFile)
+    implementation(projects.grabber.storage.saas.mongo)
 
     implementation(libs.kotlin.stdlib)
 
