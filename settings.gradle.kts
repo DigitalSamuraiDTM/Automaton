@@ -63,5 +63,6 @@ includeIfExists(":creator:logger:terminal")
 includeIfExists(":creator:utils")
 
 includeIfExists(":grabber:api")
+includeIfExists(":grabber:representation")
 includeIfExists(":grabber:frontend:api")
 includeIfExists(":grabber:frontend:openapi-file")
