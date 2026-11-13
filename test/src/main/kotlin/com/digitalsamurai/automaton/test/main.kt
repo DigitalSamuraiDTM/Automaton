@@ -13,6 +13,7 @@ import com.digitalsamurai.automaton.frontend.yaml.YamlInput
 import com.digitalsamurai.automaton.grabber.frontend.openapi.file.OpenApiFileFrontend
 import com.digitalsamurai.automaton.grabber.frontend.openapi.file.OpenApiFileInput
 import com.digitalsamurai.automaton.grabber.grabber
+import com.digitalsamurai.automaton.grabber.storage.saas.mongo.SaaSActorMeta
 import com.digitalsamurai.automaton.grabber.storage.saas.mongo.SaaSMongoStorageMeta
 import com.digitalsamurai.automaton.grabber.storage.saas.mongo.mongo
 import com.digitalsamurai.automaton.integrator.files.FileIntegrator
@@ -99,7 +100,11 @@ private fun checkGrabber() {
         input = OpenApiFileInput(
             File("/Users/nugaev.andrey/Desktop/Projects/Automaton/samples/tests/grabber/frontback-openapi.yaml")
         ),
-        meta = SaaSMongoStorageMeta,
+        meta = SaaSMongoStorageMeta(
+            teamId = "frontback-team",
+            actor = SaaSActorMeta.Integration(id = "frontback-openapi"),
+            sourceRevision = "frontback-openapi-1",
+        ),
     )
     println(Json.pretty(openApi))
 }
