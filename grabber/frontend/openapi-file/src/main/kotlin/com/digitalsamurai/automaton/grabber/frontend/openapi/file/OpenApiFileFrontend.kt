@@ -11,8 +11,10 @@ public class OpenApiFileFrontend<M : AutomatonGrabberStorageMeta>(
     private val grabber: AutomatonGrabber<M>,
 ) {
 
+    private val parsedApiMapper = ParsedApiMapper()
+
     /**
-     * Reads an OpenAPI JSON or YAML file and synchronizes its test representation.
+     * Reads an OpenAPI JSON or YAML file and synchronizes its mapped representation.
      *
      * @param input file containing the OpenAPI specification.
      * @param meta metadata required by the storage.
@@ -23,30 +25,9 @@ public class OpenApiFileFrontend<M : AutomatonGrabberStorageMeta>(
         meta: M,
     ): OpenAPI {
         val openApi = parse(input.file)
-        // TODO Заменить тестовое представление на полный конвертер OpenAPI в AutomatonGrabberParsedApi.
-        val request = AutomatonGrabberParsedApi(
-            info = AutomatonGrabberParsedApi.Info(
-                name = openApi.info.title,
-                description = openApi.info.description,
-            ),
-            servers = emptyList(),
-        )
-        sync(request = request, meta = meta)
-        return openApi
-    }
-
-    /**
-     * Runs grabber synchronization through the frontend API.
-     *
-     * @param request parsed API specification.
-     * @param meta metadata required by the storage.
-     * @return Unit after the grabber handles the request.
-     */
-    public fun sync(
-        request: AutomatonGrabberParsedApi,
-        meta: M,
-    ) {
+        val request = parsedApiMapper.getParsedApi(openApi)
         grabber.sync(request = request, meta = meta)
+        return openApi
     }
 
     /**

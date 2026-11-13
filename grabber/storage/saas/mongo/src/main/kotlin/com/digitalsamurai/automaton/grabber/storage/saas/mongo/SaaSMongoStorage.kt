@@ -5,9 +5,8 @@ import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorage
 import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorageMeta
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoCollection
+import kotlinx.serialization.json.Json
 import org.bson.Document
-import java.time.Instant
-import java.util.Date
 
 public data object SaaSMongoStorageMeta : AutomatonGrabberStorageMeta
 
@@ -16,8 +15,13 @@ internal class SaaSMongoStorage(
     private val collection: MongoCollection<Document>,
 ) : AutomatonGrabberStorage<SaaSMongoStorageMeta>, AutoCloseable {
 
+    private val json = Json {
+        classDiscriminator = "_kind"
+        encodeDefaults = true
+    }
+
     /**
-     * Saves a stub document for the synchronization request.
+     * Saves the complete parsed API as one MongoDB document.
      *
      * @param request parsed API specification.
      * @param meta MongoDB storage metadata.
@@ -27,14 +31,11 @@ internal class SaaSMongoStorage(
         request: AutomatonGrabberParsedApi,
         meta: SaaSMongoStorageMeta,
     ) {
-        val document = Document("type", "automaton_grabber_sync_stub")
-            .append("apiName", request.info.name)
-            .append("apiDescription", request.info.description)
-            .append("serversCount", request.servers.size)
-            .append("meta", meta.toString())
-            .append("createdAt", Date.from(Instant.now()))
+        val document = Document.parse(
+            json.encodeToString(AutomatonGrabberParsedApi.serializer(), request)
+        )
         collection.insertOne(document)
-        println("MONGO SYNC STUB SAVED: ${document.toJson()}")
+        println("MONGO PARSED API SAVED: ${document.toJson()}")
     }
 
     /**
