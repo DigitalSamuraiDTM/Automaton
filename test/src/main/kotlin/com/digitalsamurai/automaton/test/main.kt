@@ -82,7 +82,7 @@ private suspend fun checkCreator() {
 }
 
 /**
- * Builds the grabber, maps the frontback specification and saves it as one MongoDB document.
+ * Builds the grabber, maps the frontback specification and saves it as a MongoDB document tree.
  *
  * @return Unit after the specification is parsed, synchronized and printed.
  */
