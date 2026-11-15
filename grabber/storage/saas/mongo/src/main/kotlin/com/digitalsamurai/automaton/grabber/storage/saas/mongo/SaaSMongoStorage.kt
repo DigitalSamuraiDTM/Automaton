@@ -6,6 +6,9 @@ import com.digitalsamurai.automaton.grabber.representation.ResponseData
 import com.digitalsamurai.automaton.grabber.storage.api.AutomatonGrabberStorage
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoCollection
+import com.mongodb.client.model.Filters
+import com.mongodb.client.model.IndexOptions
+import com.mongodb.client.model.Indexes
 import kotlinx.serialization.json.Json
 import org.bson.Document
 import org.bson.types.ObjectId
@@ -22,12 +25,63 @@ internal class SaaSMongoStorage(
         encodeDefaults = true
     }
 
+    init {
+        createBusinessKeyIndexes()
+    }
+
     /**
-     * Saves the parsed API as a tree of API, server, request and response documents.
+     * Creates unique indexes for the business keys of all node types.
+     *
+     * @return Unit after MongoDB creates or confirms the indexes.
+     */
+    private fun createBusinessKeyIndexes() {
+        // TODO Изменение URL будет означать удаление старого сервера и создание нового дерева запросов.
+        // TODO Для переезда существующего сервера на другой домен потребуется отдельный процесс миграции дерева и связей.
+        createUniqueBusinessKeyIndex(
+            nodeType = SERVER_NODE,
+            fields = listOf("metadata.teamId", "url"),
+            indexName = "unique_server_business_key",
+        )
+        createUniqueBusinessKeyIndex(
+            nodeType = HTTP_REQUEST_NODE,
+            fields = listOf("serverId", "type", "path"),
+            indexName = "unique_http_request_business_key",
+        )
+        createUniqueBusinessKeyIndex(
+            nodeType = RESPONSE_NODE,
+            fields = listOf("requestId", "statusCode"),
+            indexName = "unique_http_response_business_key",
+        )
+    }
+
+    /**
+     * Creates a unique index only for documents of the specified node type.
+     *
+     * @param nodeType node type covered by the partial index.
+     * @param fields ordered business-key fields.
+     * @param indexName MongoDB index name.
+     * @return Unit after MongoDB creates or confirms the index.
+     */
+    private fun createUniqueBusinessKeyIndex(
+        nodeType: String,
+        fields: List<String>,
+        indexName: String,
+    ) {
+        collection.createIndex(
+            Indexes.ascending(fields),
+            IndexOptions()
+                .name(indexName)
+                .unique(true)
+                .partialFilterExpression(Filters.eq("nodeType", nodeType))
+        )
+    }
+
+    /**
+     * Saves the parsed API as independent server, request and response document trees.
      *
      * @param request parsed API specification.
      * @param meta MongoDB storage metadata.
-     * @return Unit after MongoDB acknowledges the insert.
+     * @return Unit after MongoDB acknowledges the insert or when there are no servers to save.
      */
     override fun sync(
         request: AutomatonGrabberParsedApi,
@@ -35,9 +89,11 @@ internal class SaaSMongoStorage(
     ) {
         val documents = createTreeDocuments(request, meta)
         // TODO insertMany не является атомарной транзакцией: при ошибке часть дерева может быть уже записана.
-        // TODO Продумать индексы по nodeType, родительским ссылкам и бизнес-ключам данных.
-        collection.insertMany(documents)
-        println("MONGO PARSED API TREE SAVED: ${documents.size} documents")
+        // TODO Продумать индексы для чтения дерева по nodeType и родительским ссылкам.
+        if (documents.isNotEmpty()) {
+            collection.insertMany(documents)
+        }
+        println("MONGO SERVER TREES SAVED: ${documents.size} documents")
     }
 
     /**
@@ -101,7 +157,7 @@ internal class SaaSMongoStorage(
     }
 
     /**
-     * Creates an API root document and all its descendant nodes.
+     * Creates independent server documents and all their descendant nodes.
      *
      * @param request parsed API specification.
      * @param meta operation execution metadata.
@@ -112,22 +168,11 @@ internal class SaaSMongoStorage(
         meta: SaaSMongoStorageMeta,
     ): List<Document> {
         val metadata = createNodeMetadata(meta)
-        val apiId = ObjectId()
-        val documents = mutableListOf(
-            Document("_id", apiId)
-                .append("nodeType", API_NODE)
-                .append("metadata", createMetadataDocument(metadata))
-                .append(
-                    "info",
-                    Document("name", request.info.name)
-                        .append("description", request.info.description)
-                )
-        )
+        val documents = mutableListOf<Document>()
         request.servers.forEach { server ->
             val serverId = ObjectId()
             documents += Document("_id", serverId)
                 .append("nodeType", SERVER_NODE)
-                .append("apiId", apiId)
                 .append("metadata", createMetadataDocument(metadata))
                 .append("name", server.name)
                 .append("url", server.url)
@@ -187,7 +232,6 @@ internal class SaaSMongoStorage(
     }
 
     private companion object {
-        const val API_NODE = "api"
         const val SERVER_NODE = "server"
         const val HTTP_REQUEST_NODE = "http_request"
         const val RESPONSE_NODE = "http_response"
